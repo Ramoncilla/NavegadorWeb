@@ -1,1 +1,143 @@
 
+package proyecto1_201122872.AnalizadorCHTML;
+
+import AnalizadorCHTML.simbolosCHTML;
+import java_cup.runtime.*;
+import java.io.*;
+import java.lang.*;
+import java.util.*;
+import java.util.ArrayList;
+
+
+parser code
+{:
+ /* -------------------------==: DECLARAR EL ARBOL :==--------------------------*/
+    //public Nodo Gramaticas;     
+    public static String cadena;
+
+/* -------------------------==: ERROR SINTACTICO :==--------------------------*/
+public void syntax_error(Symbol s){
+    System.out.println("Error Sintactico -> lexema: " +s.value+" Linea: " +s.right+ " Columna: "+s.left);
+    cadena += "<tr>"
+                + "<td><center><b>" + s.value + "</b></center></td>"
+                + "<td><center><b>" + s.right + "</b></center></td>"
+                + "<td><center><b>" + s.left+ "</b></center></td>"
+                + "</tr>";
+}
+
+/* ------------------==: ERROR SINTACTICO NO RECUPERABLE :==------------------*/
+public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{
+    System.out.println("Error Sintactico No Recuperable-> Lexema: " +s.value+" Linea: "+s.right+ " Columna: "+s.left);
+     cadena += "<tr>"
+                + "<td><center><b>" + s.value + "</b></center></td>"
+                + "<td><center><b>" + s.right + "</b></center></td>"
+                + "<td><center><b>" + s.left+ "</b></center></td>"
+                + "</tr>";
+}
+
+:}
+
+
+action code
+{:
+//Operaciones_Listas operaciones = new Operaciones_Listas();
+
+:}
+
+/* -----------------------==: Simbolos Terminales :==------------------------*/
+
+
+
+
+
+
+
+terminal String menor, mayor;
+
+terminal String chtml, finChtml, encabezado, finEncabezado,cjs, finCjs,ccss,finCcss,cuerpo,finCuerpo, titulo,finTitulo, panel,finPanel, texto,finTexto,imagen,finImagen,boton,finBoton,enlace,finEnlace,tabla,finTabla,fil_t,finFil_t,cb,finCb,ct,finCt,texto_a,finTexto_a,caja_texto,finCaja_texto,caja,finCaja,opcion,finOpcion,spinner,finSpinner,saltoFin,id,grupo,alto,ancho,alineado,valor,click,ruta,fondo,izquierda,derecha,centrado,igualSimb,puntoComaSimb,identificador,cadena,numero;
+
+
+
+non terminal INICIO;
+
+non terminal 
+	encabezadoProduccion, tituloHeader,cssHeader,jsHeader,cuerpoHeader,elementoHeader;
+
+non terminal 
+	idPropiedad, grupoPropiedad, altoPropiedad, anchoPropiedad,alineadoPropiedad,ccssPropiedad,rutaPropiedad, clickPropiedad,fondoPropiedad,valorPropiedad, propiedadGeneral, listaPropiedadesGenerales;
+
+
+non terminal
+	tagEncabezado,tagFinEncabezado,
+	tagChtml, tagFinChtml,
+	tagJs, tagFinJs, 
+	tagCss, tagFinCss, 
+	tagTitulo, tagFinTitulo
+	;
+
+
+non terminal expresion;
+
+/*---------- propiedades ------------------- */
+
+rutaPropiedad::= ruta igualSimb cadena puntoComaSimb;
+
+//click
+//fondo
+//valor
+
+
+
+idPropiedad::= id igualSimb expresion puntoComaSimb;
+grupoPropiedad::= grupo igualSimb expresion puntoComaSimb;
+altoPropiedad::= alto igualSimb expresion puntoComaSimb; 
+anchoPropiedad::= ancho igualSimb expresion puntoComaSimb; 
+alineadoPropiedad::= alineado igualSimb expresion puntoComaSimb; 
+ccssPropiedad::= ccss igualSimb expresion puntoComaSimb; 
+
+propiedadGeneral::= idPropiedad
+	|grupoPropiedad
+	|altoPropiedad
+	|anchoPropiedad
+	|alineadoPropiedad
+	|ccssPropiedad;
+
+listaPropiedadesGenerales::= listaPropiedadesGenerales propiedadGeneral
+	|propiedadGeneral;
+
+
+
+
+/*----------------- Tags ----------------------*/
+
+	tagEncabezado::= menor encabezado mayor
+		|menor encabezado listaPropiedadesGenerales mayor;
+
+	tagFinEncabezado::= menor finEncabezado mayor;
+
+	tagChtml::= menor chtml mayor
+		|menor chtml listaPropiedadesGenerales mayor;
+
+	tagFinChtml::= menor finChtml mayor;
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
