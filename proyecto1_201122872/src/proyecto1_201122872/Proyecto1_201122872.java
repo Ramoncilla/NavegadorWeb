@@ -16,6 +16,8 @@ public class Proyecto1_201122872 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Navegador n= new Navegador();
+        n.show();
     }
     
 }

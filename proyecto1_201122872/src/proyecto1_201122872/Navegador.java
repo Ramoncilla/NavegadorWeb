@@ -5,6 +5,13 @@
  */
 package proyecto1_201122872;
 
+import java.io.BufferedReader;
+import java.io.StringReader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import proyecto1_201122872.AnalizadorCHTML.Parser;
+import proyecto1_201122872.AnalizadorCHTML.scannerCHTML;
+
 /**
  *
  * @author Ramonella
@@ -32,9 +39,14 @@ public class Navegador extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextField1.setText("jTextField1");
+        jTextField1.setText("C:\\Users\\Ramonella\\Documents\\Repositorios\\Proyecto1\\NavegadorWeb\\proyecto1_201122872\\ArchivosEntrada\\ejemplo.chtml");
 
         jButton1.setText("Cargar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -60,6 +72,44 @@ public class Navegador extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            // TODO add your handling code here:
+            ejecutar();
+        } catch (Exception ex) {
+            Logger.getLogger(Navegador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    
+    private void ejecutar() throws Exception{
+        String rutaArchivo = jTextField1.getText();
+        
+        if(rutaArchivo.isEmpty()){
+            System.out.println("Direccion no valida");
+            return;
+        }else{
+          LectoArchivos lector = new LectoArchivos(rutaArchivo);
+        String cadena=lector.obtenerContenidoArchivo();
+        if(cadena.isEmpty()){
+            System.out.println(" No es posible evaluar una cadena vacia");
+            return;
+        }else{
+            System.out.println("Inicio de Analisis");
+            scannerCHTML scannerHtml = new scannerCHTML(new BufferedReader(new StringReader(cadena)));
+            Parser parserHtml = new Parser(scannerHtml);
+            //parserHtml.parse();
+            System.out.println("Fin de analisis"); 
+        }  
+        }
+        
+        
+    }
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */
