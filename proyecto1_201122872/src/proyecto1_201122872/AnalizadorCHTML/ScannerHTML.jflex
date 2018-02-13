@@ -26,19 +26,20 @@ import java.util.LinkedList;
 /* -------------------------==: EXPRESIONES REGULARES :==---------------------*/
 entero              = [0-9]+
 numero             = [0-9]+(("\."[0-9]+)?)
-letras              = [a-zA-ZÃ‘Ã_]
+letras              = [a-zA-Z_]
 cadena              = [\"] ~[\"]
 caracter            = "'"([0-9]|[a-zA-Z])"'"
 id                  = {letras}({letras}|{numero})*
 
+
+cadena2   = ((\n|{id}|{numero}))((\n|{id}|{numero})+)
+
 comentario_multi    = "<//-"~"-//>"
-
-
 
 
 %{
 public static String cadena;
-
+//cadena2   = (\n|{id}|{numero})+
 /* ------------------------==: METODO DE ERROR LEXICO :==---------------------*/
     private void ErrorScan(int linea, int columna, String valor) {
         System.out.println("Error Lexico Iden: " + valor + ", " + linea + ", " + columna);
@@ -120,16 +121,18 @@ public static String cadena;
 "derecho"  {System.out.println("derecho");               return new Symbol (simbolosCHTML.derecha, yyline+1,yychar+1, new String (yytext()));}
 "centrado"  {System.out.println("centrado");               return new Symbol (simbolosCHTML.centrado, yyline+1,yychar+1, new String (yytext()));}
 
-"="  {System.out.println("chtml");               return new Symbol (simbolosCHTML.igualSimb, yyline+1,yychar+1, new String (yytext()));}
-";"  {System.out.println("chtml");               return new Symbol (simbolosCHTML.puntoComaSimb, yyline+1,yychar+1, new String (yytext()));}
+"="  {System.out.println("igual");               return new Symbol (simbolosCHTML.igualSimb, yyline+1,yychar+1, new String (yytext()));}
+";"  {System.out.println("puntoComa");               return new Symbol (simbolosCHTML.puntoComaSimb, yyline+1,yychar+1, new String (yytext()));}
 
 
 
 /* -------------------------==: EXPRESIONES REGULARES :==---------------------*/
 
-{id}        {System.out.println(yytext());                return new Symbol (simbolosCHTML.identificador, yyline+1,yychar+1, new String (yytext()));}
-{cadena}    {System.out.println(yytext());                return new Symbol (simbolosCHTML.cadena, yyline+1,yychar+1, new String (yytext()));}
-{numero}    {System.out.println(yytext());                return new Symbol (simbolosCHTML.numero, yyline+1,yychar+1, new String (yytext()));}
+
+{cadena2}    {System.out.println("cadena2");                return new Symbol (simbolosCHTML.cadena2, yyline+1,yychar+1, new String (yytext()));}
+{cadena}    {System.out.println("cadeba");                return new Symbol (simbolosCHTML.cadena, yyline+1,yychar+1, new String (yytext()));}
+{numero}    {System.out.println("nu mero");                return new Symbol (simbolosCHTML.numero, yyline+1,yychar+1, new String (yytext()));}
+{id}        {System.out.println("id");                return new Symbol (simbolosCHTML.identificador, yyline+1,yychar+1, new String (yytext()));}
 
 
 

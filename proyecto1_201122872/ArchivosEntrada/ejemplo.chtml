@@ -1,5 +1,96 @@
 <chtml>
-
-
-
+	
+	<encabezado>
+		<cjs ruta="C:\archivo1.cjs";><fin-cjs>
+		<ccss ruta="C:\archivo1.cjs";><fin-ccss>
+		<ccss ruta="C:\archivo1.cjs";><fin-ccss>
+		<cjs ruta="C:\archivo1.cjs";><fin-cjs>
+	<fin-encabezado>
+	
+	<cuerpo>
+		
+		<PANEL>
+		
+			<PANEL>
+			<FIN-panel>
+			
+			<texto>
+			<fin-texto>
+			
+			<imagen>
+			<fin-imagen>
+			
+			<boton>
+			<fin-boton>
+			
+			<enlace>
+			<fin-enlace>
+			
+			<texto_a>
+			<fin-texto_a>
+			
+			<caja>
+				<opcion>
+				<fin-opcion>
+				
+				<opcion>
+				<fin-opcion>
+				
+				<opcion>
+				<fin-opcion>
+				
+				<opcion>
+				<fin-opcion>
+				
+				<opcion>
+				<fin-opcion>
+			<fin-caja>
+			
+			<spinner>
+			<fin-spinner>
+			
+			<salto-FIN>
+		
+		<fin-PAnel>
+		
+		<texto>
+		<fin-texto>
+		
+		<imagen>
+		<fin-imagen>
+		
+		<boton>
+		<fin-boton>
+		
+		<enlace>
+		<fin-enlace>
+		
+		<texto_a>
+		<fin-texto_a>
+		
+		<caja>
+			<opcion>
+			<fin-opcion>
+			
+			<opcion>
+			<fin-opcion>
+			
+			<opcion>
+			<fin-opcion>
+			
+			<opcion>
+			<fin-opcion>
+			
+			<opcion>
+			<fin-opcion>
+		<fin-caja>
+		
+		<spinner>
+		<fin-spinner>
+		
+		<salto-FIN>
+	
+	<fin-cuerpo>
+	
+	
 <fin-chtml>
