@@ -32,7 +32,7 @@ caracter            = "'"([0-9]|[a-zA-Z])"'"
 id                  = {letras}({letras}|{numero})*
 
 
-cadena2   = ((\n|{id}|{numero}))((\n|{id}|{numero})+)
+cadena2   = (({id}|{numero}|\s ))(({id}|{numero}|\s )+)
 
 comentario_multi    = "<//-"~"-//>"
 

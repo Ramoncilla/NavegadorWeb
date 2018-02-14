@@ -100,10 +100,11 @@ action code
 
 
 	non terminal CHTML,ENCABEZADO, CCJS, CCSS, TITULO,CUERPO,TEXTO, IMAGEN,BOTON,ENLACE,TEXTO_A,CAJA_TEXTO,CAJA,SPINNER,SALTO,OPCION,
-		listaOpciones,sentenciaCuerpo, cuerpoCuerpo, PANEL;
+		listaOpciones,sentenciaCuerpo, cuerpoCuerpo, PANEL,TABLA, LISTA_FILA,FILA,ELEMENTO_FILA,CELDA_ENCABEZADO,CELDA,sentenciaCelda,cuerpoCelda,LISTA_TABLA;
 
 
 	non terminal cuerpoCHTML;
+	
 
 
 	start with INICIO;
@@ -149,7 +150,8 @@ action code
 		|propiedadCajaOpciones;
 
 	propiedadEnlace::= propiedadGeneral
-		| clickPropiedad;
+		| clickPropiedad
+		| rutaPropiedad;
 		
 	listaPropiedadesEnlace::= listaPropiedadesEnlace propiedadEnlace
 		| propiedadEnlace;
@@ -191,9 +193,12 @@ action code
 	
 	tagFil_t::= menor fil_t listaPropiedadesGenerales mayor
 		| menor fil_t mayor;
+		
+		
+	tagFinFil_t::= menor finFil_t mayor;
 
     tagCjs::= menor cjs mayor
-		| menor cjs rutaPropiedad mayor;
+		| menor cjs rutaPropiedad mayor; 
 		
 	tagFinCjs::= menor finCjs mayor;
 	
@@ -211,7 +216,7 @@ action code
 	tagTitulo::= menor titulo mayor
 		| menor titulo listaPropiedadesGenerales mayor;
 		
-	tagTitulo::= menor finTitulo mayor;
+	tagFinTitulo::= menor finTitulo mayor;
 
 	tagTexto::= menor texto mayor
 		| menor texto listaPropiedadesGenerales mayor;
@@ -225,7 +230,7 @@ action code
 	
 	
   tagImagen::= menor imagen mayor
-	| menor imagen listaPropiedadeesCajaOpciones mayor;
+	| menor imagen listaPropiedadBoton mayor;
 	
 	tagFinImagen::= menor finImagen mayor;
   
@@ -235,7 +240,7 @@ action code
 	tagFinBoton::= menor finBoton mayor;
   
   tagEnlace::= menor enlace mayor
-	| menor propiedadEnlace mayor;
+	| menor enlace listaPropiedadesEnlace mayor;
 	
 	tagFinEnlace::= menor finEnlace mayor;
 	
@@ -310,7 +315,8 @@ action code
 	
 	CCJS::= tagCjs tagFinCjs;
 	CCSS::= tagCcss tagFinCcss;
-	TITULO::= tagTitulo cadena2 tagFinTitulo;
+	TITULO::= tagTitulo cadena2 tagFinTitulo
+		|tagTitulo tagFinTitulo;
 	
 	
 	/*---------------------- Cuerpo --------------*/
@@ -346,7 +352,7 @@ action code
 	CAJA::= tagCaja listaOpciones tagFinCaja
 		| tagCaja tagFinCaja;
 		
-	SPINNER::= tagSpinner cadena tagFinSpinner
+	SPINNER::= tagSpinner cadena2 tagFinSpinner
 		| tagSpinner tagFinSpinner;
 		
 	SALTO::= tagSaltoFin;
@@ -356,8 +362,32 @@ action code
 	PANEL::= tagPanel cuerpoCuerpo tagFinPanel
 		| tagPanel tagFinPanel;
 		
-	/*
-	CELDA::= tagCt*/ 
+
+		
+	CELDA::= tagCt cuerpoCelda tagFinCt
+		| tagCt tagFinCt;
+		
+	CELDA_ENCABEZADO::= tagCb cuerpoCelda tagFinCb
+		| tagCb tagFinCb;
+		
+	ELEMENTO_FILA::= CELDA
+		|CELDA_ENCABEZADO;
+		
+	LISTA_FILA::= LISTA_FILA ELEMENTO_FILA
+		|ELEMENTO_FILA;
+		
+	FILA ::= tagFil_t LISTA_FILA tagFinFil_t
+		| tagFil_t tagFinFil_t;
+		
+	LISTA_TABLA::= LISTA_TABLA FILA
+		|FILA;
+		
+	
+	TABLA::= tagTabla LISTA_TABLA tagFinTabla
+		| tagTabla tagFinTabla;
+		
+		
+		
 	
 	sentenciaCuerpo::= TEXTO
 		|IMAGEN
@@ -368,13 +398,24 @@ action code
 		|CAJA
 		|SPINNER
 		|SALTO
-		|PANEL;
+		|PANEL
+		|TABLA;
 		
 	cuerpoCuerpo::= cuerpoCuerpo sentenciaCuerpo
 		|sentenciaCuerpo;
 		
+	sentenciaCelda::= BOTON
+		|IMAGEN
+		|cadena2;
+		
+	cuerpoCelda::= cuerpoCelda sentenciaCelda
+		|sentenciaCelda;
+		
+	
 	
 		
+		
+	
 		
 		
 	

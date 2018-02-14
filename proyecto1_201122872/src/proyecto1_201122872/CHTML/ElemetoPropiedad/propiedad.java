@@ -11,8 +11,10 @@ package proyecto1_201122872.CHTML.ElemetoPropiedad;
  */
 public class propiedad {
     
+    public int estadoPropiedad=0;
     
     public int obtenerTipoPropiedad(propiedad elemento){
+        
         /*
         1 := id
         2 := alto

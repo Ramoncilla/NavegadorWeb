@@ -1,20 +1,60 @@
 <chtml>
 	
-	<encabezado>
+	<encabezado id="encabezado"; altO="10"; ancho="32"; alineado="izquierda"; >
 		<cjs ruta="C:\archivo1.cjs";><fin-cjs>
 		<ccss ruta="C:\archivo1.cjs";><fin-ccss>
 		<ccss ruta="C:\archivo1.cjs";><fin-ccss>
 		<cjs ruta="C:\archivo1.cjs";><fin-cjs>
+		
+		<titulo id="encabezado"; altO="10"; ancho="32"; alineado="izquierda";>
+		pagina11 dfdsfdsfsd fdfgdfgfd
+		<fin-titulo>
+		
 	<fin-encabezado>
 	
+
 	<cuerpo>
 		
 		<PANEL>
 		
-			<PANEL>
+			<PANEL id="encabezado"; altO="10"; ancho="32"; alineado="izquierda";>
+			
+			<TABLA>
+		
+			<fil_t id="encabezado"; altO="10"; ancho="32"; alineado="izquierda";>
+				<cb>
+				<fin-cb>
+				<cb>
+				<fin-cb>
+				<cb>
+				<fin-cb>
+				<cb>
+				<fin-cb>
+				
+			
+			<fin-fil_t>
+				
+			<fil_t>
+			
+				<ct>
+				<fin-ct>
+				<ct>
+				<fin-ct>
+				<ct>
+				<fin-ct>
+				<ct>
+				<fin-ct>
+			
+			
+			<fin-fil_t>
+		
+		<FIN-TABLA>
+			
+			
 			<FIN-panel>
 			
-			<texto>
+			<texto id="encabezado"; altO="10"; ancho="32"; alineado="izquierda";>
+			pedirto
 			<fin-texto>
 			
 			<imagen>
@@ -29,7 +69,7 @@
 			<texto_a>
 			<fin-texto_a>
 			
-			<caja>
+			<caja id="encabezado"; altO="10"; ancho="32"; alineado="izquierda";>
 				<opcion>
 				<fin-opcion>
 				
@@ -46,7 +86,7 @@
 				<fin-opcion>
 			<fin-caja>
 			
-			<spinner>
+			<spinner id="encabezado"; altO="10"; ancho="32"; alineado="izquierda";>
 			<fin-spinner>
 			
 			<salto-FIN>
@@ -56,7 +96,7 @@
 		<texto>
 		<fin-texto>
 		
-		<imagen>
+		<imagen id="encabezado"; altO="10"; ancho="32"; alineado="izquierda"; ruta="sdfsdfsdgsg";>
 		<fin-imagen>
 		
 		<boton>
@@ -89,6 +129,40 @@
 		<fin-spinner>
 		
 		<salto-FIN>
+		
+		<TABLA id="encabezado"; altO="10"; ancho="32"; alineado="izquierda";>
+		
+			<fil_t>
+				<cb>
+				<fin-cb>
+				<cb>
+				<fin-cb>
+				<cb>
+				<fin-cb>
+				<cb>
+				<fin-cb>
+				
+			
+			<fin-fil_t>
+				
+			<fil_t>
+			
+				<ct>
+				<fin-ct>
+				<ct>
+				<fin-ct>
+				<ct>
+				<fin-ct>
+				<ct>
+				<fin-ct>
+			
+			
+			<fin-fil_t>
+		
+		<FIN-TABLA>
+		
+		
+		
 	
 	<fin-cuerpo>
 	

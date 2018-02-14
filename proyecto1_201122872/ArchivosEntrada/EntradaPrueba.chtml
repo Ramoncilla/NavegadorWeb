@@ -1,0 +1,33 @@
+<CHTML>
+	<ENCABEZADO>
+		<CCSS ruta = "rutade.css"; > <FIN-CCSS>
+		<CJS ruta = "rutade.cjs"; > <FIN-CJS>
+		<TITULO id = "idTitulo";> <FIN-TITULO>
+	<FIN-ENCABEZADO>
+
+	<CUERPO>
+		<PANEL ID="panelid"; grupo="grupitopanel";>
+			<PANEL><FIN-PANEL>
+			<TEXTO><FIN-TEXTO>
+			<IMAGEN ruta="rutaimagen.png"; click="metodo1()";>"fdfds"<FIN-IMAGEN>
+		<FIN-PANEL>
+		<TEXTO Alto="299"; Ancho="23";><FIN-TEXTO>
+		<IMAGEN Alto="399px"; Alineado="izquierda";><FIN-IMAGEN>
+		
+		<PANEL ID="panelid"; grupo="grupitopanel";>
+			<BOTON Alto="299"; Ancho="23";>BotoOK<FIN-BOTON>
+			<ENLACE ruta="facebook.html";>esteesunlink<FIN-ENLACE>
+			<TEXTO_A>TextoeunreadeTexto<FIN-TEXTO_A>
+			<CAJA_TEXTO Alto="299"; Ancho="23";><FIN-CAJA_TEXTO>
+			<CAJA>
+				<OPCION>Opci1<FIN-OPCION>
+				<OPCION>Opci2<FIN-OPCION>
+				<OPCION>Opci3<FIN-OPCION>
+			<FIN-CAJA>
+			<SPINNER>34<FIN-SPINNER>
+			<SALTO-FIN> <//- comentario: este es un salto de línea -//>
+			
+		<FIN-PANEL>
+
+	<FIN-CUERPO>
+<FIN-CHTML>
