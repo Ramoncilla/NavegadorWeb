@@ -11,4 +11,7 @@ import proyecto1_201122872.CHTML.Etiqueta;
  */
 public class Encabezado extends Etiqueta{
     
+    
+    
+    
 }

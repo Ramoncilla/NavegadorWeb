@@ -13,20 +13,17 @@ import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
  *
  * @author Ramonella
  */
-public class Texto extends Etiqueta {
+public class listaElementos {
     
-    public List<propiedad>elementos= new ArrayList<>();
-    public String cadena;
+   public List<propiedad> listadoElementos;
+
+public listaElementos(ArrayList<propiedad> listado){
     
-    public Texto(Object propiedades, Object cadenaTexto){
-        
-        this.elementos = (List<propiedad>)propiedades;
-        cadena =cadenaTexto.toString();
-        
-    }
-    
-    
-    
-    
-    
+    listadoElementos = listado;
+}  
+
+
+
+
+
 }

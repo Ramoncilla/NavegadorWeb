@@ -8,6 +8,9 @@ import java.lang.*;
 import java.util.*;
 import java.util.ArrayList;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.*;
+import proyecto1_201122872.CHTML.BODY.*;
+import proyecto1_201122872.CHTML.Etiqueta;
+import proyecto1_201122872.CHTML.Chtml;
 
 
 parser code
@@ -390,10 +393,7 @@ action code
 	
 /*------------------------- Etiquetas ----------------------------------*/
 
-	CHTML::= tagChtml cuerpoCHTML tagFinChtml;
-	
-	
-	cuerpoCHTML::= ENCABEZADO CUERPO;
+	CHTML::= tagChtml:a ENCABEZADO:e CUERPO:c tagFinChtml{:Chtml ht= new Chtml(a,e,c); RESULT= ht;:};
 	
 	
 	
@@ -417,54 +417,54 @@ action code
 	
 	/*---------------------- Cuerpo --------------*/
 	
-	CUERPO::= tagCuerpo  tagFinCuerpo
-		|tagCuerpo  cuerpoCuerpo tagFinCuerpo;
+	CUERPO::= tagCuerpo:m  tagFinCuerpo {:Cuerpo p = new Cuerpo(m); RESULT = p;:}
+		|tagCuerpo:m  cuerpoCuerpo:c tagFinCuerpo{:Cuerpo p = new Cuerpo(m,c); RESULT = p;:};
 		
 	
-	TEXTO::= tagTexto cadena2 tagFinTexto
-		| tagTexto tagFinTexto;
+	TEXTO::= tagTexto:m cadena2:c tagFinTexto {: Texto txt = new Texto(m ,c); RESULT= txt;:}
+		| tagTexto:m tagFinTexto{: Texto txt = new Texto(m ,""); RESULT= txt;:};
 		
-	IMAGEN::= tagImagen cadena tagFinImagen
-		| tagImagen tagFinImagen;
+	IMAGEN::= tagImagen:m cadena:c tagFinImagen{:Imagen img = new Imagen(m,c); RESULT= img;:}
+		| tagImagen:m tagFinImagen {:Imagen img = new Imagen(m,""); RESULT= img;:};
 		
-	BOTON::= tagBoton cadena2 tagFinBoton
-		| tagBoton tagFinBoton;
+	BOTON::= tagBoton:m cadena2:c tagFinBoton{:Boton img = new Boton(m,c); RESULT= img;:}
+		| tagBoton:m tagFinBoton {:Boton img = new Boton(m,""); RESULT= img;:};
 		
-	ENLACE::= tagEnlace cadena2 tagFinEnlace
-		| tagEnlace tagFinEnlace;
+	ENLACE::= tagEnlace:m cadena2:c tagFinEnlace{:Enlace img = new Enlace(m,c); RESULT= img;:}
+		| tagEnlace:m tagFinEnlace{:Enlace img = new Enlace(m,""); RESULT= img;:};
 		
-	TEXTO_A::= tagTexto_a cadena2 tagFinTexto_a
-		| tagTexto_a tagFinTexto_a;
+	TEXTO_A::= tagTexto_a:m cadena2:c tagFinTexto_a{:Texto_a img = new Texto_a(m,c); RESULT= img;:}
+		| tagTexto_a:m tagFinTexto_a{:Texto_a img = new Texto_a(m,""); RESULT= img;:};
 		
-	CAJA_TEXTO::= tagCaja_texto cadena2 tagFinCaja_texto
-		|tagCaja_texto tagFinCaja_texto;
+	CAJA_TEXTO::= tagCaja_texto:m cadena2:c tagFinCaja_texto {:caja_texto img = new caja_texto(m,c); RESULT= img;:}
+		|tagCaja_texto:m tagFinCaja_texto {:caja_texto img = new caja_texto(m,""); RESULT= img;:};
 		
-	OPCION::= tagOpcion cadena2 tagFinOpcion
-		| tagOpcion tagFinOpcion;
+	OPCION::= tagOpcion:m cadena2:c tagFinOpcion {:Opcion img = new Opcion(m,c); RESULT= img;:}
+		| tagOpcion:m tagFinOpcion {:Opcion img = new Opcion(m,""); RESULT= img;:};
 		
 	listaOpciones::= listaOpciones OPCION
 		|OPCION;
 		
-	CAJA::= tagCaja listaOpciones tagFinCaja
-		| tagCaja tagFinCaja;
+	CAJA::= tagCaja:m listaOpciones tagFinCaja
+		| tagCaja:m tagFinCaja;
 		
-	SPINNER::= tagSpinner cadena2 tagFinSpinner
-		| tagSpinner tagFinSpinner;
+	SPINNER::= tagSpinner:m cadena2:c tagFinSpinner{:Spinner img = new Spinner(m,c); RESULT= img;:}
+		| tagSpinner:m tagFinSpinner{:Spinner img = new Spinner(m,""); RESULT= img;:};
 		
-	SALTO::= tagSaltoFin;
+	SALTO::= tagSaltoFin{:Salto br = new Salto(); RESULT= br;:};
 	
 	
 	
-	PANEL::= tagPanel cuerpoCuerpo tagFinPanel
-		| tagPanel tagFinPanel;
+	PANEL::= tagPanel:m cuerpoCuerpo:c tagFinPanel
+		| tagPanel:m tagFinPanel;
 		
 
 		
-	CELDA::= tagCt cuerpoCelda tagFinCt
-		| tagCt tagFinCt;
+	CELDA::= tagCt:m cuerpoCelda tagFinCt
+		| tagCt:m tagFinCt;
 		
-	CELDA_ENCABEZADO::= tagCb cuerpoCelda tagFinCb
-		| tagCb tagFinCb;
+	CELDA_ENCABEZADO::= tagCb:m cuerpoCelda tagFinCb
+		| tagCb:m tagFinCb;
 		
 	ELEMENTO_FILA::= CELDA
 		|CELDA_ENCABEZADO;
@@ -472,33 +472,39 @@ action code
 	LISTA_FILA::= LISTA_FILA ELEMENTO_FILA
 		|ELEMENTO_FILA;
 		
-	FILA ::= tagFil_t LISTA_FILA tagFinFil_t
-		| tagFil_t tagFinFil_t;
+	FILA ::= tagFil_t:m LISTA_FILA tagFinFil_t
+		| tagFil_t:m tagFinFil_t;
 		
 	LISTA_TABLA::= LISTA_TABLA FILA
 		|FILA;
 		
 	
-	TABLA::= tagTabla LISTA_TABLA tagFinTabla
-		| tagTabla tagFinTabla;
+	TABLA::= tagTabla:m LISTA_TABLA tagFinTabla
+		| tagTabla:m tagFinTabla;
 		
 		
 		
 	
-	sentenciaCuerpo::= TEXTO
-		|IMAGEN
-		|BOTON
-		|ENLACE
-		|TEXTO_A
-		|CAJA_TEXTO
+	sentenciaCuerpo::= TEXTO:a{:RESULT=a;:}
+		|IMAGEN:a{:RESULT=a;:}
+		|BOTON:a{:RESULT=a;:}
+		|ENLACE:a{:RESULT=a;:}
+		|TEXTO_A:a{:RESULT=a;:}
+		|CAJA_TEXTO:a{:RESULT=a;:}
 		|CAJA
-		|SPINNER
-		|SALTO
+		|SPINNER:a{:RESULT=a;:}
+		|SALTO:a{:RESULT=a;:}
 		|PANEL
 		|TABLA;
 		
-	cuerpoCuerpo::= cuerpoCuerpo sentenciaCuerpo
-		|sentenciaCuerpo;
+	cuerpoCuerpo::= cuerpoCuerpo:lista sentenciaCuerpo:a {:List<Etiqueta> etiquetas = (ArrayList<Etiqueta>)lista;
+														   etiquetas.add((Etiqueta)a);
+															RESULT= etiquetas;
+															:}
+		|sentenciaCuerpo:a {: List<Etiqueta> etiquetas = new ArrayList<Etiqueta>();
+							  etiquetas.add((Etiqueta)a);
+							  RESULT= etiquetas;		
+							:};
 		
 	sentenciaCelda::= BOTON
 		|IMAGEN
