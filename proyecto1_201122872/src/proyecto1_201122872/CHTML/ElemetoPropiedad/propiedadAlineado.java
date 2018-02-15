@@ -13,8 +13,25 @@ public class propiedadAlineado extends propiedad{
     
     public String alineado ;
     
-    public propiedadAlineado(String alineacion){
-        this.alineado = alineacion;
+    public propiedadAlineado(Object alineacion){
+        
+        String valor= alineacion.toString().replace("\"", "");
+        if(valor.equalsIgnoreCase("izquierda")){
+            this.alineado= "izquierda";
+        }else if(valor.equalsIgnoreCase("derecha")){
+            this.alineado="derecha";
+        }else if(valor.equalsIgnoreCase("centrado")){
+            this.alineado="centrado";
+        }else{
+            //reportar error
+            this.alineado= "izquierda";
+        }
+        
+        
+        
+        
+        
+        
     }
     
     

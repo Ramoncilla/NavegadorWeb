@@ -9,11 +9,11 @@ package proyecto1_201122872.CHTML.ElemetoPropiedad;
  *
  * @author Ramonella
  */
-public class propiedadAlto extends propiedad{
+public class propiedadValor extends propiedad{
     
-    
-    public propiedadAlto(Object valor){
+    public propiedadValor(Object valor){
         
     }
+    
     
 }

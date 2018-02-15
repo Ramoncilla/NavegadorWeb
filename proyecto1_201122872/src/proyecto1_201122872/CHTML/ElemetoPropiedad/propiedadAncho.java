@@ -15,7 +15,7 @@ public class propiedadAncho extends propiedad{
     
     
     public propiedadAncho(Object ancho){
-        this.valorAncho= Integer.parseInt(ancho.toString());
+        //this.valorAncho= Integer.parseInt(ancho.toString());
     }
     
     
