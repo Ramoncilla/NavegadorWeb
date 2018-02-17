@@ -39,7 +39,7 @@ comentario_multi    = "<//-"~"-//>"
 
 %{
 public static String cadena;
-//cadena2   = (\n|{id}|{numero})+
+//cadena2   = (({id}|{numero}|\s ))(({id}|{numero}|\s )+)
 /* ------------------------==: METODO DE ERROR LEXICO :==---------------------*/
     private void ErrorScan(int linea, int columna, String valor) {
         System.out.println("Error Lexico Iden: " + valor + ", " + linea + ", " + columna);

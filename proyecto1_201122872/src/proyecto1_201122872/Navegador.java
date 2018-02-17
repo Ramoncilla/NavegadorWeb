@@ -42,6 +42,7 @@ public class Navegador extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jToolBar1 = new javax.swing.JToolBar();
         jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -65,6 +66,12 @@ public class Navegador extends javax.swing.JFrame {
             }
         });
         jToolBar1.add(jButton2);
+
+        jButton1.setText("Nueva");
+        jButton1.setFocusable(false);
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(jButton1);
 
         jScrollPane1.setViewportView(jTextPane1);
 
@@ -138,6 +145,8 @@ public class Navegador extends javax.swing.JFrame {
   
     private void ejecutar() throws Exception{
         String rutaArchivo = jTextField1.getText();
+        int a= 1;
+        int b = a+++1;
         
         if(rutaArchivo.isEmpty()){
             System.out.println("Direccion no valida");
@@ -235,6 +244,7 @@ jTextPane1.insertComponent(boton);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
