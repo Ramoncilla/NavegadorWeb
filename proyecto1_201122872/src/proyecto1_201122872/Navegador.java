@@ -7,6 +7,8 @@ package proyecto1_201122872;
 
 import java.io.BufferedReader;
 import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.control.Button;
@@ -155,10 +157,19 @@ public class Navegador extends javax.swing.JFrame {
             Chtml  etiquet= parserHtml.codigoHTML;
             etiquet.body.imprimir();
             jTextPane1.setContentType("text/html");
-            Object v = etiquet.body.ejecutarCuerpo();
-            JButton j = (JButton)v;
-            jTextPane1.insertComponent(j);
-            System.out.println("Fin de analisis"); 
+            List<Object> v = (ArrayList<Object>)etiquet.body.ejecutarCuerpo();
+            for (int i = 0; i < v.size(); i++) {
+                if(v.get(i) instanceof JButton){
+                    JButton j = (JButton)v.get(i);
+                    jTextPane1.setCaretPosition(jTextPane1.getStyledDocument().getLength());
+                    jTextPane1.insertComponent(j);
+                  
+                }
+            }
+  
+            
+            
+           System.out.println("Fin de analisis");  
         }  
         }
         

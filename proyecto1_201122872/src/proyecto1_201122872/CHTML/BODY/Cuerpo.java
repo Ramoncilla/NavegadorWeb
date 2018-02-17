@@ -36,18 +36,17 @@ public class Cuerpo extends Etiqueta  {
         System.out.println(sentenciasCuerpo.size());
     }
     
-    public Object ejecutarCuerpo(){
+    public List<Object>ejecutarCuerpo(){
+        List<Object> etiquetas = new ArrayList<>();
         
-        for(Etiqueta s: sentenciasCuerpo){
-           if(s.MostrarHtml() instanceof JButton){
-               return s.MostrarHtml();
-           }else{
-               continue;
-           }
-            
+        Etiqueta temporal;
+        for (int i = 0; i < sentenciasCuerpo.size(); i++) {
+            temporal = sentenciasCuerpo.get(i);
+            if(temporal.MostrarHtml() instanceof JButton){
+                etiquetas.add(temporal.MostrarHtml());
+        }   
         }
-        
-      return "";
+      return etiquetas;
     }
     
 }
