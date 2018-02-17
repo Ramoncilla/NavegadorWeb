@@ -7,162 +7,19 @@
 		<cjs ruta="C:\archivo1.cjs";><fin-cjs>
 		
 		<titulo id="encabezado"; altO="10"; ancho="32"; alineado="izquierda";>
-		pagina11 dfdsfdsfsd fdfgdfgfd
+		pagina11
 		<fin-titulo>
 		
 	<fin-encabezado>
 	
 
 	<cuerpo>
-		
-		<PANEL>
-		
-			<PANEL id="encabezado"; altO="10"; ancho="32"; alineado="izquierda";>
 			
-			<TABLA>
-		
-			<fil_t id="encabezado"; altO="10"; ancho="32"; alineado="izquierda";>
-				<cb>
-				<fin-cb>
-				<cb>
-				<fin-cb>
-				<cb>
-				<fin-cb>
-				<cb>
-				<fin-cb>
-				
-			
-			<fin-fil_t>
-				
-			<fil_t>
-			
-				<ct>
-				<fin-ct>
-				<ct>
-				<fin-ct>
-				<ct>
-				<fin-ct>
-				<ct>
-				<fin-ct>
-			
-			
-			<fin-fil_t>
-		
-		<FIN-TABLA>
-			
-			
-			<FIN-panel>
-			
-			<texto id="encabezado"; altO="10"; ancho="32"; alineado="izquierda";>
-			pedirto
-			<fin-texto>
-			
-			<imagen>
-			<fin-imagen>
-			
-			<boton>
-			<fin-boton>
-			
-			<enlace>
-			<fin-enlace>
-			
-			<texto_a>
-			<fin-texto_a>
-			
-			<caja id="encabezado"; altO="10"; ancho="32"; alineado="izquierda";>
-				<opcion>
-				<fin-opcion>
-				
-				<opcion>
-				<fin-opcion>
-				
-				<opcion>
-				<fin-opcion>
-				
-				<opcion>
-				<fin-opcion>
-				
-				<opcion>
-				<fin-opcion>
-			<fin-caja>
-			
-			<spinner id="encabezado"; altO="10"; ancho="32"; alineado="izquierda";>
-			<fin-spinner>
-			
-			<salto-FIN>
-		
-		<fin-PAnel>
-		
-		<texto>
-		<fin-texto>
-		
-		<imagen id="encabezado"; altO="10"; ancho="32"; alineado="izquierda"; ruta="sdfsdfsdgsg";>
-		<fin-imagen>
-		
-		<boton>
-		<fin-boton>
-		
-		<enlace>
-		<fin-enlace>
-		
-		<texto_a>
-		<fin-texto_a>
-		
-		<caja>
-			<opcion>
-			<fin-opcion>
-			
-			<opcion>
-			<fin-opcion>
-			
-			<opcion>
-			<fin-opcion>
-			
-			<opcion>
-			<fin-opcion>
-			
-			<opcion>
-			<fin-opcion>
-		<fin-caja>
-		
-		<spinner>
-		<fin-spinner>
-		
-		<salto-FIN>
-		
-		<TABLA id="encabezado"; altO="10"; ancho="32"; alineado="izquierda";>
-		
-			<fil_t>
-				<cb>
-				<fin-cb>
-				<cb>
-				<fin-cb>
-				<cb>
-				<fin-cb>
-				<cb>
-				<fin-cb>
-				
-			
-			<fin-fil_t>
-				
-			<fil_t>
-			
-				<ct>
-				<fin-ct>
-				<ct>
-				<fin-ct>
-				<ct>
-				<fin-ct>
-				<ct>
-				<fin-ct>
-			
-			
-			<fin-fil_t>
-		
-		<FIN-TABLA>
-		
-		
-		
+			<boton>hola<fin-boton>
+			<boton>mi<fin-boton>
+			<boton>vida<fin-boton>
+			<boton>te<fin-boton>
+			<boton>amo<fin-boton>
 	
 	<fin-cuerpo>
 	

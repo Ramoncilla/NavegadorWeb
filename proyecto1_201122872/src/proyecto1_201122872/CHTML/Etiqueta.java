@@ -11,4 +11,9 @@ package proyecto1_201122872.CHTML;
  */
 public class Etiqueta {
     
+    public Object MostrarHtml(){
+        return "";
+        
+    }
+    
 }

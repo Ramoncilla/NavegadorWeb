@@ -6,6 +6,8 @@
 package proyecto1_201122872.CHTML.BODY;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JButton;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
 import proyecto1_201122872.CHTML.Etiqueta;
 import proyecto1_201122872.CHTML.listaElementos;
@@ -30,5 +32,22 @@ public class Cuerpo extends Etiqueta  {
         this.sentenciasCuerpo = new ArrayList<>();
     }
     
+    public void imprimir(){
+        System.out.println(sentenciasCuerpo.size());
+    }
+    
+    public Object ejecutarCuerpo(){
+        
+        for(Etiqueta s: sentenciasCuerpo){
+           if(s.MostrarHtml() instanceof JButton){
+               return s.MostrarHtml();
+           }else{
+               continue;
+           }
+            
+        }
+        
+      return "";
+    }
     
 }

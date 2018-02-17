@@ -5,6 +5,7 @@
  */
 package proyecto1_201122872.CHTML.BODY;
 import java.util.ArrayList;
+import javax.swing.JButton;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
 import proyecto1_201122872.CHTML.Etiqueta;
 import proyecto1_201122872.CHTML.listaElementos;
@@ -16,12 +17,21 @@ public class Boton extends Etiqueta  {
     
     public listaElementos elementosBoton;
     public String captionBoton;
-    
+    public JButton botonObjeto;
     
     public Boton(Object elementos, Object cadena){
         this.elementosBoton = new listaElementos((ArrayList<propiedad>)elementos);
         this.captionBoton = cadena.toString();
     }
     
+    
+    @Override
+    public Object MostrarHtml(){
+       botonObjeto = new JButton(this.captionBoton); 
+        
+        
+       return botonObjeto;
+       
+    }
     
 }

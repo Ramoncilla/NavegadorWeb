@@ -18,6 +18,8 @@ parser code
  /* -------------------------==: DECLARAR EL ARBOL :==--------------------------*/
     //public Nodo Gramaticas;     
     public static String cadena;
+	public  Chtml codigoHTML;
+	
 
 /* -------------------------==: ERROR SINTACTICO :==--------------------------*/
 public void syntax_error(Symbol s){
@@ -45,6 +47,8 @@ public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{
 action code
 {:
 //Operaciones_Listas operaciones = new Operaciones_Listas();
+
+
 
 :}
 
@@ -114,7 +118,7 @@ action code
 	start with INICIO;
 			
 			
-	INICIO::= CHTML;
+	INICIO::= CHTML:a{:parser.codigoHTML= (Chtml)a;:};
 
 	/*---------- propiedades ------------------- */
 
@@ -497,6 +501,7 @@ action code
 		|PANEL
 		|TABLA;
 		
+		
 	cuerpoCuerpo::= cuerpoCuerpo:lista sentenciaCuerpo:a {:List<Etiqueta> etiquetas = (ArrayList<Etiqueta>)lista;
 														   etiquetas.add((Etiqueta)a);
 															RESULT= etiquetas;
@@ -506,9 +511,11 @@ action code
 							  RESULT= etiquetas;		
 							:};
 		
+		
 	sentenciaCelda::= BOTON
 		|IMAGEN
 		|cadena2;
+		
 		
 	cuerpoCelda::= cuerpoCelda sentenciaCelda
 		|sentenciaCelda;
