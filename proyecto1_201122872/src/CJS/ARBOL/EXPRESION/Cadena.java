@@ -5,10 +5,18 @@
  */
 package CJS.ARBOL.EXPRESION;
 
+import CJS.objetoBase;
+
 /**
  *
  * @author Ramonella
  */
-public class Cadena {
+public class Cadena extends objetoBase {
+    
+    public String cadena;
+    
+    public Cadena(Object val){
+        this.cadena = val.toString().replace("\"", "");
+    }
     
 }

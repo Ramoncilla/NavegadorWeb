@@ -11,4 +11,5 @@ package CJS;
  */
 public class elementoRetorno {
     
+    public Object ValorRetorno;
 }

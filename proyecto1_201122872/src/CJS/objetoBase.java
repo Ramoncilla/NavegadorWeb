@@ -10,5 +10,6 @@ package CJS;
  * @author Ramonella
  */
 public class objetoBase {
-    
+     public elementoRetorno retorno;
+     
 }

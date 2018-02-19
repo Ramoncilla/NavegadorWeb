@@ -6,6 +6,8 @@ import java.io.*;
 import java.lang.*;
 import java.util.*;
 import java.util.ArrayList;
+import CJS.ARBOL.EXPRESION.*;
+
 
 
 parser code
@@ -194,7 +196,7 @@ LLAMADA::= id abrePar LISTA_EXPRESIONES cierraPar
 	| id abrePar cierraPar;
 	
 
-ID::= id;	
+ID::= id:a{:Id g = new Id(a); RESULT=g;:};	
 	
 	
 
@@ -234,10 +236,10 @@ EXP_LOGICA::= ELEMENTO_EXPRESION SIMB_LOGICA ELEMENTO_EXPRESION;
 CADENA_VECTOR::= id punto atexto;
 
 	
-ELEMENTO_EXPRESION::=NUMERO
-	|CADENA
-	|BOOLEAN
-	|ID
+ELEMENTO_EXPRESION::=NUMERO:a{:RESULT=a;:}
+	|CADENA:a{:RESULT=a;:}
+	|BOOLEAN:a{:RESULT=a;:}
+	|ID:a{:RESULT=a;:}
 	|LLAMADA
 	|OBSERVADOR
 	|SET_ELEMENTO
@@ -255,8 +257,8 @@ ELEMENTO_EXPRESION::=NUMERO
 	|alineadoEtiqueta 	
 	|UNARIO
 	|POS_VECTOR
-	|comillaSimple DATE comillaSimple
-	|comillaSimple DATETIME comillaSimple
+	|comillaSimple DATE:a comillaSimple{:RESULT=a;:}
+	|comillaSimple DATETIME:a comillaSimple{:RESULT=a;:}
 	|conteo
 	|atexto;
 	
@@ -268,9 +270,9 @@ EXPRESION::= EXPRESION punto ELEMENTO_EXPRESION
 
 		
 
-DATE::=  numero division numero division numero;
+DATE::=  numero:a division numero:b division numero:c{:Datee d = new Datee(a,b,c); RESULT=d;:};
 
-DATETIME::= DATE numero dosPuntos numero dosPuntos numero;
+DATETIME::= DATE:a numero:b dosPuntos numero:c dosPuntos numero:d{:DateTime dt = new DateTime(a,b,c,d); RESULT= dt;:};
 	
 CADENA::= cadena:a{:Cadena c= new Cadena(a); RESULT= c;:};
 

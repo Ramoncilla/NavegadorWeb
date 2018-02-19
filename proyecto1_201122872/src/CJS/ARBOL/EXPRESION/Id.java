@@ -5,10 +5,20 @@
  */
 package CJS.ARBOL.EXPRESION;
 
+import CJS.objetoBase;
+
 /**
  *
  * @author Ramonella
  */
-public class Date {
+public class Id extends objetoBase{
+    
+    public String id;
+    
+    
+    public Id(Object val){
+        this.id= val.toString();
+    }
+    
     
 }

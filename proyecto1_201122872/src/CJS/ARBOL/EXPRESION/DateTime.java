@@ -13,7 +13,7 @@ import CJS.objetoBase;
  */
 public class DateTime extends objetoBase {
     
-    public Date fecha;
+    public Datee fecha;
     public  int horas;
     public int minutos;
     public int segundos;
@@ -22,7 +22,7 @@ public class DateTime extends objetoBase {
     
     public DateTime(Object fecha, Object horas, Object minutos, Object segundos){
         
-        this.fecha= (Date)fecha;
+        this.fecha= (Datee)fecha;
         this.horas= (int)horas;
         this.minutos = (int)minutos;
         this.segundos= (int)segundos; 
