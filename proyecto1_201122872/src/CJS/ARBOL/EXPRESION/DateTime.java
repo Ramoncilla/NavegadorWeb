@@ -28,6 +28,10 @@ public class DateTime extends objetoBase {
         this.segundos= (int)segundos; 
     }
     
-    
+     public String getDateTime(){
+        
+        return fecha.getDate()+" "+horas+":"+minutos+":"+segundos;
+        
+    }
     
 }

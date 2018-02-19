@@ -5,6 +5,7 @@
  */
 package proyecto1_201122872;
 
+import CJS.objetoBase;
 import java.io.BufferedReader;
 import java.io.StringReader;
 import java.util.ArrayList;
@@ -191,6 +192,12 @@ public class Navegador extends javax.swing.JFrame {
             scannerCJS scannerjs = new scannerCJS(new BufferedReader(new StringReader(cadena)));
             proyecto1_201122872.AnalizadorCJS.Parser parserCJS = new proyecto1_201122872.AnalizadorCJS.Parser(scannerjs);
             parserCJS.parse();
+            
+            objetoBase g= parserCJS.raiz;
+            
+            System.out.println(g.Ejecutar().ValorRetorno);
+           
+                System.out.println("es nulo");
             
            
   

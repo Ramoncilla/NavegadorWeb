@@ -10,6 +10,12 @@ package CJS;
  * @author Ramonella
  */
 public class objetoBase {
-     public elementoRetorno retorno;
+     public elementoRetorno retorno = new elementoRetorno();
+     
+     
+     public elementoRetorno Ejecutar(){
+         
+         return new elementoRetorno();
+     }
      
 }

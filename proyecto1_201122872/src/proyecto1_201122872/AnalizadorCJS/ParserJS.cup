@@ -7,7 +7,7 @@ import java.lang.*;
 import java.util.*;
 import java.util.ArrayList;
 import CJS.ARBOL.EXPRESION.*;
-
+import CJS.objetoBase;
 
 
 parser code
@@ -15,6 +15,7 @@ parser code
  /* -------------------------==: DECLARAR EL ARBOL :==--------------------------*/
     //public Nodo Gramaticas;     
     public static String cadena;
+	public objetoBase raiz;
 
 	
 
@@ -83,7 +84,7 @@ non terminal DECLARACION, ASIGNACION, LISTA_EXPRESIONES,POS_VECTOR,CUERPO,SENTEN
 	start with INICIO;		
 	
 	
-	INICIO::= EXPRESION;
+	INICIO::= EXPRESION:a{:parser.raiz= (objetoBase)a; System.out.println(a);:};
 
 
 DECLARACION::= dimv id puntoComa
@@ -208,16 +209,16 @@ UNARIO::= ELEMENTO_EXPRESION masMas
 	
 	
 	
-SIMB_ARITMETICO::= mas
-	|menos
-	|multiplicacion
-	|division
-	|potencia
-	|residuo;
+SIMB_ARITMETICO::= mas:a{:RESULT= "+";:}
+	|menos:a{:RESULT= a;:}
+	|multiplicacion:a{:RESULT= a;:}
+	|division:a{:RESULT= a;:}
+	|potencia:a{:RESULT= a;:}
+	|residuo:a{:RESULT= a;:};
 	
-SIMB_RELACIONAL::= menor
-		| mayor
-		| menorIgual
+SIMB_RELACIONAL::= menor:a
+		| mayor:a
+		| menorIgual:a
 		|mayorIgual
 		|distintoA
 		|igualIgual;
@@ -226,7 +227,7 @@ SIMB_LOGICA::= and
 	|or
 	|not;
 	
-EXP_ARITMETICA::= ELEMENTO_EXPRESION SIMB_ARITMETICO ELEMENTO_EXPRESION;
+EXP_ARITMETICA::= ELEMENTO_EXPRESION:a SIMB_ARITMETICO:b ELEMENTO_EXPRESION:c{:Aritmetica ar= new Aritmetica(a,b,c); RESULT= ar;:};
 
 EXP_RELACIONAL::= ELEMENTO_EXPRESION SIMB_RELACIONAL ELEMENTO_EXPRESION;
 
@@ -244,7 +245,7 @@ ELEMENTO_EXPRESION::=NUMERO:a{:RESULT=a;:}
 	|OBSERVADOR
 	|SET_ELEMENTO
 	|abrePar EXPRESION cierraPar
-	|EXP_ARITMETICA
+	|EXP_ARITMETICA:a{:RESULT = a;:}
 	|EXP_LOGICA
 	|EXP_RELACIONAL
 	|OBTENER
@@ -265,7 +266,7 @@ ELEMENTO_EXPRESION::=NUMERO:a{:RESULT=a;:}
 	
 	
 EXPRESION::= EXPRESION punto ELEMENTO_EXPRESION
-		| ELEMENTO_EXPRESION;
+		| ELEMENTO_EXPRESION:e{:RESULT= e;:};
 
 
 		

@@ -5,6 +5,7 @@
  */
 package CJS.ARBOL.EXPRESION;
 
+import CJS.elementoRetorno;
 import CJS.objetoBase;
 
 /**
@@ -13,12 +14,21 @@ import CJS.objetoBase;
  */
 public class Booleano extends objetoBase{
     
-    public boolean valor;
+    public String valor;
     
     
     public Booleano(Object val){
-        this.valor = (val.toString().equalsIgnoreCase("verdadero"));
+        this.valor = (val.toString());
         
+    }
+    
+      @Override
+    public elementoRetorno Ejecutar(){
+        
+        elementoRetorno ret = new elementoRetorno();
+        ret.ValorRetorno= valor;
+        super.retorno.ValorRetorno=valor;
+        return ret;
     }
     
     

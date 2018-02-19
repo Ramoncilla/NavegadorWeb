@@ -23,4 +23,11 @@ public class Datee extends objetoBase {
          this.anio= Integer.parseInt(anio.toString());
     }
     
+    public String getDate(){
+        
+        return dia+"/"+mes+"/"+anio;
+        
+    }
+    
+    
 }

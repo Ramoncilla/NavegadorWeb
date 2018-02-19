@@ -5,6 +5,7 @@
  */
 package CJS.ARBOL.EXPRESION;
 
+import CJS.elementoRetorno;
 import CJS.objetoBase;
 
 /**
@@ -19,6 +20,13 @@ public class Numero extends objetoBase{
         this.numero = Double.parseDouble(valor.toString());
     }
     
-    
+    @Override
+    public elementoRetorno Ejecutar(){
+        
+        elementoRetorno ret = new elementoRetorno();
+        ret.ValorRetorno= this.numero;
+        super.retorno.ValorRetorno=numero;
+        return ret;
+    }
     
 }
