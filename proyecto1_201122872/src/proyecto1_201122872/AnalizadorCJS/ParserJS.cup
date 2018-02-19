@@ -1,1 +1,290 @@
+package proyecto1_201122872.AnalizadorCJS;
+
+import proyecto1_201122872.AnalizadorCJS.simbolosCJS;
+import java_cup.runtime.*;
+import java.io.*;
+import java.lang.*;
+import java.util.*;
+import java.util.ArrayList;
+
+
+parser code
+{:
+ /* -------------------------==: DECLARAR EL ARBOL :==--------------------------*/
+    //public Nodo Gramaticas;     
+    public static String cadena;
+
+	
+
+/* -------------------------==: ERROR SINTACTICO :==--------------------------*/
+public void syntax_error(Symbol s){
+    System.out.println("Error Sintactico -> lexema: " +s.value+" Linea: " +s.right+ " Columna: "+s.left);
+    cadena += "<tr>"
+                + "<td><center><b>" + s.value + "</b></center></td>"
+                + "<td><center><b>" + s.right + "</b></center></td>"
+                + "<td><center><b>" + s.left+ "</b></center></td>"
+                + "</tr>";
+}
+
+/* ------------------==: ERROR SINTACTICO NO RECUPERABLE :==------------------*/
+public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{
+    System.out.println("Error Sintactico No Recuperable-> Lexema: " +s.value+" Linea: "+s.right+ " Columna: "+s.left);
+     cadena += "<tr>"
+                + "<td><center><b>" + s.value + "</b></center></td>"
+                + "<td><center><b>" + s.right + "</b></center></td>"
+                + "<td><center><b>" + s.left+ "</b></center></td>"
+                + "</tr>";
+}
+
+:}
+
+
+action code
+{:
+//Operaciones_Listas operaciones = new Operaciones_Listas();
+
+:}
+
+
+/*-------- Terminales ---------------*/
+
+
+terminal String dimv, abreLlave, cierraLlave,abrePar, cierraPar, dosPuntos, puntoComa,si,sino,caso,defecto,selecciona,para,
+                mientras,detener,imprimir,retornar,funcion,coma,punto,mensaje,documento,obtener,setelemento,listo,modificado,
+				cliqueado,observador,mas,menos,multiplicacion,division,potencia,residuo,menor,mayor,menorIgual,mayorIgual,
+				igualIgual,distintoA,and,or,not,verdadero,falso,conteo,atexto, id, cadena, numero, masMas, menosMenos, comillaSimple,
+				cadenaVector,conteoVector, idEtiqueta, grupoEtiqueta,altoEtiqueta,anchoEtiqueta,alineadoEtiqueta;
+
+
+
+non terminal DECLARACION, ASIGNACION, LISTA_EXPRESIONES,POS_VECTOR,CUERPO,SENTENCIAS,SENTENCIA,
+			IF,SELECCIONA, PARA, MIENTRAS,DETENER,IMPRIMIR, RETORNAR, LLAMADA, MENSAJE, SI, SINO, CASO, LISTA_CASOS, DEFECTO, CUERPO_SELECCIONA,
+			OPERADOR_PARA, FUNCION, LISTA_ID, OBTENER, SET_ELEMENTO, TIPOS_EVENTOS, UNARIO,
+			EXP_ARITMETICA, EXP_RELACIONAL, EXP_LOGICA,ELEMENTO_EXPRESION, NUMERO, CADENA, CADENA_VECTOR,
+	BOOLEAN, ID, CONTEO_VECTOR, OBSERVADOR, EXPRESION,SIMB_ARITMETICO,SIMB_RELACIONAL,SIMB_LOGICA, DOCUMENTO, EXPRESION2,
+	VECTOR_PROPIEDADES,PROP_VECTOR,DATE, DATETIME, INICIO;
+	
+	
+	
+     	precedence left or;
+		precedence left and;
+		precedence left not;
+		precedence left igualIgual, distintoA, menorIgual, mayorIgual,mayor, menor;
+		precedence left mas, menos;
+        precedence left multiplicacion, division;
+        precedence right potencia;
+		precedence left residuo;
+		precedence left masMas, menosMenos;
+		precedence left abrePar;
+        
+	
+	start with INICIO;		
+	
+	
+	INICIO::= EXPRESION;
+
+
+DECLARACION::= dimv id puntoComa
+	| dimv id abreLlave EXPRESION cierraLlave puntoComa
+	| dimv ASIGNACION;
+	
+ASIGNACION ::= id dosPuntos EXPRESION puntoComa
+	|id dosPuntos abreLlave LISTA_EXPRESIONES cierraLlave puntoComa
+	|POS_VECTOR dosPuntos EXPRESION puntoComa;
+
+
+LISTA_EXPRESIONES::= EXPRESION
+	|LISTA_EXPRESIONES coma EXPRESION;
+	
+
+
+
+
+
+POS_VECTOR::= id abreLlave EXPRESION cierraLlave;
+
+
+
+/* -------- Estructuras de control -----------*/
+
+CUERPO::= abreLlave cierraLlave
+	| abreLlave SENTENCIAS cierraLlave;
+
+
+SENTENCIAS::= SENTENCIA
+		| SENTENCIAS SENTENCIA;
+		
+		
+SENTENCIA::= IF
+			|DECLARACION
+			|ASIGNACION
+			|SELECCIONA
+			|PARA
+			|MIENTRAS
+			|DETENER
+			|IMPRIMIR
+			|RETORNAR
+			|EXPRESION
+			|MENSAJE;
+			
+	
+ 
+SI::= si abrePar EXPRESION cierraPar CUERPO;
+SINO::= sino CUERPO;
+
+IF::= SI
+	| SI SINO;
+	
+
+	
+CASO::= caso EXPRESION dosPuntos SENTENCIAS;
+
+LISTA_CASOS::= CASO
+		| LISTA_CASOS CASO;
+		
+DEFECTO::= defecto dosPuntos SENTENCIAS;
+
+CUERPO_SELECCIONA::= LISTA_CASOS
+	|LISTA_CASOS DEFECTO
+	|DEFECTO;
+
+SELECCIONA::= selecciona abrePar EXPRESION cierraPar abreLlave cierraLlave
+	| selecciona abrePar EXPRESION cierraPar abreLlave CUERPO_SELECCIONA cierraLlave;
+	
+	
+
+
+OPERADOR_PARA::= masMas
+		|menosMenos;
+		
+PARA::= para abrePar id dosPuntos EXPRESION puntoComa EXPRESION puntoComa OPERADOR_PARA cierraPar CUERPO;
+
+MIENTRAS::= mientras abrePar EXPRESION cierraPar CUERPO;
+
+DETENER::= detener puntoComa;
+
+IMPRIMIR::= imprimir abrePar EXPRESION cierraPar puntoComa;
+
+RETORNAR::= retornar EXPRESION puntoComa;
+
+FUNCION::= funcion id abrePar LISTA_ID cierraPar CUERPO
+	| funcion id abrePar cierraPar CUERPO;
+
+
+LISTA_ID::= id
+	| LISTA_ID coma id;
+
+
+	
+MENSAJE::= mensaje abrePar EXPRESION cierraPar puntoComa;
+
+OBTENER::= documento punto obtener abrePar cadena cierraPar;
+
+SET_ELEMENTO::= setelemento abrePar	cadena coma cadena cierraPar;
+
+TIPOS_EVENTOS::= listo
+	| modificado
+	|cliqueado;
+	
+
+OBSERVADOR::= observador abrePar TIPOS_EVENTOS coma LLAMADA CUERPO cierraPar puntoComa
+	|observador abrePar TIPOS_EVENTOS coma LLAMADA cierraPar puntoComa;
+	
+LLAMADA::= id abrePar LISTA_EXPRESIONES cierraPar
+	| id abrePar cierraPar;
+	
+
+ID::= id;	
+	
+	
+
+
+	
+	
+UNARIO::= ELEMENTO_EXPRESION masMas
+		| ELEMENTO_EXPRESION menosMenos;
+	
+	
+	
+SIMB_ARITMETICO::= mas
+	|menos
+	|multiplicacion
+	|division
+	|potencia
+	|residuo;
+	
+SIMB_RELACIONAL::= menor
+		| mayor
+		| menorIgual
+		|mayorIgual
+		|distintoA
+		|igualIgual;
+		
+SIMB_LOGICA::= and
+	|or
+	|not;
+	
+EXP_ARITMETICA::= ELEMENTO_EXPRESION SIMB_ARITMETICO ELEMENTO_EXPRESION;
+
+EXP_RELACIONAL::= ELEMENTO_EXPRESION SIMB_RELACIONAL ELEMENTO_EXPRESION;
+
+EXP_LOGICA::= ELEMENTO_EXPRESION SIMB_LOGICA ELEMENTO_EXPRESION;
+
+
+CADENA_VECTOR::= id punto atexto;
+
+	
+ELEMENTO_EXPRESION::=NUMERO
+	|CADENA
+	|BOOLEAN
+	|ID
+	|LLAMADA
+	|OBSERVADOR
+	|SET_ELEMENTO
+	|abrePar EXPRESION cierraPar
+	|EXP_ARITMETICA
+	|EXP_LOGICA
+	|EXP_RELACIONAL
+	|OBTENER
+	|cadenaVector
+	|conteoVector
+	|idEtiqueta
+	|grupoEtiqueta 
+	|altoEtiqueta 
+	|anchoEtiqueta 
+	|alineadoEtiqueta 	
+	|UNARIO
+	|POS_VECTOR
+	|comillaSimple DATE comillaSimple
+	|comillaSimple DATETIME comillaSimple
+	|conteo
+	|atexto;
+	
+	
+	
+EXPRESION::= EXPRESION punto ELEMENTO_EXPRESION
+		| ELEMENTO_EXPRESION;
+
+
+		
+
+DATE::=  numero division numero division numero;
+
+DATETIME::= DATE numero dosPuntos numero dosPuntos numero;
+	
+CADENA::= cadena:a{:Cadena c= new Cadena(a); RESULT= c;:};
+
+BOOLEAN::= verdadero:a{:Booleano b = new Booleano(a);RESULT= b;:}
+	|falso:a{:Booleano b = new Booleano(a);RESULT= b;:};
+		
+NUMERO::= numero:a{:Numero num = new Numero(a); RESULT= num;:};
+
+
+
+
+
+
+//date y datetime, acceso a vector
+
+
 

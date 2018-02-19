@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javax.swing.JButton;
 import proyecto1_201122872.AnalizadorCHTML.Parser;
 import proyecto1_201122872.AnalizadorCHTML.scannerCHTML;
+import proyecto1_201122872.AnalizadorCJS.scannerCJS;
 import proyecto1_201122872.CHTML.Chtml;
 
 /**
@@ -43,6 +44,7 @@ public class Navegador extends javax.swing.JFrame {
         jToolBar1 = new javax.swing.JToolBar();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -52,7 +54,7 @@ public class Navegador extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jTextField1.setText("C:\\Users\\Ramonella\\Documents\\Repositorios\\Proyecto1\\NavegadorWeb\\proyecto1_201122872\\ArchivosEntrada\\ejemplo.chtml");
+        jTextField1.setText("C:\\Users\\Ramonella\\Documents\\Repositorios\\Proyecto1\\NavegadorWeb\\proyecto1_201122872\\ArchivosEntrada\\ejemplo.cjs");
 
         jToolBar1.setRollover(true);
 
@@ -72,6 +74,17 @@ public class Navegador extends javax.swing.JFrame {
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(jButton1);
+
+        jButton3.setText("CJS");
+        jButton3.setFocusable(false);
+        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton3);
 
         jScrollPane1.setViewportView(jTextPane1);
 
@@ -142,7 +155,57 @@ public class Navegador extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        
+        try {
+            // TODO add your handling code here:
+            ejecutarCJS();
+        } catch (Exception ex) {
+            Logger.getLogger(Navegador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
+
   
+    
+    
+     private void ejecutarCJS() throws Exception{
+        String rutaArchivo = jTextField1.getText();
+        int a= 1;
+        int b = a+++1;
+        
+        if(rutaArchivo.isEmpty()){
+            System.out.println("Direccion no valida");
+            return;
+        }else{
+          LectoArchivos lector = new LectoArchivos(rutaArchivo);
+        String cadena=lector.obtenerContenidoArchivo();
+        if(cadena.isEmpty()){
+            System.out.println(" No es posible evaluar una cadena vacia");
+            return;
+        }else{
+            System.out.println("Inicio de Analisis");
+            scannerCJS scannerjs = new scannerCJS(new BufferedReader(new StringReader(cadena)));
+            proyecto1_201122872.AnalizadorCJS.Parser parserCJS = new proyecto1_201122872.AnalizadorCJS.Parser(scannerjs);
+            parserCJS.parse();
+            
+           
+  
+            
+            
+           System.out.println("Fin de analisis");  
+        }  
+        }
+        
+        
+    }
+    
+    
+    
+    
     private void ejecutar() throws Exception{
         String rutaArchivo = jTextField1.getText();
         int a= 1;
@@ -246,6 +309,7 @@ jTextPane1.insertComponent(boton);
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
