@@ -23,7 +23,7 @@ public class Suma  extends expresionBase{
         
         String tipo1 = obtenerTipoExpresion(val1);
         String tipo2 = obtenerTipoExpresion(val2);
-
+ 
         String cad1, cad2;
         double dou1, dou2;
         
@@ -67,11 +67,66 @@ public class Suma  extends expresionBase{
             
             return dou1+dou2;
         }
+        //
+        else  if (esNumero(tipo1) && esCadena(tipo2)) {
+            
+            dou1 = getNumero(val1);
+            cad1 = getCadena(val2);           
+            
+            return dou1+cad1;
+        }
+        
+        
+        else  if (esCadena(tipo1) && esBool(tipo2)) {
+            
+            cad1 = getCadena(val1);
+            dou2 = getBool(val2);           
+            
+            return cad1+dou2;
+        }
+        
+        else  if (esCadena(tipo1) && esNumero(tipo2)) {
+            
+            cad1 = getCadena(val1);
+            dou2 = getNumero(val2);           
+            
+            return cad1+dou2;
+        }
+        
+        else  if (esCadena(tipo1) && esCadena(tipo2)) {
+            
+            cad1 = getCadena(val1);
+            cad2 = getCadena(val2);           
+            
+            return cad1+cad2;
+        }
+        else  if (esDate(tipo1) && esCadena(tipo2)) {
+           
+            
+            cad1 = getDate(val1);
+            cad2 = getCadena(val2);           
+            
+            return cad1+cad2;
+        }
+        
+        else  if (esDateTime(tipo1) && esCadena(tipo2)) {
+            
+            cad1 = getDateTime(val1);
+            cad2 = getCadena(val2);           
+            
+            return cad1+cad2;
+        }
+        
+        else  {
+            
+            
+           return "nulo"; 
+        }
         
         
         
         
-        return v1+v2;
+        
     }
     
 }
