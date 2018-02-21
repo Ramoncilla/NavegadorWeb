@@ -194,10 +194,10 @@ public class Navegador extends javax.swing.JFrame {
             parserCJS.parse();
             
             objetoBase g= parserCJS.raiz;
-            Object v= g.Ejecutar();
+            /*Object v= g.Ejecutar();
             
             System.out.println(g.Ejecutar().ValorRetorno);
-           
+           */
             
             
            
