@@ -48,7 +48,7 @@ public class Resta  extends expresionBase {
             dou1 = getNumero(val1);
             dou2 = getNumero(val2);           
             
-            return dou2-dou1;
+            return dou1-dou2;
         }
         
         else {

@@ -12,6 +12,10 @@ package CJS.EXPRESION;
 public class expresionesAritmeticas extends expresionBase {
     
     Suma sumas= new Suma();
+    Resta restas = new Resta();
+    Multiplicacion multiplicaciones = new Multiplicacion();
+    Division divisiones = new Division();
+    Potencia potencias = new Potencia();
     
     @Override
     public Object Resolver(Object operando1, Object operando2, String signo){
@@ -22,7 +26,7 @@ public class expresionesAritmeticas extends expresionBase {
                 System.out.println(operando1+" + "+operando2+" = " + resultado);
                 return resultado;
             }
-            /*case "*": {
+            case "*": {
                 resultado=multiplicaciones.Resolver(operando1, operando2); 
                 System.out.println(operando1+" * "+operando2+" = " + resultado);
                 return resultado;
@@ -41,7 +45,7 @@ public class expresionesAritmeticas extends expresionBase {
                resultado=potencias.Resolver(operando1, operando2); 
                 System.out.println(operando1+" ^ "+operando2+" = " + resultado);
                 return resultado;
-            }*/
+            }
         }
         return "nulo";  
     }
