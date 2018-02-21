@@ -21,7 +21,8 @@ public class Relacional extends objetoBase{
    public expresionesRelacionales relacionales;
     
     
-    public Relacional(Object operando1, Object operando2, Object op){
+    public Relacional(Object operando1, Object op, Object operando2){
+        relacionales = new expresionesRelacionales();
         this.operando1= (objetoBase) operando1;
         this.operando2=(objetoBase)operando2;
         this.operador= op.toString();
@@ -29,12 +30,14 @@ public class Relacional extends objetoBase{
     }
     
     
-   @Override
-    public elementoRetorno Ejecutar(){
-        
-        
-        
-        return new elementoRetorno();
+ @Override
+    public elementoRetorno Ejecutar() {
+        elementoRetorno val1 = (elementoRetorno) operando1.Ejecutar();
+        elementoRetorno val2 = (elementoRetorno) operando2.Ejecutar();
+        elementoRetorno ret = new elementoRetorno();
+        Object resultado = relacionales.Resolver_Expresion(val1.ValorRetorno, val2.ValorRetorno, operador);
+        ret.ValorRetorno = resultado;
+        super.retorno.ValorRetorno = resultado;
+        return ret;
     }
-    
 }

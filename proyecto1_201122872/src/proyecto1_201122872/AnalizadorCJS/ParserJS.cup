@@ -210,18 +210,18 @@ UNARIO::= ELEMENTO_EXPRESION masMas
 	
 	
 SIMB_ARITMETICO::= mas:a{:RESULT= "+";:}
-	|menos:a{:RESULT= a;:}
-	|multiplicacion:a{:RESULT= a;:}
-	|division:a{:RESULT= a;:}
-	|potencia:a{:RESULT= a;:}
-	|residuo:a{:RESULT= a;:};
+	|menos:a{:RESULT= "-";:}
+	|multiplicacion:a{:RESULT= "*";:}
+	|division:a{:RESULT= "/";:}
+	|potencia:a{:RESULT= "^";:}
+	|residuo:a{:RESULT= "%";:};
 	
-SIMB_RELACIONAL::= menor:a
-		| mayor:a
-		| menorIgual:a
-		|mayorIgual
-		|distintoA
-		|igualIgual;
+SIMB_RELACIONAL::= menor:a{:RESULT= "<";:}
+		| mayor:a{:RESULT= ">";:}
+		| menorIgual:a{:RESULT= "<=";:}
+		|mayorIgual{:RESULT= ">=";:}
+		|distintoA{:RESULT= "!=";:}
+		|igualIgual{:RESULT= "==";:};
 		
 SIMB_LOGICA::= and
 	|or
@@ -229,7 +229,7 @@ SIMB_LOGICA::= and
 	
 EXP_ARITMETICA::= ELEMENTO_EXPRESION:a SIMB_ARITMETICO:b ELEMENTO_EXPRESION:c{:Aritmetica ar= new Aritmetica(a,b,c); RESULT= ar;:};
 
-EXP_RELACIONAL::= ELEMENTO_EXPRESION SIMB_RELACIONAL ELEMENTO_EXPRESION;
+EXP_RELACIONAL::= ELEMENTO_EXPRESION:a SIMB_RELACIONAL:b ELEMENTO_EXPRESION:c{:Relacional ar= new Relacional(a,b,c); RESULT= ar;:};
 
 EXP_LOGICA::= ELEMENTO_EXPRESION SIMB_LOGICA ELEMENTO_EXPRESION;
 
@@ -247,7 +247,7 @@ ELEMENTO_EXPRESION::=NUMERO:a{:RESULT=a;:}
 	|abrePar EXPRESION cierraPar
 	|EXP_ARITMETICA:a{:RESULT = a;:}
 	|EXP_LOGICA
-	|EXP_RELACIONAL
+	|EXP_RELACIONAL:a{:RESULT = a;:}
 	|OBTENER
 	|cadenaVector
 	|conteoVector

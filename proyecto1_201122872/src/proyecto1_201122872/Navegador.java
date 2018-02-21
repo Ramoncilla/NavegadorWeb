@@ -194,10 +194,11 @@ public class Navegador extends javax.swing.JFrame {
             parserCJS.parse();
             
             objetoBase g= parserCJS.raiz;
+            Object v= g.Ejecutar();
             
             System.out.println(g.Ejecutar().ValorRetorno);
            
-                System.out.println("es nulo");
+            
             
            
   
