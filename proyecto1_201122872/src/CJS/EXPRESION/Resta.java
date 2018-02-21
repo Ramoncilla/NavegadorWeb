@@ -5,6 +5,8 @@
  */
 package CJS.EXPRESION;
 
+import static proyecto1_201122872.Proyecto1_201122872.erroresEjecucion;
+
 /**
  *
  * @author Ramonella
@@ -52,7 +54,7 @@ public class Resta  extends expresionBase {
         }
         
         else {
-            
+            erroresEjecucion.insertarError("Semantico", "No es valido restar un "+ tipo1+" con un "+ tipo2);
            return "nulo"; 
         }
     }

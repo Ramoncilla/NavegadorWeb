@@ -5,6 +5,7 @@
  */
 package CJS.ARBOL.EXPRESION;
 
+import CJS.elementoRetorno;
 import CJS.objetoBase;
 
 /**
@@ -27,6 +28,17 @@ public class Datee extends objetoBase {
         
         return dia+"/"+mes+"/"+anio;
         
+    }
+    
+    
+         @Override
+    public elementoRetorno Ejecutar(){
+        
+        Datee fechaF = new Datee(this.dia, this.mes, this.anio);
+        elementoRetorno ret = new elementoRetorno();
+        ret.ValorRetorno= fechaF;
+        super.retorno.ValorRetorno=fechaF;
+        return ret;
     }
     
     

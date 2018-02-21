@@ -5,6 +5,7 @@
  */
 package CJS.EXPRESION;
 
+import static proyecto1_201122872.Proyecto1_201122872.erroresEjecucion;
 /**
  *
  * @author Ramonella
@@ -34,6 +35,7 @@ public class Division  extends expresionBase {
             dou1 = getBool(val1);
             dou2 = getNumero(val2); 
             if(dou2==0){
+                erroresEjecucion.insertarError("Semantico", "No es valido realizar una division entre 0");
                 return "nulo";
             }
             
@@ -44,6 +46,7 @@ public class Division  extends expresionBase {
             dou1 = getNumero(val1);
             dou2 = getBool(val2); 
             if(dou2==0){
+                erroresEjecucion.insertarError("Semantico", "No es valido realizar una division entre 0");
                 return "nulo";
             }
             
@@ -54,6 +57,7 @@ public class Division  extends expresionBase {
             dou1 = getNumero(val1);
             dou2 = getNumero(val2);  
             if(dou2==0){
+                erroresEjecucion.insertarError("Semantico", "No es valido realizar una division entre 0");
                 return "nulo";
             }
             
@@ -61,7 +65,7 @@ public class Division  extends expresionBase {
         }
         
         else {
-            
+            erroresEjecucion.insertarError("Semantico", "No es valido dividir un "+ tipo1+" con un "+ tipo2);
            return "nulo"; 
         }
     }

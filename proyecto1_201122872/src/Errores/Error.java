@@ -4,22 +4,34 @@
  * and open the template in the editor.
  */
 package Errores;
-
+import static proyecto1_201122872.Proyecto1_201122872.archivoActual;
 /**
  *
  * @author Ramonella
  */
 public class Error {
     
-    String tipoError;
-    int idError; 
-    String cadenaError;
-    int linea;
-    int columna;
-    String descripcion;
-    String archivo;
-    
-    
+    public String archivo;
+    public int linea;
+    public int columna;
+    public String tipo;
+    public String descripcion;
+
+    public Error(int linea, int columna, String tipo, String descripcion) {
+        this.archivo= archivoActual;
+        this.linea = linea;
+        this.columna = columna;
+        this.tipo = tipo;
+        this.descripcion = descripcion;
+    }
+
+    public Error(String tipo, String descripcion) {
+        this.archivo= archivoActual;
+        this.tipo = tipo;
+        this.descripcion = descripcion;
+        this.linea=0;
+        this.columna=0;
+    }
     
     
 }

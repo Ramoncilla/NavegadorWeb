@@ -5,6 +5,7 @@
  */
 package CJS.ARBOL.EXPRESION;
 
+import CJS.elementoRetorno;
 import CJS.objetoBase;
 
 /**
@@ -20,12 +21,12 @@ public class DateTime extends objetoBase {
     
     
     
-    public DateTime(Object fecha, Object horas, Object minutos, Object segundos){
+    public DateTime(Object fec0ha, Object horas, Object minutos, Object segundos){
         
-        this.fecha= (Datee)fecha;
-        this.horas= (int)horas;
-        this.minutos = (int)minutos;
-        this.segundos= (int)segundos; 
+        this.fecha= (Datee)fec0ha;
+        this.horas= Integer.parseInt(horas.toString());
+        this.minutos = Integer.parseInt(minutos.toString());
+        this.segundos= Integer.parseInt(segundos.toString());
     }
     
      public String getDateTime(){
@@ -33,5 +34,17 @@ public class DateTime extends objetoBase {
         return fecha.getDate()+" "+horas+":"+minutos+":"+segundos;
         
     }
+     
+        @Override
+    public elementoRetorno Ejecutar(){
+        
+        Datee fechaF = new Datee(this.fecha.dia, this.fecha.mes, this.fecha.anio);
+        DateTime n = new DateTime(fechaF,this.horas, this.minutos, this.segundos);
+        elementoRetorno ret = new elementoRetorno();
+        ret.ValorRetorno= n;
+        super.retorno.ValorRetorno=n;
+        return ret;
+    }
+    
     
 }

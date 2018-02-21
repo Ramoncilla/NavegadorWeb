@@ -13,4 +13,19 @@ import CJS.objetoBase;
  */
 public class Logica extends objetoBase{
     
+    objetoBase operando1;
+    objetoBase operando2;
+    String operador;
+    
+    
+    public Logica(Object op1, Object op, Object op2){
+        this.operador=op.toString();
+        this.operando1= (objetoBase) op1;
+        this.operando2= (objetoBase)op2;
+    }
+    
+    
+    
+    
+    
 }
