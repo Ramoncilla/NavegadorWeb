@@ -223,18 +223,17 @@ SIMB_RELACIONAL::= menor:a{:RESULT= "<";:}
 		|distintoA{:RESULT= "!=";:}
 		|igualIgual{:RESULT= "==";:};
 		
-SIMB_LOGICA::= and
-	|or
-	|not;
+SIMB_LOGICA::= and{:RESULT="&&";:}
+	|or{:RESULT="||";:};
 	
 EXP_ARITMETICA::= ELEMENTO_EXPRESION:a SIMB_ARITMETICO:b ELEMENTO_EXPRESION:c{:Aritmetica ar= new Aritmetica(a,b,c); RESULT= ar;:};
 
 EXP_RELACIONAL::= ELEMENTO_EXPRESION:a SIMB_RELACIONAL:b ELEMENTO_EXPRESION:c{:Relacional ar= new Relacional(a,b,c); RESULT= ar;:};
 
-EXP_LOGICA::= ELEMENTO_EXPRESION SIMB_LOGICA ELEMENTO_EXPRESION;
+EXP_LOGICA::= ELEMENTO_EXPRESION:a SIMB_LOGICA:b ELEMENTO_EXPRESION:c{:Logica ar= new Logica(a,b,c); RESULT= ar;:};
 
 
-CADENA_VECTOR::= id punto atexto;
+
 
 	
 ELEMENTO_EXPRESION::=NUMERO:a{:RESULT=a;:}
@@ -244,9 +243,9 @@ ELEMENTO_EXPRESION::=NUMERO:a{:RESULT=a;:}
 	|LLAMADA
 	|OBSERVADOR
 	|SET_ELEMENTO
-	|abrePar EXPRESION cierraPar
+	|abrePar EXPRESION:a cierraPar{:RESULT = a;:}
 	|EXP_ARITMETICA:a{:RESULT = a;:}
-	|EXP_LOGICA
+	|EXP_LOGICA:a{:RESULT = a;:}
 	|EXP_RELACIONAL:a{:RESULT = a;:}
 	|OBTENER
 	|cadenaVector
@@ -261,7 +260,9 @@ ELEMENTO_EXPRESION::=NUMERO:a{:RESULT=a;:}
 	|comillaSimple DATE:a comillaSimple{:RESULT=a;:}
 	|comillaSimple DATETIME:a comillaSimple{:RESULT=a;:}
 	|conteo
-	|atexto;
+	|atexto
+	|not EXPRESION:a{:NOT n= new NOT(a); RESULT= n;:}
+	|menos EXPRESION;
 	
 	
 	
@@ -287,7 +288,6 @@ NUMERO::= numero:a{:Numero num = new Numero(a); RESULT= num;:};
 
 
 
-//date y datetime, acceso a vector
 
 
 

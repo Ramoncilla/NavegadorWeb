@@ -5,18 +5,19 @@
  */
 package CJS.EXPRESION;
 
+import static proyecto1_201122872.Proyecto1_201122872.erroresEjecucion;
+
 /**
  *
  * @author Ramonella
  */
 public class expresionesLogicas extends expresionBase {
-    
-    public expresionesLogicas(){
-        
+
+    public expresionesLogicas() {
+
     }
-    
-    
-     public Object Resolver_Expresion(Object val1, Object val2, String simb){
+
+    public Object Resolver_Expresion(Object val1, Object val2, String simb) {
         switch (simb) {
             case "||": {
                 return ResolverOR(val1, val2);
@@ -24,94 +25,74 @@ public class expresionesLogicas extends expresionBase {
             case "&&": {
                 return ResolverAND(val1, val2);
             }
-            case "&|": {
-                return ResolverXOR(val1, val2);
-            }
-
         }
         return "nulo";
     }
-    
-      
-    
-      
-       public Object ResolverOR(Object val1, Object val2){
-          String tipo1 = obtenerTipoExpresion(val1);
-          String tipo2= obtenerTipoExpresion(val2);
-          
-          if(tipo1.equalsIgnoreCase("bool") && tipo2.equalsIgnoreCase("bool")){
-              if(getBool(val1)==1 || getBool(val2)==1){
-                  return "verdadero";
-              }else{
-                  return "falso";
-              }
-              
-          }else{
-              ErrorE nuevo = new ErrorE("Tipos no validos para una expresion logica","","","Semantico","Graphik");
-              l_errores.insertar(nuevo);
-          }
-          
-          return "nulo";
-      }
-       
-       public Object ResolverAND(Object val1, Object val2){
-          String tipo1 = obtenerTipoExpresion(val1);
-          String tipo2= obtenerTipoExpresion(val2);
-          
-          if(tipo1.equalsIgnoreCase("bool") && tipo2.equalsIgnoreCase("bool")){
-              if(getBool(val1)==1 && getBool(val2)==1){
-                  return "verdadero";
-              }else{
-                  return "falso";
-              }
-              
-          }else{
-              ErrorE nuevo = new ErrorE("Tipos no validos para una expresion logica","","","Semantico","Graphik");
-                l_errores.insertar(nuevo);
-          }
-          
-          return "nulo";
-      } 
-      
-      public Object ResolverXOR(Object val1, Object val2){
-          String tipo1 = obtenerTipoExpresion(val1);
-          String tipo2= obtenerTipoExpresion(val2);
-          
-          if(tipo1.equalsIgnoreCase("bool") && tipo2.equalsIgnoreCase("bool")){
-              if(getBool(val1) != getBool(val2)){
-                  return "verdadero";
-              }else{
-                  return "falso";
-              }
-              
-          }else{
-              ErrorE nuevo = new ErrorE("Tipos no validos para una expresion logica","","","Semantico","Graphik");
-                l_errores.insertar(nuevo);
-          }
-          
-          return "nulo";
-      }
-     
-       public Object ResolverNOT(Object val1){
-          String tipo1 = obtenerTipoExpresion(val1);
-         
-          
-          if(tipo1.equalsIgnoreCase("bool")){
-              if(getBool(val1)==0){
-                  return "verdadero";
-              }else{
-                  return "falso";
-              }
-              
-          }else{
-              ErrorE nuevo = new ErrorE("Tipos no validos para una expresion logica","","","Semantico","Graphik");
-                l_errores.insertar(nuevo);
-          }
-          
-          return "nulo";
-      }
-    
-    
-    
-    
+
+    public Object ResolverOR(Object val1, Object val2) {
+        String tipo1 = obtenerTipoExpresion(val1);
+        String tipo2 = obtenerTipoExpresion(val2);
+
+        if (tipo1.equalsIgnoreCase("numero") && tipo2.equalsIgnoreCase("numero")) {
+
+            double dou1 = getNumero(val1);
+            double dou2 = getNumero(val2);
+
+            if ((dou1 == 1 || dou1 == 0)
+                    && (dou2 == 1 || dou2 == 0)) {
+
+                if (dou1 == 1 || dou2 == 1) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            }
+        }
+        erroresEjecucion.insertarError("Semantico", "Tipos no validos para realizar un opeacion OR " + tipo1 + " y " + tipo2);
+        return "nulo";
+    }
+
+    public Object ResolverAND(Object val1, Object val2) {
+        String tipo1 = obtenerTipoExpresion(val1);
+        String tipo2 = obtenerTipoExpresion(val2);
+
+        if (tipo1.equalsIgnoreCase("numero") && tipo2.equalsIgnoreCase("numero")) {
+
+            double dou1 = getNumero(val1);
+            double dou2 = getNumero(val2);
+
+            if ((dou1 == 1 || dou1 == 0)
+                    && (dou2 == 1 || dou2 == 0)) {
+
+                if (dou1 == 1 && dou2 == 1) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            }
+        }
+        erroresEjecucion.insertarError("Semantico", "Tipos no validos para realizar un opeacion AND " + tipo1 + " y " + tipo2);
+        return "nulo";
+    }
+
+    public Object ResolverNOT(Object val1) {
+        String tipo1 = obtenerTipoExpresion(val1);
+
+        if (tipo1.equalsIgnoreCase("numero")) {
+
+            double dou1 = getNumero(val1);
+
+            if ((dou1 == 1 || dou1 == 0)) {
+
+                if (dou1 == 1) {
+                    return 0;
+                } else {
+                    return 1;
+                }
+            }
+        }
+        erroresEjecucion.insertarError("Semantico", "Tipos no validos para realizar un opeacion NOT " + tipo1);
+        return "nulo";
+    }
+
 }

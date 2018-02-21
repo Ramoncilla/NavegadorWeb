@@ -13,31 +13,27 @@ import CJS.objetoBase;
  *
  * @author Ramonella
  */
-public class Logica extends objetoBase{
+public class NOT extends objetoBase {
     
     objetoBase operando1;
-    objetoBase operando2;
-    String operador;
     expresionesLogicas logicas;
     
     
-    public Logica(Object op1, Object op, Object op2){
+    public NOT(Object op1){
         this.logicas= new expresionesLogicas();
-        this.operador=op.toString();
         this.operando1= (objetoBase) op1;
-        this.operando2= (objetoBase)op2;
     }
     
     @Override
     public elementoRetorno Ejecutar() {
         elementoRetorno val1 = (elementoRetorno) operando1.Ejecutar();
-        elementoRetorno val2 = (elementoRetorno) operando2.Ejecutar();
         elementoRetorno ret = new elementoRetorno();
-        Object resultado = logicas.Resolver_Expresion(val1.ValorRetorno, val2.ValorRetorno, operador);
+        Object resultado = logicas.ResolverNOT(val1.ValorRetorno);
         ret.ValorRetorno = resultado;
         super.retorno.ValorRetorno = resultado;
         return ret;
     }
+    
     
     
     
