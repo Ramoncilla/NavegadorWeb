@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import CJS.ARBOL.EXPRESION.*;
 import CJS.objetoBase;
 import CJS.TablaSimbolos.*;
+import CJS.ARBOL.INSTRUCCIONES.*;
 
 
 parser code
@@ -88,16 +89,16 @@ non terminal DECLARACION, ASIGNACION, LISTA_EXPRESIONES,POS_VECTOR,CUERPO,SENTEN
 	INICIO::= SENTENCIAS:a{:parser.raiz= (objetoBase)a; System.out.println(a);:};
 
 
-DECLARACION::= dimv id:i puntoComa{:Simbolo s = new Simbolo(i); RESULT = s;:}
-	| dimv id dosPuntos EXPRESION puntoComa
-	| dimv id abreLlave EXPRESION cierraLlave puntoComa
-	| dimv id dosPuntos abreLlave LISTA_EXPRESIONES cierraLlave puntoComa
-	| dimv id abreLlave EXPRESION cierraLlave dosPuntos abreLlave LISTA_EXPRESIONES cierraLlave puntoComa;
+DECLARACION::= dimv id:i puntoComa{:Declaracion s = new Declaracion(i); RESULT = s;:}
+	| dimv id:a dosPuntos EXPRESION:b puntoComa 
+	| dimv id:a abreLlave EXPRESION cierraLlave puntoComa
+	| dimv id:a dosPuntos abreLlave LISTA_EXPRESIONES cierraLlave puntoComa
+	| dimv id:a abreLlave EXPRESION cierraLlave dosPuntos abreLlave LISTA_EXPRESIONES cierraLlave puntoComa;
 	
-ASIGNACION ::=id dosPuntos EXPRESION puntoComa
+ASIGNACION ::= id:a dosPuntos EXPRESION:b puntoComa{:Asignacion g = new Asignacion(a,b); RESULT= g;:}
 	| POS_VECTOR dosPuntos EXPRESION puntoComa
 	| UNARIO puntoComa
-	| id dosPuntos abreLlave LISTA_EXPRESIONES puntoComa;
+	| id dosPuntos abreLlave LISTA_EXPRESIONES cierraLlave puntoComa;
 
 
 
@@ -201,8 +202,8 @@ OBSERVADOR::= documento punto observador abrePar TIPOS_EVENTOS coma LLAMADA CUER
 LLAMADA::= id abrePar LISTA_EXPRESIONES cierraPar
 	| id abrePar cierraPar;
 
-UNARIO::= ELEMENTO_EXPRESION masMas
-		| ELEMENTO_EXPRESION menosMenos;
+UNARIO::= EXPRESION masMas
+		| EXPRESION menosMenos;
 	
 	
 	
@@ -225,23 +226,24 @@ SIMB_LOGICA::= and{:RESULT="&&";:}
 
 
  
-EXPRESION::= ELEMENTO_EXPRESION:a SIMB_ARITMETICO:b  EXPRESION:c{:Aritmetica ar= new Aritmetica(a,b,c); RESULT= ar;:}
+EXPRESION::= EXPRESION:a SIMB_ARITMETICO:b  EXPRESION:c{:Aritmetica ar= new Aritmetica(a,b,c); RESULT= ar;:}
 	| EXPRESION:a SIMB_RELACIONAL:b  EXPRESION:c{:Relacional ar= new Relacional(a,b,c); RESULT= ar;:}
 	| EXPRESION:a SIMB_LOGICA:b  EXPRESION:c{:Logica ar= new Logica(a,b,c); RESULT= ar;:}
-	|not EXPRESION
-	|SET_ELEMENTO
-	|OBTENER
+	| not EXPRESION:a{:NOT n = new NOT(a); RESULT=n;:}
+	| SET_ELEMENTO
+	| OBTENER
 	| UNARIO
-    | id
+    | id:a{:Id i= new Id(a); RESULT= i;:}
     | POS_VECTOR
-	| numero
-	| BOOLEAN
-	| cadena
-	//| vectorCadena y los demas atributos que pueda tener una etiqueta y arreglo
-	| abrePar EXPRESION cierraPar
-	| menos EXPRESION
-	| comillaSimple DATE comillaSimple
-	| comillaSimple DATETIME comillaSimple
+	| numero:a{:Numero n = new Numero(a); RESULT= n;:}
+	| BOOLEAN:a{:RESULT= a;:}
+	| cadena:a{:Cadena cad = new Cadena(a); RESULT = cad;:}
+	| id punto atexto
+	| id punto conteo
+	| abrePar EXPRESION:a cierraPar
+	| menos EXPRESION:a{:Negativo g= new Negativo(a); RESULT= g;:}
+	| comillaSimple DATE:a comillaSimple{:RESULT = a;:}
+	| comillaSimple DATETIME:a comillaSimple{:RESULT = a;:}
 	| LLAMADA;
 
 

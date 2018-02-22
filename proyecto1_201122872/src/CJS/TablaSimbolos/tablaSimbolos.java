@@ -20,7 +20,10 @@ public class tablaSimbolos {
         this.listaSimbolos = new ArrayList<>();
     }
     
-    
+    public boolean agregarSimbolo(){
+        
+        return false;
+    }
     
    
     

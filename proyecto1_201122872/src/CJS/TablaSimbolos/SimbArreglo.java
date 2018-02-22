@@ -5,14 +5,19 @@
  */
 package CJS.TablaSimbolos;
 
+import CJS.objetoBase;
+
 /**
  *
  * @author Ramonella
  */
 public class SimbArreglo extends Simbolo{
     
-    public SimbArreglo(Object nombre) {
-        super(nombre);
-    }
+    
+    private int tamanhoArreglo;
+    private objetoBase nodoTamanho;
+    
+    
+   
     
 }

@@ -11,10 +11,7 @@ package CJS.TablaSimbolos;
  */
 public class SimbEtiqueta extends Simbolo{
     
-    public SimbEtiqueta(Object nombre) {
-        super(nombre);
-    }
-    
+  
     
     
     

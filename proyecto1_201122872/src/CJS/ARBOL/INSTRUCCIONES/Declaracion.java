@@ -13,6 +13,13 @@ import CJS.objetoBase;
  */
 public class Declaracion extends objetoBase {
     
+    public  String nombreElemento;
+    
+    
+    public Declaracion(Object val){
+        this.nombreElemento= val.toString();
+    }
+    
     
     
     

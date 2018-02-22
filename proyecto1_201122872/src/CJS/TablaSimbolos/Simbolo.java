@@ -5,6 +5,8 @@
  */
 package CJS.TablaSimbolos;
 
+import CJS.objetoBase;
+
 /**
  *
  * @author Ramonella
@@ -13,14 +15,13 @@ public class Simbolo {
     
     public boolean disponible;
     public String nombre;
-    public String tipoElementoGuardado;
+    public String ambito;
+  
     
     
-    public Simbolo(Object nombre){
+    public Simbolo(){
 
-        this.nombre= nombre.toString();
-        this.disponible= true;
-        this.tipoElementoGuardado="vacio";
+
     }
     
     

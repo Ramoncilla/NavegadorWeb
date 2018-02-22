@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package CJS.ESTRUCURAS_CONTROL;
+package CJS.ARBOL.EXPRESION;
 
 import CJS.objetoBase;
 
@@ -11,6 +11,15 @@ import CJS.objetoBase;
  *
  * @author Ramonella
  */
-public class Declaracion extends objetoBase{
+public class Negativo extends objetoBase {
+    
+    public objetoBase expresion;
+    
+    
+    public Negativo(Object el ){
+        
+        this.expresion = (objetoBase) el;
+    }
+    
     
 }

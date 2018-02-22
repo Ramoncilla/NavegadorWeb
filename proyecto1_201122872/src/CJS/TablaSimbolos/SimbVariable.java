@@ -5,16 +5,23 @@
  */
 package CJS.TablaSimbolos;
 
+import CJS.objetoBase;
+
 /**
  *
  * @author Ramonella
  */
 public class SimbVariable extends Simbolo{
     
-    public SimbVariable(Object nombre) {
-        super(nombre);
-    }
-    
+   public objetoBase expresionVariable;
+   public Object valorVariable;
+   public String tipoVariable;
+     
+   
+   public SimbVariable(String nombre){
+       this.nombre= nombre;
+       this.disponible=true; 
+   }
     
     
     
