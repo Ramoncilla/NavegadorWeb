@@ -129,9 +129,9 @@ public static String cadena;
 
 {cadenaVector}    {System.out.println("cadebaVEctor");                return new Symbol (simbolosCJS.cadenaVector, yyline+1,yychar+1, new String (yytext()));}
 
-{cadena}    {System.out.println("cadeba");                return new Symbol (simbolosCJS.cadena, yyline+1,yychar+1, new String (yytext()));}
-{numero}    {System.out.println("nu mero");                return new Symbol (simbolosCJS.numero, yyline+1,yychar+1, new String (yytext()));}
-{id}        {System.out.println("id");                return new Symbol (simbolosCJS.id, yyline+1,yychar+1, new String (yytext()));}
+{cadena}    {System.out.println(yytext());                return new Symbol (simbolosCJS.cadena, yyline+1,yychar+1, new String (yytext()));}
+{numero}    {System.out.println(yytext());                return new Symbol (simbolosCJS.numero, yyline+1,yychar+1, new String (yytext()));}
+{id}        {System.out.println(yytext());                return new Symbol (simbolosCJS.id, yyline+1,yychar+1, new String (yytext()));}
 
 
 
