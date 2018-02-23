@@ -6,6 +6,8 @@
 package CJS.TablaSimbolos;
 
 import CJS.objetoBase;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -13,9 +15,47 @@ import CJS.objetoBase;
  */
 public class SimbArreglo extends Simbolo{
     
+  
+    public double tamanhoArreglo=0;
+    public List<Object> vector;
     
-    private int tamanhoArreglo;
-    private objetoBase nodoTamanho;
+    
+    public SimbArreglo(String nombre, double tamanhoArreglo){
+        this.vector = new ArrayList<>();
+        this.nombre = nombre;
+        this.disponible=false;
+        this.tamanhoArreglo= tamanhoArreglo;
+    }
+    
+    
+    
+    @Override
+    public String imprimirSimbolo(){
+        String cad= "Nombre: "+ this.nombre+
+                "\nAmbito: "+ this.ambito+
+                "\n Tamanho: "+this.tamanhoArreglo;
+        if(vector.isEmpty()){
+            cad+="\nElementos: vacio";
+        }else{
+            /*cad+="\nElementos: ";
+            for (int i = 0; i < vector.size(); i++) {
+                cad+="\n"+vector.get(i)
+            }*/
+        }
+        
+        
+        return cad;
+    }
+    
+    
+    
+    
+    
+    
+   
+    
+    
+    
     
     
    

@@ -91,6 +91,7 @@ non terminal DECLARACION, ASIGNACION, LISTA_EXPRESIONES,POS_VECTOR,CUERPO,SENTEN
 
 
 DECLARACION::= dimv id:i puntoComa{:Declaracion s = new Declaracion(i); RESULT = s;:}
+
 	| dimv id:a dosPuntos EXPRESION:b puntoComa{: Declaracion s = new Declaracion(a);
 												  Asignacion s2 = new Asignacion(a,b);
 												  List<objetoBase> lista = new ArrayList<>();
@@ -100,7 +101,9 @@ DECLARACION::= dimv id:i puntoComa{:Declaracion s = new Declaracion(i); RESULT =
 												  RESULT = h;
 												  
 													:} 
-	| dimv id:a abreLlave EXPRESION cierraLlave puntoComa
+													
+	| dimv id:a abreLlave EXPRESION:el cierraLlave puntoComa{: DeclaArreglo simb = new DeclaArreglo(a,el); RESULT= simb;:}
+	
 	| dimv id:a dosPuntos abreLlave LISTA_EXPRESIONES cierraLlave puntoComa
 	| dimv id:a abreLlave EXPRESION cierraLlave dosPuntos abreLlave LISTA_EXPRESIONES cierraLlave puntoComa;
 	

@@ -230,69 +230,28 @@ public class tablaSimbolos {
         return false;
     }
     
+     
+    /*--------------------------------- Declaraciones --------------------------------------------*/
     
-    
-    public boolean asignarSimbolo2(String nombre , Object valor, int contexto){
+    public boolean agregarArregloSinAsignacion(String nombre, Object size, int contexto){
         
-        Simbolo simbTemporal;
-        String tipoValor = tipoExpresion(valor); // numero, cadena, date, etiqueta, listaObjectos
-        int tipoValorEntero = tipoExpresionEntero(valor);
-        
-        if(contexto>0){
-            // buscar en ambito local
-            for (int i = 0; i < this.listaSimbolos.size(); i++) {
-                simbTemporal = listaSimbolos.get(i);
-                if(simbTemporal.nombre.equalsIgnoreCase(nombre) && simbTemporal.ambito.equalsIgnoreCase("local")){
-                    if(simbTemporal.disponible){// se puede guardar cualquier cosa porque esta disponible
-                        Object res=  obtenerSimboloAsignado(simbTemporal,valor);
-                        if(res instanceof Simbolo){
-                            switch (tipoValorEntero) {
-                                case 1:
-                                    if(res instanceof SimbVariable){
-                                        SimbVariable var = (SimbVariable) res;
-                                        this.listaSimbolos.set(i, var);
-                                    }   break;
-                            // e una etiqueta
-                                case 2:
-                                    break;
-                            // es un arreglo
-                                case 3:
-                                    break;
-                                default:
-                                    break;
-                            }
-                            
-                        }else{
-                            //vino un nulo
-                        }
-                        
-                        
-                        
-                    }else{
-                        // debemos agregar un valor del mismo tipo del cual ya tine asignanod
-                        
-                    }
-                    
-                    
-                    
-                }
+        if(!(existeSimbolo(nombre,contexto))){
+            String tipoSize = tipoExpresion(size);
+            if(tipoSize.equalsIgnoreCase("numero")){
+                double tamanhoArreglo = Double.parseDouble(size.toString());
+                SimbArreglo nuevoArreglo = new SimbArreglo(nombre, tamanhoArreglo);
+                nuevoArreglo.ambito= obtenerContexto(contexto);
+                this.listaSimbolos.add(nuevoArreglo);
+                return true;
             }
-            
-            
-            
-        }else{
-            //buscacr en ambito global
         }
-        
-        
+        erroresEjecucion.insertarError("Semantico", "La arreglo "+ nombre+", ya existe en un ambito actual");
         return false;
     }
     
     
     
     
-    
-    /*--------------------------------- Declaraciones --------------------------------------------*/
     public boolean agregarSimbolo(Simbolo simb, int contexto){
         boolean existe;
         if(contexto>0){
