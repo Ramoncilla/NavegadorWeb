@@ -104,16 +104,34 @@ DECLARACION::= dimv id:i puntoComa{:Declaracion s = new Declaracion(i); RESULT =
 													
 	| dimv id:a abreLlave EXPRESION:el cierraLlave puntoComa{: DeclaArreglo simb = new DeclaArreglo(a,el); RESULT= simb;:}
 	
-	| dimv id:a dosPuntos abreLlave LISTA_EXPRESIONES cierraLlave puntoComa
+	
+	| dimv id:a dosPuntos abreLlave LISTA_EXPRESIONES:lista cierraLlave puntoComa
+	
+	
 	| dimv id:a abreLlave EXPRESION cierraLlave dosPuntos abreLlave LISTA_EXPRESIONES cierraLlave puntoComa;
+	
+	
+	
+	
 	
 ASIGNACION ::= id:a dosPuntos EXPRESION:b puntoComa{:Asignacion g = new Asignacion(a,b); RESULT= g;:}
 	| POS_VECTOR dosPuntos EXPRESION puntoComa
 	| UNARIO puntoComa
-	| id dosPuntos abreLlave LISTA_EXPRESIONES cierraLlave puntoComa;
+	| id:a dosPuntos abreLlave LISTA_EXPRESIONES:b cierraLlave puntoComa{:asignaArreglo c = new asignaArreglo(a,b); RESULT=c; :};
 
 
 
+	
+LISTA_EXPRESIONES::= EXPRESION:a{:
+									List<objetoBase> elementos= new ArrayList<>();
+									elementos.add((objetoBase)a);
+									RESULT= elementos;
+								:}	
+	|LISTA_EXPRESIONES:l coma EXPRESION:a{:
+											List<objetoBase>elementos= (ArrayList<objetoBase>)l;
+											elementos.add((objetoBase)a);
+											RESULT=elementos;
+										 :};
 	
 
 
@@ -263,8 +281,6 @@ EXPRESION::= EXPRESION:a SIMB_ARITMETICO:b  EXPRESION:c{:Aritmetica ar= new Arit
 	| LLAMADA;
 
 
-LISTA_EXPRESIONES::= EXPRESION	
-	|LISTA_EXPRESIONES coma EXPRESION;
 
 POS_VECTOR::= id abreLlave EXPRESION cierraLlave;
  

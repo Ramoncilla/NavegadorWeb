@@ -27,75 +27,7 @@ public class tablaSimbolos {
     
     /*-------------------------------------- Asignaciones -------------------------*/
     
-    
-    private String tipoExpresion(Object val){
-         if ((val instanceof Double)|| (val instanceof Integer)) {
-            return "numero";
-        }
-       
-        if (val instanceof String) {
-            
-            if(((String)val).equalsIgnoreCase("verdadero")||
-                    ((String) val).equalsIgnoreCase("falso")){
-                return "bool";
-            }else if(((String)val).equalsIgnoreCase("nulo")){
-               return "nulo"; 
-            } else{
-                return "cadena"; 
-            }
-        }
-        
-        if(val instanceof Datee){
-            return "Date";
-        }
-        if(val instanceof DateTime ){
-            return "DateTime";
-        }
-         if(val instanceof Etiqueta){
-             return "etiqueta";
-         }
-        return "nulo";
-        
-    }
-    
-    
-    
-    private int tipoExpresionEntero(Object val){
-        //0 nulo 1 variables 2 etiquestas 3 listavariales
-        if(val!= null){
-             if ((val instanceof Double)|| (val instanceof Integer)) {
-            return 1;
-        }
-       
-        if (val instanceof String) {
-            
-            if(((String)val).equalsIgnoreCase("verdadero")||
-                    ((String) val).equalsIgnoreCase("falso")){
-                return 1;
-            }else if(((String)val).equalsIgnoreCase("nulo")){
-               return 0; 
-            } else{
-                return 1; 
-            }
-        }
-        
-        if(val instanceof Datee){
-            return 1;
-        }
-        if(val instanceof DateTime ){
-            return 1;
-        }
-         if(val instanceof Etiqueta){
-             return 2;
-         }
-        }
-        return 0;
-        
-    }
-    
-    
-    
-    
+
     private Object obtenerSimboloAsignado(Simbolo simb, Object valor){
        
         String tipoValor = tipoExpresion(valor); // numero, cadena, date, etiqueta, listaObjectos
@@ -111,45 +43,21 @@ public class tablaSimbolos {
             variable.valorVariable= valor;
             return variable;
         }
-        
-        
-        
-        
-        
-        
-        
+        if(tipoValorEntero ==3){
+           Object[]valores = (Object[])valor;
+           int noPos= valores.length;
+           arreglo = new SimbArreglo(simb.nombre, noPos);
+           arreglo.ambito= simb.ambito;
+           arreglo.disponible=false;
+           arreglo.tamanhoArreglo=noPos;
+           arreglo.vector=valores;
+           return arreglo;
+        }
+  
         return "nulo";
     }
     
-    
-    
-    private boolean esDisponible(String nombre, int contexto){
-        String ambito="";
-        if(contexto>0)
-            ambito="local";
-        else
-           ambito="global";
-        Simbolo temporal;
-        for (int i = 0; i < this.listaSimbolos.size(); i++) {
-            temporal = this.listaSimbolos.get(i);
-            if(temporal.ambito.equalsIgnoreCase(ambito)&&
-                    temporal.nombre.equalsIgnoreCase(nombre)){
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    
-    private String obtenerContexto(int contexto){
-        if(contexto>0)
-            return "local";
-        else
-            return "global";
-        
-    }
-    
-    
+ 
     public boolean asignarSimbolo(String nombre, Object valor, int contexto) {
         Simbolo simbTemporal;
         String ambito = obtenerContexto(contexto);
@@ -174,6 +82,10 @@ public class tablaSimbolos {
                                 case 2: // es una etiqueta
                                     return true;
                                 case 3: // es un arreglo
+                                    if(res instanceof SimbArreglo){
+                                        SimbArreglo arr = (SimbArreglo)res;
+                                        this.listaSimbolos.set(i, arr);
+                                    }
                                     return true;
                             }
                         } else {
@@ -182,7 +94,7 @@ public class tablaSimbolos {
                         }
                     }
                 }
-            } else {  //debemos asegurar de guardar un elemento del mismo tipo
+            } else {  //debemos asegurar de guardar un elemento del mismo tipo porque no se encuentra disponible
                 for (int i = 0; i < this.listaSimbolos.size(); i++) {
                     simbTemporal = this.listaSimbolos.get(i);
                     if (simbTemporal.nombre.equalsIgnoreCase(nombre)
@@ -241,6 +153,7 @@ public class tablaSimbolos {
                 double tamanhoArreglo = Double.parseDouble(size.toString());
                 SimbArreglo nuevoArreglo = new SimbArreglo(nombre, tamanhoArreglo);
                 nuevoArreglo.ambito= obtenerContexto(contexto);
+                nuevoArreglo.disponible=true;
                 this.listaSimbolos.add(nuevoArreglo);
                 return true;
             }
@@ -248,9 +161,6 @@ public class tablaSimbolos {
         erroresEjecucion.insertarError("Semantico", "La arreglo "+ nombre+", ya existe en un ambito actual");
         return false;
     }
-    
-    
-    
     
     public boolean agregarSimbolo(Simbolo simb, int contexto){
         boolean existe;
@@ -278,6 +188,10 @@ public class tablaSimbolos {
         }
     }
     
+    
+    
+     /*------- Extras ---------------*/
+    
    private boolean existeSimbolo(String nombre, int contexto){
       String ambito="";
         if(contexto>0)
@@ -297,14 +211,108 @@ public class tablaSimbolos {
    }
    
    
-  
+     private boolean esDisponible(String nombre, int contexto){
+        String ambito="";
+        if(contexto>0)
+            ambito="local";
+        else
+           ambito="global";
+        Simbolo temporal;
+        for (int i = 0; i < this.listaSimbolos.size(); i++) {
+            temporal = this.listaSimbolos.get(i);
+            if(temporal.ambito.equalsIgnoreCase(ambito)&&
+                    temporal.nombre.equalsIgnoreCase(nombre)){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    
+    private String obtenerContexto(int contexto){
+        if(contexto>0)
+            return "local";
+        else
+            return "global";
+        
+    }
+   
+   
+    private String tipoExpresion(Object val){
+        
+        if(val instanceof Object[]){
+            return "arreglo";
+        }
+         if ((val instanceof Double)|| (val instanceof Integer)) {
+            return "numero";
+        }
+       
+        if (val instanceof String) {
+            
+            if(((String)val).equalsIgnoreCase("verdadero")||
+                    ((String) val).equalsIgnoreCase("falso")){
+                return "bool";
+            }else if(((String)val).equalsIgnoreCase("nulo")){
+               return "nulo"; 
+            } else{
+                return "cadena"; 
+            }
+        }
+        
+        if(val instanceof Datee){
+            return "Date";
+        }
+        if(val instanceof DateTime ){
+            return "DateTime";
+        }
+         if(val instanceof Etiqueta){
+             return "etiqueta";
+         }
+        return "nulo";
+        
+    }
     
     
     
+    private int tipoExpresionEntero(Object val){
+        //0 nulo 1 variables 2 etiquestas 3 arreglos
+        if(val!= null){
+            
+             if(val instanceof Object[]){
+            return 3;
+        }
+             
+             if ((val instanceof Double)|| (val instanceof Integer)) {
+            return 1;
+        }
+       
+        if (val instanceof String) {
+            
+            if(((String)val).equalsIgnoreCase("verdadero")||
+                    ((String) val).equalsIgnoreCase("falso")){
+                return 1;
+            }else if(((String)val).equalsIgnoreCase("nulo")){
+               return 0; 
+            } else{
+                return 1; 
+            }
+        }
+        
+        if(val instanceof Datee){
+            return 1;
+        }
+        if(val instanceof DateTime ){
+            return 1;
+        }
+         if(val instanceof Etiqueta){
+             return 2;
+         }
+        }
+        return 0;
+        
+    }
     
-    
-    
-    /*------- Extras ---------------*/
+   
     
     public void imprimirTablaSimbolos(){
         

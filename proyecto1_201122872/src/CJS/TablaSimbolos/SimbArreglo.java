@@ -17,16 +17,23 @@ public class SimbArreglo extends Simbolo{
     
   
     public double tamanhoArreglo=0;
-    public List<Object> vector;
+    public Object[] vector;
     
     
     public SimbArreglo(String nombre, double tamanhoArreglo){
-        this.vector = new ArrayList<>();
+        int val = (int)tamanhoArreglo;
+        this.vector = new  Object [val];
+        iniciarArreglo();
         this.nombre = nombre;
-        this.disponible=false;
+        this.disponible=true;
         this.tamanhoArreglo= tamanhoArreglo;
     }
     
+    private void iniciarArreglo(){
+        for (int i = 0; i < vector.length; i++) {
+            vector[i]="nulo";
+        }
+    }
     
     
     @Override
@@ -34,16 +41,14 @@ public class SimbArreglo extends Simbolo{
         String cad= "Nombre: "+ this.nombre+
                 "\nAmbito: "+ this.ambito+
                 "\n Tamanho: "+this.tamanhoArreglo;
-        if(vector.isEmpty()){
-            cad+="\nElementos: vacio";
-        }else{
-            /*cad+="\nElementos: ";
-            for (int i = 0; i < vector.size(); i++) {
-                cad+="\n"+vector.get(i)
-            }*/
-        }
-        
-        
+      
+            cad+="\nElementos: ";
+            for (int i = 0; i < vector.length; i++) {
+                if(vector[i]!= null)
+                    cad+="\n["+i+"]-> "+vector[i];
+                else
+                    cad+="\n["+i+"]-> Nulo";
+            }
         return cad;
     }
     
