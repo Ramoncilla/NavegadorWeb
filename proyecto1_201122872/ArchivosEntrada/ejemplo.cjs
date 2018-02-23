@@ -1,9 +1,6 @@
-
-
-Dimv s:"popo";
+Dimv b;
 dimv a;
-Dimv a:{"ALINA",2*5,12,"fdsd",verdadero};
-Dimv b{6}:{"hola mundi",1,2,3,4,5};
+
 a:"popote";
-a:{"ALINA",2*5,12,"fdsd",FALSO};
-b:g{6*12};
+b:6*10;
+a:"te amo mi pedrito hermoso <3";

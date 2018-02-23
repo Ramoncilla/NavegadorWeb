@@ -32,8 +32,8 @@ public class Suma  extends expresionBase{
         /* Validaciones con Booleanos */
         if (esBool(tipo1) && esBool(tipo2)) {
             
-            dou1 = getBool(val1);
-            dou2 = getBool(val2);           
+            dou1 = getBoolNumero(val1);
+            dou2 = getBoolNumero(val2);           
             
             if(dou1==1 || dou2==1)
                 return 1;
@@ -41,14 +41,14 @@ public class Suma  extends expresionBase{
                 return 0;
         }else  if (esBool(tipo1) && esNumero(tipo2)) {
             
-            dou1 = getBool(val1);
+            dou1 = getBoolNumero(val1);
             dou2 = getNumero(val2);           
             
             return dou1+dou2;
         }
         else  if (esBool(tipo1) && esCadena(tipo2)) {
             
-            dou1 = getBool(val1);
+            dou1 = getBoolNumero(val1);
             cad2 = getCadena(val2);           
             
             return dou1+cad2;
@@ -65,7 +65,7 @@ public class Suma  extends expresionBase{
         else  if (esNumero(tipo1) && esBool(tipo2)) {
             
             dou1 = getNumero(val1);
-            dou2 = getBool(val2);           
+            dou2 = getBoolNumero(val2);           
             
             return dou1+dou2;
         }
@@ -82,7 +82,7 @@ public class Suma  extends expresionBase{
         else  if (esCadena(tipo1) && esBool(tipo2)) {
             
             cad1 = getCadena(val1);
-            dou2 = getBool(val2);           
+            dou2 = getBoolNumero(val2);           
             
             return cad1+dou2;
         }

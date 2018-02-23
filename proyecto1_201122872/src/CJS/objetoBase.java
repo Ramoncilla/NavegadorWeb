@@ -5,6 +5,8 @@
  */
 package CJS;
 
+import CJS.TablaSimbolos.tablaSimbolos;
+
 /**
  *
  * @author Ramonella
@@ -13,7 +15,7 @@ public class objetoBase {
      public elementoRetorno retorno = new elementoRetorno();
      
      
-     public elementoRetorno Ejecutar(){
+     public elementoRetorno Ejecutar( tablaSimbolos tabla, int contexto ){
          
          return new elementoRetorno();
      }

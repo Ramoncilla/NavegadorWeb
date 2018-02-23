@@ -5,6 +5,7 @@
  */
 package proyecto1_201122872;
 
+import CJS.TablaSimbolos.tablaSimbolos;
 import CJS.objetoBase;
 import java.io.BufferedReader;
 import java.io.StringReader;
@@ -194,8 +195,22 @@ public class Navegador extends javax.swing.JFrame {
             parserCJS.parse();
             
             objetoBase g= parserCJS.raiz;
-            /*Object v= g.Ejecutar();
             
+            List<objetoBase> h = (ArrayList<objetoBase>)parserCJS.listaSentencias;
+            tablaSimbolos tabla = new tablaSimbolos();
+            objetoBase temporal; 
+            Object v ;
+            for (int i = 0; i < h.size(); i++) {
+                temporal = h.get(i);
+                v= temporal.Ejecutar(tabla, 0);
+                
+            }
+            
+            
+            
+            
+            //Object v= g.Ejecutar(tabla, 0);
+            /*
             System.out.println(g.Ejecutar().ValorRetorno);
            */
             

@@ -37,4 +37,11 @@ public class Simbolo {
     }
     
     
+    
+    public String imprimirSimbolo(){
+        
+        return "";
+    }
+    
+    
 }

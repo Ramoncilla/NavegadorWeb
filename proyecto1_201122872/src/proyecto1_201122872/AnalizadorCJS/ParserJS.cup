@@ -18,6 +18,7 @@ parser code
     //public Nodo Gramaticas;     
     public static String cadena;
 	public objetoBase raiz;
+	public List<objetoBase>listaSentencias;
 
 	
 
@@ -86,7 +87,7 @@ non terminal DECLARACION, ASIGNACION, LISTA_EXPRESIONES,POS_VECTOR,CUERPO,SENTEN
 	start with INICIO;		
 	
 	
-	INICIO::= SENTENCIAS:a{:parser.raiz= (objetoBase)a; System.out.println(a);:};
+	INICIO::= SENTENCIAS:a{:parser.listaSentencias= (ArrayList<objetoBase>)a; System.out.println(a);:};
 
 
 DECLARACION::= dimv id:i puntoComa{:Declaracion s = new Declaracion(i); RESULT = s;:}
@@ -113,13 +114,17 @@ CUERPO::= abreLlave cierraLlave
 	| abreLlave SENTENCIAS cierraLlave;
 
 
-SENTENCIAS::= SENTENCIA
-		| SENTENCIAS SENTENCIA;
+SENTENCIAS::= SENTENCIA:a{:List<objetoBase> lista = new ArrayList<>();
+							lista.add((objetoBase) a);
+							RESULT= lista;:}
+		| SENTENCIAS:l SENTENCIA:a{:List<objetoBase> lista = (ArrayList<obteoBase>)l;
+									lista.add((objetoBase) a);
+									RESULT= lista;:};
 		
 		
 SENTENCIA::= IF
-			|DECLARACION
-			|ASIGNACION
+			|DECLARACION:a{:RESULT= a;:}
+			|ASIGNACION:a{:RESULT= a;:}
 			|SELECCIONA
 			|PARA
 			|MIENTRAS

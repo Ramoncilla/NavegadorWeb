@@ -23,6 +23,17 @@ public class SimbVariable extends Simbolo{
        this.disponible=true; 
    }
     
+   
+   @Override
+    public String imprimirSimbolo(){
+        
+        String cad = "Nombre: "+ this.nombre+
+                "\nTipo: "+ this.tipoVariable+
+                "\nValor: "+ this.valorVariable+
+                "\nAMbito: "+ this.ambito+"\n";
+        return cad;
+    }
+    
     
     
 }

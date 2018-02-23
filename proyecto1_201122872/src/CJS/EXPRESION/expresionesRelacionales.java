@@ -42,7 +42,7 @@ public class expresionesRelacionales extends expresionBase {
         return "nulo";
     }
 
-    private int OperarMenor(Object val1, Object val2) {
+    private String OperarMenor(Object val1, Object val2) {
          String tipo1= obtenerTipoExpresion(val1);
          String tipo2= obtenerTipoExpresion(val2);
          
@@ -50,43 +50,43 @@ public class expresionesRelacionales extends expresionBase {
              double e1 = getNumero(val1);
              double e2 = getNumero(val2);
              if (e1 < e2) {
-                 return 1;
+                 return "verdadero";
              } else {
-                 return 0;
+                 return "falso";
              }
          } else  if ((tipo1.equalsIgnoreCase("cadena")) && (tipo2.equalsIgnoreCase("cadena"))) {
              double e1 = obtenerValorCadena(val1.toString());
              double e2 = obtenerValorCadena(val2.toString());
              if (e1 < e2) {
-                 return 1;
+                 return "verdadero";
              } else {
-                 return 0;
+                 return "falso";
              }
          } else  if ((tipo1.equalsIgnoreCase("date")) && (tipo2.equalsIgnoreCase("date"))) {
              Datee fecha1=(Datee)val1;
              Datee fecha2=(Datee)val2;
              if(esMenorFecha(fecha1,fecha2)){
-                 return 1;
+                 return "verdadero";
              }else{
-                 return 0 ;
+                 return "falso";
              }
              
          }else  if ((tipo1.equalsIgnoreCase("datetime")) && (tipo2.equalsIgnoreCase("datetime"))) {
             DateTime fecha1=(DateTime)val1;
              DateTime fecha2=(DateTime)val2;
              if(esMenorFechaTime(fecha1,fecha2)){
-                 return 1;
+                 return "verdadero";
              }else{
-                 return 0 ;
+                 return "falso";
              }
          }else{
              erroresEjecucion.insertarError("Semantico", "No es valido hacer una operacion relacional (menor) con  "+ tipo1+" y un "+ tipo2);
-             return 0;
+             return "nulo";
          }
          
     }
     
-     private int OperarMayor(Object val1, Object val2) {
+     private String OperarMayor(Object val1, Object val2) {
          String tipo1= obtenerTipoExpresion(val1);
          String tipo2= obtenerTipoExpresion(val2);
          
@@ -94,42 +94,42 @@ public class expresionesRelacionales extends expresionBase {
              double e1 = getNumero(val1);
              double e2 = getNumero(val2);
              if (e1 > e2) {
-                 return 1;
+                 return "verdadero";
              } else {
-                 return 0;
+                 return "falso";
              }
          } else  if ((tipo1.equalsIgnoreCase("cadena")) && (tipo2.equalsIgnoreCase("cadena"))) {
              double e1 = obtenerValorCadena(val1.toString());
              double e2 = obtenerValorCadena(val2.toString());
              if (e1 > e2) {
-                 return 1;
+                 return "verdadero";
              } else {
-                 return 0;
+                 return "falso";
              }
          } else  if ((tipo1.equalsIgnoreCase("date")) && (tipo2.equalsIgnoreCase("date"))) {
              Datee fecha1=(Datee)val1;
              Datee fecha2=(Datee)val2;
              if(esMayorFecha(fecha1,fecha2)){
-                 return 1;
+                 return "verdadero";
              }else{
-                 return 0 ;
+                 return "falso";
              }
              
          }else  if ((tipo1.equalsIgnoreCase("datetime")) && (tipo2.equalsIgnoreCase("datetime"))) {
             DateTime fecha1=(DateTime)val1;
              DateTime fecha2=(DateTime)val2;
              if(esMayorFechaTime(fecha1,fecha2)){
-                 return 1;
+                 return "verdadero";
              }else{
-                 return 0 ;
+                 return "falso";
              }
          }else{
              erroresEjecucion.insertarError("Semantico", "No es valido hacer una operacion relacional (mayor) con  "+ tipo1+" y un "+ tipo2);
-             return 0;
+             return "nulo";
          }
     }
      
-      private int OperarMenorIgual(Object val1, Object val2) {
+      private String OperarMenorIgual(Object val1, Object val2) {
         String tipo1= obtenerTipoExpresion(val1);
          String tipo2= obtenerTipoExpresion(val2);
          
@@ -137,42 +137,42 @@ public class expresionesRelacionales extends expresionBase {
              double e1 = getNumero(val1);
              double e2 = getNumero(val2);
              if (e1 <= e2) {
-                 return 1;
+                 return "verdadero";
              } else {
-                 return 0;
+                 return "falso";
              }
          } else  if ((tipo1.equalsIgnoreCase("cadena")) && (tipo2.equalsIgnoreCase("cadena"))) {
              double e1 = obtenerValorCadena(val1.toString());
              double e2 = obtenerValorCadena(val2.toString());
              if (e1 <= e2) {
-                 return 1;
+                 return "verdadero";
              } else {
-                 return 0;
+                 return "falso";
              }
          } else  if ((tipo1.equalsIgnoreCase("date")) && (tipo2.equalsIgnoreCase("date"))) {
              Datee fecha1=(Datee)val1;
              Datee fecha2=(Datee)val2;
              if(esMenorFecha(fecha1,fecha2) || esIgualFecha(fecha1, fecha2)){
-                 return 1;
+                 return "verdadero";
              }else{
-                 return 0 ;
+                 return "falso";
              }
              
          }else  if ((tipo1.equalsIgnoreCase("datetime")) && (tipo2.equalsIgnoreCase("datetime"))) {
             DateTime fecha1=(DateTime)val1;
              DateTime fecha2=(DateTime)val2;
              if(esMenorFechaTime(fecha1,fecha2) || esIgualFechaTime(fecha1, fecha2)){
-                 return 1;
+                 return "verdadero";
              }else{
-                 return 0 ;
+                 return "falso";
              }
          }else{
              erroresEjecucion.insertarError("Semantico", "No es valido hacer una operacion relacional (menorIgual) con  "+ tipo1+" y un "+ tipo2);
-             return 0;
+             return "nulo";
          }
     }
       
-       private int  OperarMayorIgual(Object val1, Object val2) {
+       private String  OperarMayorIgual(Object val1, Object val2) {
          String tipo1= obtenerTipoExpresion(val1);
          String tipo2= obtenerTipoExpresion(val2);
          
@@ -180,42 +180,42 @@ public class expresionesRelacionales extends expresionBase {
              double e1 = getNumero(val1);
              double e2 = getNumero(val2);
              if (e1 >= e2) {
-                 return 1;
+                 return "verdadero";
              } else {
-                 return 0;
+                 return "falso";
              }
          } else  if ((tipo1.equalsIgnoreCase("cadena")) && (tipo2.equalsIgnoreCase("cadena"))) {
              double e1 = obtenerValorCadena(val1.toString());
              double e2 = obtenerValorCadena(val2.toString());
              if (e1 >= e2) {
-                 return 1;
+                 return "verdadero";
              } else {
-                 return 0;
+                 return "falso";
              }
          } else  if ((tipo1.equalsIgnoreCase("date")) && (tipo2.equalsIgnoreCase("date"))) {
              Datee fecha1=(Datee)val1;
              Datee fecha2=(Datee)val2;
              if(esMayorFecha(fecha1,fecha2) || esIgualFecha(fecha1, fecha2)){
-                 return 1;
+                 return "verdadero";
              }else{
-                 return 0 ;
+                 return "falso";
              }
              
          }else  if ((tipo1.equalsIgnoreCase("datetime")) && (tipo2.equalsIgnoreCase("datetime"))) {
             DateTime fecha1=(DateTime)val1;
              DateTime fecha2=(DateTime)val2;
              if(esMayorFechaTime(fecha1,fecha2) || esIgualFechaTime(fecha1, fecha2)){
-                 return 1;
+                 return "verdadero";
              }else{
-                 return 0 ;
+                 return "falso";
              }
          }else{
              erroresEjecucion.insertarError("Semantico", "No es valido hacer una operacion relacional (mayorIgual) con  "+ tipo1+" y un "+ tipo2);
-             return 0;
+             return "nulo";
          }
     }
        
-        private int OperarIgualIgual(Object val1, Object val2) {
+        private String OperarIgualIgual(Object val1, Object val2) {
          String tipo1= obtenerTipoExpresion(val1);
          String tipo2= obtenerTipoExpresion(val2);
          
@@ -223,42 +223,42 @@ public class expresionesRelacionales extends expresionBase {
              double e1 = getNumero(val1);
              double e2 = getNumero(val2);
              if (e1 == e2) {
-                 return 1;
+                 return "verdadero";
              } else {
-                 return 0;
+                 return "falso";
              }
          } else  if ((tipo1.equalsIgnoreCase("cadena")) && (tipo2.equalsIgnoreCase("cadena"))) {
              double e1 = obtenerValorCadena(val1.toString());
              double e2 = obtenerValorCadena(val2.toString());
              if (e1 == e2) {
-                 return 1;
+                 return "verdadero";
              } else {
-                 return 0;
+                 return "falso";
              }
          } else  if ((tipo1.equalsIgnoreCase("date")) && (tipo2.equalsIgnoreCase("date"))) {
              Datee fecha1=(Datee)val1;
              Datee fecha2=(Datee)val2;
              if(esIgualFecha(fecha1,fecha2)){
-                 return 1;
+                 return "verdadero";
              }else{
-                 return 0 ;
+                 return "falso";
              }
              
          }else  if ((tipo1.equalsIgnoreCase("datetime")) && (tipo2.equalsIgnoreCase("datetime"))) {
             DateTime fecha1=(DateTime)val1;
              DateTime fecha2=(DateTime)val2;
              if(esIgualFechaTime(fecha1,fecha2)){
-                 return 1;
+                 return "verdadero";
              }else{
-                 return 0 ;
+                 return "falso";
              }
          }else{
              erroresEjecucion.insertarError("Semantico", "No es valido hacer una operacion relacional (Igual) con  "+ tipo1+" y un "+ tipo2);
-             return 0;
+             return "nulo";
          }
     }
     
-         private int OperarDistintoA(Object val1, Object val2) {
+         private String OperarDistintoA(Object val1, Object val2) {
         String tipo1= obtenerTipoExpresion(val1);
          String tipo2= obtenerTipoExpresion(val2);
          
@@ -266,38 +266,38 @@ public class expresionesRelacionales extends expresionBase {
              double e1 = getNumero(val1);
              double e2 = getNumero(val2);
              if (e1 != e2) {
-                 return 1;
+                 return "verdadero";
              } else {
-                 return 0;
+                 return "falso";
              }
          } else  if ((tipo1.equalsIgnoreCase("cadena")) && (tipo2.equalsIgnoreCase("cadena"))) {
              double e1 = obtenerValorCadena(val1.toString());
              double e2 = obtenerValorCadena(val2.toString());
              if (e1 != e2) {
-                 return 1;
+                 return "verdadero";
              } else {
-                 return 0;
+                 return "falso";
              }
          } else  if ((tipo1.equalsIgnoreCase("date")) && (tipo2.equalsIgnoreCase("date"))) {
              Datee fecha1=(Datee)val1;
              Datee fecha2=(Datee)val2;
              if(!(esIgualFecha(fecha1,fecha2))){
-                 return 1;
+                 return "verdadero";
              }else{
-                 return 0 ;
+                 return "falso";
              }
              
          }else  if ((tipo1.equalsIgnoreCase("datetime")) && (tipo2.equalsIgnoreCase("datetime"))) {
             DateTime fecha1=(DateTime)val1;
              DateTime fecha2=(DateTime)val2;
              if(!(esIgualFechaTime(fecha1,fecha2))){
-                 return 1;
+                 return "verdadero";
              }else{
-                 return 0 ;
+                 return "falso";
              }
          }else{
              erroresEjecucion.insertarError("Semantico", "No es valido hacer una operacion relacional (distinto a) con  "+ tipo1+" y un "+ tipo2);
-             return 0;
+             return "nulo";
          }
     }
          

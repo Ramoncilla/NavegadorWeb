@@ -6,6 +6,7 @@
 package CJS.ARBOL.EXPRESION;
 
 import CJS.EXPRESION.expresionesLogicas;
+import CJS.TablaSimbolos.tablaSimbolos;
 import CJS.elementoRetorno;
 import CJS.objetoBase;
 
@@ -25,8 +26,8 @@ public class NOT extends objetoBase {
     }
     
     @Override
-    public elementoRetorno Ejecutar() {
-        elementoRetorno val1 = (elementoRetorno) operando1.Ejecutar();
+    public elementoRetorno Ejecutar(tablaSimbolos tabla, int contexto) {
+        elementoRetorno val1 = (elementoRetorno) operando1.Ejecutar(tabla, contexto);
         elementoRetorno ret = new elementoRetorno();
         Object resultado = logicas.ResolverNOT(val1.ValorRetorno);
         ret.ValorRetorno = resultado;

@@ -33,20 +33,15 @@ public class expresionesLogicas extends expresionBase {
         String tipo1 = obtenerTipoExpresion(val1);
         String tipo2 = obtenerTipoExpresion(val2);
 
-        if (tipo1.equalsIgnoreCase("numero") && tipo2.equalsIgnoreCase("numero")) {
+        if (tipo1.equalsIgnoreCase("bool") && tipo2.equalsIgnoreCase("bool")) {
 
-            double dou1 = getNumero(val1);
-            double dou2 = getNumero(val2);
-
-            if ((dou1 == 1 || dou1 == 0)
-                    && (dou2 == 1 || dou2 == 0)) {
-
-                if (dou1 == 1 || dou2 == 1) {
-                    return 1;
+            String v1 = getBool(val1);
+            String v2 = getBool(val2);
+                if (v1.equalsIgnoreCase("verdadero") || v2.equalsIgnoreCase("verdadero")) {
+                    return "verdadero";
                 } else {
-                    return 0;
+                    return "falso";
                 }
-            }
         }
         erroresEjecucion.insertarError("Semantico", "Tipos no validos para realizar un opeacion OR " + tipo1 + " y " + tipo2);
         return "nulo";
@@ -56,20 +51,15 @@ public class expresionesLogicas extends expresionBase {
         String tipo1 = obtenerTipoExpresion(val1);
         String tipo2 = obtenerTipoExpresion(val2);
 
-        if (tipo1.equalsIgnoreCase("numero") && tipo2.equalsIgnoreCase("numero")) {
+      if (tipo1.equalsIgnoreCase("bool") && tipo2.equalsIgnoreCase("bool")) {
 
-            double dou1 = getNumero(val1);
-            double dou2 = getNumero(val2);
-
-            if ((dou1 == 1 || dou1 == 0)
-                    && (dou2 == 1 || dou2 == 0)) {
-
-                if (dou1 == 1 && dou2 == 1) {
-                    return 1;
+            String v1 = getBool(val1);
+            String v2 = getBool(val2);
+                if (v1.equalsIgnoreCase("verdadero") && v2.equalsIgnoreCase("verdadero")) {
+                    return "verdadero";
                 } else {
-                    return 0;
+                    return "falso";
                 }
-            }
         }
         erroresEjecucion.insertarError("Semantico", "Tipos no validos para realizar un opeacion AND " + tipo1 + " y " + tipo2);
         return "nulo";
@@ -78,18 +68,16 @@ public class expresionesLogicas extends expresionBase {
     public Object ResolverNOT(Object val1) {
         String tipo1 = obtenerTipoExpresion(val1);
 
-        if (tipo1.equalsIgnoreCase("numero")) {
+        if (tipo1.equalsIgnoreCase("bool")) {
 
-            double dou1 = getNumero(val1);
+            String valor = getBool(val1);
 
-            if ((dou1 == 1 || dou1 == 0)) {
-
-                if (dou1 == 1) {
-                    return 0;
+                if (valor.equalsIgnoreCase("verdadero")) {
+                    return "falso";
                 } else {
-                    return 1;
+                    return "verdadero";
                 }
-            }
+            
         }
         erroresEjecucion.insertarError("Semantico", "Tipos no validos para realizar un opeacion NOT " + tipo1);
         return "nulo";

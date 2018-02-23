@@ -32,7 +32,7 @@ public class Division  extends expresionBase {
         /* Validaciones con Booleanos */
         if (esBool(tipo1) && esNumero(tipo2)) {
             
-            dou1 = getBool(val1);
+            dou1 = getBoolNumero(val1);
             dou2 = getNumero(val2); 
             if(dou2==0){
                 erroresEjecucion.insertarError("Semantico", "No es valido realizar una division entre 0");
@@ -44,7 +44,7 @@ public class Division  extends expresionBase {
         }else  if (esNumero(tipo1) && esBool(tipo2)) {
             
             dou1 = getNumero(val1);
-            dou2 = getBool(val2); 
+            dou2 = getBoolNumero(val2); 
             if(dou2==0){
                 erroresEjecucion.insertarError("Semantico", "No es valido realizar una division entre 0");
                 return "nulo";

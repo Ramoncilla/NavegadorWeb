@@ -5,6 +5,7 @@
  */
 package CJS.ARBOL.EXPRESION;
 
+import CJS.TablaSimbolos.tablaSimbolos;
 import CJS.elementoRetorno;
 import CJS.objetoBase;
 
@@ -21,7 +22,7 @@ public class Cadena extends objetoBase {
     }
     
      @Override
-    public elementoRetorno Ejecutar(){
+    public elementoRetorno Ejecutar(tablaSimbolos tabla, int contexto){
         
         elementoRetorno ret = new elementoRetorno();
         ret.ValorRetorno= this.cadena;

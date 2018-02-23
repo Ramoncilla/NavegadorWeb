@@ -32,8 +32,8 @@ public class Multiplicacion  extends expresionBase {
         /* Validaciones con Booleanos */
          if (esBool(tipo1) && esBool(tipo2)) {
             
-            dou1 = getBool(val1);
-            dou2 = getBool(val2);           
+            dou1 = getBoolNumero(val1);
+            dou2 = getBoolNumero(val2);           
             
             if(dou1==1 && dou2==1)
                 return 1;
@@ -42,7 +42,7 @@ public class Multiplicacion  extends expresionBase {
         }else  if (esNumero(tipo1) && esBool(tipo2)) {
             
             dou1 = getNumero(val1);
-            dou2 = getBool(val2);           
+            dou2 = getBoolNumero(val2);           
             
             return dou1*dou2;
         }
@@ -55,7 +55,7 @@ public class Multiplicacion  extends expresionBase {
         }else  if (esBool(tipo1) && esNumero(tipo2)) {
             
             dou1 = getNumero(val1);
-            dou2 = getBool(val2);           
+            dou2 = getBoolNumero(val2);           
             
             return dou1*dou2;
         }

@@ -57,13 +57,18 @@ public class expresionBase {
     }
      
       
-      
-      /*----------------- Get elementos ----------------------------*/
-      public double getBool(Object val){
-        if(val.toString().equalsIgnoreCase("verdadero"))
-            return 1;
+      public Double getBoolNumero(Object val){
+          if(val.toString().equalsIgnoreCase("verdadero"))
+            return 1.0;
         else
-            return 0;
+            return 0.0;
+      }
+      /*----------------- Get elementos ----------------------------*/
+      public String getBool(Object val){
+        if(val.toString().equalsIgnoreCase("verdadero"))
+            return "verdadero";
+        else
+            return "falso";
     }
     public double getNumero(Object val){
         return Double.parseDouble(val+"");

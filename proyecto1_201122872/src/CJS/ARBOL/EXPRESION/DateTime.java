@@ -5,6 +5,7 @@
  */
 package CJS.ARBOL.EXPRESION;
 
+import CJS.TablaSimbolos.tablaSimbolos;
 import CJS.elementoRetorno;
 import CJS.objetoBase;
 
@@ -36,7 +37,7 @@ public class DateTime extends objetoBase {
     }
      
         @Override
-    public elementoRetorno Ejecutar(){
+    public elementoRetorno Ejecutar(tablaSimbolos tabla, int contexto){
         
         Datee fechaF = new Datee(this.fecha.dia, this.fecha.mes, this.fecha.anio);
         DateTime n = new DateTime(fechaF,this.horas, this.minutos, this.segundos);

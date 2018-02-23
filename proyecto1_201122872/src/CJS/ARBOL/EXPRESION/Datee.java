@@ -5,6 +5,7 @@
  */
 package CJS.ARBOL.EXPRESION;
 
+import CJS.TablaSimbolos.tablaSimbolos;
 import CJS.elementoRetorno;
 import CJS.objetoBase;
 
@@ -32,7 +33,7 @@ public class Datee extends objetoBase {
     
     
          @Override
-    public elementoRetorno Ejecutar(){
+    public elementoRetorno Ejecutar(tablaSimbolos tabla, int contexto){
         
         Datee fechaF = new Datee(this.dia, this.mes, this.anio);
         elementoRetorno ret = new elementoRetorno();

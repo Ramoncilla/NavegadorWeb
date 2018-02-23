@@ -33,7 +33,7 @@ public class Resta  extends expresionBase {
         /* Validaciones con Booleanos */
         if (esBool(tipo1) && esNumero(tipo2)) {
             
-            dou1 = getBool(val1);
+            dou1 = getBoolNumero(val1);
             dou2 = getNumero(val2);           
             
            return dou1-dou2;
@@ -41,7 +41,7 @@ public class Resta  extends expresionBase {
         }else  if (esNumero(tipo1) && esBool(tipo2)) {
             
             dou1 = getNumero(val1);
-            dou2 = getBool(val2);           
+            dou2 = getBoolNumero(val2);           
             
             return dou1-dou2;
         }

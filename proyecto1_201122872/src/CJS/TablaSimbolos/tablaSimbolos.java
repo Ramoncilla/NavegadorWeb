@@ -5,8 +5,12 @@
  */
 package CJS.TablaSimbolos;
 
+import CJS.ARBOL.EXPRESION.DateTime;
+import CJS.ARBOL.EXPRESION.Datee;
 import java.util.ArrayList;
 import java.util.List;
+import proyecto1_201122872.CHTML.Etiqueta;
+import static proyecto1_201122872.Proyecto1_201122872.erroresEjecucion;
 
 /**
  *
@@ -20,12 +24,338 @@ public class tablaSimbolos {
         this.listaSimbolos = new ArrayList<>();
     }
     
-    public boolean agregarSimbolo(){
+    
+    /*-------------------------------------- Asignaciones -------------------------*/
+    
+    
+    private String tipoExpresion(Object val){
+         if ((val instanceof Double)|| (val instanceof Integer)) {
+            return "numero";
+        }
+       
+        if (val instanceof String) {
+            
+            if(((String)val).equalsIgnoreCase("verdadero")||
+                    ((String) val).equalsIgnoreCase("falso")){
+                return "bool";
+            }else if(((String)val).equalsIgnoreCase("nulo")){
+               return "nulo"; 
+            } else{
+                return "cadena"; 
+            }
+        }
+        
+        if(val instanceof Datee){
+            return "Date";
+        }
+        if(val instanceof DateTime ){
+            return "DateTime";
+        }
+         if(val instanceof Etiqueta){
+             return "etiqueta";
+         }
+        return "nulo";
+        
+    }
+    
+    
+    
+    private int tipoExpresionEntero(Object val){
+        //0 nulo 1 variables 2 etiquestas 3 listavariales
+        if(val!= null){
+             if ((val instanceof Double)|| (val instanceof Integer)) {
+            return 1;
+        }
+       
+        if (val instanceof String) {
+            
+            if(((String)val).equalsIgnoreCase("verdadero")||
+                    ((String) val).equalsIgnoreCase("falso")){
+                return 1;
+            }else if(((String)val).equalsIgnoreCase("nulo")){
+               return 0; 
+            } else{
+                return 1; 
+            }
+        }
+        
+        if(val instanceof Datee){
+            return 1;
+        }
+        if(val instanceof DateTime ){
+            return 1;
+        }
+         if(val instanceof Etiqueta){
+             return 2;
+         }
+        }
+        return 0;
+        
+    }
+    
+    
+    
+    
+    private Object obtenerSimboloAsignado(Simbolo simb, Object valor){
+       
+        String tipoValor = tipoExpresion(valor); // numero, cadena, date, etiqueta, listaObjectos
+        int tipoValorEntero = tipoExpresionEntero(valor);
+        SimbVariable variable;
+        SimbEtiqueta etiquetal;
+        SimbArreglo arreglo;
+        if(tipoValorEntero ==1){
+            variable = new SimbVariable(simb.nombre);
+            variable.ambito= simb.ambito;
+            variable.disponible=false;
+            variable.tipoVariable= tipoValor;
+            variable.valorVariable= valor;
+            return variable;
+        }
+        
+        
+        
+        
+        
+        
+        
+        return "nulo";
+    }
+    
+    
+    
+    private boolean esDisponible(String nombre, int contexto){
+        String ambito="";
+        if(contexto>0)
+            ambito="local";
+        else
+           ambito="global";
+        Simbolo temporal;
+        for (int i = 0; i < this.listaSimbolos.size(); i++) {
+            temporal = this.listaSimbolos.get(i);
+            if(temporal.ambito.equalsIgnoreCase(ambito)&&
+                    temporal.nombre.equalsIgnoreCase(nombre)){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    
+    private String obtenerContexto(int contexto){
+        if(contexto>0)
+            return "local";
+        else
+            return "global";
+        
+    }
+    
+    
+    public boolean asignarSimbolo(String nombre, Object valor, int contexto) {
+        Simbolo simbTemporal;
+        String ambito = obtenerContexto(contexto);
+        String tipoValor = tipoExpresion(valor); //cadena numero date etiquera
+        int tipoValorEntero = tipoExpresionEntero(valor);
+        Object res;
+        if (existeSimbolo(nombre, contexto)) {
+            if (esDisponible(nombre, contexto)) {
+                for (int i = 0; i < this.listaSimbolos.size(); i++) {
+                    simbTemporal = this.listaSimbolos.get(i);
+                    if (simbTemporal.nombre.equalsIgnoreCase(nombre)
+                            && simbTemporal.ambito.equalsIgnoreCase(ambito)) {
+                        res = obtenerSimboloAsignado(simbTemporal, valor);
+                        if (res instanceof Simbolo) {
+                            switch (tipoValorEntero) {
+                                case 1: // es una variable
+                                    if (res instanceof SimbVariable) {
+                                        SimbVariable var = (SimbVariable) res;
+                                        this.listaSimbolos.set(i, var);
+                                    }
+                                    return true;
+                                case 2: // es una etiqueta
+                                    return true;
+                                case 3: // es un arreglo
+                                    return true;
+                            }
+                        } else {
+                            erroresEjecucion.insertarError("semantico", "No existe la variable " + nombre + ", no se puede realizar asignacinon");
+                            return false;
+                        }
+                    }
+                }
+            } else {  //debemos asegurar de guardar un elemento del mismo tipo
+                for (int i = 0; i < this.listaSimbolos.size(); i++) {
+                    simbTemporal = this.listaSimbolos.get(i);
+                    if (simbTemporal.nombre.equalsIgnoreCase(nombre)
+                            && simbTemporal.ambito.equalsIgnoreCase(ambito)) {
+                        
+                        if(tipoValorEntero == 1 && (simbTemporal instanceof SimbVariable)){
+                            SimbVariable var = (SimbVariable) simbTemporal;
+                            if(tipoValor.equalsIgnoreCase(var.tipoVariable)){
+                                var.valorVariable= valor;
+                                this.listaSimbolos.set(i, var);
+                                return true;
+                                        
+                                
+                            }else{
+                                erroresEjecucion.insertarError("Semantico", "El tipo de la variable "+var.nombre+" es, "+ var.tipoVariable+", imposible asignar un "+ tipoValor);
+                             return false;
+                            }
+                            
+                        }else if(tipoValorEntero == 2 && (simbTemporal instanceof SimbEtiqueta)){
+                            return true;
+                            
+                        }else if(tipoValorEntero ==3 && (simbTemporal instanceof SimbArreglo)){
+                            return true;
+                            
+                        }else{
+                            erroresEjecucion.insertarError("Semantico", "Tipos no validos para la asignacion de una variable, "+ simbTemporal.nombre+", con "+ valor);
+                             return false;
+                            
+                        }
+                        
+  
+                    }
+                    
+                    
+                }
+              
+                
+                
+                
+            }
+
+        }
+
+        erroresEjecucion.insertarError("Semantico", "No se puede realizar la asignacion a " + nombre + ", dicho elemento no existe");
+        return false;
+    }
+    
+    
+    
+    public boolean asignarSimbolo2(String nombre , Object valor, int contexto){
+        
+        Simbolo simbTemporal;
+        String tipoValor = tipoExpresion(valor); // numero, cadena, date, etiqueta, listaObjectos
+        int tipoValorEntero = tipoExpresionEntero(valor);
+        
+        if(contexto>0){
+            // buscar en ambito local
+            for (int i = 0; i < this.listaSimbolos.size(); i++) {
+                simbTemporal = listaSimbolos.get(i);
+                if(simbTemporal.nombre.equalsIgnoreCase(nombre) && simbTemporal.ambito.equalsIgnoreCase("local")){
+                    if(simbTemporal.disponible){// se puede guardar cualquier cosa porque esta disponible
+                        Object res=  obtenerSimboloAsignado(simbTemporal,valor);
+                        if(res instanceof Simbolo){
+                            switch (tipoValorEntero) {
+                                case 1:
+                                    if(res instanceof SimbVariable){
+                                        SimbVariable var = (SimbVariable) res;
+                                        this.listaSimbolos.set(i, var);
+                                    }   break;
+                            // e una etiqueta
+                                case 2:
+                                    break;
+                            // es un arreglo
+                                case 3:
+                                    break;
+                                default:
+                                    break;
+                            }
+                            
+                        }else{
+                            //vino un nulo
+                        }
+                        
+                        
+                        
+                    }else{
+                        // debemos agregar un valor del mismo tipo del cual ya tine asignanod
+                        
+                    }
+                    
+                    
+                    
+                }
+            }
+            
+            
+            
+        }else{
+            //buscacr en ambito global
+        }
+        
         
         return false;
     }
     
+    
+    
+    
+    
+    /*--------------------------------- Declaraciones --------------------------------------------*/
+    public boolean agregarSimbolo(Simbolo simb, int contexto){
+        boolean existe;
+        if(contexto>0){
+            //estoy en un ambito local
+            existe= existeSimbolo(simb.nombre, contexto);
+            if(!existe){
+                this.listaSimbolos.add(simb);
+                return true;
+            }else{
+                erroresEjecucion.insertarError("Semantico", "La variable "+ simb.nombre+", ya existe en un ambito local");
+                return false;
+            }
+        }else{
+            //estoy en un ambito global
+            existe= existeSimbolo(simb.nombre, contexto);
+            if(!existe){
+               this.listaSimbolos.add(simb);
+                return true; 
+            }else{
+                erroresEjecucion.insertarError("Semantico", "La variable "+ simb.nombre+", ya existe en un ambito global");
+                return false;
+            }
+            
+        }
+    }
+    
+   private boolean existeSimbolo(String nombre, int contexto){
+      String ambito="";
+        if(contexto>0)
+            ambito="local";
+        else
+           ambito="global"; 
+       
+       Simbolo simbTemporal;
+       for (int i = 0; i < listaSimbolos.size(); i++) {
+           simbTemporal = listaSimbolos.get(i);
+           if(simbTemporal.nombre.equalsIgnoreCase(nombre) &&
+                   simbTemporal.ambito.equalsIgnoreCase(ambito)){
+               return true;
+           }
+       }
+       return false;
+   }
    
+   
+  
+    
+    
+    
+    
+    
+    
+    /*------- Extras ---------------*/
+    
+    public void imprimirTablaSimbolos(){
+        
+      System.out.println("------------INICIO TABLA-------------------------"); 
+        for (int i = 0; i < this.listaSimbolos.size(); i++) {
+            System.out.println(i+"  "+ listaSimbolos.get(i).imprimirSimbolo());
+            
+        }
+       System.out.println("---------------FIN TABLA----------------------"); 
+    }
     
     
     
