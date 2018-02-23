@@ -119,7 +119,14 @@ DECLARACION::= dimv id:i puntoComa{:Declaracion s = new Declaracion(i); RESULT =
 	:}
 	
 	
-	| dimv id:a abreLlave EXPRESION cierraLlave dosPuntos abreLlave LISTA_EXPRESIONES cierraLlave puntoComa;
+	| dimv id:a abreLlave EXPRESION:el cierraLlave dosPuntos abreLlave LISTA_EXPRESIONES:b cierraLlave puntoComa
+	{:
+		DeclaArreglo simb = new DeclaArreglo(a,el);
+		asignaArreglo c = new asignaArreglo(a,b);
+		DeclaArregloNumAsigna g = new DeclaArregloNumAsigna(simb,c);
+		RESULT = g;
+	
+	:};
 	
 	
 	
