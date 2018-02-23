@@ -91,7 +91,15 @@ non terminal DECLARACION, ASIGNACION, LISTA_EXPRESIONES,POS_VECTOR,CUERPO,SENTEN
 
 
 DECLARACION::= dimv id:i puntoComa{:Declaracion s = new Declaracion(i); RESULT = s;:}
-	| dimv id:a dosPuntos EXPRESION:b puntoComa 
+	| dimv id:a dosPuntos EXPRESION:b puntoComa{: Declaracion s = new Declaracion(a);
+												  Asignacion s2 = new Asignacion(a,b);
+												  List<objetoBase> lista = new ArrayList<>();
+												  lista.add(s);
+												  lista.add(s2);
+												  DeclaAsig h = new DeclaAsig(lista);
+												  RESULT = h;
+												  
+													:} 
 	| dimv id:a abreLlave EXPRESION cierraLlave puntoComa
 	| dimv id:a dosPuntos abreLlave LISTA_EXPRESIONES cierraLlave puntoComa
 	| dimv id:a abreLlave EXPRESION cierraLlave dosPuntos abreLlave LISTA_EXPRESIONES cierraLlave puntoComa;
@@ -117,7 +125,7 @@ CUERPO::= abreLlave cierraLlave
 SENTENCIAS::= SENTENCIA:a{:List<objetoBase> lista = new ArrayList<>();
 							lista.add((objetoBase) a);
 							RESULT= lista;:}
-		| SENTENCIAS:l SENTENCIA:a{:List<objetoBase> lista = (ArrayList<obteoBase>)l;
+		| SENTENCIAS:l SENTENCIA:a{:List<objetoBase> lista = (ArrayList<objetoBase>)l;
 									lista.add((objetoBase) a);
 									RESULT= lista;:};
 		
