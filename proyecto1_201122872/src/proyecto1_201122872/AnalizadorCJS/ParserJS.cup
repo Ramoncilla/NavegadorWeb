@@ -106,6 +106,17 @@ DECLARACION::= dimv id:i puntoComa{:Declaracion s = new Declaracion(i); RESULT =
 	
 	
 	| dimv id:a dosPuntos abreLlave LISTA_EXPRESIONES:lista cierraLlave puntoComa
+	{:
+		List<objetoBase> l = (ArrayList<objetoBase>)lista;
+		Numero num = new Numero(l.size());
+		DeclaArreglo d= new DeclaArreglo(a, num);
+		asignaArreglo c = new asignaArreglo(a,lista);
+		List<objetoBase> listado = new ArrayList<>();
+		listado.add(d);
+		listado.add(c);
+		DeclaAsig h = new DeclaAsig(listado);
+		RESULT= h;
+	:}
 	
 	
 	| dimv id:a abreLlave EXPRESION cierraLlave dosPuntos abreLlave LISTA_EXPRESIONES cierraLlave puntoComa;

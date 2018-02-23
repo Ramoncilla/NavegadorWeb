@@ -4,5 +4,4 @@ Dimv h{2*4};
 a:"popote";
 b:6*10;
 a:"hola mundo";
-dimv c;
-c:{"hola","pedrito",25,2*3,"te amo", verdadero};
+dimv c:{"hola","pedrito",25,2*3,"te amo", verdadero};
