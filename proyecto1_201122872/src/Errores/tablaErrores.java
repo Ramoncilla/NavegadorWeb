@@ -38,4 +38,23 @@ public class tablaErrores {
         
     }
     
+    public String getErroresHTML(){
+        String tabla="<table border=1>\n"
+                + "<tr>\n"
+                + "<th> Archivo </th>\n"
+                + "<th> Tipo </th>\n"
+                + "<th> Linea</th>\n"
+                + "<th>Columna</th>\n"
+                + "<th>Descripcion</th>\n"
+                + "</tr>\n";
+        
+        for (int i = 0; i < listadoErrores.size(); i++) {
+            tabla+="<tr>\n"+listadoErrores.get(i).getErrorHTML()+"</tr>\n";
+            
+        }
+        tabla+="</table>";
+        return tabla;
+    }
+    
+    
 }

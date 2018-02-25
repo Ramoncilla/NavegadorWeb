@@ -34,4 +34,12 @@ public class Error {
     }
     
     
+    public String getErrorHTML(){
+        return "<td>"+archivo+"</td>\n"
+                + "<td>"+tipo+"</td>\n"
+                + "<td>"+linea+"</td>\n"
+                + "<td>"+columna+"</td>\n"
+                + "<td>"+descripcion+"</td>\n";
+    }
+    
 }
