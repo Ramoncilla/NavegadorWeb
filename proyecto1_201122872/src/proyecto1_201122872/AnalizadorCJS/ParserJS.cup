@@ -175,7 +175,7 @@ SENTENCIA::= IF
 			|PARA
 			|MIENTRAS
 			|DETENER
-			|IMPRIMIR
+			|IMPRIMIR:a{:RESULT=a;:}
 			|RETORNAR
 			|EXPRESION
 			|MENSAJE:a{:RESULT=a;:};
@@ -216,7 +216,7 @@ MIENTRAS::= mientras abrePar EXPRESION cierraPar CUERPO;
 
 DETENER::= detener puntoComa;
 
-IMPRIMIR::= imprimir abrePar EXPRESION cierraPar puntoComa;
+IMPRIMIR::= imprimir abrePar EXPRESION:a cierraPar puntoComa{:Imprimir g = new Imprimir(a); RESULT=g;:};
 
 RETORNAR::= retornar EXPRESION puntoComa;
 

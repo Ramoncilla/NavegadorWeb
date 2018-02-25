@@ -15,12 +15,14 @@ public class Proyecto1_201122872 {
 
     public static String archivoActual="archivin";
     public static tablaErrores erroresEjecucion;
+    public static String cadenaImpresion;
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
         erroresEjecucion= new tablaErrores();
+        cadenaImpresion="";
         Navegador n= new Navegador();
         n.show();
     }

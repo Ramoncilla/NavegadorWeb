@@ -12,3 +12,6 @@ b++;
 b--;
 dImV fecha: '01/12/199';
 mensaje("Esto es"+(2*4)+"una prueba");
+imprimir('01/12/1990');
+imprimir("hola mundo");
+imprimir("alinita bonita "+'01/12/1992'+" "+2*5);

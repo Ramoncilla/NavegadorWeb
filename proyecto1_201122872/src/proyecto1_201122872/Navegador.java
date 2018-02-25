@@ -20,6 +20,7 @@ import proyecto1_201122872.AnalizadorCHTML.scannerCHTML;
 import proyecto1_201122872.AnalizadorCJS.scannerCJS;
 import proyecto1_201122872.CHTML.Chtml;
 import static proyecto1_201122872.Proyecto1_201122872.erroresEjecucion;
+import static proyecto1_201122872.Proyecto1_201122872.cadenaImpresion;
 
 /**
  *
@@ -277,11 +278,11 @@ public class Navegador extends javax.swing.JFrame {
             /*
             System.out.println(g.Ejecutar().ValorRetorno);
            */
-            
+            jTextPane2.setContentType("text/html");
+           jTextPane2.setText(cadenaImpresion);
             
            jTextPane3.setContentType("text/html");
-           
-                    jTextPane3.setText(erroresEjecucion.getErroresHTML());
+           jTextPane3.setText(erroresEjecucion.getErroresHTML());
   
             
             
