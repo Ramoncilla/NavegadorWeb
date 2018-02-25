@@ -7,6 +7,7 @@ package CJS.TablaSimbolos;
 
 import CJS.ARBOL.EXPRESION.DateTime;
 import CJS.ARBOL.EXPRESION.Datee;
+import CJS.ARBOL.EXPRESION.Id;
 import java.util.ArrayList;
 import java.util.List;
 import proyecto1_201122872.CHTML.Etiqueta;
@@ -26,6 +27,59 @@ public class tablaSimbolos {
     
     
     /*-------------------------------------- Asignaciones -------------------------*/
+    
+    
+    public boolean asignarUnario(Object expUnario, String simbolo, int contexto){
+        
+        
+        if(expUnario instanceof Id){
+          Id id = (Id)expUnario;
+          String valId= id.id;
+          String ctx= obtenerContexto(contexto);
+          Simbolo temporal;
+          if(existeSimbolo(valId, contexto)){
+              for (int i = 0; i < this.listaSimbolos.size(); i++) {
+                  temporal= this.listaSimbolos.get(i);
+                  if(temporal.ambito.equalsIgnoreCase(ctx) && temporal.nombre.equalsIgnoreCase(valId)){
+                      if(temporal instanceof SimbVariable){
+                          SimbVariable j = (SimbVariable) temporal;
+                          if(j.tipoVariable!= null && j.valorVariable!=null){
+                              if(j.tipoVariable.equalsIgnoreCase("numero")){
+                                  double d = Double.parseDouble(j.valorVariable.toString());
+                                  if(simbolo.equalsIgnoreCase("++")){
+                                      d++; 
+                                  }else{
+                                      d--;
+                                  }
+                                   j.valorVariable=d;
+                                   this.listaSimbolos.set(i, j);
+                                   return true;
+                              }else{
+                                  erroresEjecucion.insertarError("semantico", "La variable "+ valId+", no es de tipo numerico, no se pudo realizar la operacion con el unario");
+                                  return false; 
+                                  
+                              }
+                              
+                          }else{
+                              erroresEjecucion.insertarError("semantico", "La variable "+ valId+", no esta inicializada, no se puede realizar la asignaicon");
+                              return false;  
+                              
+                          }  
+                      }else{
+                        erroresEjecucion.insertarError("semantico", "No se puede realizar asingnacion al unario "+ valId+", debido a que no es una vairable");
+                         return false;    
+                      }  
+                  }
+              }
+          }else{
+            erroresEjecucion.insertarError("semantico", "No existe el elemento "+ valId);
+            return false;      
+          }
+        }
+        return false;
+    
+    }   
+    
     
     public boolean asignarPosicionArreglo(String nombre, Object pos, Object valor, int contexto){
         
