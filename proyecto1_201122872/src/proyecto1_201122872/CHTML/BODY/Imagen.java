@@ -23,4 +23,8 @@ public class Imagen extends Etiqueta  {
         this.rutaImagen = ruta.toString();
     }
     
+    public Imagen(Object elementos){
+        //this.elementosImagen= 
+    }
+    
 }

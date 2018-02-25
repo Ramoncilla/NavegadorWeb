@@ -129,9 +129,6 @@ DECLARACION::= dimv id:i puntoComa{:Declaracion s = new Declaracion(i); RESULT =
 	:};
 	
 	
-	
-	
-	
 ASIGNACION ::= id:a dosPuntos EXPRESION:b puntoComa{:Asignacion g = new Asignacion(a,b); RESULT= g;:}
 	| POS_VECTOR dosPuntos EXPRESION puntoComa
 	| UNARIO puntoComa
@@ -306,8 +303,8 @@ DATE::=  numero:a division numero:b division numero:c{:Datee d = new Datee(a,b,c
 
 DATETIME::= DATE:a numero:b dosPuntos numero:c dosPuntos numero:d{:DateTime dt = new DateTime(a,b,c,d); RESULT= dt;:};
 
-BOOLEAN::= verdadero:a{:Booleano b = new Booleano(a);RESULT= b;:}
-	|falso:a{:Booleano b = new Booleano(a);RESULT= b;:};
+BOOLEAN::= verdadero:a{:Booleano b = new Booleano("verdadero");RESULT= b;:}
+	|falso:a{:Booleano b = new Booleano("falso");RESULT= b;:};
 
 
 

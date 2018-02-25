@@ -5,10 +5,16 @@
  */
 package proyecto1_201122872.CHTML.BODY;
 import proyecto1_201122872.CHTML.Etiqueta;
+import proyecto1_201122872.CHTML.listaElementos;
 /**
  *
  * @author Ramonella
  */
 public class Panel extends Etiqueta  {
+    
+    public listaElementos elementosPanel;
+    
+    
+    
     
 }

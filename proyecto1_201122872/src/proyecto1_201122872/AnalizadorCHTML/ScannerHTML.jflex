@@ -32,8 +32,7 @@ caracter            = "'"([0-9]|[a-zA-Z])"'"
 id                  = {letras}({letras}|{numero})*
 
 
-cadena2   = (({id}|{numero}|\s ))(({id}|{numero}|\s )+)
-
+cadena2   = (({id}|{numero} ))(({id}|{numero})+)
 comentario_multi    = "<//-"~"-//>"
 
 
@@ -129,7 +128,7 @@ public static String cadena;
 /* -------------------------==: EXPRESIONES REGULARES :==---------------------*/
 
 
-{cadena2}    {System.out.println("cadena2");                return new Symbol (simbolosCHTML.cadena2, yyline+1,yychar+1, new String (yytext()));}
+{cadena2}    {System.out.println("cadena2 "+yytext() );                return new Symbol (simbolosCHTML.cadena2, yyline+1,yychar+1, new String (yytext()));}
 {cadena}    {System.out.println("cadeba");                return new Symbol (simbolosCHTML.cadena, yyline+1,yychar+1, new String (yytext()));}
 {numero}    {System.out.println("nu mero");                return new Symbol (simbolosCHTML.numero, yyline+1,yychar+1, new String (yytext()));}
 {id}        {System.out.println("id");                return new Symbol (simbolosCHTML.identificador, yyline+1,yychar+1, new String (yytext()));}

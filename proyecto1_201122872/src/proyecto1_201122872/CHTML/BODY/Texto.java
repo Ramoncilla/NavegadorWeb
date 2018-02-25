@@ -20,8 +20,9 @@ public class Texto extends Etiqueta{
     public Texto(Object elementos , Object cadena){
         this.elementosTexto = new listaElementos((ArrayList<propiedad>)elementos);
         this.cadenaTexto= cadena.toString();   
-     
     }
+    
+    
     
     
     

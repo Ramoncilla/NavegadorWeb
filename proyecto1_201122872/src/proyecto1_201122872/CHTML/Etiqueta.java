@@ -16,4 +16,12 @@ public class Etiqueta {
         
     }
     
+    
+    public Object Ejecutar(){
+        
+        return "";
+    }
+    
+    
+    
 }
