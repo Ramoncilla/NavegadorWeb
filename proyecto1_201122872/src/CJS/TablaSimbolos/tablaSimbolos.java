@@ -38,7 +38,7 @@ public class tablaSimbolos {
         if(tipoValorEntero ==1){
             variable = new SimbVariable(simb.nombre);
             variable.ambito= simb.ambito;
-            variable.disponible=false;
+          //  variable.disponible=false;
             variable.tipoVariable= tipoValor;
             variable.valorVariable= valor;
             return variable;
@@ -48,7 +48,7 @@ public class tablaSimbolos {
            int noPos= valores.length;
            arreglo = new SimbArreglo(simb.nombre, noPos);
            arreglo.ambito= simb.ambito;
-           arreglo.disponible=false;
+          // arreglo.disponible=false;
            arreglo.tamanhoArreglo=noPos;
            arreglo.vector=valores;
            return arreglo;
@@ -65,7 +65,7 @@ public class tablaSimbolos {
         int tipoValorEntero = tipoExpresionEntero(valor);
         Object res;
         if (existeSimbolo(nombre, contexto)) {
-            if (esDisponible(nombre, contexto)) {
+            //if (esDisponible(nombre, contexto)) {
                 for (int i = 0; i < this.listaSimbolos.size(); i++) {
                     simbTemporal = this.listaSimbolos.get(i);
                     if (simbTemporal.nombre.equalsIgnoreCase(nombre)
@@ -94,7 +94,7 @@ public class tablaSimbolos {
                         }
                     }
                 }
-            } else {  //debemos asegurar de guardar un elemento del mismo tipo porque no se encuentra disponible
+           /* } else {  //debemos asegurar de guardar un elemento del mismo tipo porque no se encuentra disponible
                 for (int i = 0; i < this.listaSimbolos.size(); i++) {
                     simbTemporal = this.listaSimbolos.get(i);
                     if (simbTemporal.nombre.equalsIgnoreCase(nombre)
@@ -134,7 +134,7 @@ public class tablaSimbolos {
                 
                 
                 
-            }
+            }*/
 
         }
 
@@ -153,7 +153,7 @@ public class tablaSimbolos {
                 double tamanhoArreglo = Double.parseDouble(size.toString());
                 SimbArreglo nuevoArreglo = new SimbArreglo(nombre, tamanhoArreglo);
                 nuevoArreglo.ambito= obtenerContexto(contexto);
-                nuevoArreglo.disponible=true;
+                //nuevoArreglo.disponible=true;
                 this.listaSimbolos.add(nuevoArreglo);
                 return true;
             }
@@ -211,7 +211,7 @@ public class tablaSimbolos {
    }
    
    
-     private boolean esDisponible(String nombre, int contexto){
+    /* private boolean esDisponible(String nombre, int contexto){
         String ambito="";
         if(contexto>0)
             ambito="local";
@@ -226,7 +226,7 @@ public class tablaSimbolos {
             }
         }
         return false;
-    }
+    }*/
     
     
     private String obtenerContexto(int contexto){

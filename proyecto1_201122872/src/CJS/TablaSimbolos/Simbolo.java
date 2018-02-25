@@ -13,7 +13,7 @@ import CJS.objetoBase;
  */
 public class Simbolo {
     
-    public boolean disponible;
+//    public boolean disponible;
     public String nombre;
     public String ambito;
   

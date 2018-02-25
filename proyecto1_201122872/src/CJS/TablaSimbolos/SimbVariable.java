@@ -20,7 +20,7 @@ public class SimbVariable extends Simbolo{
    
    public SimbVariable(String nombre){
        this.nombre= nombre;
-       this.disponible=true; 
+      // this.disponible=true; 
    }
     
    

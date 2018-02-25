@@ -25,7 +25,7 @@ public class SimbArreglo extends Simbolo{
         this.vector = new  Object [val];
         iniciarArreglo();
         this.nombre = nombre;
-        this.disponible=false;
+       // this.disponible=false;
         this.tamanhoArreglo= tamanhoArreglo;
     }
     
