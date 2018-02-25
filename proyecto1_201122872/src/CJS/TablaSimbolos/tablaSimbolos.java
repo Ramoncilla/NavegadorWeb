@@ -27,6 +27,46 @@ public class tablaSimbolos {
     
     /*-------------------------------------- Asignaciones -------------------------*/
     
+    public boolean asignarPosicionArreglo(String nombre, Object pos, Object valor, int contexto){
+        
+        Simbolo temporal;
+        String ctx= obtenerContexto(contexto);
+        boolean g= esNumero(obtenerTipoExpresion(pos));
+        
+        if(g){
+            double pi = Double.parseDouble(pos.toString());
+           int posicion = (int)pi;
+        for (int i = 0; i < this.listaSimbolos.size(); i++) {
+           temporal= this.listaSimbolos.get(i);
+            if(temporal.nombre.equalsIgnoreCase(nombre) && ctx.equalsIgnoreCase(temporal.ambito)){
+                if(temporal instanceof SimbArreglo){
+                    SimbArreglo array = (SimbArreglo)temporal;
+                    if(posicion<=array.tamanhoArreglo && posicion >=0){
+                        int p = (int) posicion;
+                        array.vector[p]= valor;
+                        this.listaSimbolos.set(i, array);
+                        return true;    
+                    }else{
+                        erroresEjecucion.insertarError("Semantico", "En el indice que desea insertar un elemenot esta fuera de rango");
+                        return false;
+                    }
+                }else{
+                    erroresEjecucion.insertarError("semantico", "El elemento "+ nombre+", no es un arreglo");
+                    return false;
+                }
+            }
+                      
+        }}else{
+            erroresEjecucion.insertarError("Semantico", "El indice debe ser un numero");
+            return false;
+        }
+        
+        erroresEjecucion.insertarError("sementico", "El elemento "+ nombre+", no existe");
+        return false;
+    }
+    
+    
+    
 
     private Object obtenerSimboloAsignado(Simbolo simb, Object valor){
        
@@ -325,5 +365,38 @@ public class tablaSimbolos {
     }
     
     
-    
+      public boolean esNumero(String tipo) {
+        return tipo.equalsIgnoreCase("numero");
+    }
+      
+      
+        public  String obtenerTipoExpresion(Object val) {
+        
+        if ((val instanceof Double)|| (val instanceof Integer)) {
+            return "numero";
+        }
+       
+        if (val instanceof String) {
+            
+            if(((String)val).equalsIgnoreCase("verdadero")||
+                    ((String) val).equalsIgnoreCase("falso")){
+                return "bool";
+            }else if(((String)val).equalsIgnoreCase("nulo")){
+               return "nulo"; 
+            } else{
+                return "cadena"; 
+            }
+        }
+        
+        if(val instanceof Datee){
+            return "Date";
+        }
+        if(val instanceof DateTime ){
+            return "DateTime";
+        }
+        
+        return "nulo";
+    }
+     
+      
 }

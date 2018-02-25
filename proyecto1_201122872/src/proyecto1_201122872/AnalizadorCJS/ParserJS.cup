@@ -130,7 +130,7 @@ DECLARACION::= dimv id:i puntoComa{:Declaracion s = new Declaracion(i); RESULT =
 	
 	
 ASIGNACION ::= id:a dosPuntos EXPRESION:b puntoComa{:Asignacion g = new Asignacion(a,b); RESULT= g;:}
-	| POS_VECTOR dosPuntos EXPRESION puntoComa
+	| id:a abreLlave EXPRESION:b cierraLlave dosPuntos EXPRESION:c puntoComa{:AsignaPosArreglo h= new AsignaPosArreglo(a,b,c); RESULT= h;:}
 	| UNARIO puntoComa
 	| id:a dosPuntos abreLlave LISTA_EXPRESIONES:b cierraLlave puntoComa{:asignaArreglo c = new asignaArreglo(a,b); RESULT=c; :};
 

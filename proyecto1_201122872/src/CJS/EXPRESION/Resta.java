@@ -21,9 +21,7 @@ public class Resta  extends expresionBase {
     @Override
     public Object Resolver(Object val1, Object val2){
       
-        double v1= Double.parseDouble(val1.toString());
-        double v2 =Double.parseDouble(val2.toString());
-        
+     
         String tipo1 = obtenerTipoExpresion(val1);
         String tipo2 = obtenerTipoExpresion(val2);
  
