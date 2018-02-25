@@ -10,6 +10,7 @@ import CJS.ARBOL.EXPRESION.*;
 import CJS.objetoBase;
 import CJS.TablaSimbolos.*;
 import CJS.ARBOL.INSTRUCCIONES.*;
+import CJS.ESTRUCURAS_CONTROL.*;
 
 
 parser code
@@ -131,8 +132,8 @@ DECLARACION::= dimv id:i puntoComa{:Declaracion s = new Declaracion(i); RESULT =
 	
 ASIGNACION ::= id:a dosPuntos EXPRESION:b puntoComa{:Asignacion g = new Asignacion(a,b); RESULT= g;:}
 	| id:a abreLlave EXPRESION:b cierraLlave dosPuntos EXPRESION:c puntoComa{:AsignaPosArreglo h= new AsignaPosArreglo(a,b,c); RESULT= h;:}
-	| EXPRESION:a masMas:b puntoComa{:AsignacionUnario u =  new AsignaUnario(a,b); RESULT= u;:}
-	| EXPRESION:a menosMenos:b puntoComa{:AsignacionUnario u =  new AsignaUnario(a,b); RESULT= u;:}
+	| EXPRESION:a masMas:b puntoComa{:AsignaUnario u =  new AsignaUnario(a,b); RESULT= u;:}
+	| EXPRESION:a menosMenos:b puntoComa{:AsignaUnario u =  new AsignaUnario(a,b); RESULT= u;:}
 	| id:a dosPuntos abreLlave LISTA_EXPRESIONES:b cierraLlave puntoComa{:asignaArreglo c = new asignaArreglo(a,b); RESULT=c; :};
 
 
@@ -177,7 +178,7 @@ SENTENCIA::= IF
 			|IMPRIMIR
 			|RETORNAR
 			|EXPRESION
-			|MENSAJE;
+			|MENSAJE:a{:RESULT=a;:};
 			
 	
  
@@ -228,7 +229,7 @@ LISTA_ID::= id
 
 
 	
-MENSAJE::= mensaje abrePar EXPRESION cierraPar puntoComa;
+MENSAJE::= mensaje abrePar EXPRESION:a cierraPar puntoComa{:Mensaje j = new Mensaje(a); RESULT= j;:};
 
 
 /*Expresino*/
@@ -290,7 +291,7 @@ EXPRESION::= EXPRESION:a SIMB_ARITMETICO:b  EXPRESION:c{:Aritmetica ar= new Arit
 	| cadena:a{:Cadena cad = new Cadena(a); RESULT = cad;:}
 	| id punto atexto
 	| id punto conteo
-	| abrePar EXPRESION:a cierraPar
+	| abrePar EXPRESION:a cierraPar{:RESULT=a;:}
 	| menos EXPRESION:a{:Negativo g= new Negativo(a); RESULT= g;:}
 	| comillaSimple DATE:a comillaSimple{:RESULT = a;:}
 	| comillaSimple DATETIME:a comillaSimple{:RESULT = a;:}
