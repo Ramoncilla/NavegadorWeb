@@ -15,3 +15,9 @@ mensaje("Esto es"+(2*4)+"una prueba");
 imprimir('01/12/1990');
 imprimir("hola mundo");
 imprimir("alinita bonita "+'01/12/1992'+" "+2*5);
+
+si(5<10){
+imprimir("hola");
+}sino{
+imprimir("adios");
+}

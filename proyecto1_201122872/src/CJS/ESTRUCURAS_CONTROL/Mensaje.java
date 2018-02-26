@@ -43,7 +43,7 @@ public class Mensaje extends objetoBase{
         }
         
         
-        JOptionPane.showMessageDialog(null, ret.ValorRetorno.toString(), "USAC-WEB", JOptionPane.INFORMATION_MESSAGE);
+        
         return super.Ejecutar(tabla, contexto); //To change body of generated methods, choose Tools | Templates.
     }
     

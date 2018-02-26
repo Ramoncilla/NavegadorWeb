@@ -156,8 +156,8 @@ LISTA_EXPRESIONES::= EXPRESION:a{:
 
 /* -------- Estructuras de control -----------*/
 
-CUERPO::= abreLlave cierraLlave
-	| abreLlave SENTENCIAS cierraLlave;
+CUERPO::= abreLlave cierraLlave{:RESULT= new CuerpoEstructuras();:}
+	| abreLlave SENTENCIAS:s cierraLlave{:RESULT= new CuerpoEstructuras(s);:};
 
 
 SENTENCIAS::= SENTENCIA:a{:List<objetoBase> lista = new ArrayList<>();
@@ -168,7 +168,7 @@ SENTENCIAS::= SENTENCIA:a{:List<objetoBase> lista = new ArrayList<>();
 									RESULT= lista;:};
 		
 		
-SENTENCIA::= IF
+SENTENCIA::= IF:a{:RESULT=a;:}
 			|DECLARACION:a{:RESULT= a;:}
 			|ASIGNACION:a{:RESULT= a;:}
 			|SELECCIONA
@@ -181,12 +181,12 @@ SENTENCIA::= IF
 			|MENSAJE:a{:RESULT=a;:};
 			
 	
- 
-SI::= si abrePar EXPRESION cierraPar CUERPO;
-SINO::= sino CUERPO;
+ /*
+SI::= si abrePar EXPRESION:exp cierraPar CUERPO;
+SINO::= sino CUERPO:f;*/
 
-IF::= SI
-	| SI SINO;
+IF::= si abrePar EXPRESION:exp cierraPar CUERPO:v sino CUERPO:f{:Si s = new Si(exp,v,f); RESULT= s;:}
+	| si abrePar EXPRESION:exp cierraPar CUERPO:v {:Si s = new Si(exp,v,new CuerpoEstructuras()); RESULT= s;:};
 	
 
 	
