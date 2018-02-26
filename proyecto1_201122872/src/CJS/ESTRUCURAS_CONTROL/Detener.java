@@ -5,6 +5,8 @@
  */
 package CJS.ESTRUCURAS_CONTROL;
 
+import CJS.TablaSimbolos.tablaSimbolos;
+import CJS.elementoRetorno;
 import CJS.objetoBase;
 
 /**
@@ -12,5 +14,20 @@ import CJS.objetoBase;
  * @author Ramonella
  */
 public class Detener extends objetoBase{
+    
+    public Detener(){
+        
+    }
+
+    @Override
+    public elementoRetorno Ejecutar(tablaSimbolos tabla, int contexto) {
+        
+        elementoRetorno ret = new elementoRetorno();
+        ret.detener=true;
+        return ret;
+    }
+    
+    
+    
     
 }

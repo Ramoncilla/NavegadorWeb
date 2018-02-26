@@ -34,21 +34,28 @@ public class Si extends objetoBase{
 
     @Override
     public elementoRetorno Ejecutar(tablaSimbolos tabla, int contexto) {
+        System.out.println("inicio sii");
+        tabla.imprimirTablaSimbolos();
+        System.out.println("fin inicio sii");
         
         elementoRetorno resCondicion= condicion.Ejecutar(tabla, contexto);
         elementoRetorno resultado= new elementoRetorno();
         String tipoExpresion = obtenerTipoExpresion(resCondicion.ValorRetorno);
+        contexto++;
         if(esBool(tipoExpresion)){
             if(resCondicion.ValorRetorno.toString().equalsIgnoreCase("verdadero")){
+                
                 resultado = cuerpoVerdadero.Ejecutar(tabla, contexto);
             }else{
                 resultado= cuerpoFalso.Ejecutar(tabla, contexto);
             }
-            
         }else{
            erroresEjecucion.insertarError("Semantico", "Tipo de expresion no valido para una expresion de una sentencia SI");
         }
-        
+        contexto--;
+        System.out.println("fin siii");
+        tabla.imprimirTablaSimbolos();
+        System.out.println("fin fin sii ");
         return resultado;
     }
     

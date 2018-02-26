@@ -40,7 +40,7 @@ public class Imprimir extends objetoBase {
             cadenaImpresion +="> "+ ret.ValorRetorno.toString()+"<br>";
         }
         
-        return super.Ejecutar(tabla, contexto); //To change body of generated methods, choose Tools | Templates.
+        return ret;
     }
     
     

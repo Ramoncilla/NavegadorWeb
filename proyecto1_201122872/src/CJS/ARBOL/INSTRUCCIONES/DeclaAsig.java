@@ -31,7 +31,7 @@ public class DeclaAsig extends objetoBase{
         Object v;
         for (int i = 0; i < lista.size(); i++) {
                 temporal = lista.get(i);
-                v= temporal.Ejecutar(tabla, 0);
+                v= temporal.Ejecutar(tabla, contexto);
                 
             }
         System.out.println("DEclaracion- Asignacion");

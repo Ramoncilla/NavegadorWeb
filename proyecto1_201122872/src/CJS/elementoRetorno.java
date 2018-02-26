@@ -12,4 +12,5 @@ package CJS;
 public class elementoRetorno {
     
     public Object ValorRetorno="";
+    public boolean detener=false;
 }
