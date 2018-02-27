@@ -7,6 +7,8 @@ package Funciones;
 
 import CJS.ESTRUCURAS_CONTROL.CuerpoEstructuras;
 import CJS.TablaSimbolos.Simbolo;
+import CJS.TablaSimbolos.tablaSimbolos;
+import CJS.elementoRetorno;
 import CJS.objetoBase;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +32,14 @@ public class Funcion extends objetoBase {
         this.cuerpoFuncion= (CuerpoEstructuras)cuerpo;
         this.noParametros= this.parametros.size();
         
+    }
+
+    @Override
+    public elementoRetorno Ejecutar(tablaSimbolos tabla, int contexto) {
+        //1. asignamos parametros en la tabla de simbolos
+        
+        
+        return super.Ejecutar(tabla, contexto); //To change body of generated methods, choose Tools | Templates.
     }
     
     

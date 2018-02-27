@@ -53,7 +53,15 @@ public class ListaFunciones {
     
     public Funcion obtenerFuncion(String nombre, int noParmetros){
         
-        
+        Funcion temporal;
+        for (int i = 0; i < this.funciones.size(); i++) {
+            temporal = this.funciones.get(i);
+            if(temporal.nombreFuncion.equalsIgnoreCase(nombre) &&
+                    temporal.noParametros== noParmetros){
+                return temporal;
+            }
+            
+        } 
         return null;
     }
     

@@ -70,7 +70,7 @@ non terminal DECLARACION, ASIGNACION, LISTA_EXPRESIONES,POS_VECTOR,CUERPO,SENTEN
 			OPERADOR_PARA, FUNCION, LISTA_ID, OBTENER, SET_ELEMENTO, TIPOS_EVENTOS, UNARIO,
 			EXP_ARITMETICA, EXP_RELACIONAL, EXP_LOGICA,ELEMENTO_EXPRESION, NUMERO, CADENA, CADENA_VECTOR,
 	BOOLEAN, ID, CONTEO_VECTOR, OBSERVADOR, EXPRESION,SIMB_ARITMETICO,SIMB_RELACIONAL,SIMB_LOGICA, DOCUMENTO, EXPRESION2,
-	VECTOR_PROPIEDADES,PROP_VECTOR,DATE, DATETIME, INICIO, TERMINAL,ASIGNA_ARREGLO, CUERPO_ARREGLO,LISTA;
+	VECTOR_PROPIEDADES,PROP_VECTOR,DATE, DATETIME, INICIO, TERMINAL,ASIGNA_ARREGLO, CUERPO_ARREGLO,LISTA,ELEMENTO;
 	
 	
 	
@@ -174,13 +174,15 @@ SENTENCIA::= IF:a{:RESULT=a;:}
 			|ASIGNACION:a{:RESULT= a;:}
 			|SELECCIONA
 			|PARA
+			|SET_ELEMENTO
+			|OBSERVADOR
 			|MIENTRAS:a{:RESULT=a;:}
 			|DETENER:a{:RESULT=a;:}
 			|IMPRIMIR:a{:RESULT=a;:}
 			|RETORNAR
-			|EXPRESION
 			|MENSAJE:a{:RESULT=a;:}
-			|FUNCION:a{:RESULT=a;:};
+			|FUNCION:a{:RESULT=a;:}
+			|LLAMADA:a puntoComa{:RESULT=a;:};
 			
 
 
@@ -242,6 +244,8 @@ MENSAJE::= mensaje abrePar EXPRESION:a cierraPar puntoComa{:Mensaje j = new Mens
 
 /*Expresino*/
 
+ELEMENTO::= id 
+	|OBTENER;
 
 TIPOS_EVENTOS::= listo
 	| modificado
@@ -250,16 +254,16 @@ TIPOS_EVENTOS::= listo
 
 OBTENER::= documento punto obtener abrePar cadena cierraPar;
 	
-SET_ELEMENTO::= setelemento abrePar cadena coma cadena cierraPar;
+SET_ELEMENTO::= ELEMENTO punto setelemento abrePar cadena coma cadena cierraPar puntoComa;
 	
-OBSERVADOR::= documento punto observador abrePar TIPOS_EVENTOS coma LLAMADA CUERPO cierraPar puntoComa
-	|documento punto observador abrePar TIPOS_EVENTOS coma LLAMADA cierraPar puntoComa
-	|id punto observador abrePar TIPOS_EVENTOS coma LLAMADA CUERPO cierraPar puntoComa
-	|id punto observador abrePar TIPOS_EVENTOS coma LLAMADA cierraPar puntoComa;
 
 	
-LLAMADA::= id abrePar LISTA_EXPRESIONES cierraPar
-	| id abrePar cierraPar;
+OBSERVADOR::= ELEMENTO punto observador abrePar TIPOS_EVENTOS coma FUNCION cierraPar puntoComa
+		| documento punto observador abrePar TIPOS_EVENTOS coma FUNCION cierraPar puntoComa;
+
+	
+LLAMADA::= id:i abrePar LISTA_EXPRESIONES:b cierraPar{: RESULT= new Llamada(i,b);:}
+	| id:i abrePar cierraPar{: RESULT= new Llamada(i,new ArrayList<objetoBase>());:};
 
 UNARIO::= EXPRESION masMas
 		| EXPRESION menosMenos;
@@ -289,7 +293,6 @@ EXPRESION::= EXPRESION:a SIMB_ARITMETICO:b  EXPRESION:c{:Aritmetica ar= new Arit
 	| EXPRESION:a SIMB_RELACIONAL:b  EXPRESION:c{:Relacional ar= new Relacional(a,b,c); RESULT= ar;:}
 	| EXPRESION:a SIMB_LOGICA:b  EXPRESION:c{:Logica ar= new Logica(a,b,c); RESULT= ar;:}
 	| not EXPRESION:a{:NOT n = new NOT(a); RESULT=n;:}
-	| SET_ELEMENTO
 	| OBTENER
 	| UNARIO
     | id:a{:Id i= new Id(a); RESULT= i;:}
@@ -297,15 +300,16 @@ EXPRESION::= EXPRESION:a SIMB_ARITMETICO:b  EXPRESION:c{:Aritmetica ar= new Arit
 	| numero:a{:Numero n = new Numero(a); RESULT= n;:}
 	| BOOLEAN:a{:RESULT= a;:}
 	| cadena:a{:Cadena cad = new Cadena(a); RESULT = cad;:}
-	| id punto atexto
-	| id punto conteo
+	| conteoVector
+	| cadenaVector
 	| abrePar EXPRESION:a cierraPar{:RESULT=a;:}
 	| menos EXPRESION:a{:Negativo g= new Negativo(a); RESULT= g;:}
 	| comillaSimple DATE:a comillaSimple{:RESULT = a;:}
 	| comillaSimple DATETIME:a comillaSimple{:RESULT = a;:}
-	| LLAMADA;
+	| LLAMADA:a{:RESULT=a;:};
 
-
+CONTEO_VECTOR::= id punto conteo;
+CADENA_VECTOR::= id punto atexto;
 
 POS_VECTOR::= id abreLlave EXPRESION cierraLlave;
  
