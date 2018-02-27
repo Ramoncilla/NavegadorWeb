@@ -61,39 +61,6 @@ public class Mientras extends objetoBase{
     }
     
     
-    /* public void Ejecutar(Simbolos_Tabla Vars) {
-        Simbolos_Tabla Vars_Temporales = Vars.clonar(Vars);
-        condicion.Ejecutar(Vars);
-        Object resultado = condicion.ValorRetorno;
-        boolean res = esBool(resultado);
-
-        nodo_base base;
-       while (res && resultado.toString().equalsIgnoreCase("verdadero")) {
-            if (sentVerdaderas != null) {
-                
-                
-                for (int i = 0; i < sentVerdaderas.size(); i++) {
-                    base = sentVerdaderas.get(i);
-                    
-                    if (i != (sentVerdaderas.size() - 1)) {
-                        base.Ejecutar(Vars);
-
-                    } else {
-                        base.Ejecutar(Vars);
-                        Vars = Vars.modificarTabla(Vars_Temporales, Vars);
-                    }
-                }
-
-            }
-            condicion.Ejecutar(Vars);
-         resultado = condicion.ValorRetorno;
-         res = esBool(resultado);
-            
-        } 
-
-    }*/
-    
-    
      private boolean esBool(String tipo) {
         return tipo.equalsIgnoreCase("bool");
     }

@@ -1,3 +1,4 @@
+funcion hola(){
 Dimv b;
 dimv a;
 Dimv h{2*4};
@@ -34,4 +35,8 @@ detener;
 }
 imprimir("vuelta no "+b);
 b++;
+}
+}
+
+funcion g(hola,pedrito){
 }

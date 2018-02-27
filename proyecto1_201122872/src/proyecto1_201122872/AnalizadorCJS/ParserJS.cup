@@ -11,6 +11,7 @@ import CJS.objetoBase;
 import CJS.TablaSimbolos.*;
 import CJS.ARBOL.INSTRUCCIONES.*;
 import CJS.ESTRUCURAS_CONTROL.*;
+import Funciones.*;
 
 
 parser code
@@ -178,7 +179,8 @@ SENTENCIA::= IF:a{:RESULT=a;:}
 			|IMPRIMIR:a{:RESULT=a;:}
 			|RETORNAR
 			|EXPRESION
-			|MENSAJE:a{:RESULT=a;:};
+			|MENSAJE:a{:RESULT=a;:}
+			|FUNCION:a{:RESULT=a;:};
 			
 
 
@@ -217,12 +219,21 @@ IMPRIMIR::= imprimir abrePar EXPRESION:a cierraPar puntoComa{:Imprimir g = new I
 
 RETORNAR::= retornar EXPRESION puntoComa;
 
-FUNCION::= funcion id abrePar LISTA_ID cierraPar CUERPO
-	| funcion id abrePar cierraPar CUERPO;
+FUNCION::= funcion id:a abrePar LISTA_ID:b cierraPar CUERPO:c{:Funcion f= new Funcion(a,b,c);
+												RESULT=f;:}
+
+	| funcion id:i abrePar cierraPar CUERPO:c{:Funcion f= new Funcion(i,new ArrayList<String>(),c);
+												RESULT=f;:};
 
 
-LISTA_ID::= id
-	| LISTA_ID coma id;
+LISTA_ID::= id:i{:List<String> lista = new ArrayList<>();
+				  lista.add(i.toString());
+				  RESULT=lista;
+				:}
+	| LISTA_ID:l coma id:i{:List<String> lista = (ArrayList<String>)l;;
+				  lista.add(i.toString());
+				  RESULT=lista;
+				:};
 
 
 	
