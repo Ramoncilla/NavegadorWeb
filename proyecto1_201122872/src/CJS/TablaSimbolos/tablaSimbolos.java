@@ -9,6 +9,7 @@ import CJS.ARBOL.EXPRESION.DateTime;
 import CJS.ARBOL.EXPRESION.Datee;
 import CJS.ARBOL.EXPRESION.Id;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import proyecto1_201122872.CHTML.Etiqueta;
 import static proyecto1_201122872.Proyecto1_201122872.erroresEjecucion;
@@ -219,7 +220,7 @@ public class tablaSimbolos {
         SimbEtiqueta etiquetal;
         SimbArreglo arreglo;
         if(tipoValorEntero ==1){
-            variable = new SimbVariable(simb.nombre);
+            variable = new SimbVariable(simb.nombre, simb.contexto);
             variable.ambito= simb.ambito;
           //  variable.disponible=false;
             variable.tipoVariable= tipoValor;
@@ -229,7 +230,7 @@ public class tablaSimbolos {
         if(tipoValorEntero ==3){
            Object[]valores = (Object[])valor;
            int noPos= valores.length;
-           arreglo = new SimbArreglo(simb.nombre, noPos);
+           arreglo = new SimbArreglo(simb.nombre, noPos,simb.contexto);
            arreglo.ambito= simb.ambito;
           // arreglo.disponible=false;
            arreglo.tamanhoArreglo=noPos;
@@ -328,7 +329,7 @@ public class tablaSimbolos {
             String tipoSize = tipoExpresion(size);
             if(tipoSize.equalsIgnoreCase("numero")){
                 double tamanhoArreglo = Double.parseDouble(size.toString());
-                SimbArreglo nuevoArreglo = new SimbArreglo(nombre, tamanhoArreglo);
+                SimbArreglo nuevoArreglo = new SimbArreglo(nombre, tamanhoArreglo,contexto);
                 nuevoArreglo.ambito= obtenerContexto(contexto);
                 //nuevoArreglo.disponible=true;
                 this.listaSimbolos.add(nuevoArreglo);
@@ -364,6 +365,26 @@ public class tablaSimbolos {
             
         }
     }
+    
+    
+    /*Eliminar Vairables por ambitos*/
+    
+    
+    public void eliminarSimbolosLocales(int contexto){
+        
+         Simbolo temporal ;
+        for (Iterator<Simbolo> iter = this.listaSimbolos.iterator(); iter.hasNext();) {
+            temporal = iter.next();
+            if(temporal.contexto==contexto){
+                iter.remove();
+            }
+        }
+    }
+    
+    
+    
+    
+    
     
     
     

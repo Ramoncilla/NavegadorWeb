@@ -20,13 +20,14 @@ public class SimbArreglo extends Simbolo{
     public Object[] vector;
     
     
-    public SimbArreglo(String nombre, double tamanhoArreglo){
+    public SimbArreglo(String nombre, double tamanhoArreglo, int ctx){
         int val = (int)tamanhoArreglo;
         this.vector = new  Object [val];
         iniciarArreglo();
         this.nombre = nombre;
        // this.disponible=false;
         this.tamanhoArreglo= tamanhoArreglo;
+        this.contexto=ctx;
     }
     
     private void iniciarArreglo(){

@@ -308,8 +308,7 @@ EXPRESION::= EXPRESION:a SIMB_ARITMETICO:b  EXPRESION:c{:Aritmetica ar= new Arit
 	| comillaSimple DATETIME:a comillaSimple{:RESULT = a;:}
 	| LLAMADA:a{:RESULT=a;:};
 
-CONTEO_VECTOR::= id punto conteo;
-CADENA_VECTOR::= id punto atexto;
+
 
 POS_VECTOR::= id abreLlave EXPRESION cierraLlave;
  

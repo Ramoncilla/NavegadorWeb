@@ -16,6 +16,7 @@ public class Simbolo {
 //    public boolean disponible;
     public String nombre;
     public String ambito;
+    public int contexto; 
   
     
     

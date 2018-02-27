@@ -27,7 +27,7 @@ public class Declaracion extends objetoBase {
     @Override
     public elementoRetorno Ejecutar(tablaSimbolos tabla, int contexto){
         
-        SimbVariable nuevaVariable = new SimbVariable(nombreElemento);
+        SimbVariable nuevaVariable = new SimbVariable(nombreElemento,contexto);
         if(contexto>0)
             nuevaVariable.ambito="local";
         else

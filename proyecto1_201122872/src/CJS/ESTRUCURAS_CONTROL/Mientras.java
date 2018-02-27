@@ -53,6 +53,7 @@ public class Mientras extends objetoBase{
         }else{
            erroresEjecucion.insertarError("Semantico", "Tipo de expresion no valido para una expresion de una sentencia SI");
         }
+        tabla.eliminarSimbolosLocales(contexto);
         contexto--;
         System.out.println("fin while");
         tabla.imprimirTablaSimbolos();

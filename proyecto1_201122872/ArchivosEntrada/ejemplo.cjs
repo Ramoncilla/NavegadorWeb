@@ -1,4 +1,4 @@
-funcion hola(){
+
 Dimv b;
 dimv a;
 Dimv h{2*4};
@@ -29,14 +29,15 @@ imprimir("adios");
 }
 b:1;
 mientrAs(b<10){
-
+dimv pedir:" ejemplo ";
 si(b==5){
+b:"exito";
 detener;
 }
-imprimir("vuelta no "+b);
+imprimir(pedir+" "+"vuelta no "+b);
 b++;
 }
-}
+
 
 funcion g(hola,pedrito){
 }

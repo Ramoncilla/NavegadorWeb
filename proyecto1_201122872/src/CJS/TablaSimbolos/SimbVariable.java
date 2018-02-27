@@ -18,8 +18,9 @@ public class SimbVariable extends Simbolo{
    public String tipoVariable;
      
    
-   public SimbVariable(String nombre){
+   public SimbVariable(String nombre, int ctx){
        this.nombre= nombre;
+       this.contexto=ctx;
       // this.disponible=true; 
    }
     

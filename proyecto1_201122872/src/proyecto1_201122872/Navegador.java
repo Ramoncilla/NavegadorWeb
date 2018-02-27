@@ -287,12 +287,12 @@ public class Navegador extends javax.swing.JFrame {
             scannerCJS scannerjs = new scannerCJS(new BufferedReader(new StringReader(cadena)));
             proyecto1_201122872.AnalizadorCJS.Parser parserCJS = new proyecto1_201122872.AnalizadorCJS.Parser(scannerjs);
             ParserPrimera pPrimera = new ParserPrimera(scannerjs);
-            pPrimera.parse();
+            //pPrimera.parse();
             parserCJS.parse();
             
             lFunciones = pPrimera.listaFun;
             objetoBase g= parserCJS.raiz;
-           /* 
+           
             List<objetoBase> h = (ArrayList<objetoBase>)parserCJS.listaSentencias;
             tablaSimbolos tabla = new tablaSimbolos();
             objetoBase temporal; 
@@ -302,7 +302,7 @@ public class Navegador extends javax.swing.JFrame {
                 v= temporal.Ejecutar(tabla, 0);
                 
             }
-            */
+            
             
             
             
@@ -317,7 +317,7 @@ public class Navegador extends javax.swing.JFrame {
            jTextPane3.setText(erroresEjecucion.getErroresHTML());
   
              jTextPane4.setContentType("text/html");
-         //  jTextPane4.setText(tabla.imprimirHTML());
+          jTextPane4.setText(tabla.imprimirHTML());
             
            System.out.println("Fin de analisis");  
         }  
