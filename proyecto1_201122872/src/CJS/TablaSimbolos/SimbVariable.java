@@ -35,5 +35,17 @@ public class SimbVariable extends Simbolo{
     }
     
     
+    @Override
+    public String imprimirHTML(){
+        
+        String cad = "<td>"+ this.nombre+"</td>\n"
+                + 
+                "<td>"+ this.tipoVariable+"</td>\n"+
+                
+                "<td>"+ this.valorVariable+"</td>\n"+
+                
+                "<td>"+ this.ambito+"</td>\n";
+        return cad;
+    }
     
 }

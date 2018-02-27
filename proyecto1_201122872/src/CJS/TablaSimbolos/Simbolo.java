@@ -44,4 +44,8 @@ public class Simbolo {
     }
     
     
+    public String imprimirHTML(){
+        return "";
+    }
+    
 }

@@ -33,7 +33,12 @@ public class CuerpoEstructuras extends objetoBase{
         
         elementoRetorno ret = new elementoRetorno();
         for (int i = 0; i < this.listaSentencias.size(); i++) {
-            ret= this.listaSentencias.get(i).Ejecutar(tabla, contexto);
+           if(!ret.detener){
+             ret= this.listaSentencias.get(i).Ejecutar(tabla, contexto);  
+           }else{
+               break;
+           }
+            
         }
        return ret;
     }

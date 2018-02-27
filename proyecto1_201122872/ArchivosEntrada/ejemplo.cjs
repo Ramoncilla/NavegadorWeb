@@ -19,6 +19,19 @@ imprimir("alinita bonita "+'01/12/1992'+" "+2*5);
 si(5<10){
 imprimir("hola");
 dimv a:"lizzz";
+a:2598;
+b:96;
+c{2}:"cambio";
+b--;
 }sino{
 imprimir("adios");
+}
+b:1;
+mientrAs(b<10){
+
+si(b==5){
+detener;
+}
+imprimir("vuelta no "+b);
+b++;
 }

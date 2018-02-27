@@ -26,6 +26,22 @@ public class tablaSimbolos {
     }
     
     
+    public Simbolo obtenerSimbolo(String nombre, String ambito){
+        
+        for (int i = 0; i < listaSimbolos.size(); i++) {
+            if(listaSimbolos.get(i).nombre.equalsIgnoreCase(nombre) &&
+                    listaSimbolos.get(i).ambito.equalsIgnoreCase(ambito)){
+                return listaSimbolos.get(i);
+                
+            }
+            
+        }
+        return null;
+    }
+    
+    
+    
+    
     /*-------------------------------------- Asignaciones -------------------------*/
     
     
@@ -37,6 +53,8 @@ public class tablaSimbolos {
           String valId= id.id;
           String ctx= obtenerContexto(contexto);
           Simbolo temporal;
+          
+          
           if(existeSimbolo(valId, contexto)){
               for (int i = 0; i < this.listaSimbolos.size(); i++) {
                   temporal= this.listaSimbolos.get(i);
@@ -72,15 +90,56 @@ public class tablaSimbolos {
                   }
               }
           }else{
+              if(ctx.equalsIgnoreCase("local")){
+                for (int i = 0; i < this.listaSimbolos.size(); i++) {
+                  temporal= this.listaSimbolos.get(i);
+                  if(temporal.ambito.equalsIgnoreCase("global") && temporal.nombre.equalsIgnoreCase(valId)){
+                      if(temporal instanceof SimbVariable){
+                          SimbVariable j = (SimbVariable) temporal;
+                          if(j.tipoVariable!= null && j.valorVariable!=null){
+                              if(j.tipoVariable.equalsIgnoreCase("numero")){
+                                  double d = Double.parseDouble(j.valorVariable.toString());
+                                  if(simbolo.equalsIgnoreCase("++")){
+                                      d++; 
+                                  }else{
+                                      d--;
+                                  }
+                                   j.valorVariable=d;
+                                   this.listaSimbolos.set(i, j);
+                                   return true;
+                              }else{
+                                  erroresEjecucion.insertarError("semantico", "La variable "+ valId+", no es de tipo numerico, no se pudo realizar la operacion con el unario");
+                                  return false; 
+                                  
+                              }
+                              
+                          }else{
+                              erroresEjecucion.insertarError("semantico", "La variable "+ valId+", no esta inicializada, no se puede realizar la asignaicon");
+                              return false;  
+                              
+                          }  
+                      }else{
+                        erroresEjecucion.insertarError("semantico", "No se puede realizar asingnacion al unario "+ valId+", debido a que no es una vairable");
+                         return false;    
+                      }  
+                  }
+              }   
+              }
+              
+              
+              
             erroresEjecucion.insertarError("semantico", "No existe el elemento "+ valId);
             return false;      
           }
+          
+          //else
+          
         }
         return false;
     
     }   
     
-    
+    //este
     public boolean asignarPosicionArreglo(String nombre, Object pos, Object valor, int contexto){
         
         Simbolo temporal;
@@ -115,6 +174,36 @@ public class tablaSimbolos {
             return false;
         }
         
+        if(ctx.equalsIgnoreCase("local")){
+            if(g){
+            double pi = Double.parseDouble(pos.toString());
+           int posicion = (int)pi;
+        for (int i = 0; i < this.listaSimbolos.size(); i++) {
+           temporal= this.listaSimbolos.get(i);
+            if(temporal.nombre.equalsIgnoreCase(nombre) && "global".equalsIgnoreCase(temporal.ambito)){
+                if(temporal instanceof SimbArreglo){
+                    SimbArreglo array = (SimbArreglo)temporal;
+                    if(posicion<=array.tamanhoArreglo && posicion >=0){
+                        int p = (int) posicion;
+                        array.vector[p]= valor;
+                        this.listaSimbolos.set(i, array);
+                        return true;    
+                    }else{
+                        erroresEjecucion.insertarError("Semantico", "En el indice que desea insertar un elemenot esta fuera de rango");
+                        return false;
+                    }
+                }else{
+                    erroresEjecucion.insertarError("semantico", "El elemento "+ nombre+", no es un arreglo");
+                    return false;
+                }
+            }
+                      
+        }}else{
+            erroresEjecucion.insertarError("Semantico", "El indice debe ser un numero");
+            return false;
+        }
+            
+        }
         erroresEjecucion.insertarError("sementico", "El elemento "+ nombre+", no existe");
         return false;
     }
@@ -188,48 +277,42 @@ public class tablaSimbolos {
                         }
                     }
                 }
-           /* } else {  //debemos asegurar de guardar un elemento del mismo tipo porque no se encuentra disponible
+        }
+        if(ambito.equalsIgnoreCase("local")){
+         
+            //if (esDisponible(nombre, contexto)) {
                 for (int i = 0; i < this.listaSimbolos.size(); i++) {
                     simbTemporal = this.listaSimbolos.get(i);
                     if (simbTemporal.nombre.equalsIgnoreCase(nombre)
-                            && simbTemporal.ambito.equalsIgnoreCase(ambito)) {
-                        
-                        if(tipoValorEntero == 1 && (simbTemporal instanceof SimbVariable)){
-                            SimbVariable var = (SimbVariable) simbTemporal;
-                            if(tipoValor.equalsIgnoreCase(var.tipoVariable)){
-                                var.valorVariable= valor;
-                                this.listaSimbolos.set(i, var);
-                                return true;
-                                        
-                                
-                            }else{
-                                erroresEjecucion.insertarError("Semantico", "El tipo de la variable "+var.nombre+" es, "+ var.tipoVariable+", imposible asignar un "+ tipoValor);
-                             return false;
+                            && simbTemporal.ambito.equalsIgnoreCase("global")) {
+                        res = obtenerSimboloAsignado(simbTemporal, valor);
+                        if (res instanceof Simbolo) {
+                            switch (tipoValorEntero) {
+                                case 1: // es una variable
+                                    if (res instanceof SimbVariable) {
+                                        SimbVariable var = (SimbVariable) res;
+                                        this.listaSimbolos.set(i, var);
+                                    }
+                                    return true;
+                                case 2: // es una etiqueta
+                                    return true;
+                                case 3: // es un arreglo
+                                    if(res instanceof SimbArreglo){
+                                        SimbArreglo arr = (SimbArreglo)res;
+                                        this.listaSimbolos.set(i, arr);
+                                    }
+                                    return true;
                             }
-                            
-                        }else if(tipoValorEntero == 2 && (simbTemporal instanceof SimbEtiqueta)){
-                            return true;
-                            
-                        }else if(tipoValorEntero ==3 && (simbTemporal instanceof SimbArreglo)){
-                            return true;
-                            
-                        }else{
-                            erroresEjecucion.insertarError("Semantico", "Tipos no validos para la asignacion de una variable, "+ simbTemporal.nombre+", con "+ valor);
-                             return false;
-                            
+                        } else {
+                            erroresEjecucion.insertarError("semantico", "No existe la variable " + nombre + ", no se puede realizar asignacinon");
+                            return false;
                         }
-                        
-  
                     }
-                    
-                    
                 }
-              
-                
-                
-                
-            }*/
-
+        
+        
+        
+        
         }
 
         erroresEjecucion.insertarError("Semantico", "No se puede realizar la asignacion a " + nombre + ", dicho elemento no existe");
@@ -304,24 +387,7 @@ public class tablaSimbolos {
        return false;
    }
    
-   
-    /* private boolean esDisponible(String nombre, int contexto){
-        String ambito="";
-        if(contexto>0)
-            ambito="local";
-        else
-           ambito="global";
-        Simbolo temporal;
-        for (int i = 0; i < this.listaSimbolos.size(); i++) {
-            temporal = this.listaSimbolos.get(i);
-            if(temporal.ambito.equalsIgnoreCase(ambito)&&
-                    temporal.nombre.equalsIgnoreCase(nombre)){
-                return true;
-            }
-        }
-        return false;
-    }*/
-    
+
     
     private String obtenerContexto(int contexto){
         if(contexto>0)
@@ -407,6 +473,36 @@ public class tablaSimbolos {
     }
     
    
+    /*  @Override
+    public String imprimirSimbolo(){
+        
+        String cad = "Nombre: "+ this.nombre+
+                "\nTipo: "+ this.tipoVariable+
+                "\nValor: "+ this.valorVariable+
+                "\nAMbito: "+ this.ambito+"\n";
+        return cad;
+    }*/
+    
+    
+    public String imprimirHTML(){
+        
+         String tabla="<table border=1>\n"
+                + "<tr>\n"
+                + "<th> Nombre</th>\n"
+                + "<th> Valor </th>\n"
+                + "<th> Ambiente</th>\n"
+                
+                + "</tr>\n";
+        
+        for (int i = 0; i < this.listaSimbolos.size(); i++) {
+            tabla+="<tr>\n"+this.listaSimbolos.get(i).imprimirHTML()+"</tr>\n";
+            
+        }
+        tabla+="</table>";
+        return tabla;
+    }
+    
+    
     
     public void imprimirTablaSimbolos(){
         

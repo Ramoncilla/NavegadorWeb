@@ -173,17 +173,14 @@ SENTENCIA::= IF:a{:RESULT=a;:}
 			|ASIGNACION:a{:RESULT= a;:}
 			|SELECCIONA
 			|PARA
-			|MIENTRAS
-			|DETENER
+			|MIENTRAS:a{:RESULT=a;:}
+			|DETENER:a{:RESULT=a;:}
 			|IMPRIMIR:a{:RESULT=a;:}
 			|RETORNAR
 			|EXPRESION
 			|MENSAJE:a{:RESULT=a;:};
 			
-	
- /*
-SI::= si abrePar EXPRESION:exp cierraPar CUERPO;
-SINO::= sino CUERPO:f;*/
+
 
 IF::= si abrePar EXPRESION:exp cierraPar CUERPO:v sino CUERPO:f{:Si s = new Si(exp,v,f); RESULT= s;:}
 	| si abrePar EXPRESION:exp cierraPar CUERPO:v {:Si s = new Si(exp,v,new CuerpoEstructuras()); RESULT= s;:};
@@ -207,14 +204,14 @@ SELECCIONA::= selecciona abrePar EXPRESION cierraPar abreLlave cierraLlave
 	
 
 
-OPERADOR_PARA::= masMas
-		|menosMenos;
+OPERADOR_PARA::= masMas{:RESULT="++";:}
+		|menosMenos{:RESULT="--";:};
 		
 PARA::= para abrePar id dosPuntos EXPRESION puntoComa EXPRESION puntoComa OPERADOR_PARA cierraPar CUERPO;
 
-MIENTRAS::= mientras abrePar EXPRESION cierraPar CUERPO;
+MIENTRAS::= mientras abrePar EXPRESION:e cierraPar CUERPO:c{:RESULT= new Mientras(e,c);:};
 
-DETENER::= detener puntoComa;
+DETENER::= detener puntoComa{:Detener d = new Detener(); RESULT= d;:};
 
 IMPRIMIR::= imprimir abrePar EXPRESION:a cierraPar puntoComa{:Imprimir g = new Imprimir(a); RESULT=g;:};
 

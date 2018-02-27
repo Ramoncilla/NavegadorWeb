@@ -54,7 +54,16 @@ public class SimbArreglo extends Simbolo{
     
     
     
-    
+        @Override
+    public String imprimirHTML(){
+        
+        String cad = "<td>"+ this.nombre+"</td>\n"
+                + 
+                "<td>"+ this.ambito+"</td>\n"+
+                
+                "<td>"+ this.tamanhoArreglo+"</td>\n";
+        return cad;
+    }
     
     
    

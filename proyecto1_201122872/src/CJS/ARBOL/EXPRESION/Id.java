@@ -5,7 +5,14 @@
  */
 package CJS.ARBOL.EXPRESION;
 
+import CJS.TablaSimbolos.SimbArreglo;
+import CJS.TablaSimbolos.SimbEtiqueta;
+import CJS.TablaSimbolos.SimbVariable;
+import CJS.TablaSimbolos.Simbolo;
+import CJS.TablaSimbolos.tablaSimbolos;
+import CJS.elementoRetorno;
 import CJS.objetoBase;
+import static proyecto1_201122872.Proyecto1_201122872.erroresEjecucion;
 
 /**
  *
@@ -19,6 +26,52 @@ public class Id extends objetoBase{
     public Id(Object val){
         this.id= val.toString();
     }
+
+    @Override
+    public elementoRetorno Ejecutar(tablaSimbolos tabla, int contexto) {
+        elementoRetorno ret = new elementoRetorno();
+        String amb="";
+        if(contexto>0){
+            amb="local";
+        }else{
+            amb="global";
+        }
+       Simbolo simb = tabla.obtenerSimbolo(id,amb);
+       if(simb!=null){
+           if(simb instanceof SimbVariable){
+               SimbVariable c = (SimbVariable)simb;
+               ret.ValorRetorno= c.valorVariable;
+               super.retorno.ValorRetorno=c.valorVariable;
+               
+           }else if(simb instanceof SimbArreglo){
+               
+           }else if(simb instanceof SimbEtiqueta){
+               
+           }
+       }else if(amb.equalsIgnoreCase("local")){
+           simb = tabla.obtenerSimbolo(id,"global");
+            if(simb instanceof SimbVariable){
+               SimbVariable c = (SimbVariable)simb;
+               ret.ValorRetorno= c.valorVariable;
+               super.retorno.ValorRetorno=c.valorVariable;
+               
+           }else if(simb instanceof SimbArreglo){
+               
+           }else if(simb instanceof SimbEtiqueta){
+               
+           }
+           
+           
+           
+       }else{
+           erroresEjecucion.insertarError("Semantico", "El elemento "+id+", no existe");
+       }
+       
+        
+        return ret;
+    }
+    
+    
     
     
 }

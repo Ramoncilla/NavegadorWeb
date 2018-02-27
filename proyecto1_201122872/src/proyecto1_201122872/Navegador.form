@@ -58,7 +58,7 @@
   <SubComponents>
     <Component class="javax.swing.JTextField" name="jTextField1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="C:\u005cUsers\u005cRamonella\u005cDocuments\u005cRepositorios\u005cProyecto1\u005cNavegadorWeb\u005cproyecto1_201122872\u005cArchivosEntrada\u005cejemplo.chtml" containsInvalidXMLChars="true"/>
+        <Property name="text" type="java.lang.String" value="C:\u005cUsers\u005cRamonella\u005cDocuments\u005cRepositorios\u005cProyecto1\u005cNavegadorWeb\u005cproyecto1_201122872\u005cArchivosEntrada\u005cejemplo.cjs" containsInvalidXMLChars="true"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JToolBar" name="jToolBar1">
@@ -249,7 +249,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane3" alignment="0" pref="278" max="32767" attributes="0"/>
+                      <Component id="jScrollPane3" alignment="1" pref="278" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -262,6 +262,49 @@
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
                     <Component class="javax.swing.JTextPane" name="jTextPane3">
+                    </Component>
+                  </SubComponents>
+                </Container>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="jPanel6">
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                  <JTabbedPaneConstraints tabName="Tabla de Simbolos">
+                    <Property name="tabTitle" type="java.lang.String" value="Tabla de Simbolos"/>
+                  </JTabbedPaneConstraints>
+                </Constraint>
+              </Constraints>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jScrollPane4" pref="1442" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jScrollPane4" pref="252" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Container class="javax.swing.JScrollPane" name="jScrollPane4">
+                  <AuxValues>
+                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                  </AuxValues>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Component class="javax.swing.JTextPane" name="jTextPane4">
                     </Component>
                   </SubComponents>
                 </Container>
