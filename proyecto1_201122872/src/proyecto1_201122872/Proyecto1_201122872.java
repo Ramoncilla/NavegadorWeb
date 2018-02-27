@@ -6,6 +6,7 @@
 package proyecto1_201122872;
 
 import Errores.tablaErrores;
+import Funciones.ListaFunciones;
 
 /**
  *
@@ -16,6 +17,7 @@ public class Proyecto1_201122872 {
     public static String archivoActual="archivin";
     public static tablaErrores erroresEjecucion;
     public static String cadenaImpresion;
+    public static ListaFunciones lFunciones;
     /**
      * @param args the command line arguments
      */
@@ -23,6 +25,7 @@ public class Proyecto1_201122872 {
         // TODO code application logic here
         erroresEjecucion= new tablaErrores();
         cadenaImpresion="";
+        lFunciones= new ListaFunciones();
         Navegador n= new Navegador();
         n.show();
     }

@@ -7,6 +7,7 @@ package proyecto1_201122872;
 
 import CJS.TablaSimbolos.tablaSimbolos;
 import CJS.objetoBase;
+import Funciones.Funcion;
 import java.io.BufferedReader;
 import java.io.StringReader;
 import java.util.ArrayList;
@@ -17,10 +18,12 @@ import javafx.scene.control.Button;
 import javax.swing.JButton;
 import proyecto1_201122872.AnalizadorCHTML.Parser;
 import proyecto1_201122872.AnalizadorCHTML.scannerCHTML;
+import proyecto1_201122872.AnalizadorCJS.ParserPrimera;
 import proyecto1_201122872.AnalizadorCJS.scannerCJS;
 import proyecto1_201122872.CHTML.Chtml;
 import static proyecto1_201122872.Proyecto1_201122872.erroresEjecucion;
 import static proyecto1_201122872.Proyecto1_201122872.cadenaImpresion;
+import static proyecto1_201122872.Proyecto1_201122872.lFunciones;
 
 /**
  *
@@ -279,12 +282,17 @@ public class Navegador extends javax.swing.JFrame {
             return;
         }else{
             System.out.println("Inicio de Analisis");
+            
+           
             scannerCJS scannerjs = new scannerCJS(new BufferedReader(new StringReader(cadena)));
             proyecto1_201122872.AnalizadorCJS.Parser parserCJS = new proyecto1_201122872.AnalizadorCJS.Parser(scannerjs);
+            ParserPrimera pPrimera = new ParserPrimera(scannerjs);
+            pPrimera.parse();
             parserCJS.parse();
             
+            lFunciones = pPrimera.listaFun;
             objetoBase g= parserCJS.raiz;
-            
+           /* 
             List<objetoBase> h = (ArrayList<objetoBase>)parserCJS.listaSentencias;
             tablaSimbolos tabla = new tablaSimbolos();
             objetoBase temporal; 
@@ -294,7 +302,7 @@ public class Navegador extends javax.swing.JFrame {
                 v= temporal.Ejecutar(tabla, 0);
                 
             }
-            
+            */
             
             
             
@@ -309,7 +317,7 @@ public class Navegador extends javax.swing.JFrame {
            jTextPane3.setText(erroresEjecucion.getErroresHTML());
   
              jTextPane4.setContentType("text/html");
-           jTextPane4.setText(tabla.imprimirHTML());
+         //  jTextPane4.setText(tabla.imprimirHTML());
             
            System.out.println("Fin de analisis");  
         }  
