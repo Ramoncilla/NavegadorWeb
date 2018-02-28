@@ -1,4 +1,4 @@
-
+imprimir(factorial(3));
 Dimv b;
 dimv a;
 imprimir(g('01/12/199',10*51,"holisss"));
@@ -54,13 +54,21 @@ b++;
 
 
 
-funcion g(valor,numero,cadena){
-imprimir("llame a una funcion y me ire a dormir "+valor+numero+cadena);
+funcion g(valor2,numero2,cadena2){
+imprimir("llame a una funcion y me ire a dormir "+valor2+numero2+cadena2);
 retornar (10+3)+" este es un valor de retornor";
 imprimir("no se dene imprmir");
 imprimir("esto tampoco");
 }
 
+funcion factorial(n){
+  si(n==0){
+   retornar(1);
+  }sino{
+    retornar (n*(factorial(n-1)));
+  }
+
+}
 
 
 

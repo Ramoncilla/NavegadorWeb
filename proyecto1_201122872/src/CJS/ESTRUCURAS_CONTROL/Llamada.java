@@ -33,8 +33,9 @@ public class Llamada extends objetoBase{
         elementoRetorno ret= new elementoRetorno() ;
         Funcion funcionBuscada = lFunciones.obtenerFuncion(nombreFuncion, parametros.size());
         if (funcionBuscada != null) {
+            contexto++;
             if (funcionBuscada.asignarParametros(this.parametros, contexto, tabla)) {
-                contexto++;
+                
                 ret=funcionBuscada.Ejecutar(tabla, contexto);
                 tabla.eliminarSimbolosLocales(contexto);
                 contexto--;
@@ -45,6 +46,7 @@ public class Llamada extends objetoBase{
         } else {
             erroresEjecucion.insertarError("Semantico", "No existe la funcion " + nombreFuncion + " con " + parametros.size());
         }
+        //tabla.eliminarSimbolosLocales(contexto);
         super.retorno.ValorRetorno=ret.ValorRetorno;
         return ret; //To change body of generated methods, choose Tools | Templates.
     }
