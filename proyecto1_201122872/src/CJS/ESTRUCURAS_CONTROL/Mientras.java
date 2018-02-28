@@ -40,20 +40,19 @@ public class Mientras extends objetoBase{
         if(esBool(tipoExpresion)){
             
             while(resCondicion.ValorRetorno.toString().equalsIgnoreCase("verdadero")){
-            //if(resCondicion.ValorRetorno.toString().equalsIgnoreCase("verdadero")){
                 if(!resultado.detener){
                    resultado = sentenciasVerdaderas.Ejecutar(tabla, contexto);
+                   tabla.eliminarSimbolosLocales(contexto);
                    resCondicion= condicion.Ejecutar(tabla, contexto); 
                 }else{
                     break;
-                }
-                 
+                }   
             }
             resultado.detener=false;
         }else{
            erroresEjecucion.insertarError("Semantico", "Tipo de expresion no valido para una expresion de una sentencia SI");
         }
-        tabla.eliminarSimbolosLocales(contexto);
+        //tabla.eliminarSimbolosLocales(contexto);
         contexto--;
         System.out.println("fin while");
         tabla.imprimirTablaSimbolos();

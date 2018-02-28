@@ -290,20 +290,33 @@ public class Navegador extends javax.swing.JFrame {
             //pPrimera.parse();
             parserCJS.parse();
             
-            lFunciones = pPrimera.listaFun;
+            
             objetoBase g= parserCJS.raiz;
            
             List<objetoBase> h = (ArrayList<objetoBase>)parserCJS.listaSentencias;
             tablaSimbolos tabla = new tablaSimbolos();
             objetoBase temporal; 
             Object v ;
+            List<objetoBase> sentencias= new ArrayList<>();
             for (int i = 0; i < h.size(); i++) {
                 temporal = h.get(i);
-                v= temporal.Ejecutar(tabla, 0);
+                
+                if(temporal instanceof Funcion){
+                    lFunciones.insertarFuncion((Funcion) temporal);
+                }else{
+                    sentencias.add(temporal);
+                }
+                
                 
             }
             
-            
+             for (int i = 0; i < sentencias.size(); i++) {
+                temporal = sentencias.get(i);
+                
+               v= temporal.Ejecutar(tabla, 0);
+                
+                
+            }
             
             
             //Object v= g.Ejecutar(tabla, 0);

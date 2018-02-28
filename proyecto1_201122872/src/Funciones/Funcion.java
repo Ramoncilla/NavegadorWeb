@@ -38,6 +38,8 @@ public class Funcion extends objetoBase {
     public elementoRetorno Ejecutar(tablaSimbolos tabla, int contexto) {
         //1. asignamos parametros en la tabla de simbolos
         
+        cuerpoFuncion.Ejecutar(tabla, contexto);
+        
         
         return super.Ejecutar(tabla, contexto); //To change body of generated methods, choose Tools | Templates.
     }

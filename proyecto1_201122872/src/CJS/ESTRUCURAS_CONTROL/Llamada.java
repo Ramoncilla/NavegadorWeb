@@ -22,7 +22,7 @@ public class Llamada extends objetoBase{
     public String nombreFuncion;
     public List<objetoBase> parametros;
     
-    
+        
     public Llamada(Object nombre, Object parametros){
         this.nombreFuncion= nombre.toString();
         this.parametros= (ArrayList<objetoBase>)parametros;
@@ -32,20 +32,21 @@ public class Llamada extends objetoBase{
     public elementoRetorno Ejecutar(tablaSimbolos tabla, int contexto) {
         
         Funcion funcionBuscada= lFunciones.obtenerFuncion(nombreFuncion, parametros.size());
+   
         
         if(funcionBuscada!=null){
-            
-            
+            contexto++;
+            funcionBuscada.Ejecutar(tabla, contexto);
+            tabla.eliminarSimbolosLocales(contexto);
+            contexto--; 
         }else{
             erroresEjecucion.insertarError("Semantico", "No existe la funcion "+nombreFuncion+" con "+ parametros.size());
-        }
-        
-        
-        
+        } 
         return super.Ejecutar(tabla, contexto); //To change body of generated methods, choose Tools | Templates.
     }
     
     
+
     
     
     

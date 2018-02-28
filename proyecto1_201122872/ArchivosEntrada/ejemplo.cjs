@@ -1,6 +1,7 @@
 
 Dimv b;
 dimv a;
+g();
 Dimv h{2*4};
 a:"popote";
 b:6*10;
@@ -29,7 +30,7 @@ imprimir("adios");
 }
 b:1;
 mientrAs(b<10){
-dimv pedir:" ejemplo ";
+dimv pedir:" ejemplo "+b;
 si(b==5){
 b:"exito";
 detener;
@@ -39,5 +40,11 @@ b++;
 }
 
 
-funcion g(hola,pedrito){
+
+funcion g(){
+imprimir("llame a una funcion y me ire a dormir");
 }
+
+
+
+
