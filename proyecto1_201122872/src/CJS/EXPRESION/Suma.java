@@ -101,6 +101,16 @@ public class Suma  extends expresionBase{
             
             return cad1+cad2;
         }
+        
+        else  if (esCadena(tipo1) && esDate(tipo2)) {
+           
+            
+            cad2 = getDate(val2);
+            cad1 = getCadena(val1);           
+            
+            return cad1+cad2;
+        }
+        
         else  if (esDate(tipo1) && esCadena(tipo2)) {
            
             

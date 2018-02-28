@@ -1,7 +1,7 @@
 
 Dimv b;
 dimv a;
-g();
+g('01/12/199',10*51,"holisss");
 Dimv h{2*4};
 a:"popote";
 b:6*10;
@@ -44,8 +44,8 @@ b++;
 
 
 
-funcion g(){
-imprimir("llame a una funcion y me ire a dormir");
+funcion g(valor,numero,cadena){
+imprimir("llame a una funcion y me ire a dormir "+valor+numero+cadena);
 }
 
 

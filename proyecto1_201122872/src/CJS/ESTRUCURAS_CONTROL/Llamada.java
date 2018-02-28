@@ -30,24 +30,27 @@ public class Llamada extends objetoBase{
 
     @Override
     public elementoRetorno Ejecutar(tablaSimbolos tabla, int contexto) {
-        
-        Funcion funcionBuscada= lFunciones.obtenerFuncion(nombreFuncion, parametros.size());
-   
-        
-        if(funcionBuscada!=null){
-            contexto++;
-            funcionBuscada.Ejecutar(tabla, contexto);
-            tabla.eliminarSimbolosLocales(contexto);
-            contexto--; 
-        }else{
-            erroresEjecucion.insertarError("Semantico", "No existe la funcion "+nombreFuncion+" con "+ parametros.size());
-        } 
-        return super.Ejecutar(tabla, contexto); //To change body of generated methods, choose Tools | Templates.
+        elementoRetorno ret= new elementoRetorno() ;
+        Funcion funcionBuscada = lFunciones.obtenerFuncion(nombreFuncion, parametros.size());
+        if (funcionBuscada != null) {
+            if (funcionBuscada.asignarParametros(this.parametros, contexto, tabla)) {
+                contexto++;
+                ret=funcionBuscada.Ejecutar(tabla, contexto);
+                tabla.eliminarSimbolosLocales(contexto);
+                contexto--;
+            }else {
+            erroresEjecucion.insertarError("Semantico", "No se pudo realizar la llamada a la funcion "+ this.nombreFuncion );
+        }
+
+        } else {
+            erroresEjecucion.insertarError("Semantico", "No existe la funcion " + nombreFuncion + " con " + parametros.size());
+        }
+        return ret; //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
 
     
+
+   
     
     
     
