@@ -16,6 +16,7 @@ public class expresionesAritmeticas extends expresionBase {
     Multiplicacion multiplicaciones = new Multiplicacion();
     Division divisiones = new Division();
     Potencia potencias = new Potencia();
+    Residuo residuos = new Residuo();
     
     @Override
     public Object Resolver(Object operando1, Object operando2, String signo){
@@ -44,6 +45,11 @@ public class expresionesAritmeticas extends expresionBase {
             case "^": {
                resultado=potencias.Resolver(operando1, operando2); 
                 System.out.println(operando1+" ^ "+operando2+" = " + resultado);
+                return resultado;
+            }
+             case "%": {
+               resultado=residuos.Resolver(operando1, operando2); 
+                System.out.println(operando1+" % "+operando2+" = " + resultado);
                 return resultado;
             }
         }
