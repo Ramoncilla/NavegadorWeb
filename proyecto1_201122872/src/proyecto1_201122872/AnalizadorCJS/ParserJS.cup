@@ -265,8 +265,8 @@ OBSERVADOR::= ELEMENTO punto observador abrePar TIPOS_EVENTOS coma FUNCION cierr
 LLAMADA::= id:i abrePar LISTA_EXPRESIONES:b cierraPar{: RESULT= new Llamada(i,b);:}
 	| id:i abrePar cierraPar{: RESULT= new Llamada(i,new ArrayList<objetoBase>());:};
 
-UNARIO::= EXPRESION masMas
-		| EXPRESION menosMenos;
+UNARIO::= EXPRESION:ex masMas{:RESULT= new Unario(ex,"++");:}
+		| EXPRESION:ex menosMenos{:RESULT= new Unario(ex,"--");:};
 	
 	
 	
@@ -294,7 +294,7 @@ EXPRESION::= EXPRESION:a SIMB_ARITMETICO:b  EXPRESION:c{:Aritmetica ar= new Arit
 	| EXPRESION:a SIMB_LOGICA:b  EXPRESION:c{:Logica ar= new Logica(a,b,c); RESULT= ar;:}
 	| not EXPRESION:a{:NOT n = new NOT(a); RESULT=n;:}
 	| OBTENER
-	| UNARIO
+	| UNARIO:a{:RESULT=a;:}
     | id:a{:Id i= new Id(a); RESULT= i;:}
     | POS_VECTOR
 	| numero:a{:Numero n = new Numero(a); RESULT= n;:}
