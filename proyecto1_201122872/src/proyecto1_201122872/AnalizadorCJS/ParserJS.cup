@@ -300,8 +300,8 @@ EXPRESION::= EXPRESION:a SIMB_ARITMETICO:b  EXPRESION:c{:Aritmetica ar= new Arit
 	| numero:a{:Numero n = new Numero(a); RESULT= n;:}
 	| BOOLEAN:a{:RESULT= a;:}
 	| cadena:a{:Cadena cad = new Cadena(a); RESULT = cad;:}
-	| conteoVector
-	| cadenaVector
+	| conteoVector:a{:RESULT= new Conteo(a);:}
+	| cadenaVector:a abrePar cierraPar{:RESULT= new aTexto(a);:}
 	| abrePar EXPRESION:a cierraPar{:RESULT=a;:}
 	| menos EXPRESION:a{:Negativo g= new Negativo(a); RESULT= g;:}
 	| comillaSimple DATE:a comillaSimple{:RESULT = a;:}

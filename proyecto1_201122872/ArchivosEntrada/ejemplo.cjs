@@ -23,6 +23,9 @@ imprimir("hola mundo");
 imprimir("alinita bonita "+'01/12/1992'+" "+2*5);
 
 si(5<10){
+dimv c:"esto es una cadena";
+imprimir("tamanho del arreglo  C"+ c.conTeo);
+imprimir("Elementos del arreglo  C"+ c.aTEXto());
 imprimir("hola");
 dimv a:"lizzz";
 a:2598;

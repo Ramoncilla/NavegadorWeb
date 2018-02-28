@@ -127,6 +127,7 @@ public static String cadena;
 /* -------------------------==: EXPRESIONES REGULARES :==---------------------*/
 
 {cadenaVector}    {System.out.println("cadebaVEctor");                return new Symbol (simbolosCJS.cadenaVector, yyline+1,yychar+1, new String (yytext()));}
+{conteoVector}    {System.out.println("conteroVEctor");                return new Symbol (simbolosCJS.conteoVector, yyline+1,yychar+1, new String (yytext()));}
 
 {cadena}    {System.out.println(yytext());                return new Symbol (simbolosCJS.cadena, yyline+1,yychar+1, new String (yytext()));}
 {numero}    {System.out.println(yytext());                return new Symbol (simbolosCJS.numero, yyline+1,yychar+1, new String (yytext()));}

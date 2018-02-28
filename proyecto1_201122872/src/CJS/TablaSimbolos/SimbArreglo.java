@@ -37,6 +37,29 @@ public class SimbArreglo extends Simbolo{
     }
     
     
+    
+    public double conteoArreglo(){
+        return this.tamanhoArreglo;
+    }
+    
+    public String aTextoArreglo() {
+
+        String retorno = "{";
+        for (int i = 0; i < vector.length; i++) {
+            if (i == (vector.length - 1)) {
+                retorno += vector[i];
+            } else {
+                retorno += vector[i] + ",";
+            }
+
+        }
+        retorno += "}";
+
+        return retorno;
+
+    }
+
+    
     @Override
     public String imprimirSimbolo(){
         String cad= "Nombre: "+ this.nombre+

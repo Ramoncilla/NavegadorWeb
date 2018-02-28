@@ -50,6 +50,29 @@ public class tablaSimbolos {
     }
     
     
+       public SimbArreglo obtenerArreglo(String nombre, String ambito, int contexto){
+        
+        Simbolo simbTemporal;
+         for (int cont2 = contexto; 0 <= cont2; cont2--) {
+
+            if (existeSimbolo(nombre, cont2)) {
+                for (int i = 0; i < this.listaSimbolos.size(); i++) {
+                    simbTemporal = this.listaSimbolos.get(i);
+                    if (simbTemporal.nombre.equalsIgnoreCase(nombre)
+                            && simbTemporal.ambito.equalsIgnoreCase(obtenerContexto(cont2))
+                            && simbTemporal.contexto==cont2
+                            && simbTemporal instanceof SimbArreglo) {
+                            
+                        return (SimbArreglo) listaSimbolos.get(i);
+                     
+                    }
+                }
+            } 
+
+        }        
+        return null;
+    }
+    
     /*-------------------------------------- Asignaciones -------------------------*/
     
     //esteeee
@@ -143,7 +166,8 @@ public class tablaSimbolos {
                     temporal = this.listaSimbolos.get(i);
                     if (temporal.nombre.equalsIgnoreCase(nombre)
                             && temporal.ambito.equalsIgnoreCase(obtenerContexto(cont2))
-                            && temporal.contexto == cont2) {
+                            && temporal.contexto == cont2 
+                            && temporal instanceof SimbArreglo) {
                         if (temporal instanceof SimbArreglo) {
                             SimbArreglo array = (SimbArreglo) temporal;
                             if (posicion <= array.tamanhoArreglo && posicion >= 0) {
