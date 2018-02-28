@@ -173,7 +173,7 @@ SENTENCIA::= IF:a{:RESULT=a;:}
 			|DECLARACION:a{:RESULT= a;:}
 			|ASIGNACION:a{:RESULT= a;:}
 			|SELECCIONA
-			|PARA
+			|PARA:a{:RESULT=a;:}
 			|SET_ELEMENTO
 			|OBSERVADOR
 			|MIENTRAS:a{:RESULT=a;:}
@@ -211,7 +211,18 @@ SELECCIONA::= selecciona abrePar EXPRESION cierraPar abreLlave cierraLlave
 OPERADOR_PARA::= masMas{:RESULT="++";:}
 		|menosMenos{:RESULT="--";:};
 		
-PARA::= para abrePar id dosPuntos EXPRESION puntoComa EXPRESION puntoComa OPERADOR_PARA cierraPar CUERPO;
+PARA::= para abrePar id:a dosPuntos EXPRESION:b puntoComa EXPRESION:exp puntoComa OPERADOR_PARA:op cierraPar CUERPO:c
+{: 												  Declaracion s = new Declaracion(a);
+												  Asignacion s2 = new Asignacion(a,b);
+												  List<objetoBase> lista = new ArrayList<>();
+												  lista.add(s);
+												  lista.add(s2);
+												  DeclaAsig h = new DeclaAsig(lista);
+												  AsignaUnario u =  new AsignaUnario(new Id(a),op);
+												  RESULT = new Para(h,exp,op,c,u);
+												  
+:}; 
+
 
 MIENTRAS::= mientras abrePar EXPRESION:e cierraPar CUERPO:c{:RESULT= new Mientras(e,c);:};
 
