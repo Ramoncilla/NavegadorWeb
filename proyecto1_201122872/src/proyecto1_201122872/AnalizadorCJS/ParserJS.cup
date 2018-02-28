@@ -179,7 +179,7 @@ SENTENCIA::= IF:a{:RESULT=a;:}
 			|MIENTRAS:a{:RESULT=a;:}
 			|DETENER:a{:RESULT=a;:}
 			|IMPRIMIR:a{:RESULT=a;:}
-			|RETORNAR
+			|RETORNAR:a{:RESULT=a;:}
 			|MENSAJE:a{:RESULT=a;:}
 			|FUNCION:a{:RESULT=a;:}
 			|LLAMADA:a puntoComa{:RESULT=a;:};
@@ -219,7 +219,7 @@ DETENER::= detener puntoComa{:Detener d = new Detener(); RESULT= d;:};
 
 IMPRIMIR::= imprimir abrePar EXPRESION:a cierraPar puntoComa{:Imprimir g = new Imprimir(a); RESULT=g;:};
 
-RETORNAR::= retornar EXPRESION puntoComa;
+RETORNAR::= retornar EXPRESION:ex puntoComa{:RESULT= new Retornar(ex);:};
 
 FUNCION::= funcion id:a abrePar LISTA_ID:b cierraPar CUERPO:c{:Funcion f= new Funcion(a,b,c);
 												RESULT=f;:}

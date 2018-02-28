@@ -45,6 +45,7 @@ public class Llamada extends objetoBase{
         } else {
             erroresEjecucion.insertarError("Semantico", "No existe la funcion " + nombreFuncion + " con " + parametros.size());
         }
+        super.retorno.ValorRetorno=ret.ValorRetorno;
         return ret; //To change body of generated methods, choose Tools | Templates.
     }
 

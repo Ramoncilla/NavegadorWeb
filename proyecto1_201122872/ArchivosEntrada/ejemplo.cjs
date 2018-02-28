@@ -1,7 +1,7 @@
 
 Dimv b;
 dimv a;
-g('01/12/199',10*51,"holisss");
+imprimir(g('01/12/199',10*51,"holisss"));
 Dimv h{2*4};
 a:"popote";
 b:6*10;
@@ -36,6 +36,7 @@ si(b==5){
 c{1}:"cambio2";
 b:"exito";
 imprimir("este es el valor de b "+b);
+
 detener;
 }
 imprimir(pedir+" "+"vuelta no "+b);
@@ -46,6 +47,9 @@ b++;
 
 funcion g(valor,numero,cadena){
 imprimir("llame a una funcion y me ire a dormir "+valor+numero+cadena);
+retornar (10+3)+" este es un valor de retornor";
+imprimir("no se dene imprmir");
+imprimir("esto tampoco");
 }
 
 
