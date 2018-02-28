@@ -23,6 +23,7 @@ imprimir("hola");
 dimv a:"lizzz";
 a:2598;
 b:96;
+imprimir("este es el valor de b "+b);
 c{2}:"cambio";
 b--;
 }sino{
@@ -32,7 +33,9 @@ b:1;
 mientrAs(b<10){
 dimv pedir:" ejemplo "+b;
 si(b==5){
+c{1}:"cambio2";
 b:"exito";
+imprimir("este es el valor de b "+b);
 detener;
 }
 imprimir(pedir+" "+"vuelta no "+b);

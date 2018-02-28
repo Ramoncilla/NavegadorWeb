@@ -36,7 +36,7 @@ public class Id extends objetoBase{
         }else{
             amb="global";
         }
-       Simbolo simb = tabla.obtenerSimbolo(id,amb);
+       Simbolo simb = tabla.obtenerSimbolo(id,amb, contexto);
        if(simb!=null){
            if(simb instanceof SimbVariable){
                SimbVariable c = (SimbVariable)simb;
@@ -49,7 +49,7 @@ public class Id extends objetoBase{
                
            }
        }else if(amb.equalsIgnoreCase("local")){
-           simb = tabla.obtenerSimbolo(id,"global");
+           simb = tabla.obtenerSimbolo(id,"global", contexto);
             if(simb instanceof SimbVariable){
                SimbVariable c = (SimbVariable)simb;
                ret.ValorRetorno= c.valorVariable;
