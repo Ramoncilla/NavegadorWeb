@@ -26,6 +26,7 @@ si(5<10){
 dimv c:"esto es una cadena";
 imprimir("tamanho del arreglo  C"+ c.conTeo);
 imprimir("Elementos del arreglo  C"+ c.aTEXto());
+imprimir ("La posicion no 1 del arreglo c "+c{1});
 imprimir("hola");
 dimv a:"lizzz";
 a:2598;

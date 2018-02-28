@@ -8,6 +8,7 @@ package CJS.TablaSimbolos;
 import CJS.objetoBase;
 import java.util.ArrayList;
 import java.util.List;
+import static proyecto1_201122872.Proyecto1_201122872.erroresEjecucion;
 
 /**
  *
@@ -40,6 +41,28 @@ public class SimbArreglo extends Simbolo{
     
     public double conteoArreglo(){
         return this.tamanhoArreglo;
+    }
+    
+    
+    public Object obtenerValorPoscion(int pos){
+        
+        if(!(pos<0)){
+            if(pos<vector.length){
+                for (int i = 0; i < vector.length; i++) {
+                    if(pos==i){
+                        return vector[i];
+                    }
+                }
+            }else{
+                erroresEjecucion.insertarError("Semantico", "El tamanho del arreglo "+ this.nombre+", es de "+ vector.length+", no se puede acceder a la posicion "+ pos);
+                return "nulo";
+            }
+        }else{
+           erroresEjecucion.insertarError("Semantico", "No se puede acceder a posciones negativas del arreglo "+this.nombre);
+           return "nulo"; 
+        }  
+      
+      return "nulo";
     }
     
     public String aTextoArreglo() {

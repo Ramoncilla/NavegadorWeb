@@ -296,7 +296,7 @@ EXPRESION::= EXPRESION:a SIMB_ARITMETICO:b  EXPRESION:c{:Aritmetica ar= new Arit
 	| OBTENER
 	| UNARIO:a{:RESULT=a;:}
     | id:a{:Id i= new Id(a); RESULT= i;:}
-    | POS_VECTOR
+    | POS_VECTOR:a{:RESULT=a;:}
 	| numero:a{:Numero n = new Numero(a); RESULT= n;:}
 	| BOOLEAN:a{:RESULT= a;:}
 	| cadena:a{:Cadena cad = new Cadena(a); RESULT = cad;:}
@@ -310,7 +310,7 @@ EXPRESION::= EXPRESION:a SIMB_ARITMETICO:b  EXPRESION:c{:Aritmetica ar= new Arit
 
 
 
-POS_VECTOR::= id abreLlave EXPRESION cierraLlave;
+POS_VECTOR::= id:i abreLlave EXPRESION:exp cierraLlave{:RESULT= new posVector(i,exp);:};
  
 DATE::=  numero:a division numero:b division numero:c{:Datee d = new Datee(a,b,c); RESULT=d;:};
 
