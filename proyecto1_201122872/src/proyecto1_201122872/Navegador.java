@@ -23,6 +23,7 @@ import javax.swing.JTextField;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
+import javax.swing.text.html.HTMLDocument;
 import proyecto1_201122872.AnalizadorCHTML.Parser;
 import proyecto1_201122872.AnalizadorCHTML.scannerCHTML;
 import proyecto1_201122872.AnalizadorCJS.ParserPrimera;
@@ -403,9 +404,10 @@ public class Navegador extends javax.swing.JFrame {
                   
                 }else if(v.get(i) instanceof Salto){
                     jTextPane1.setCaretPosition(jTextPane1.getStyledDocument().getLength());
-                    
+                    HTMLDocument doc=(HTMLDocument) jTextPane1.getStyledDocument();
+                    doc.insertAfterEnd(doc.getCharacterElement(doc.getLength()),"<br>");
                                        
-                    StyledDocument doc = jTextPane1.getStyledDocument();
+                   /*StyledDocument doc = jTextPane1.getStyledDocument();
 
                     //  Define a keyword attribute
 
@@ -421,13 +423,17 @@ public class Navegador extends javax.swing.JFrame {
                         
                         doc.insertString(doc.getLength(), "\n",null);
                     }
-                    catch(Exception e) { System.out.println(e); }
+                    catch(Exception e) { System.out.println(e); }*/
  
                 }else if(v.get(i) instanceof JLabel){
                     JLabel j = (JLabel)v.get(i);
                     jTextPane1.setCaretPosition(jTextPane1.getStyledDocument().getLength());
                     jTextPane1.insertComponent(j);
                   
+                }else if(v.get(i) instanceof Texto){
+                    Texto txt= (Texto)v.get(i);
+                    HTMLDocument doc=(HTMLDocument) jTextPane1.getStyledDocument();
+                    doc.insertAfterEnd(doc.getCharacterElement(doc.getLength()),txt.cadenaHTML);
                 }
             }
   

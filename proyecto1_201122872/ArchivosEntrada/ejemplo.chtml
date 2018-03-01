@@ -31,8 +31,10 @@
 			<boton>amo<fin-boton>
 			
 			<texto>esto es una prueba del texto<fin-texto>
+			<salto-fin>
 			<texto_a> esto es una prueba del texto area<fin-texto_a>
-	
+	<salto-fin>
+	<caja_texto> este es un jtextField<fin-caja_texto>
 	<fin-cuerpo>
 	
 	

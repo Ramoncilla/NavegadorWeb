@@ -49,6 +49,8 @@ public class Cuerpo extends Etiqueta  {
                 etiquetas.add(temporal.retornarHtml());
             }else if(temporal.retornarHtml() instanceof JLabel){
                 etiquetas.add(temporal.retornarHtml());
+            }else if(temporal.retornarHtml() instanceof Texto){
+                etiquetas.add(temporal.retornarHtml());
             }
             
             

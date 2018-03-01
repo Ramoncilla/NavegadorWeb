@@ -5,6 +5,7 @@
  */
 package proyecto1_201122872.CHTML.BODY;
 import java.util.ArrayList;
+import javax.swing.JTextField;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
 import proyecto1_201122872.CHTML.Etiqueta;
 import proyecto1_201122872.CHTML.listaElementos;
@@ -14,13 +15,25 @@ import proyecto1_201122872.CHTML.listaElementos;
  */
 public class caja_texto extends Etiqueta {
     
-        public listaElementos elementosCaja_texto;
+     public listaElementos elementosCaja_texto;
      public String cadenaCaja_texto;
+     public JTextField cajaTexto;
     
     public caja_texto(Object elementos , Object cadena){
         this.elementosCaja_texto = new listaElementos((ArrayList<propiedad>)elementos);
-        this.cadenaCaja_texto= cadena.toString();   
+        this.cadenaCaja_texto= cadena.toString();  
+        this.cajaTexto= new JTextField();
     }
+
+    @Override
+    public Object retornarHtml() {
+        this.cajaTexto.setText(cadenaCaja_texto);
+        
+        
+        return cajaTexto;
+    }
+    
+    
     
     
     
