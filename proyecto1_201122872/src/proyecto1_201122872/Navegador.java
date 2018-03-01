@@ -17,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.control.Button;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.text.SimpleAttributeSet;
@@ -60,8 +61,6 @@ public class Navegador extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -118,13 +117,6 @@ public class Navegador extends javax.swing.JFrame {
             }
         });
         jToolBar1.add(jButton3);
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jScrollPane5.setViewportView(jTextArea1);
-
-        jToolBar1.add(jScrollPane5);
 
         jScrollPane1.setViewportView(jTextPane1);
 
@@ -430,10 +422,11 @@ public class Navegador extends javax.swing.JFrame {
                         doc.insertString(doc.getLength(), "\n",null);
                     }
                     catch(Exception e) { System.out.println(e); }
-                    
-                    
-                    
-                    
+ 
+                }else if(v.get(i) instanceof JLabel){
+                    JLabel j = (JLabel)v.get(i);
+                    jTextPane1.setCaretPosition(jTextPane1.getStyledDocument().getLength());
+                    jTextPane1.insertComponent(j);
                   
                 }
             }
@@ -519,10 +512,8 @@ jTextPane1.insertComponent(boton);
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JTextPane jTextPane2;

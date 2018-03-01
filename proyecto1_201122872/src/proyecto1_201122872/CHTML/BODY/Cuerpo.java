@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
@@ -45,6 +46,8 @@ public class Cuerpo extends Etiqueta  {
             } else  if(temporal.retornarHtml() instanceof JTextField){
                 etiquetas.add(temporal.retornarHtml());
             } else if(temporal.retornarHtml() instanceof Salto){
+                etiquetas.add(temporal.retornarHtml());
+            }else if(temporal.retornarHtml() instanceof JLabel){
                 etiquetas.add(temporal.retornarHtml());
             }
             

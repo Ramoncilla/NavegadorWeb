@@ -14,7 +14,10 @@
 	
 
 	<cuerpo>
-			
+			<imagen>C:\Users\Ramonella\Desktop\imagen.jpg<fin-imagen>
+			<salto-fin>
+			<salto-fin>
+			<imagen>C:\Users\Ramonella\Desktop\carita.gif<fin-imagen>
 			<boton>hola mi vida bello
 			
 			

@@ -8,6 +8,7 @@ package proyecto1_201122872.CHTML;
 import java.util.ArrayList;
 import java.util.List;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
+import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadRuta;
 
 /**
  *
@@ -17,11 +18,22 @@ public class listaElementos {
     
    public List<propiedad> listadoElementos;
 
-public listaElementos(ArrayList<propiedad> listado){
+ public listaElementos(ArrayList<propiedad> listado){
     
     listadoElementos = listado;
-}  
+ }  
 
+ public propiedadRuta obtenerRuta(){
+     
+     propiedad temporal;
+     for (int i = 0; i <this.listadoElementos.size(); i++) {
+         temporal = listadoElementos.get(i);
+         if(temporal instanceof propiedadRuta){
+             return (propiedadRuta)temporal;
+         }
+     }
+     return null;
+ }
 
 
 

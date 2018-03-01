@@ -206,7 +206,7 @@ action code
 		
 	propiedadBoton::= propiedadGeneral:a{:RESULT= a;:}
 		| clickPropiedad:a{:RESULT= a;:}
-		|rutaPropiedad:a{:RESULT= a;:};
+		| rutaPropiedad:a{:RESULT= a;:};
 		
 	listaPropiedadBoton::= listaPropiedadBoton:b propiedadBoton:a{:List<propiedad> lista= (List<propiedad>) b;
 																		  lista.add((propiedad)a);
@@ -428,8 +428,8 @@ action code
 	TEXTO::= tagTexto:m cadena2:c tagFinTexto {: Texto txt = new Texto(m ,c); RESULT= txt;:}
 		| tagTexto:m tagFinTexto{: Texto txt = new Texto(m ,""); RESULT= txt;:};
 		
-	IMAGEN::= tagImagen:m cadena:c tagFinImagen{:Imagen img = new Imagen(m,c); RESULT= img;:}
-		| tagImagen:m tagFinImagen {:Imagen img = new Imagen(m,""); RESULT= img;:};
+	IMAGEN::= tagImagen:m cadena2:c tagFinImagen{:Imagen img = new Imagen(m,c); RESULT= img;:}
+		| tagImagen:m tagFinImagen {:Imagen img = new Imagen(m,"SinImagen"); RESULT= img;:};
 		
 	BOTON::= tagBoton:m cadena2:c tagFinBoton{:Boton img = new Boton(m,c); RESULT= img;:}
 		| tagBoton:m tagFinBoton {:Boton img = new Boton(m,""); RESULT= img;:};

@@ -11,8 +11,12 @@ package proyecto1_201122872.CHTML.ElemetoPropiedad;
  */
 public class propiedadRuta  extends propiedad{
     
+    public String ruta;
+    
+    
     
     public propiedadRuta(Object valor){
+        this.ruta= valor.toString();
         
     }
     
