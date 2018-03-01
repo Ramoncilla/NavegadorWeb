@@ -143,7 +143,7 @@ comentario_multi    = "<//-"~"-//>"
 
 
 /* -------------------------------==: BLANCOS :==-----------------------------*/
-<YYINITIAL> [ \t\r\f\n]+        { /* Se ignoran */}
+
 <YYINITIAL>{espacios}     		{ /*Espacios en blanco, ignorados*/ }
 <YYINITIAL>{saltos}     		{ /*Saltos de linea, ignorados*/}
 <YYINITIAL>{comentario_multi}      	{ /*Comentario Multi Línea Ignorado*/ }

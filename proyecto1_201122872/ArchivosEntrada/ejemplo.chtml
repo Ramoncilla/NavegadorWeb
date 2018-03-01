@@ -16,11 +16,19 @@
 	<cuerpo>
 			
 			<boton>hola mi vida bello
+			
+			
 			es un lindo... :D <fin-boton>
+			
+			<salto-fin>
 			<boton>mi<fin-boton>
+			<salto-fin>
 			<boton>vida<fin-boton>
 			<boton>te<fin-boton>
 			<boton>amo<fin-boton>
+			
+			<texto>esto es una prueba del texto<fin-texto>
+			<texto_a> esto es una prueba del texto area<fin-texto_a>
 	
 	<fin-cuerpo>
 	

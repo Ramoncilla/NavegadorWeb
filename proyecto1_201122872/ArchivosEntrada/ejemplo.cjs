@@ -1,7 +1,8 @@
 probarSeleccionar();
 Dimv b;
 dimv a;
-imprimir(g('01/12/199',10*51,"holisss"));
+dimv z:g('01/12/199',10*51,"holisss");
+imprimir(z);
 Dimv h{2*4};
 a:"popote";
 b:-6*10;

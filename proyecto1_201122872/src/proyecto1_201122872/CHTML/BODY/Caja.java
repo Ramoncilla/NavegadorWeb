@@ -11,8 +11,7 @@ import proyecto1_201122872.CHTML.listaElementos;
  * @author Ramonella
  */
 public class Caja extends Etiqueta  {
-    
-    
+   
     public listaElementos elementosEtiqueta;
     
     

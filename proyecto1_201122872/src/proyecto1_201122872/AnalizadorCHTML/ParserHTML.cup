@@ -421,7 +421,7 @@ action code
 	
 	/*---------------------- Cuerpo --------------*/
 	
-	CUERPO::= tagCuerpo:m  tagFinCuerpo {:Cuerpo p = new Cuerpo(m); RESULT = p;:}
+	CUERPO::= tagCuerpo:m  tagFinCuerpo {:Cuerpo p = new Cuerpo(m, new ArrayList<Etiqueta>()); RESULT = p;:}
 		|tagCuerpo:m  cuerpoCuerpo:c tagFinCuerpo{:Cuerpo p = new Cuerpo(m,c); RESULT = p;:};
 		
 	

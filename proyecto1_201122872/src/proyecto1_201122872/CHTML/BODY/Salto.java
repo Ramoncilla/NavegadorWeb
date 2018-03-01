@@ -19,6 +19,13 @@ public class Salto extends Etiqueta {
       public Salto(){
           
       }
+
+    @Override
+    public Object retornarHtml() {
+        return new Salto();
+    }
+      
+      
     
     
 }

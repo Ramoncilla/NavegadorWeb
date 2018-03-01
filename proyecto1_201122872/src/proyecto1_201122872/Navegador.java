@@ -8,6 +8,7 @@ package proyecto1_201122872;
 import CJS.TablaSimbolos.tablaSimbolos;
 import CJS.objetoBase;
 import Funciones.Funcion;
+import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.StringReader;
 import java.util.ArrayList;
@@ -16,10 +17,17 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.control.Button;
 import javax.swing.JButton;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 import proyecto1_201122872.AnalizadorCHTML.Parser;
 import proyecto1_201122872.AnalizadorCHTML.scannerCHTML;
 import proyecto1_201122872.AnalizadorCJS.ParserPrimera;
 import proyecto1_201122872.AnalizadorCJS.scannerCJS;
+import proyecto1_201122872.CHTML.BODY.Salto;
+import proyecto1_201122872.CHTML.BODY.Texto;
 import proyecto1_201122872.CHTML.Chtml;
 import static proyecto1_201122872.Proyecto1_201122872.erroresEjecucion;
 import static proyecto1_201122872.Proyecto1_201122872.cadenaImpresion;
@@ -52,6 +60,8 @@ public class Navegador extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -72,7 +82,7 @@ public class Navegador extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jTextField1.setText("C:\\Users\\Ramonella\\Documents\\Repositorios\\Proyecto1\\NavegadorWeb\\proyecto1_201122872\\ArchivosEntrada\\ejemplo.cjs");
+        jTextField1.setText("C:\\Users\\Ramonella\\Documents\\Repositorios\\Proyecto1\\NavegadorWeb\\proyecto1_201122872\\ArchivosEntrada\\ejemplo.chtml");
 
         jToolBar1.setRollover(true);
 
@@ -91,6 +101,11 @@ public class Navegador extends javax.swing.JFrame {
         jButton1.setFocusable(false);
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jToolBar1.add(jButton1);
 
         jButton3.setText("CJS");
@@ -103,6 +118,13 @@ public class Navegador extends javax.swing.JFrame {
             }
         });
         jToolBar1.add(jButton3);
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jTextArea1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jScrollPane5.setViewportView(jTextArea1);
+
+        jToolBar1.add(jScrollPane5);
 
         jScrollPane1.setViewportView(jTextPane1);
 
@@ -263,6 +285,11 @@ public class Navegador extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        prueba();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
   
     
     
@@ -372,6 +399,42 @@ public class Navegador extends javax.swing.JFrame {
                     jTextPane1.setCaretPosition(jTextPane1.getStyledDocument().getLength());
                     jTextPane1.insertComponent(j);
                   
+                }else if(v.get(i) instanceof JTextField){
+                    
+                    JTextField j = (JTextField)v.get(i);
+                    jTextPane1.setCaretPosition(jTextPane1.getStyledDocument().getLength());
+                    jTextPane1.insertComponent(j);
+                }else if(v.get(i) instanceof JTextArea){
+                    JTextArea j = (JTextArea)v.get(i);
+                    jTextPane1.setCaretPosition(jTextPane1.getStyledDocument().getLength());
+                    jTextPane1.insertComponent(j);
+                  
+                }else if(v.get(i) instanceof Salto){
+                    jTextPane1.setCaretPosition(jTextPane1.getStyledDocument().getLength());
+                    
+                                       
+                    StyledDocument doc = jTextPane1.getStyledDocument();
+
+                    //  Define a keyword attribute
+
+                    SimpleAttributeSet keyWord = new SimpleAttributeSet();
+                    StyleConstants.setForeground(keyWord, Color.RED);
+                    StyleConstants.setBackground(keyWord, Color.YELLOW);
+                    StyleConstants.setBold(keyWord, true);
+
+                    //  Add some text
+
+                    try
+                    {
+                        
+                        doc.insertString(doc.getLength(), "\n",null);
+                    }
+                    catch(Exception e) { System.out.println(e); }
+                    
+                    
+                    
+                    
+                  
                 }
             }
   
@@ -396,7 +459,7 @@ public class Navegador extends javax.swing.JFrame {
 "<font face=\"courier\">fuente courier</font><br>" +
 "<font size=\"24\">fuente grande</font><br>" +
 "<font color=\"red\">color rojo</font><br>" +
-"<img src=\"file:d:/viejo.gif\"></img>");
+"<img  align=\"center\"; src=\"file:d:/viejo.gif\"></img>");
         
         jTextPane1.setCaretPosition(jTextPane1.getStyledDocument().getLength());
 
@@ -456,8 +519,10 @@ jTextPane1.insertComponent(boton);
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JTextPane jTextPane2;

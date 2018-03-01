@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
 import proyecto1_201122872.CHTML.Etiqueta;
 import proyecto1_201122872.CHTML.listaElementos;
@@ -26,12 +28,6 @@ public class Cuerpo extends Etiqueta  {
         this.sentenciasCuerpo = (ArrayList<Etiqueta>)etiquetas;
     }
     
-    public Cuerpo(Object elementos){
-            
-        this.elementosCuerpo = new listaElementos((ArrayList<propiedad>)elementos);
-        this.sentenciasCuerpo = new ArrayList<>();
-    }
-    
     public void imprimir(){
         System.out.println(sentenciasCuerpo.size());
     }
@@ -42,9 +38,20 @@ public class Cuerpo extends Etiqueta  {
         Etiqueta temporal;
         for (int i = 0; i < sentenciasCuerpo.size(); i++) {
             temporal = sentenciasCuerpo.get(i);
-            if(temporal.MostrarHtml() instanceof JButton){
-                etiquetas.add(temporal.MostrarHtml());
-        }   
+            if(temporal.retornarHtml() instanceof JButton){
+                etiquetas.add(temporal.retornarHtml());
+            } else  if(temporal.retornarHtml() instanceof JTextArea){
+                etiquetas.add(temporal.retornarHtml());
+            } else  if(temporal.retornarHtml() instanceof JTextField){
+                etiquetas.add(temporal.retornarHtml());
+            } else if(temporal.retornarHtml() instanceof Salto){
+                etiquetas.add(temporal.retornarHtml());
+            }
+            
+            
+            
+            
+            
         }
       return etiquetas;
     }
