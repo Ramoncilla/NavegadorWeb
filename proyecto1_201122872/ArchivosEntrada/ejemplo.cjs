@@ -1,4 +1,4 @@
-
+probarSeleccionar();
 Dimv b;
 dimv a;
 imprimir(g('01/12/199',10*51,"holisss"));
@@ -53,11 +53,34 @@ b++;
 }
 
 
+funcion probarSeleccionar(){
+	selecciona(2*5){}
+	
+	selecciona(100){
+	   caso 5:
+			imprimir("este es el 5");
+		 caso 10:
+			imprimir("este es el 5");
+		caso 10*2:
+			imprimir("este es el 5");
+		caso 6:
+			imprimir("este es el 5");
+			caso 6:
+			imprimir("este es el 5");
+			detener;
+			caso 6:
+			imprimir("no debe salir");
+			caso 6:
+			imprimir("no debe salir");
+			defecto:
+			imprimir("muestra un defecto");
+
+	}
+}
+
+
 
 funcion g(valor2,numero2,cadena2){
-
-
-
 para(i:0;i<10;++){
 imprimir("valor de "+i);
 }

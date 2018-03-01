@@ -172,7 +172,7 @@ SENTENCIAS::= SENTENCIA:a{:List<objetoBase> lista = new ArrayList<>();
 SENTENCIA::= IF:a{:RESULT=a;:}
 			|DECLARACION:a{:RESULT= a;:}
 			|ASIGNACION:a{:RESULT= a;:}
-			|SELECCIONA
+			|SELECCIONA:a{:RESULT=a;:}
 			|PARA:a{:RESULT=a;:}
 			|SET_ELEMENTO
 			|OBSERVADOR
@@ -191,22 +191,31 @@ IF::= si abrePar EXPRESION:exp cierraPar CUERPO:v sino CUERPO:f{:Si s = new Si(e
 	
 
 	
-CASO::= caso EXPRESION dosPuntos SENTENCIAS;
+CASO::= caso EXPRESION:ex dosPuntos SENTENCIAS:c{:RESULT = new Caso(ex,new CuerpoEstructuras(c));:};
 
-LISTA_CASOS::= CASO
-		| LISTA_CASOS CASO;
+LISTA_CASOS::= CASO:c{:CuerpoSelecciona cuerpo = new CuerpoSelecciona();
+						cuerpo.agregarCaso(c);
+						RESULT=cuerpo;
+						:}
+		| LISTA_CASOS:lista CASO:c{:CuerpoSelecciona cuerpo =(CuerpoSelecciona)lista;
+						cuerpo.agregarCaso(c);
+						RESULT=cuerpo;
+						:};
 		
-DEFECTO::= defecto dosPuntos SENTENCIAS;
+DEFECTO::= defecto dosPuntos SENTENCIAS:c{:RESULT= new CuerpoEstructuras(c);:};
 
-CUERPO_SELECCIONA::= LISTA_CASOS
-	|LISTA_CASOS DEFECTO
-	|DEFECTO;
+CUERPO_SELECCIONA::= LISTA_CASOS:a{:RESULT=a;:}
+	|LISTA_CASOS:a DEFECTO:d{:CuerpoSelecciona cuerpo = (CuerpoSelecciona)a;
+							  cuerpo.agregarDefecto(d);
+							  RESULT=cuerpo;:}
+	|DEFECTO:c{:CuerpoSelecciona cuerpo = new CuerpoSelecciona();
+						cuerpo.agregarDefecto(c);
+						RESULT=cuerpo;
+						:};
 
-SELECCIONA::= selecciona abrePar EXPRESION cierraPar abreLlave cierraLlave
-	| selecciona abrePar EXPRESION cierraPar abreLlave CUERPO_SELECCIONA cierraLlave;
+SELECCIONA::= selecciona abrePar EXPRESION:e cierraPar abreLlave cierraLlave{:RESULT= new Selecciona(e, new CuerpoSelecciona());:}
+	| selecciona abrePar EXPRESION:e cierraPar abreLlave CUERPO_SELECCIONA:c cierraLlave{:RESULT= new Selecciona(e,c);:};
 	
-	
-
 
 OPERADOR_PARA::= masMas{:RESULT="++";:}
 		|menosMenos{:RESULT="--";:};
