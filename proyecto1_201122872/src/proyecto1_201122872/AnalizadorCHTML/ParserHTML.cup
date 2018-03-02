@@ -12,6 +12,7 @@ import proyecto1_201122872.CHTML.BODY.*;
 import proyecto1_201122872.CHTML.Etiqueta;
 import proyecto1_201122872.CHTML.Chtml;
 import proyecto1_201122872.CHTML.Opcion;
+import proyecto1_201122872.CHTML.listaElementos;
 
 
 parser code
@@ -444,7 +445,7 @@ action code
 	
 	
 	tagOpcion::= menor opcion mayor {:RESULT= new  Opcion("nulo");:}
-		|menor opcion valor igualSimb cadena:v mayor{:RESULT= new  Opcion(v);:};
+		|menor opcion valor igualSimb cadena:v puntoComaSimb mayor{:RESULT= new  Opcion(v);:};
 		
 		
 	OPCION::= tagOpcion:m cadena2:c tagFinOpcion {:Opcion op=(Opcion)m; op.setContenido(c); RESULT= op;:}

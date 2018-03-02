@@ -14,11 +14,16 @@
 	
 
 	<cuerpo>
+	
+	<enlace>enlace de prueba<fin-enlace>
+	<salto-fin>
+	<enlace ruta="sfdfdfd";>enlace de prueba2<fin-enlace>
+	
 	<caja>
-	<opcion valor="1">Mario<fin-opcion>
+	<opcion valor="1";>Mario<fin-opcion>
 	<opcion>Myrna<fin-opcion>
-	<opcion valor="3">Adriana<fin-opcion>
-	<opcion valor="4">Alina<fin-opcion>
+	<opcion valor="3";>Adriana<fin-opcion>
+	<opcion valor="4";>Alina<fin-opcion>
 	<fin-caja>
 	
 	<spinner><fin-spinner>

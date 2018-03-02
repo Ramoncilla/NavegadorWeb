@@ -30,7 +30,7 @@ import proyecto1_201122872.CHTML.listaElementos;
  *
  * @author Ramonella
  */
-public class Imagen extends Etiqueta {
+public class Imagen extends Etiqueta implements MouseListener {
 
     public listaElementos elementosImagen;
     public String rutaImagen;
@@ -60,49 +60,34 @@ public class Imagen extends Etiqueta {
         if (f.exists() && !f.isDirectory()) {
             ImageIcon imageIcon = new ImageIcon(this.rutaImagen);
             imagen = new JLabel(imageIcon);
-            imagen.addMouseListener(new MouseListener() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    System.out.println("presione la imgen " + rutaImagen);
-                }
-                @Override
-                public void mousePressed(MouseEvent me) {}
-                
-                @Override
-                public void mouseReleased(MouseEvent me) {}
-                
-                @Override
-                public void mouseEntered(MouseEvent me) {}
-                
-                @Override
-                public void mouseExited(MouseEvent me) {}
-                
-            });
 
         } else {
             imagen = new JLabel("No existe la imgen");
-            imagen.addMouseListener(new MouseListener() {
-                    @Override
-                    public void mouseClicked(MouseEvent e) {
-                        System.out.println("presione la imgen " + rutaImagen);
-                    }
-                    @Override
-                    public void mousePressed(MouseEvent me) {}
-
-                    @Override
-                    public void mouseReleased(MouseEvent me) {}
-
-                    @Override
-                    public void mouseEntered(MouseEvent me) {}
-
-                    @Override
-                    public void mouseExited(MouseEvent me) {}
-
-                });
 
         }
-
+        imagen.addMouseListener(this);
         return imagen;
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        System.out.println("presione la imgen " + rutaImagen);
+    }
+
+    @Override
+    public void mousePressed(MouseEvent me) {
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent me) {
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent me) {
+    }
+
+    @Override
+    public void mouseExited(MouseEvent me) {
     }
 
 }
