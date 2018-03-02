@@ -17,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.control.Button;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -434,6 +435,10 @@ public class Navegador extends javax.swing.JFrame {
                     Texto txt= (Texto)v.get(i);
                     HTMLDocument doc=(HTMLDocument) jTextPane1.getStyledDocument();
                     doc.insertAfterEnd(doc.getCharacterElement(doc.getLength()),txt.cadenaHTML);
+                }else if(v.get(i) instanceof JComboBox){
+                    JComboBox j = (JComboBox)v.get(i);
+                    jTextPane1.setCaretPosition(jTextPane1.getStyledDocument().getLength());
+                    jTextPane1.insertComponent(j);
                 }
             }
   

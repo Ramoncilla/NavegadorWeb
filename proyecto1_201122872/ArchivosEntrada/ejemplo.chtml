@@ -14,6 +14,19 @@
 	
 
 	<cuerpo>
+	<caja>
+	<opcion valor="1">Mario<fin-opcion>
+	<opcion>Myrna<fin-opcion>
+	<opcion valor="3">Adriana<fin-opcion>
+	<opcion valor="4">Alina<fin-opcion>
+	<fin-caja>
+	
+	<spinner><fin-spinner>
+	<salto-fin>
+	<spinner>10<fin-spinner>
+	<salto-fin>
+	<spinner><fin-spinner>
+	<salto-fin>
 			<imagen>C:\Users\Ramonella\Desktop\imagen.jpg<fin-imagen>
 			<salto-fin>
 			<salto-fin>

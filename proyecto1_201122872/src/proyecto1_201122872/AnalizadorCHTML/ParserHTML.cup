@@ -11,6 +11,7 @@ import proyecto1_201122872.CHTML.ElemetoPropiedad.*;
 import proyecto1_201122872.CHTML.BODY.*;
 import proyecto1_201122872.CHTML.Etiqueta;
 import proyecto1_201122872.CHTML.Chtml;
+import proyecto1_201122872.CHTML.Opcion;
 
 
 parser code
@@ -362,10 +363,7 @@ action code
 	tagFinCaja::= menor finCaja mayor;
 	
 	
-	tagOpcion::= menor opcion mayor{:List<propiedad> lista = new ArrayList<>();
-									RESULT= lista;:}
-		| menor opcion listaPropiedadesOpcion:b mayor{:List<propiedad> lista = (ArrayList<propiedad>)b;
-														RESULT = lista;:};
+
 
 	tagFinOpcion::= menor finOpcion mayor;
 	
@@ -443,14 +441,20 @@ action code
 	CAJA_TEXTO::= tagCaja_texto:m cadena2:c tagFinCaja_texto {:caja_texto img = new caja_texto(m,c); RESULT= img;:}
 		|tagCaja_texto:m tagFinCaja_texto {:caja_texto img = new caja_texto(m,""); RESULT= img;:};
 		
-	OPCION::= tagOpcion:m cadena2:c tagFinOpcion {:Opcion img = new Opcion(m,c); RESULT= img;:}
-		| tagOpcion:m tagFinOpcion {:Opcion img = new Opcion(m,""); RESULT= img;:};
+	
+	
+	tagOpcion::= menor opcion mayor {:RESULT= new  Opcion("nulo");:}
+		|menor opcion valor igualSimb cadena:v mayor{:RESULT= new  Opcion(v);:};
 		
-	listaOpciones::= listaOpciones OPCION
-		|OPCION;
 		
-	CAJA::= tagCaja:m listaOpciones tagFinCaja
-		| tagCaja:m tagFinCaja;
+	OPCION::= tagOpcion:m cadena2:c tagFinOpcion {:Opcion op=(Opcion)m; op.setContenido(c); RESULT= op;:}
+		| tagOpcion:m tagFinOpcion {:Opcion op=(Opcion)m; op.setContenido(""); RESULT= op;:};
+		
+	listaOpciones::= listaOpciones:l OPCION:op{:List<Opcion> lista = (ArrayList<Opcion>)l; lista.add((Opcion)op); RESULT=lista;:}
+		|OPCION:op{:List<Opcion> lista = new ArrayList<>(); lista.add((Opcion)op); RESULT=lista;:};
+		
+	CAJA::= tagCaja:a listaOpciones:b tagFinCaja{:RESULT= new Caja(new listaElementos((ArrayList<propiedad>)a),b);:}
+		| tagCaja:a tagFinCaja{:RESULT= new Caja(new listaElementos((ArrayList<propiedad>)a),new ArrayList<Opcion>());:};
 		
 	SPINNER::= tagSpinner:m cadena2:c tagFinSpinner{:Spinner img = new Spinner(m,c); RESULT= img;:}
 		| tagSpinner:m tagFinSpinner{:Spinner img = new Spinner(m,""); RESULT= img;:};
@@ -495,7 +499,7 @@ action code
 		|ENLACE:a{:RESULT=a;:}
 		|TEXTO_A:a{:RESULT=a;:}
 		|CAJA_TEXTO:a{:RESULT=a;:}
-		|CAJA
+		|CAJA:a{:RESULT=a;:}
 		|SPINNER:a{:RESULT=a;:}
 		|SALTO:a{:RESULT=a;:}
 		|PANEL

@@ -28,8 +28,6 @@ public class caja_texto extends Etiqueta {
     @Override
     public Object retornarHtml() {
         this.cajaTexto.setText(cadenaCaja_texto);
-        
-        
         return cajaTexto;
     }
     
