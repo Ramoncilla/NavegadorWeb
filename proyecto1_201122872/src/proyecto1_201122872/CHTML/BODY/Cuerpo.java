@@ -12,6 +12,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
 import proyecto1_201122872.CHTML.Etiqueta;
 import proyecto1_201122872.CHTML.listaElementos;
@@ -53,6 +54,8 @@ public class Cuerpo extends Etiqueta  {
             }else if(temporal.retornarHtml() instanceof Texto){
                 etiquetas.add(temporal.retornarHtml());
             }else if(temporal.retornarHtml() instanceof JComboBox){
+                etiquetas.add(temporal.retornarHtml());
+            }else if(temporal.retornarHtml() instanceof JTextPane){
                 etiquetas.add(temporal.retornarHtml());
             }
             

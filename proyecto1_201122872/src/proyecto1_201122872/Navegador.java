@@ -10,6 +10,7 @@ import CJS.objetoBase;
 import Funciones.Funcion;
 import java.awt.Color;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,8 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import javax.swing.text.BadLocationException;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
@@ -63,6 +66,7 @@ public class Navegador extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -119,6 +123,17 @@ public class Navegador extends javax.swing.JFrame {
             }
         });
         jToolBar1.add(jButton3);
+
+        jButton4.setText("jButton4");
+        jButton4.setFocusable(false);
+        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton4);
 
         jScrollPane1.setViewportView(jTextPane1);
 
@@ -284,6 +299,63 @@ public class Navegador extends javax.swing.JFrame {
         prueba();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        try {
+            // TODO add your handling code here:
+            
+            jTextPane1.setContentType("text/html");
+            HTMLDocument doc=(HTMLDocument) jTextPane1.getStyledDocument();
+             JButton j = new JButton("boton1");
+                    JLabel l= new JLabel("soy un label");
+                    
+            String tabla="<table border=1>\n" +
+                    "  <tr>\n" +
+                    "    <th>Company</th>\n" +
+                    "    <th>Contact</th>\n" +
+                    "    <th>Country</th>\n" +
+                    "  </tr>\n" +
+                    "  <tr>\n" +
+                    "    <td>Alfreds Futterkiste</td>\n" +
+                    "    <td>Maria Anders</td>\n" +
+                    "    <td>Germany</td>\n" +
+                    "  </tr>\n"+
+                    "  <tr>\n" +
+                    "    <td>";
+            doc.insertAfterEnd(doc.getCharacterElement(doc.getLength()),tabla);
+            jTextPane1.setCaretPosition(jTextPane1.getStyledDocument().getLength());
+            jTextPane1.insertComponent(j);
+            doc.insertAfterEnd(doc.getCharacterElement(doc.getLength()),tabla);
+            tabla="</td>\n" +
+                    "    <td>";
+            
+            jTextPane1.setCaretPosition(jTextPane1.getStyledDocument().getLength());
+            jTextPane1.insertComponent(l);
+            doc.insertAfterEnd(doc.getCharacterElement(doc.getLength()),tabla);
+            tabla="</td>\n" +
+                    "    <td>Mexico</td>\n" +
+                    "  </tr>\n" +
+                    "  <tr>\n" +
+                    "    <td>Ernst Handel</td>\n" +
+                    "    <td>Roland Mendel</td>\n" +
+                    "    <td>Austria</td>\n" +
+                    "  </tr>\n" +
+                    "</table>";
+                    
+doc.insertAfterEnd(doc.getCharacterElement(doc.getLength()),tabla);
+                   
+        } catch (BadLocationException ex) {
+            Logger.getLogger(Navegador.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Navegador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                  
+             
+                    
+               
+            
+        
+    }//GEN-LAST:event_jButton4ActionPerformed
+
   
     
     
@@ -439,6 +511,10 @@ public class Navegador extends javax.swing.JFrame {
                     JComboBox j = (JComboBox)v.get(i);
                     jTextPane1.setCaretPosition(jTextPane1.getStyledDocument().getLength());
                     jTextPane1.insertComponent(j);
+                }else if(v.get(i) instanceof JTextPane){
+                    JTextPane j = (JTextPane)v.get(i);
+                    jTextPane1.setCaretPosition(jTextPane1.getStyledDocument().getLength());
+                    jTextPane1.insertComponent(j);
                 }
             }
   
@@ -513,6 +589,7 @@ jTextPane1.insertComponent(boton);
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

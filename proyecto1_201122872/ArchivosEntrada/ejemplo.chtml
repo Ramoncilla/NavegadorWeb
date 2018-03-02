@@ -15,6 +15,19 @@
 
 	<cuerpo>
 	
+	<panel>
+	<salto-fin>
+			<boton>mi<fin-boton>
+			<salto-fin>
+			<boton>vida<fin-boton>
+			<boton>te<fin-boton>
+			<boton>amo<fin-boton>
+	
+	
+	<fin-panel>
+	
+	<salto-fin>
+	
 	<enlace>enlace de prueba<fin-enlace>
 	<salto-fin>
 	<enlace ruta="sfdfdfd";>enlace de prueba2<fin-enlace>

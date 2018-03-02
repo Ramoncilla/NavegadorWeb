@@ -464,8 +464,8 @@ action code
 	
 	
 	
-	PANEL::= tagPanel:m cuerpoCuerpo:c tagFinPanel
-		| tagPanel:m tagFinPanel;
+	PANEL::= tagPanel:m cuerpoCuerpo:c tagFinPanel{:RESULT = new Panel(new listaElementos((ArrayList<propiedad>)m),new Cuerpo(new ArrayList<propiedad>(),c));:}
+		| tagPanel:m tagFinPanel{:RESULT = new Panel(new listaElementos((ArrayList<propiedad>)m),new Cuerpo(new ArrayList<propiedad>(),new ArrayList<Etiqueta>()));:};
 		
 
 		
@@ -503,7 +503,7 @@ action code
 		|CAJA:a{:RESULT=a;:}
 		|SPINNER:a{:RESULT=a;:}
 		|SALTO:a{:RESULT=a;:}
-		|PANEL
+		|PANEL:a{:RESULT=a;:}
 		|TABLA;
 		
 		
@@ -517,13 +517,13 @@ action code
 							:};
 		
 		
-	sentenciaCelda::= BOTON
-		|IMAGEN
-		|cadena2;
+	sentenciaCelda::= BOTON:a{:RESULT=a;:}
+		|IMAGEN:a{:RESULT=a;:}
+		|cadena2:a{:RESULT=a;:};
 		
 		
-	cuerpoCelda::= cuerpoCelda sentenciaCelda
-		|sentenciaCelda;
+	cuerpoCelda::= cuerpoCelda:a sentenciaCelda:b{:List<Etiqueta> lista = (ArrayList<Etiqueta>)a; lista.add((Etiqueta)b);RESULT= lista;:}
+		|sentenciaCelda:a{:List<Etiqueta> lista = new ArrayList<Etiqueta>(); lista.add((Etiqueta)a);RESULT= lista;:};
 		
 	
 	
