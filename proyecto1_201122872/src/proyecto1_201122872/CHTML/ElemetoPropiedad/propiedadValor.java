@@ -11,9 +11,14 @@ package proyecto1_201122872.CHTML.ElemetoPropiedad;
  */
 public class propiedadValor extends propiedad{
     
+    public Object valor;
+    
     public propiedadValor(Object valor){
+    
+        this.valor= valor;
         
     }
+    
     
     
 }

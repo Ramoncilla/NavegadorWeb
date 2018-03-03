@@ -5,6 +5,7 @@
  */
 package proyecto1_201122872.CHTML.BODY;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,12 +26,12 @@ import proyecto1_201122872.CHTML.listaElementos;
  * @author Ramonella
  */
 public class Panel extends Etiqueta  {
-    
+
     public listaElementos elementosPanel;
     public Cuerpo objetosPanel;
     private JTextPane panel;
-    
-    
+
+
     public Panel(Object elementos, Object cuerpo){
         this.elementosPanel= (listaElementos)elementos;
         this.objetosPanel= (Cuerpo)cuerpo;
@@ -40,7 +41,7 @@ public class Panel extends Etiqueta  {
 
     @Override
     public Object retornarHtml() {
-        
+
         List<Object> v = objetosPanel.ejecutarCuerpo();
 
             for (int i = 0; i < v.size(); i++) {
@@ -48,9 +49,8 @@ public class Panel extends Etiqueta  {
                     JButton j = (JButton)v.get(i);
                     panel.setCaretPosition(panel.getStyledDocument().getLength());
                     panel.insertComponent(j);
-                  
                 }else if(v.get(i) instanceof JTextField){
-                    
+
                     JTextField j = (JTextField)v.get(i);
                     panel.setCaretPosition(panel.getStyledDocument().getLength());
                     panel.insertComponent(j);
@@ -58,7 +58,7 @@ public class Panel extends Etiqueta  {
                     JTextArea j = (JTextArea)v.get(i);
                     panel.setCaretPosition(panel.getStyledDocument().getLength());
                     panel.insertComponent(j);
-                  
+
                 }else if(v.get(i) instanceof Salto){
                     try {
                         panel.setCaretPosition(panel.getStyledDocument().getLength());
@@ -73,7 +73,7 @@ public class Panel extends Etiqueta  {
                     JLabel j = (JLabel)v.get(i);
                     panel.setCaretPosition(panel.getStyledDocument().getLength());
                     panel.insertComponent(j);
-                  
+
                 }else if(v.get(i) instanceof Texto){
                     try {
                         Texto txt= (Texto)v.get(i);
@@ -94,18 +94,19 @@ public class Panel extends Etiqueta  {
                     panel.insertComponent(j);
                 }
             }
-  
+        panel.setAutoscrolls(true);
+        panel.setMaximumSize(new Dimension(100,50));
         panel.setBackground(Color.yellow);
-        return panel; 
+        return panel;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
 }

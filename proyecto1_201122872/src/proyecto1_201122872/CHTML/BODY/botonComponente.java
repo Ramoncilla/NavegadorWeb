@@ -3,20 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyecto1_201122872.CHTML.ElemetoPropiedad;
+package proyecto1_201122872.CHTML.BODY;
+
+import javax.swing.JButton;
 
 /**
  *
  * @author Ramonella
  */
-public class propiedadAlto extends propiedad{
-    
-    public Object alturaComponente;
+public class botonComponente extends JButton {
     
     
-    public propiedadAlto(Object valor){
+    public void setAlto(int alto, int ancho){
+       
         
-       this.alturaComponente= valor;   
+        this.setSize(ancho, alto);
     }
     
 }

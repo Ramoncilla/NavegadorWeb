@@ -11,9 +11,10 @@ package proyecto1_201122872.CHTML.ElemetoPropiedad;
  */
 public class propiedadGrupo extends propiedad{
     
+    public Object grupo;
     
     public propiedadGrupo(Object valor){
-        
+        this.grupo= valor;
     }
     
 }

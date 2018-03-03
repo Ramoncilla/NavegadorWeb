@@ -11,11 +11,11 @@ package proyecto1_201122872.CHTML.ElemetoPropiedad;
  */
 public class propiedadAncho extends propiedad{
     
-    public int valorAncho;
+    public Object valorAncho;
     
     
     public propiedadAncho(Object ancho){
-        //this.valorAncho= Integer.parseInt(ancho.toString());
+        this.valorAncho= ancho;
     }
     
     

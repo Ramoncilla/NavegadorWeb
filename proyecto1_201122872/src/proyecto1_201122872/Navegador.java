@@ -24,10 +24,13 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.DefaultStyledDocument;
 import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 import javax.swing.text.html.HTMLDocument;
+import javax.swing.text.html.HTMLEditorKit;
 import proyecto1_201122872.AnalizadorCHTML.Parser;
 import proyecto1_201122872.AnalizadorCHTML.scannerCHTML;
 import proyecto1_201122872.AnalizadorCJS.ParserPrimera;
@@ -67,6 +70,7 @@ public class Navegador extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -135,6 +139,19 @@ public class Navegador extends javax.swing.JFrame {
         });
         jToolBar1.add(jButton4);
 
+        jButton5.setText("jButton5");
+        jButton5.setFocusable(false);
+        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton5);
+
+        jTextPane1.setEditable(false);
+        jTextPane1.setContentType("text/html"); // NOI18N
         jScrollPane1.setViewportView(jTextPane1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -273,6 +290,7 @@ public class Navegador extends javax.swing.JFrame {
          try {
             // TODO add your handling code here:
             ejecutar();
+            ejecutar2();
         } catch (Exception ex) {
             Logger.getLogger(Navegador.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -356,8 +374,26 @@ doc.insertAfterEnd(doc.getCharacterElement(doc.getLength()),tabla);
         
     }//GEN-LAST:event_jButton4ActionPerformed
 
-  
-    
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        
+     
+    StyledDocument doc = (StyledDocument) jTextPane1.getDocument();
+
+    Style style = doc.addStyle("StyleName", null);
+ SimpleAttributeSet as = new SimpleAttributeSet();
+    //StyleConstants.setAlignment(as,);
+    StyleConstants.setComponent(as, new JButton("OK"));
+
+        try {
+            doc.insertString(doc.getLength(), "ignored text", as);
+        } catch (BadLocationException ex) {
+            Logger.getLogger(Navegador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+
     
      private void ejecutarCJS() throws Exception{
         String rutaArchivo = jTextField1.getText();
@@ -461,12 +497,11 @@ doc.insertAfterEnd(doc.getCharacterElement(doc.getLength()),tabla);
             List<Object> v = (ArrayList<Object>)etiquet.body.ejecutarCuerpo();
             for (int i = 0; i < v.size(); i++) {
                 if(v.get(i) instanceof JButton){
-                    JButton j = (JButton)v.get(i);
+                    JButton j = (JButton) v.get(i);
                     jTextPane1.setCaretPosition(jTextPane1.getStyledDocument().getLength());
                     jTextPane1.insertComponent(j);
-                  
+                   
                 }else if(v.get(i) instanceof JTextField){
-                    
                     JTextField j = (JTextField)v.get(i);
                     jTextPane1.setCaretPosition(jTextPane1.getStyledDocument().getLength());
                     jTextPane1.insertComponent(j);
@@ -474,7 +509,6 @@ doc.insertAfterEnd(doc.getCharacterElement(doc.getLength()),tabla);
                     JTextArea j = (JTextArea)v.get(i);
                     jTextPane1.setCaretPosition(jTextPane1.getStyledDocument().getLength());
                     jTextPane1.insertComponent(j);
-                  
                 }else if(v.get(i) instanceof Salto){
                     jTextPane1.setCaretPosition(jTextPane1.getStyledDocument().getLength());
                     HTMLDocument doc=(HTMLDocument) jTextPane1.getStyledDocument();
@@ -515,6 +549,101 @@ doc.insertAfterEnd(doc.getCharacterElement(doc.getLength()),tabla);
                     JTextPane j = (JTextPane)v.get(i);
                     jTextPane1.setCaretPosition(jTextPane1.getStyledDocument().getLength());
                     jTextPane1.insertComponent(j);
+                }
+            }
+  
+            
+            
+           System.out.println("Fin de analisis");  
+        }  
+        }
+        
+        
+    }
+    
+    
+    
+    
+     private void ejecutar2() throws Exception{
+        String rutaArchivo = jTextField1.getText();
+        int a= 1;
+        int b = a+++1;
+        
+        if(rutaArchivo.isEmpty()){
+            System.out.println("Direccion no valida");
+            return;
+        }else{
+          LectoArchivos lector = new LectoArchivos(rutaArchivo);
+        String cadena=lector.obtenerContenidoArchivo();
+        if(cadena.isEmpty()){
+            System.out.println(" No es posible evaluar una cadena vacia");
+            return;
+        }else{
+            System.out.println("Inicio de Analisis");
+            scannerCHTML scannerHtml = new scannerCHTML(new BufferedReader(new StringReader(cadena)));
+            Parser parserHtml = new Parser(scannerHtml);
+            parserHtml.parse();
+            
+            Chtml  etiquet= parserHtml.codigoHTML;
+            etiquet.body.imprimir();
+           
+            List<Object> v = (ArrayList<Object>)etiquet.body.ejecutarCuerpo();
+            for (int i = 0; i < v.size(); i++) {
+                if(v.get(i) instanceof JButton){
+                    JButton j = (JButton) v.get(i);
+                    jPanel2.add(j);
+
+                   
+                }else if(v.get(i) instanceof JTextField){
+                    JTextField j = (JTextField)v.get(i);
+                    jPanel2.add(j);
+                    
+                    //jTextPane1.setCaretPosition(jTextPane1.getStyledDocument().getLength());
+                  //  jTextPane1.insertComponent(j);
+                }else if(v.get(i) instanceof JTextArea){
+                    JTextArea j = (JTextArea)v.get(i);
+                    jTextPane1.setCaretPosition(jTextPane1.getStyledDocument().getLength());
+                    jPanel2.add(j);
+                }else if(v.get(i) instanceof Salto){
+                    //jTextPane1.setCaretPosition(jTextPane1.getStyledDocument().getLength());
+                    //HTMLDocument doc=(HTMLDocument) jTextPane1.getStyledDocument();
+                    //doc.insertAfterEnd(doc.getCharacterElement(doc.getLength()),"<br>");
+                                       
+                   /*StyledDocument doc = jTextPane1.getStyledDocument();
+
+                    //  Define a keyword attribute
+
+                    SimpleAttributeSet keyWord = new SimpleAttributeSet();
+                    StyleConstants.setForeground(keyWord, Color.RED);
+                    StyleConstants.setBackground(keyWord, Color.YELLOW);
+                    StyleConstants.setBold(keyWord, true);
+
+                    //  Add some text
+
+                    try
+                    {
+                        
+                        doc.insertString(doc.getLength(), "\n",null);
+                    }
+                    catch(Exception e) { System.out.println(e); }*/
+ 
+                }else if(v.get(i) instanceof JLabel){
+                    JLabel j = (JLabel)v.get(i);
+                    jPanel2.add(j);
+
+                  
+                }else if(v.get(i) instanceof Texto){
+                    Texto txt= (Texto)v.get(i);
+                    
+
+                }else if(v.get(i) instanceof JComboBox){
+                    JComboBox j = (JComboBox)v.get(i);
+                    jPanel2.add(j);
+
+                }else if(v.get(i) instanceof JTextPane){
+                    JTextPane j = (JTextPane)v.get(i);
+                    jPanel2.add(j);
+
                 }
             }
   
@@ -590,6 +719,7 @@ jTextPane1.insertComponent(boton);
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

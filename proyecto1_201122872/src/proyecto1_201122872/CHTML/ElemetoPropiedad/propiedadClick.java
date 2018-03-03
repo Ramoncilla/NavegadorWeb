@@ -11,9 +11,11 @@ package proyecto1_201122872.CHTML.ElemetoPropiedad;
  */
 public class propiedadClick extends propiedad{
     
+    public String nombreFuncion;
     
     public propiedadClick(Object valor){
-        
+    
+        nombreFuncion= valor.toString().replace("(", "").replace(")", "");
     }
     
 }

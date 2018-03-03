@@ -66,6 +66,8 @@ public class Imagen extends Etiqueta implements MouseListener {
 
         }
         imagen.addMouseListener(this);
+        imagen.setVisible(true);
+        
         return imagen;
     }
 
