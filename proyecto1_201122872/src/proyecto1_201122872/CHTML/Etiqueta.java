@@ -101,5 +101,15 @@ public class Etiqueta {
         }
         return false;
     }
+    
+     public void agregarElementos(){
+         
+     }
+     
+     
+     public void asignarElementos(){
+         
+     }
+     
 
 }

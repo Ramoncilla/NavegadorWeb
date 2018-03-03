@@ -13,6 +13,7 @@ import java.awt.BorderLayout;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -51,6 +52,8 @@ public class MainClass {
 
     Icon icon = new ImageIcon("Computer.gif");
     JLabel label = new JLabel(icon);
+    JButton boton = new JButton("gfufgdsf");
+    
     StyleConstants.setComponent(labelStyle, label);
 
     try {

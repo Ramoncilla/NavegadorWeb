@@ -4,11 +4,13 @@
  * and open the template in the editor.
  */
 package proyecto1_201122872.CHTML.BODY;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
+import javax.swing.SwingConstants;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
 import proyecto1_201122872.CHTML.Etiqueta;
 import proyecto1_201122872.CHTML.listaElementos;
@@ -23,31 +25,29 @@ public class Boton extends Etiqueta implements ActionListener {
     
     public listaElementos elementosBoton;
     public String captionBoton;
-    public JButton botonObjeto;
     public String nombreFuncionClick;
-    public static int alto1=0;
-    public static int ancho1=0;
-    botonComponente h;
+    botonComponente botonObjeto;
     
     public Boton(Object elementos, Object cadena){
+        this.alto = 50;
+        this.ancho=150;
         this.elementosBoton = new listaElementos((ArrayList<propiedad>)elementos);
         this.captionBoton = cadena.toString();
-        
-         botonObjeto = new JButton(this.captionBoton);
-         this.botonObjeto.addActionListener(this);
+        botonObjeto= new botonComponente();
+        botonObjeto.addActionListener(this);
         this.nombreFuncionClick="";
     }
      
     @Override
     public Object retornarHtml(){ 
-       
-        this.alto=40;
-        this.ancho=50;
         agregarElementos();
-        botonObjeto.setOpaque(false);
-        botonObjeto.setSize(this.ancho, this.alto);
+        asignarElementos();
         return botonObjeto;
     }
+    
+    
+    
+    
 
     @Override
     public void actionPerformed(ActionEvent ae) {
@@ -58,7 +58,26 @@ public class Boton extends Etiqueta implements ActionListener {
     }
     
     
-    private void agregarElementos(){
+    
+    @Override
+    public void asignarElementos(){
+        this.botonObjeto.setText(this.captionBoton);
+        botonObjeto.setSize(ancho, alto);
+        if(elementosBoton.obtenerAlineado()!=null){
+            propiedadAlineado n = elementosBoton.obtenerAlineado();
+            if(n.alineado.equalsIgnoreCase("derecha")){
+                botonObjeto.setHorizontalAlignment(SwingConstants.RIGHT);
+            }else if(n.alineado.equalsIgnoreCase("izquierda")){
+                botonObjeto.setHorizontalAlignment(SwingConstants.LEFT);     
+            }else if(n.alineado.equalsIgnoreCase("centrado")){
+                botonObjeto.setHorizontalAlignment(SwingConstants.CENTER);
+            }
+        }
+    }
+    
+    
+    @Override
+    public void agregarElementos(){
         propiedad temporal;
         for (int i = 0; i < this.elementosBoton.listadoElementos.size(); i++) {
             temporal = this.elementosBoton.listadoElementos.get(i);
@@ -96,14 +115,12 @@ public class Boton extends Etiqueta implements ActionListener {
                 propiedadClick p = (propiedadClick)temporal;
                 this.nombreFuncionClick= p.nombreFuncion;
                 
-                //verificar que exista la funcion y si si guardo el nombre sino marco error
-//                if(!asignarID(p.idElemento)){
-//                    erroresEjecucion.insertarError("Semantico", "Elemento no valido para la alineacion el ID de un boton");
-//                }
-                
             }
         }
     }
+    
+    
+    
     
     
 }

@@ -9,6 +9,13 @@ import CJS.TablaSimbolos.tablaSimbolos;
 import CJS.objetoBase;
 import Funciones.Funcion;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.LayoutManager;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
@@ -17,9 +24,11 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.control.Button;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
@@ -53,6 +62,7 @@ public class Navegador extends javax.swing.JFrame {
      */
     public Navegador() {
         initComponents();
+       
     }
 
     /**
@@ -87,6 +97,7 @@ public class Navegador extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTextPane4 = new javax.swing.JTextPane();
+        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -109,6 +120,7 @@ public class Navegador extends javax.swing.JFrame {
         jButton1.setText("Nueva");
         jButton1.setFocusable(false);
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,8 +162,6 @@ public class Navegador extends javax.swing.JFrame {
         });
         jToolBar1.add(jButton5);
 
-        jTextPane1.setEditable(false);
-        jTextPane1.setContentType("text/html"); // NOI18N
         jScrollPane1.setViewportView(jTextPane1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -195,7 +205,7 @@ public class Navegador extends javax.swing.JFrame {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Consola de Salida", jPanel4);
@@ -210,7 +220,7 @@ public class Navegador extends javax.swing.JFrame {
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Errores", jPanel5);
@@ -230,11 +240,14 @@ public class Navegador extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jTabbedPane2.addTab("Tabla de Simbolos", jPanel6);
+
+        jButton6.setText("jButton6");
+        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -244,12 +257,18 @@ public class Navegador extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jTabbedPane2)
                 .addContainerGap())
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(309, 309, 309)
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane2)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(27, Short.MAX_VALUE)
+                .addComponent(jButton6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -289,6 +308,7 @@ public class Navegador extends javax.swing.JFrame {
         // TODO add your handling code here:
          try {
             // TODO add your handling code here:
+            
             ejecutar();
             ejecutar2();
         } catch (Exception ex) {
@@ -377,20 +397,21 @@ doc.insertAfterEnd(doc.getCharacterElement(doc.getLength()),tabla);
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         
-     
-    StyledDocument doc = (StyledDocument) jTextPane1.getDocument();
-
-    Style style = doc.addStyle("StyleName", null);
- SimpleAttributeSet as = new SimpleAttributeSet();
-    //StyleConstants.setAlignment(as,);
-    StyleConstants.setComponent(as, new JButton("OK"));
-
-        try {
-            doc.insertString(doc.getLength(), "ignored text", as);
-        } catch (BadLocationException ex) {
-            Logger.getLogger(Navegador.class.getName()).log(Level.SEVERE, null, ex);
+     JPanel pn = new JPanel();
+      JPanel pn2 = new JPanel();
+       JPanel pn3 = new JPanel();
+     List<JPanel> l= new ArrayList<>();
+     l.add(pn);
+      l.add(pn2);
+       l.add(pn3);
+         JButton aButton = new JButton();
+         aButton.setVisible(true);
+         aButton.setBounds(1000, 150, 0, 0);
+        jPanel2.add(aButton);
+        for (int i = 0; i < l.size(); i++) {
+           jTabbedPane1.addTab("nueva "+i, l.get(i)); 
         }
-        
+       
     }//GEN-LAST:event_jButton5ActionPerformed
 
 
@@ -498,9 +519,10 @@ doc.insertAfterEnd(doc.getCharacterElement(doc.getLength()),tabla);
             for (int i = 0; i < v.size(); i++) {
                 if(v.get(i) instanceof JButton){
                     JButton j = (JButton) v.get(i);
-                    jTextPane1.setCaretPosition(jTextPane1.getStyledDocument().getLength());
+                    
+                  
+                   jTextPane1.setCaretPosition(jTextPane1.getStyledDocument().getLength());
                     jTextPane1.insertComponent(j);
-                   
                 }else if(v.get(i) instanceof JTextField){
                     JTextField j = (JTextField)v.get(i);
                     jTextPane1.setCaretPosition(jTextPane1.getStyledDocument().getLength());
@@ -565,6 +587,7 @@ doc.insertAfterEnd(doc.getCharacterElement(doc.getLength()),tabla);
     
     
      private void ejecutar2() throws Exception{
+         jPanel2= new JPanel(new GridLayout(4,4,4,4));
         String rutaArchivo = jTextField1.getText();
         int a= 1;
         int b = a+++1;
@@ -591,13 +614,16 @@ doc.insertAfterEnd(doc.getCharacterElement(doc.getLength()),tabla);
             for (int i = 0; i < v.size(); i++) {
                 if(v.get(i) instanceof JButton){
                     JButton j = (JButton) v.get(i);
+                    Dimension f= j.getPreferredSize();
+                    j.setBounds(f.width, f.height, 30, 40);
                     jPanel2.add(j);
 
                    
                 }else if(v.get(i) instanceof JTextField){
                     JTextField j = (JTextField)v.get(i);
+                   Dimension f= j.getPreferredSize();
+                    j.setBounds(f.height, f.width, 60, 90);
                     jPanel2.add(j);
-                    
                     //jTextPane1.setCaretPosition(jTextPane1.getStyledDocument().getLength());
                   //  jTextPane1.insertComponent(j);
                 }else if(v.get(i) instanceof JTextArea){
@@ -720,6 +746,7 @@ jTextPane1.insertComponent(boton);
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

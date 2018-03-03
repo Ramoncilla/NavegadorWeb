@@ -39,7 +39,8 @@ public class Caja extends Etiqueta implements ActionListener {
         for (int i = 0; i < this.opcionesCaja.size(); i++) {
             temporal = this.opcionesCaja.get(i);
             cajaOpciones.addItem(temporal.contenidoOpcion);
-        }   
+        } 
+        cajaOpciones.setSize(200, 120);
         return cajaOpciones;
     }
 

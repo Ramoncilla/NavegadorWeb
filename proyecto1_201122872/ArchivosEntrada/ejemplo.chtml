@@ -14,12 +14,53 @@
 	
 
 	<cuerpo>
-	
+	<boton alto="100"; ancho="400"; alineado="derecha";>mi<fin-boton>
+	<salto-fin>
 	
 	<imagen>C:\Users\Ramonella\Desktop\imagen.jpg<fin-imagen>
 	
+	<panel>
+		<boton alto="100"; ancho="400";>Prueba<fin-boton>
+	<fin-panel>
 	
+	<salto-fin>
 	
+	<enlace>enlace de prueba<fin-enlace>
+	<salto-fin>
+	<enlace ruta="sfdfdfd";>enlace de prueba2<fin-enlace>
+	
+	<caja>
+	<opcion valor="1";>Mario<fin-opcion>
+	<opcion>Myrna<fin-opcion>
+	<opcion valor="3";>Adriana<fin-opcion>
+	<opcion valor="4";>Alina<fin-opcion>
+	<fin-caja>
+	
+	<spinner><fin-spinner>
+	<salto-fin>
+	<spinner>10<fin-spinner>
+	<salto-fin>
+	<spinner><fin-spinner>
+	<salto-fin>
+			
+			<salto-fin>
+			<salto-fin>
+			<imagen>C:\Users\Ramonella\Desktop\carita.gif<fin-imagen>
+			<salto-fin>
+			<boton>boton nueco :D <fin-boton>
+			
+			<salto-fin>
+			
+			<salto-fin>
+			<boton>vida<fin-boton><salto-fin>
+			<boton>te<fin-boton><salto-fin>
+			<boton>amo<fin-boton><salto-fin>
+			
+			<texto>esto es una prueba del texto<fin-texto>
+			<salto-fin>
+			<texto_a> esto es una prueba del texto area<fin-texto_a>
+	<salto-fin>
+	<caja_texto> este es un jtextField<fin-caja_texto>
 	<fin-cuerpo>
 	
 	

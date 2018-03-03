@@ -5,6 +5,7 @@
  */
 package proyecto1_201122872.CHTML.BODY;
 
+import java.awt.Dimension;
 import java.util.ArrayList;
 import javax.swing.JTextField;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
@@ -37,7 +38,8 @@ public class Spinner extends Etiqueta {
 
     @Override
     public Object retornarHtml() {
-        this.spinner.setText(numeroSpinner+"");
+        this.spinner.setText(String.valueOf(numeroSpinner));
+        spinner.setPreferredSize(new Dimension(50,100));
         return spinner;
     }
     
