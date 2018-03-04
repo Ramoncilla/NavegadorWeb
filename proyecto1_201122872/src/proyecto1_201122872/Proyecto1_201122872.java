@@ -10,6 +10,7 @@ import Funciones.ListaFunciones;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import zInterfaz.buscador;
 
 /**
  *
@@ -30,45 +31,11 @@ public class Proyecto1_201122872 {
         cadenaImpresion="";
         lFunciones= new ListaFunciones();
         Navegador n= new Navegador();
-        n.show();
+        //n.show();
+        buscador g= new buscador();
+        g.setVisible(true);
         
-        List<String> lista = new ArrayList<>();
-        lista.add("alina");
-        lista.add("pedrito bello");
-        lista.add("popo");
-        lista.add("compi2");
-        lista.add("pipi");
-        
-        String temporal ;
-        for (Iterator<String> iter = lista.iterator(); iter.hasNext();) {
-            temporal = iter.next();
-            if(temporal.equalsIgnoreCase("popo")|| temporal.equalsIgnoreCase("pipi")){
-                iter.remove();
-            }
-            
-        }
-        
-        for (int i = 0; i < lista.size(); i++) {
-            System.out.println(lista.get(i));
-        }
-        
-        
-        
-        /*  public Simbolos_Tabla modificarTabla(Simbolos_Tabla reales, Simbolos_Tabla modificados){
-          nodo_tabla temporal;
-          for(Iterator<nodo_tabla> iter = modificados.elementos_tabla.iterator(); iter.hasNext();){
-                                     nodo_tabla t = iter.next();
-                    temporal= getVarModificada(t,reales.elementos_tabla);
-                    
-                    if(temporal==null){
-               iter.remove();
-              }
-          } 
-          return modificados;
-      }
-      */
-        
-        
+      
         
     }
     

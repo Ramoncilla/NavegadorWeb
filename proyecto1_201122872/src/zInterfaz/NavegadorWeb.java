@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interfaz;
+package zInterfaz;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,14 +16,21 @@ import javax.swing.JTabbedPane;
 public class NavegadorWeb {
     
     List<Pagina> panelesPagina;
-    JTabbedPane pestanhas;
+    List<String> historialNavegador;
     
     
     
     public NavegadorWeb(){
         this.panelesPagina= new ArrayList<>();
-        this.pestanhas= new JTabbedPane();
+        this.historialNavegador= new ArrayList<>();
+       
     }
+    
+    public void agregarPagina(Pagina nueva){
+        this.panelesPagina.add(nueva);
+    }
+    
+    
     
     
     

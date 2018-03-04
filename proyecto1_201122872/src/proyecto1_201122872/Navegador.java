@@ -47,6 +47,7 @@ import proyecto1_201122872.AnalizadorCJS.ParserPrimera;
 import proyecto1_201122872.AnalizadorCJS.scannerCJS;
 import proyecto1_201122872.CHTML.BODY.Salto;
 import proyecto1_201122872.CHTML.BODY.Texto;
+import proyecto1_201122872.CHTML.BODY.jTextPane;
 import proyecto1_201122872.CHTML.Chtml;
 import static proyecto1_201122872.Proyecto1_201122872.erroresEjecucion;
 import static proyecto1_201122872.Proyecto1_201122872.cadenaImpresion;
@@ -399,6 +400,7 @@ doc.insertAfterEnd(doc.getCharacterElement(doc.getLength()),tabla);
          aButton.setVisible(true);
          aButton.setBounds(1000, 150, 0, 0);
         jPanel2.add(aButton);
+        jTextPane h = new jTextPane();
         for (int i = 0; i < l.size(); i++) {
            jTabbedPane1.addTab("nueva "+i, l.get(i)); 
         }
