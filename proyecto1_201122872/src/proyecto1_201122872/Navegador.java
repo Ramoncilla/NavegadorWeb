@@ -29,6 +29,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
@@ -300,7 +301,7 @@ public class Navegador extends javax.swing.JFrame {
             // TODO add your handling code here:
             
             ejecutar();
-            ejecutar2();
+
         } catch (Exception ex) {
             Logger.getLogger(Navegador.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -559,6 +560,10 @@ doc.insertAfterEnd(doc.getCharacterElement(doc.getLength()),tabla);
                     jTextPane1.insertComponent(j);
                 }else if(v.get(i) instanceof JTextPane){
                     JTextPane j = (JTextPane)v.get(i);
+                    jTextPane1.setCaretPosition(jTextPane1.getStyledDocument().getLength());
+                    jTextPane1.insertComponent(j);
+                 }else if(v.get(i) instanceof JScrollPane){
+                    JScrollPane j = (JScrollPane)v.get(i);
                     jTextPane1.setCaretPosition(jTextPane1.getStyledDocument().getLength());
                     jTextPane1.insertComponent(j);
                 }

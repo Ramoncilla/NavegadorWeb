@@ -6,15 +6,15 @@
 package proyecto1_201122872.CHTML.BODY;
 
 import java.awt.Dimension;
-import javax.swing.JButton;
+import javax.swing.JComboBox;
 
 /**
  *
  * @author Ramonella
  */
-public class botonComponente extends JButton {
-
-    @Override
+public class ComboComponente extends JComboBox{
+    
+     @Override
     public void setSize(int i, int i1) {
         super.setSize(i, i1); //To change body of generated methods, choose Tools | Templates.
     }
@@ -24,7 +24,7 @@ public class botonComponente extends JButton {
         Dimension f = new Dimension(getWidth(),getHeight());
         return f; //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     
     @Override
     public int getHeight() {
@@ -66,6 +66,5 @@ public class botonComponente extends JButton {
         return f; //To change body of generated methods, choose Tools | Templates.
     }
     
-
     
 }

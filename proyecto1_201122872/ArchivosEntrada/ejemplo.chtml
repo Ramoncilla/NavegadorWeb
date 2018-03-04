@@ -27,9 +27,9 @@
 	
 	<enlace>enlace de prueba<fin-enlace>
 	<salto-fin>
-	<enlace ruta="sfdfdfd";>enlace de prueba2<fin-enlace>
-	
-	<caja>
+	<enlace ruta="sfdfdfd"; alineado="centrado"; ancho="300";>enlace de prueba2<fin-enlace>
+	<salto-fin>
+	<caja alineado="derecha";>
 	<opcion valor="1";>Mario<fin-opcion>
 	<opcion>Myrna<fin-opcion>
 	<opcion valor="3";>Adriana<fin-opcion>
@@ -40,12 +40,12 @@
 	<salto-fin>
 	<spinner>10<fin-spinner>
 	<salto-fin>
-	<spinner><fin-spinner>
+	<spinner alineado="centrado"; alto="100";><fin-spinner>
 	<salto-fin>
 			
 			<salto-fin>
 			<salto-fin>
-			<imagen>C:\Users\Ramonella\Desktop\carita.gif<fin-imagen>
+			<imagen ancho="200"; alto="200"; ruta="C:\Users\Ramonella\Desktop\carita.gif";><fin-imagen>
 			<salto-fin>
 			<boton>boton nueco :D <fin-boton>
 			
@@ -56,11 +56,11 @@
 			<boton>te<fin-boton><salto-fin>
 			<boton>amo<fin-boton><salto-fin>
 			
-			<texto alineado="centrado";>esto es una prueba del texto<fin-texto>
+			<texto alineado="derecha";>esto es una prueba del texto<fin-texto>
 			<salto-fin>
-			<texto_a> esto es una prueba del texto area<fin-texto_a>
+			<texto_a alineado="derecha";> esto es una prueba del texto area<fin-texto_a>
 	<salto-fin>
-	<caja_texto> este es un jtextField<fin-caja_texto>
+	<caja_texto alineado="derecha"; alto="100";> este es un jtextField<fin-caja_texto>
 	<fin-cuerpo>
 	
 	

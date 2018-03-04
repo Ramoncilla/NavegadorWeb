@@ -15,7 +15,7 @@ public class propiedadAncho extends propiedad{
     
     
     public propiedadAncho(Object ancho){
-        this.valorAncho= ancho;
+        this.valorAncho= ancho.toString().replace("\"", "");
     }
     
     

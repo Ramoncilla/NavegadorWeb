@@ -15,7 +15,7 @@ public class propiedadValor extends propiedad{
     
     public propiedadValor(Object valor){
     
-        this.valor= valor;
+        this.valor= valor.toString().replace("\"", "");;
         
     }
     

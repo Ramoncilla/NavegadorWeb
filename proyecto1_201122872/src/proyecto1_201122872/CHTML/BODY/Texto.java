@@ -31,7 +31,7 @@ public class Texto extends Etiqueta{
     
     public Texto(Object elementos , Object cadena){
         this.alto=150;
-        this.ancho=300;
+        this.ancho=150;
         this.texto= new jTextPane();
         this.elementosTexto = new listaElementos((ArrayList<propiedad>)elementos);
         this.cadenaTexto= cadena.toString();

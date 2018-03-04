@@ -16,7 +16,7 @@ public class propiedadRuta  extends propiedad{
     
     
     public propiedadRuta(Object valor){
-        this.ruta= valor.toString();
+        this.ruta= valor.toString().replace("\"", "");;
         
     }
     

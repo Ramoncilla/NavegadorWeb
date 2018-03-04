@@ -5,13 +5,23 @@
  */
 package proyecto1_201122872.CHTML.BODY;
 import java.awt.Color;
+
+import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.font.TextAttribute;
 import java.io.File;
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
+import java.util.Map;
+
+import javax.swing.SwingConstants;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
+import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadAlineado;
+import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadAlto;
+import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadAncho;
+
+import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadGrupo;
+import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadId;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadRuta;
 import proyecto1_201122872.CHTML.Etiqueta;
 import proyecto1_201122872.CHTML.listaElementos;
@@ -24,14 +34,17 @@ public class Enlace  extends Etiqueta implements MouseListener{
     
      public listaElementos elementosEnlace;
      public String cadenaEnlace;
-     private JLabel link;
+     private labelComponente link;
      public String rutaEnlace;
+
      
     public Enlace(Object elementos , Object cadena){
         
         this.elementosEnlace = new listaElementos((ArrayList<propiedad>)elementos);
         this.cadenaEnlace= cadena.toString();  
-        this.link = new JLabel();
+        this.link = new labelComponente();
+        this.alto=20;
+        this.ancho=150;
          asignarRutaEnlace();
     }
    
@@ -48,22 +61,50 @@ public class Enlace  extends Etiqueta implements MouseListener{
 
     @Override
     public Object retornarHtml() {
-
+        agregarElementos();
+       
         File f = new File(this.rutaEnlace);
         if (f.exists() && !f.isDirectory()) {
-            link = new JLabel(this.cadenaEnlace);
-
+            link.setText(this.cadenaEnlace);
+        
         } else {
-            link = new JLabel(this.cadenaEnlace);
+             link.setText(this.cadenaEnlace);
             erroresEjecucion.insertarError("Semantico", "Ruta de Enlace no existe");
 
         }
+        asignarElementos();
+        link.setVisible(true);
+        link.setSize(ancho, alto);
+        link.setOpaque(true);
         link.setForeground(Color.BLUE);
-        link.setOpaque(false);
+        Font font = link.getFont();        
+        Map attributes = font.getAttributes();
+        attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
+        link.setFont(font.deriveFont(attributes));
         link.addMouseListener(this);
         return link;
     }
 
+    
+     @Override
+    public void asignarElementos(){
+         System.out.println("dfsdfdsfds");
+           if(elementosEnlace.obtenerAlineado()!=null){
+            propiedadAlineado n = elementosEnlace.obtenerAlineado();
+            if(n.alineado.equalsIgnoreCase("derecha")){
+                link.setHorizontalAlignment(SwingConstants.RIGHT);
+            }else if(n.alineado.equalsIgnoreCase("izquierda")){
+                link.setHorizontalAlignment(SwingConstants.LEFT);     
+            }else if(n.alineado.equalsIgnoreCase("centrado")){
+                link.setHorizontalAlignment(SwingConstants.CENTER);
+            }
+        }
+
+        
+        
+    }
+    
+    
     @Override
     public void mouseClicked(MouseEvent e) {
          File f = new File(this.rutaEnlace);
@@ -91,4 +132,52 @@ public class Enlace  extends Etiqueta implements MouseListener{
     }
     
     
+    
+         @Override
+    public void agregarElementos(){
+        propiedad temporal;
+        for (int i = 0; i < this.elementosEnlace.listadoElementos.size(); i++) {
+            temporal = this.elementosEnlace.listadoElementos.get(i);
+            if(temporal instanceof  propiedadAlineado){
+                propiedadAlineado p = (propiedadAlineado)temporal;
+                if(!asignarAlineado(p.alineado)){
+                    erroresEjecucion.insertarError("Semantico", "Elemento no valido para la alineacion del boton");
+                }
+            }else if(temporal instanceof propiedadId){
+                 propiedadId p = (propiedadId)temporal;
+                if(!asignarID(p.idElemento)){
+                    erroresEjecucion.insertarError("Semantico", "Elemento no valido para la alineacion el ID de un boton");
+                }
+                
+            }else if(temporal instanceof propiedadGrupo){
+                propiedadGrupo p = (propiedadGrupo)temporal;
+                if(!asignarGrupo(p.grupo)){
+                    erroresEjecucion.insertarError("Semantico", "Elemento no valido para la alineacion el ID de un boton");
+                }
+                
+            }else if(temporal instanceof propiedadAlto){
+                propiedadAlto p = (propiedadAlto)temporal;
+                if(!asignarAlto(p.alturaComponente)){
+                  
+                    erroresEjecucion.insertarError("Semantico", "Elemento no valido para la alineacion el ID de un boton");
+                }
+                
+            }else if(temporal instanceof propiedadAncho){
+                propiedadAncho p = (propiedadAncho)temporal;
+                if(!asignarAncho(p.valorAncho)){
+                    erroresEjecucion.insertarError("Semantico", "Elemento no valido para la alineacion el ID de un boton");
+                }
+                
+            }else if(temporal instanceof propiedadRuta){
+                propiedadRuta p = (propiedadRuta)temporal;
+                this.rutaEnlace= p.ruta.replace("\"", "");
+                
+            }
+            
+            
+            
+        }
+    
+    
+}
 }

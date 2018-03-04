@@ -48,18 +48,15 @@ public class Etiqueta {
         return false;
     }
     
-    public boolean asignarAlto(Object valor){
-        if(valor instanceof Double){
-            double v = Double.parseDouble(valor.toString());
-            int va= (int)v;
-            this.alto=va;
-            return true;
-        }else if(valor instanceof Integer){
-            int v = Integer.parseInt(valor.toString());
-            this.alto=v;
-            return true;
-        }
-        return false;
+    public boolean asignarAlto(Object op){
+       Object valor = op.toString().replace("\"", "");
+        
+         try{
+             this.alto= Integer.parseInt(valor.toString());
+             return true;
+         }catch(Exception e){
+             return false;
+         }
     }
     
      public boolean asignarAncho(Object op){
@@ -72,17 +69,6 @@ public class Etiqueta {
              return false;
          }
          
-         /*if(valor instanceof Double){
-            double v = Double.parseDouble(valor.toString());
-            int va= (int)v;
-            this.ancho=va;
-            return true;
-        }else if(valor instanceof Integer){
-            int v = Integer.parseInt(valor.toString());
-            this.ancho=v;
-            return true;
-        }
-        return false;*/
     }
     
     public boolean asignarAlineado(Object alineacion) {

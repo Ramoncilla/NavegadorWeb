@@ -14,7 +14,7 @@ public class propiedadGrupo extends propiedad{
     public Object grupo;
     
     public propiedadGrupo(Object valor){
-        this.grupo= valor;
+        this.grupo= valor.toString().replace("\"", "");;
     }
     
 }

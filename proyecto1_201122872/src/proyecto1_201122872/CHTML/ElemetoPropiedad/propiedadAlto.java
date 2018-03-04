@@ -16,7 +16,7 @@ public class propiedadAlto extends propiedad{
     
     public propiedadAlto(Object valor){
         
-       this.alturaComponente= valor;   
+       this.alturaComponente= valor.toString().replace("\n", "");   
     }
     
 }

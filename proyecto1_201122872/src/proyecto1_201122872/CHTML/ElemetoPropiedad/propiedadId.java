@@ -14,7 +14,7 @@ public class propiedadId extends propiedad{
     public String idElemento;
     
     public propiedadId(Object id){
-        this.idElemento= id.toString();
+        this.idElemento= id.toString().replace("\"", "");;
     }
     
 }
