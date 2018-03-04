@@ -56,7 +56,7 @@
 			<boton>te<fin-boton><salto-fin>
 			<boton>amo<fin-boton><salto-fin>
 			
-			<texto>esto es una prueba del texto<fin-texto>
+			<texto alineado="centrado";>esto es una prueba del texto<fin-texto>
 			<salto-fin>
 			<texto_a> esto es una prueba del texto area<fin-texto_a>
 	<salto-fin>

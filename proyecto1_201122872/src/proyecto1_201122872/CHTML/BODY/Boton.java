@@ -4,12 +4,11 @@
  * and open the template in the editor.
  */
 package proyecto1_201122872.CHTML.BODY;
-import java.awt.Color;
-import java.awt.Dimension;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import javax.swing.JButton;
+
 import javax.swing.SwingConstants;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
 import proyecto1_201122872.CHTML.Etiqueta;
@@ -46,9 +45,6 @@ public class Boton extends Etiqueta implements ActionListener {
     }
     
     
-    
-    
-
     @Override
     public void actionPerformed(ActionEvent ae) {
         

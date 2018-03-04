@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadAlineado;
+import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadAlto;
+import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadAncho;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadRuta;
 
 /**
@@ -48,7 +50,31 @@ public propiedadAlineado obtenerAlineado(){
      return null;
  }
 
+ public propiedadAlto obtenerAlto(){
+     
+     propiedad temporal;
+     for (int i = 0; i <this.listadoElementos.size(); i++) {
+         temporal = listadoElementos.get(i);
+         if(temporal instanceof propiedadAlto){
+             return (propiedadAlto)temporal;
+         }
+     }
+     return null;
+ }
+
  
+ public propiedadAncho obtenerAncho(){
+     
+     propiedad temporal;
+     for (int i = 0; i <this.listadoElementos.size(); i++) {
+         temporal = listadoElementos.get(i);
+         if(temporal instanceof propiedadAncho){
+             return (propiedadAncho)temporal;
+         }
+     }
+     return null;
+ }
+
 
 
 }

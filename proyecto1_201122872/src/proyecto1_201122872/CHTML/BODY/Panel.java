@@ -74,16 +74,6 @@ public class Panel extends Etiqueta  {
                     panel.setCaretPosition(panel.getStyledDocument().getLength());
                     panel.insertComponent(j);
 
-                }else if(v.get(i) instanceof Texto){
-                    try {
-                        Texto txt= (Texto)v.get(i);
-                        HTMLDocument doc=(HTMLDocument) panel.getStyledDocument();
-                        doc.insertAfterEnd(doc.getCharacterElement(doc.getLength()),txt.cadenaHTML);
-                    } catch (BadLocationException ex) {
-                        Logger.getLogger(Panel.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (IOException ex) {
-                        Logger.getLogger(Panel.class.getName()).log(Level.SEVERE, null, ex);
-                    }
                 }else if(v.get(i) instanceof JComboBox){
                     JComboBox j = (JComboBox)v.get(i);
                     panel.setCaretPosition(panel.getStyledDocument().getLength());
