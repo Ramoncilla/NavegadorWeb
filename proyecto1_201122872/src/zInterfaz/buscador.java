@@ -51,6 +51,7 @@ public class buscador extends javax.swing.JFrame {
         jToolBar2 = new javax.swing.JToolBar();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("USAC-WEB");
@@ -120,7 +121,18 @@ public class buscador extends javax.swing.JFrame {
         jButton2.setFocusable(false);
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jToolBar2.add(jButton2);
+
+        jButton3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Ramonella\\Downloads\\navigation-history-interface-symbol-of-a-clock-with-an-arrow.png")); // NOI18N
+        jButton3.setFocusable(false);
+        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar2.add(jButton3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -160,6 +172,28 @@ public class buscador extends javax.swing.JFrame {
         CargarPagina();
     }//GEN-LAST:event_btnCargarActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        desplegarOpciones();
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    
+    
+    public void desplegarOpciones(){
+        
+        int id = jTabbedPane1.getSelectedIndex();
+        for (int i = 0; i < this.listaPaginas.panelesPagina.size(); i++) {
+            if(id==this.listaPaginas.panelesPagina.get(i).idPagina){
+                Opciones op = new Opciones();
+                op.setPagina(listaPaginas.panelesPagina.get(i));
+                op.cargarValores();
+                op.setVisible(true);
+            }
+        }
+        
+        
+    }
     
     public void nuevaPagina(){
             Pagina nuevaPagina = new Pagina(contador);
@@ -183,6 +217,7 @@ public class buscador extends javax.swing.JFrame {
                     listaPaginas.panelesPagina.get(i).areaWeb.setText("dfdffdgfgfd");
                     listaPaginas.panelesPagina.get(i).setNombrePagina(nombrePagina);
                     listaPaginas.panelesPagina.get(i).setRutaPagina(ruta);
+                    jTabbedPane1.setTitleAt(jTabbedPane1.getSelectedIndex(), nombrePagina);
                 }
                 
             }        
@@ -236,6 +271,7 @@ public class buscador extends javax.swing.JFrame {
     private javax.swing.JButton btnCargar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
