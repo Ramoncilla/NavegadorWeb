@@ -19,8 +19,8 @@
 	
 	<imagen>C:\Users\Ramonella\Desktop\imagen.jpg<fin-imagen>
 	
-	<panel>
-		<boton alto="100"; ancho="400";>Prueba<fin-boton>
+	<panel alineado="derecha"; alto="300"; ancho="400";>
+		<boton alto="100"; ancho="200"; alineado="derecha";>Prueba<fin-boton>
 	<fin-panel>
 	
 	<salto-fin>
