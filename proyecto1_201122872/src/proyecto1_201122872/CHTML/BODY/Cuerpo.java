@@ -4,8 +4,12 @@
  * and open the template in the editor.
  */
 package proyecto1_201122872.CHTML.BODY;
+import java.awt.Dimension;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -13,9 +17,20 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
+import javax.swing.text.html.HTMLDocument;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
+import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadAlineado;
+import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadAlto;
+import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadAncho;
+import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadGrupo;
+import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadId;
 import proyecto1_201122872.CHTML.Etiqueta;
 import proyecto1_201122872.CHTML.listaElementos;
+import static proyecto1_201122872.Proyecto1_201122872.paginaActual;
 /**
  *
  * @author Ramonella
@@ -24,18 +39,146 @@ public class Cuerpo extends Etiqueta  {
     
     public listaElementos elementosCuerpo;
     public List<Etiqueta> sentenciasCuerpo;
+    public JTextPane panel;
+    public List<Etiqueta> etiquetas;
     
-    public Cuerpo(Object elementos, Object etiquetas){
-    
+    public Cuerpo(Object elementos, Object etiquet){
+        this.panel= new JTextPane();
         this.elementosCuerpo = new listaElementos((ArrayList<propiedad>)elementos);
-        this.sentenciasCuerpo = (ArrayList<Etiqueta>)etiquetas;
+        this.sentenciasCuerpo = (ArrayList<Etiqueta>)etiquet;
+        this.etiquetas= new ArrayList<>();
+        panel.setContentType("text/html");   
     }
     
     public void imprimir(){
         System.out.println(sentenciasCuerpo.size());
     }
     
-    public List<Object>ejecutarCuerpo(){
+    
+    
+    public List<Etiqueta> obtenerEtiquetasConElementos(){
+        
+        Etiqueta temporal;
+        for (int i = 0; i< this.sentenciasCuerpo.size(); i++) {
+            temporal = this.sentenciasCuerpo.get(i);
+            if(temporal instanceof Boton){
+                etiquetas.add(temporal.retornarHtml());
+            }else if(temporal instanceof Caja){
+                etiquetas.add(temporal.retornarHtml());
+            }else if(temporal instanceof Enlace){
+                etiquetas.add(temporal.retornarHtml());
+            }else if(temporal instanceof Imagen){
+                etiquetas.add(temporal.retornarHtml());
+            }else if(temporal instanceof Panel){
+                etiquetas.add(temporal.retornarHtml());
+            }else if(temporal instanceof Salto){
+                etiquetas.add(temporal.retornarHtml());
+            }else if(temporal instanceof Spinner){
+                etiquetas.add(temporal.retornarHtml());
+            }else if(temporal instanceof Texto){
+                etiquetas.add(temporal.retornarHtml());
+            }else if(temporal instanceof Texto_a){
+                etiquetas.add(temporal.retornarHtml());
+            }else if(temporal instanceof caja_texto){
+                etiquetas.add(temporal.retornarHtml());
+            }else if(temporal instanceof tabla){
+                etiquetas.add(temporal.retornarHtml());
+            }
+     
+        }
+        return etiquetas;
+    }
+    
+   
+    
+    
+ 
+    
+    
+     @Override
+    public void asignarElementos(){
+        Dimension dmnsn = new Dimension(ancho, alto);
+        panel.setSize(dmnsn);
+        panel.setSize(ancho, alto);
+        panel.setMaximumSize(dmnsn);
+        panel.setMaximumSize(dmnsn);
+        panel.setPreferredSize(dmnsn);
+        if(this.elementosCuerpo.obtenerAlineado()!=null){
+             propiedadAlineado n = elementosCuerpo.obtenerAlineado();
+            if(n.alineado.equalsIgnoreCase("derecha")){              
+                StyledDocument doc = panel.getStyledDocument();
+                SimpleAttributeSet center = new SimpleAttributeSet();
+                StyleConstants.setAlignment(center, StyleConstants.ALIGN_RIGHT);
+                doc.setParagraphAttributes(0, doc.getLength(), center, false);     
+            }else if(n.alineado.equalsIgnoreCase("izquierda")){
+                StyledDocument doc = panel.getStyledDocument();
+                SimpleAttributeSet center = new SimpleAttributeSet();
+                StyleConstants.setAlignment(center, StyleConstants.ALIGN_LEFT);
+                doc.setParagraphAttributes(0, doc.getLength(), center, false);    
+            }else if(n.alineado.equalsIgnoreCase("centrado")){
+                StyledDocument doc = panel.getStyledDocument();
+                SimpleAttributeSet center = new SimpleAttributeSet();
+                StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+                doc.setParagraphAttributes(0, doc.getLength(), center, false); 
+            }
+        } else{
+                StyledDocument doc = panel.getStyledDocument();
+                SimpleAttributeSet center = new SimpleAttributeSet();
+                StyleConstants.setAlignment(center, StyleConstants.ALIGN_LEFT);
+                doc.setParagraphAttributes(0, doc.getLength(), center, false);  
+        }
+    }
+    
+    
+    @Override
+    public void agregarElementos(){
+        propiedad temporal;
+        for (int i = 0; i < this.elementosCuerpo.listadoElementos.size(); i++) {
+            temporal = this.elementosCuerpo.listadoElementos.get(i);
+            if(temporal instanceof  propiedadAlineado){
+                propiedadAlineado p = (propiedadAlineado)temporal;
+                if(!asignarAlineado(p.alineado)){
+                    paginaActual.erroresPagina.insertarError("Semantico", "Elemento no valido para la alineacion del boton");
+                }
+            }else if(temporal instanceof propiedadId){
+                 propiedadId p = (propiedadId)temporal;
+                if(!asignarID(p.idElemento)){
+                    paginaActual.erroresPagina.insertarError("Semantico", "Elemento no valido para la alineacion el ID de un boton");
+                }
+                
+            }else if(temporal instanceof propiedadGrupo){
+                propiedadGrupo p = (propiedadGrupo)temporal;
+                if(!asignarGrupo(p.grupo)){
+                    paginaActual.erroresPagina.insertarError("Semantico", "Elemento no valido para la alineacion el ID de un boton");
+                }
+                
+            }else if(temporal instanceof propiedadAlto){
+                propiedadAlto p = (propiedadAlto)temporal;
+                if(!asignarAlto(p.alturaComponente)){
+                  
+                    paginaActual.erroresPagina.insertarError("Semantico", "Elemento no valido para la alineacion el ID de un boton");
+                }
+                
+            }else if(temporal instanceof propiedadAncho){
+                propiedadAncho p = (propiedadAncho)temporal;
+                if(!asignarAncho(p.valorAncho)){
+                    paginaActual.erroresPagina.insertarError("Semantico", "Elemento no valido para la alineacion el ID de un boton");
+                }
+                
+            }
+        }
+    
+    
+    
+    }
+    
+    
+    
+    
+    
+    
+    
+   /* public List<Object> dibujar(){
         List<Object> etiquetas = new ArrayList<>();
         
         Etiqueta temporal;
@@ -57,14 +200,10 @@ public class Cuerpo extends Etiqueta  {
                 etiquetas.add(temporal.retornarHtml());
             }else if(temporal.retornarHtml() instanceof JTextPane){
                 etiquetas.add(temporal.retornarHtml());
-            }
-            
-            
-            
-            
-            
+            }   
         }
       return etiquetas;
     }
+    */
     
 }

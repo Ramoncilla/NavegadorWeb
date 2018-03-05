@@ -19,8 +19,8 @@ public class Etiqueta {
     
     
     
-    public Object retornarHtml(){
-        return "";
+    public Etiqueta retornarHtml(){
+        return new Etiqueta();
         
     }
     

@@ -5,7 +5,7 @@
  */
 package CJS.EXPRESION;
 
-import static proyecto1_201122872.Proyecto1_201122872.erroresEjecucion;
+import static proyecto1_201122872.Proyecto1_201122872.paginaActual;
 
 /**
  *
@@ -58,7 +58,7 @@ public class Multiplicacion  extends expresionBase {
         }
         
         else {
-           erroresEjecucion.insertarError("Semantico", "No es valido multiplicar un "+ tipo1+" con un "+ tipo2); 
+           paginaActual.erroresPagina.insertarError("Semantico", "No es valido multiplicar un "+ tipo1+" con un "+ tipo2); 
            return "nulo"; 
         }
     }

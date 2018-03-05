@@ -12,7 +12,7 @@ import CJS.ARBOL.INSTRUCCIONES.DeclaAsig;
 import CJS.TablaSimbolos.tablaSimbolos;
 import CJS.elementoRetorno;
 import CJS.objetoBase;
-import static proyecto1_201122872.Proyecto1_201122872.erroresEjecucion;
+import static proyecto1_201122872.Proyecto1_201122872.paginaActual;
 
 /**
  *
@@ -67,7 +67,7 @@ public class Para extends objetoBase{
             }
             resultado.detener=false;
         }else{
-           erroresEjecucion.insertarError("Semantico", "Tipo de expresion no valido para una expresion de una sentencia Para");
+           paginaActual.erroresPagina.insertarError("Semantico", "Tipo de expresion no valido para una expresion de una sentencia Para");
         }
         contexto--;
         System.out.println("fin para");

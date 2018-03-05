@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package proyecto1_201122872.CHTML.ElemetoPropiedad;
-import static proyecto1_201122872.Proyecto1_201122872.erroresEjecucion;
+import static proyecto1_201122872.Proyecto1_201122872.paginaActual;
 
 /**
  *
@@ -24,7 +24,7 @@ public class propiedadAlineado extends propiedad{
         }else if(valor.equalsIgnoreCase("centrado")){
             this.alineado="centrado";
         }else{
-            erroresEjecucion.insertarError("Semantico", "Una alineacion no puede ser de tipo "+ alineacion.toString());
+            paginaActual.erroresPagina.insertarError("Semantico", "Una alineacion no puede ser de tipo "+ alineacion.toString());
             this.alineado= "izquierda";
         }
         

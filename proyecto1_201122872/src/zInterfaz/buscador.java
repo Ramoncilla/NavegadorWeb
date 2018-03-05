@@ -7,6 +7,8 @@ package zInterfaz;
 
 import java.awt.Dimension;
 import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -85,6 +87,7 @@ public class buscador extends javax.swing.JFrame {
         jToolBar1.add(btnCargar);
 
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTextField1.setText("C:\\Users\\Ramonella\\Documents\\Repositorios\\Proyecto1\\NavegadorWeb\\proyecto1_201122872\\ArchivosEntrada\\ejemplo.chtml");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -168,8 +171,12 @@ public class buscador extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
-        // TODO add your handling code here:
-        CargarPagina();
+        try {
+            // TODO add your handling code here:
+            CargarPagina();
+        } catch (Exception ex) {
+            Logger.getLogger(buscador.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnCargarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -205,7 +212,7 @@ public class buscador extends javax.swing.JFrame {
     }
     
     
-    public void CargarPagina(){
+    public void CargarPagina() throws Exception{
         String ruta= jTextField1.getText();
         File nuevo = new File(ruta);
         if(nuevo.exists() && !nuevo.isDirectory()){
@@ -214,12 +221,11 @@ public class buscador extends javax.swing.JFrame {
             for (int i = 0; i < this.listaPaginas.panelesPagina.size(); i++) {
                 temporal= this.listaPaginas.panelesPagina.get(i);
                 if(temporal.idPagina==jTabbedPane1.getSelectedIndex()){
-                    listaPaginas.panelesPagina.get(i).areaWeb.setText("dfdffdgfgfd");
                     listaPaginas.panelesPagina.get(i).setNombrePagina(nombrePagina);
                     listaPaginas.panelesPagina.get(i).setRutaPagina(ruta);
-                    jTabbedPane1.setTitleAt(jTabbedPane1.getSelectedIndex(), nombrePagina);
-                }
-                
+                    listaPaginas.panelesPagina.get(i).dibujarPagina();
+                  jTabbedPane1.setTitleAt(jTabbedPane1.getSelectedIndex(), nombrePagina);
+                }        
             }        
         }else{
             JOptionPane.showMessageDialog(null,"Error, ruta no valida.", "USAC-WEB", JOptionPane.INFORMATION_MESSAGE);

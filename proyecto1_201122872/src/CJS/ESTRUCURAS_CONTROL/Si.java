@@ -10,7 +10,7 @@ import CJS.ARBOL.EXPRESION.Datee;
 import CJS.TablaSimbolos.tablaSimbolos;
 import CJS.elementoRetorno;
 import CJS.objetoBase;
-import static proyecto1_201122872.Proyecto1_201122872.erroresEjecucion;
+import static proyecto1_201122872.Proyecto1_201122872.paginaActual;
 
 /**
  *
@@ -50,7 +50,7 @@ public class Si extends objetoBase{
                 resultado= cuerpoFalso.Ejecutar(tabla, contexto);
             }
         }else{
-           erroresEjecucion.insertarError("Semantico", "Tipo de expresion no valido para una expresion de una sentencia SI");
+           paginaActual.erroresPagina.insertarError("Semantico", "Tipo de expresion no valido para una expresion de una sentencia SI");
         }
         tabla.eliminarSimbolosLocales(contexto);
         contexto--;

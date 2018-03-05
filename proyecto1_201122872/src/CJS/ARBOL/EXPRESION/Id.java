@@ -12,7 +12,7 @@ import CJS.TablaSimbolos.Simbolo;
 import CJS.TablaSimbolos.tablaSimbolos;
 import CJS.elementoRetorno;
 import CJS.objetoBase;
-import static proyecto1_201122872.Proyecto1_201122872.erroresEjecucion;
+import static proyecto1_201122872.Proyecto1_201122872.paginaActual;
 
 /**
  *
@@ -64,7 +64,7 @@ public class Id extends objetoBase{
            
            
        }else{
-           erroresEjecucion.insertarError("Semantico", "El elemento "+id+", no existe");
+           paginaActual.erroresPagina.insertarError("Semantico", "El elemento "+id+", no existe");
        }
        
         

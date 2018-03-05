@@ -5,10 +5,7 @@
  */
 package CJS.TablaSimbolos;
 
-import CJS.objetoBase;
-import java.util.ArrayList;
-import java.util.List;
-import static proyecto1_201122872.Proyecto1_201122872.erroresEjecucion;
+import static proyecto1_201122872.Proyecto1_201122872.paginaActual;
 
 /**
  *
@@ -54,11 +51,11 @@ public class SimbArreglo extends Simbolo{
                     }
                 }
             }else{
-                erroresEjecucion.insertarError("Semantico", "El tamanho del arreglo "+ this.nombre+", es de "+ vector.length+", no se puede acceder a la posicion "+ pos);
+                paginaActual.erroresPagina.insertarError("Semantico", "El tamanho del arreglo "+ this.nombre+", es de "+ vector.length+", no se puede acceder a la posicion "+ pos);
                 return "nulo";
             }
         }else{
-           erroresEjecucion.insertarError("Semantico", "No se puede acceder a posciones negativas del arreglo "+this.nombre);
+           paginaActual.erroresPagina.insertarError("Semantico", "No se puede acceder a posciones negativas del arreglo "+this.nombre);
            return "nulo"; 
         }  
       

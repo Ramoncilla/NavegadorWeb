@@ -25,7 +25,7 @@ import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadId;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadRuta;
 import proyecto1_201122872.CHTML.Etiqueta;
 import proyecto1_201122872.CHTML.listaElementos;
-import static proyecto1_201122872.Proyecto1_201122872.erroresEjecucion;
+import static proyecto1_201122872.Proyecto1_201122872.paginaActual;
 
 /**
  *
@@ -35,7 +35,7 @@ public class Imagen extends Etiqueta implements MouseListener {
 
     public listaElementos elementosImagen;
     public String rutaImagen;
-    private JLabel imagen;
+    public JLabel imagen;
     public String nombreFuncionClick;
 
     public Imagen(Object elementos, Object ruta) {
@@ -59,7 +59,7 @@ public class Imagen extends Etiqueta implements MouseListener {
     }
 
     @Override
-    public Object retornarHtml() {
+    public Etiqueta retornarHtml() {
         
         agregarElementos();
         imagen = new JLabel();
@@ -84,7 +84,7 @@ public class Imagen extends Etiqueta implements MouseListener {
         }
         imagen.addMouseListener(this);
         imagen.setVisible(true);
-        return imagen;
+        return this;
     }
 
     
@@ -132,31 +132,31 @@ public class Imagen extends Etiqueta implements MouseListener {
             if(temporal instanceof  propiedadAlineado){
                 propiedadAlineado p = (propiedadAlineado)temporal;
                 if(!asignarAlineado(p.alineado)){
-                    erroresEjecucion.insertarError("Semantico", "Elemento no valido para la alineacion del boton");
+                    paginaActual.erroresPagina.insertarError("Semantico", "Elemento no valido para la alineacion del boton");
                 }
             }else if(temporal instanceof propiedadId){
                  propiedadId p = (propiedadId)temporal;
                 if(!asignarID(p.idElemento)){
-                    erroresEjecucion.insertarError("Semantico", "Elemento no valido para la alineacion el ID de un boton");
+                    paginaActual.erroresPagina.insertarError("Semantico", "Elemento no valido para la alineacion el ID de un boton");
                 }
                 
             }else if(temporal instanceof propiedadGrupo){
                 propiedadGrupo p = (propiedadGrupo)temporal;
                 if(!asignarGrupo(p.grupo)){
-                    erroresEjecucion.insertarError("Semantico", "Elemento no valido para la alineacion el ID de un boton");
+                    paginaActual.erroresPagina.insertarError("Semantico", "Elemento no valido para la alineacion el ID de un boton");
                 }
                 
             }else if(temporal instanceof propiedadAlto){
                 propiedadAlto p = (propiedadAlto)temporal;
                 if(!asignarAlto(p.alturaComponente)){
                   
-                    erroresEjecucion.insertarError("Semantico", "Elemento no valido para la alineacion el ID de un boton");
+                    paginaActual.erroresPagina.insertarError("Semantico", "Elemento no valido para la alineacion el ID de un boton");
                 }
                 
             }else if(temporal instanceof propiedadAncho){
                 propiedadAncho p = (propiedadAncho)temporal;
                 if(!asignarAncho(p.valorAncho)){
-                    erroresEjecucion.insertarError("Semantico", "Elemento no valido para la alineacion el ID de un boton");
+                    paginaActual.erroresPagina.insertarError("Semantico", "Elemento no valido para la alineacion el ID de un boton");
                 }
                 
             }else if(temporal instanceof propiedadClick){

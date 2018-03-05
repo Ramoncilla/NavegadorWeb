@@ -23,7 +23,7 @@ public class LectoArchivos {
     }
     
     public String obtenerContenidoArchivo(){
-        String cadena="Archivo Vacio";
+        String cadena="";
         File archivo = null;
         FileReader fr = null;
         BufferedReader br = null;
@@ -55,7 +55,7 @@ public class LectoArchivos {
     
     
       public String obtenerContenidoArchivo(String ruta){
-        String cadena="Archivo Vacio";
+        String cadena="";
         File archivo = null;
         FileReader fr = null;
         BufferedReader br = null;

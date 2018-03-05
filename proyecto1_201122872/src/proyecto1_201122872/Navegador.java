@@ -49,9 +49,7 @@ import proyecto1_201122872.CHTML.BODY.Salto;
 import proyecto1_201122872.CHTML.BODY.Texto;
 import proyecto1_201122872.CHTML.BODY.jTextPane;
 import proyecto1_201122872.CHTML.Chtml;
-import static proyecto1_201122872.Proyecto1_201122872.erroresEjecucion;
-import static proyecto1_201122872.Proyecto1_201122872.cadenaImpresion;
-import static proyecto1_201122872.Proyecto1_201122872.lFunciones;
+import static proyecto1_201122872.Proyecto1_201122872.paginaActual;
 
 /**
  *
@@ -445,7 +443,7 @@ doc.insertAfterEnd(doc.getCharacterElement(doc.getLength()),tabla);
                 temporal = h.get(i);
                 
                 if(temporal instanceof Funcion){
-                    lFunciones.insertarFuncion((Funcion) temporal);
+                    paginaActual.retCJS.lFunciones.insertarFuncion((Funcion) temporal);
                 }else{
                     sentencias.add(temporal);
                 }
@@ -467,10 +465,10 @@ doc.insertAfterEnd(doc.getCharacterElement(doc.getLength()),tabla);
             System.out.println(g.Ejecutar().ValorRetorno);
            */
             jTextPane2.setContentType("text/html");
-           jTextPane2.setText(cadenaImpresion);
+           //jTextPane2.setText(cadenaImpresion);
             
            jTextPane3.setContentType("text/html");
-           jTextPane3.setText(erroresEjecucion.getErroresHTML());
+           jTextPane3.setText(paginaActual.erroresPagina.getErroresHTML());
   
              jTextPane4.setContentType("text/html");
           jTextPane4.setText(tabla.imprimirHTML());
@@ -486,7 +484,7 @@ doc.insertAfterEnd(doc.getCharacterElement(doc.getLength()),tabla);
     
     
     private void ejecutar() throws Exception{
-        String rutaArchivo = jTextField1.getText();
+       /* String rutaArchivo = jTextField1.getText();
         int a= 1;
         int b = a+++1;
         
@@ -508,7 +506,8 @@ doc.insertAfterEnd(doc.getCharacterElement(doc.getLength()),tabla);
             Chtml  etiquet= parserHtml.codigoHTML;
             etiquet.body.imprimir();
             jTextPane1.setContentType("text/html");
-            List<Object> v = (ArrayList<Object>)etiquet.body.ejecutarCuerpo();
+            List<Object> v;
+              v = (ArrayList<Object>)etiquet.body.ejecutarCuerpo();
             for (int i = 0; i < v.size(); i++) {
                 if(v.get(i) instanceof JButton){
                     JButton j = (JButton) v.get(i);
@@ -529,7 +528,7 @@ doc.insertAfterEnd(doc.getCharacterElement(doc.getLength()),tabla);
                     HTMLDocument doc=(HTMLDocument) jTextPane1.getStyledDocument();
                     doc.insertAfterEnd(doc.getCharacterElement(doc.getLength()),"<br>");
                                        
-                   /*StyledDocument doc = jTextPane1.getStyledDocument();
+                   --StyledDocument doc = jTextPane1.getStyledDocument();
 
                     //  Define a keyword attribute
 
@@ -545,7 +544,7 @@ doc.insertAfterEnd(doc.getCharacterElement(doc.getLength()),tabla);
                         
                         doc.insertString(doc.getLength(), "\n",null);
                     }
-                    catch(Exception e) { System.out.println(e); }*/
+                    catch(Exception e) { System.out.println(e); }--
  
                 }else if(v.get(i) instanceof JLabel){
                     JLabel j = (JLabel)v.get(i);
@@ -556,7 +555,7 @@ doc.insertAfterEnd(doc.getCharacterElement(doc.getLength()),tabla);
                     Texto txt= (Texto)v.get(i);
                     HTMLDocument doc=(HTMLDocument) jTextPane1.getStyledDocument();
                     doc.insertAfterEnd(doc.getCharacterElement(doc.getLength()),txt.cadenaHTML);
-                }*/else if(v.get(i) instanceof JComboBox){
+                }--else if(v.get(i) instanceof JComboBox){
                     JComboBox j = (JComboBox)v.get(i);
                     jTextPane1.setCaretPosition(jTextPane1.getStyledDocument().getLength());
                     jTextPane1.insertComponent(j);
@@ -577,107 +576,13 @@ doc.insertAfterEnd(doc.getCharacterElement(doc.getLength()),tabla);
         }  
         }
         
-        
+        */
     }
     
     
     
     
-     private void ejecutar2() throws Exception{
-         jPanel2= new JPanel(new GridLayout(4,4,4,4));
-        String rutaArchivo = jTextField1.getText();
-        int a= 1;
-        int b = a+++1;
-        
-        if(rutaArchivo.isEmpty()){
-            System.out.println("Direccion no valida");
-            return;
-        }else{
-          LectoArchivos lector = new LectoArchivos(rutaArchivo);
-        String cadena=lector.obtenerContenidoArchivo();
-        if(cadena.isEmpty()){
-            System.out.println(" No es posible evaluar una cadena vacia");
-            return;
-        }else{
-            System.out.println("Inicio de Analisis");
-            scannerCHTML scannerHtml = new scannerCHTML(new BufferedReader(new StringReader(cadena)));
-            Parser parserHtml = new Parser(scannerHtml);
-            parserHtml.parse();
-            
-            Chtml  etiquet= parserHtml.codigoHTML;
-            etiquet.body.imprimir();
-           
-            List<Object> v = (ArrayList<Object>)etiquet.body.ejecutarCuerpo();
-            for (int i = 0; i < v.size(); i++) {
-                if(v.get(i) instanceof JButton){
-                    JButton j = (JButton) v.get(i);
-                    Dimension f= j.getPreferredSize();
-                    j.setBounds(f.width, f.height, 30, 40);
-                    jPanel2.add(j);
-
-                   
-                }else if(v.get(i) instanceof JTextField){
-                    JTextField j = (JTextField)v.get(i);
-                   Dimension f= j.getPreferredSize();
-                    j.setBounds(f.height, f.width, 60, 90);
-                    jPanel2.add(j);
-                    //jTextPane1.setCaretPosition(jTextPane1.getStyledDocument().getLength());
-                  //  jTextPane1.insertComponent(j);
-                }else if(v.get(i) instanceof JTextArea){
-                    JTextArea j = (JTextArea)v.get(i);
-                    jTextPane1.setCaretPosition(jTextPane1.getStyledDocument().getLength());
-                    jPanel2.add(j);
-                }else if(v.get(i) instanceof Salto){
-                    //jTextPane1.setCaretPosition(jTextPane1.getStyledDocument().getLength());
-                    //HTMLDocument doc=(HTMLDocument) jTextPane1.getStyledDocument();
-                    //doc.insertAfterEnd(doc.getCharacterElement(doc.getLength()),"<br>");
-                                       
-                   /*StyledDocument doc = jTextPane1.getStyledDocument();
-
-                    //  Define a keyword attribute
-
-                    SimpleAttributeSet keyWord = new SimpleAttributeSet();
-                    StyleConstants.setForeground(keyWord, Color.RED);
-                    StyleConstants.setBackground(keyWord, Color.YELLOW);
-                    StyleConstants.setBold(keyWord, true);
-
-                    //  Add some text
-
-                    try
-                    {
-                        
-                        doc.insertString(doc.getLength(), "\n",null);
-                    }
-                    catch(Exception e) { System.out.println(e); }*/
- 
-                }else if(v.get(i) instanceof JLabel){
-                    JLabel j = (JLabel)v.get(i);
-                    jPanel2.add(j);
-
-                  
-                }else if(v.get(i) instanceof Texto){
-                    Texto txt= (Texto)v.get(i);
-                    
-
-                }else if(v.get(i) instanceof JComboBox){
-                    JComboBox j = (JComboBox)v.get(i);
-                    jPanel2.add(j);
-
-                }else if(v.get(i) instanceof JTextPane){
-                    JTextPane j = (JTextPane)v.get(i);
-                    jPanel2.add(j);
-
-                }
-            }
-  
-            
-            
-           System.out.println("Fin de analisis");  
-        }  
-        }
-        
-        
-    }
+     
     
     
     

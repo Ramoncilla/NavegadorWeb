@@ -10,7 +10,7 @@ import CJS.ARBOL.EXPRESION.Datee;
 import CJS.TablaSimbolos.tablaSimbolos;
 import CJS.elementoRetorno;
 import CJS.objetoBase;
-import static proyecto1_201122872.Proyecto1_201122872.cadenaImpresion;
+import static proyecto1_201122872.Proyecto1_201122872.paginaActual;
 
 /**
  *
@@ -30,14 +30,14 @@ public class Imprimir extends objetoBase {
         elementoRetorno ret = expresionMostrar.Ejecutar(tabla, contexto);
         if(ret.ValorRetorno instanceof Datee){
             Datee fecha = (Datee) ret.ValorRetorno;
-            cadenaImpresion +="> "+ fecha.getDate()+"<br>";
+            paginaActual.cadenaSalida +="> "+ fecha.getDate()+"<br>";
             
         }else if(ret.ValorRetorno instanceof DateTime){
             DateTime fecha = (DateTime)ret.ValorRetorno;
-             cadenaImpresion +="> "+ fecha.getDateTime()+"<br>";
+             paginaActual.cadenaSalida +="> "+ fecha.getDateTime()+"<br>";
             
         }else{
-            cadenaImpresion +="> "+ ret.ValorRetorno.toString()+"<br>";
+            paginaActual.cadenaSalida +="> "+ ret.ValorRetorno.toString()+"<br>";
         }
         
         return ret;

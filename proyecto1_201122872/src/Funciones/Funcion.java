@@ -17,7 +17,7 @@ import CJS.elementoRetorno;
 import CJS.objetoBase;
 import java.util.ArrayList;
 import java.util.List;
-import static proyecto1_201122872.Proyecto1_201122872.erroresEjecucion;
+import static proyecto1_201122872.Proyecto1_201122872.paginaActual;
 
 /**
  *
@@ -73,12 +73,12 @@ public class Funcion extends objetoBase {
                 }
                 return true;
             }else{
-                erroresEjecucion.insertarError("Semantico", "Numero de parmetros no coincide con la funcion "+ this.nombreFuncion);
+                paginaActual.erroresPagina.insertarError("Semantico", "Numero de parmetros no coincide con la funcion "+ this.nombreFuncion);
             return false;
             }
             
         }else{
-            erroresEjecucion.insertarError("Semantico", "Parametros no validos para asignar, viene un nulo");
+            paginaActual.erroresPagina.insertarError("Semantico", "Parametros no validos para asignar, viene un nulo");
             return false;
         }
     }

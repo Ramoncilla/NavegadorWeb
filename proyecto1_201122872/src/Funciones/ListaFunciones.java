@@ -7,7 +7,7 @@ package Funciones;
 
 import java.util.ArrayList;
 import java.util.List;
-import static proyecto1_201122872.Proyecto1_201122872.erroresEjecucion;
+import static proyecto1_201122872.Proyecto1_201122872.paginaActual;
 
 /**
  *
@@ -44,7 +44,7 @@ public class ListaFunciones {
             this.funciones.add(fun);
             return true;
         }else{
-            erroresEjecucion.insertarError("Semantico", "Ya existe la funcion llamada "+ fun.nombreFuncion+", que cuenta con "+fun.noParametros+" parametros");
+            paginaActual.erroresPagina.insertarError("Semantico", "Ya existe la funcion llamada "+ fun.nombreFuncion+", que cuenta con "+fun.noParametros+" parametros");
             return false;
         }
         

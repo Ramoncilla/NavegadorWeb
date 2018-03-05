@@ -15,7 +15,7 @@
 
 	<cuerpo>
 	<boton alto="100"; ancho="400"; alineado="derecha";>mi<fin-boton>
-	<salto-fin>
+	
 	
 	<imagen>C:\Users\Ramonella\Desktop\imagen.jpg<fin-imagen>
 	
@@ -23,43 +23,43 @@
 		<boton alto="100"; ancho="200"; alineado="derecha";>Prueba<fin-boton>
 	<fin-panel>
 	
-	<salto-fin>
+	
 	
 	<enlace>enlace de prueba<fin-enlace>
-	<salto-fin>
+	
 	<enlace ruta="sfdfdfd"; alineado="centrado"; ancho="300";>enlace de prueba2<fin-enlace>
-	<salto-fin>
-	<caja alineado="derecha";>
+	
+	<caja alineado="derecha"; ancho="200";>
 	<opcion valor="1";>Mario<fin-opcion>
-	<opcion>Myrna<fin-opcion>
+	<opcion>recargaa<fin-opcion>
 	<opcion valor="3";>Adriana<fin-opcion>
 	<opcion valor="4";>Alina<fin-opcion>
 	<fin-caja>
 	
 	<spinner><fin-spinner>
-	<salto-fin>
+	
 	<spinner>10<fin-spinner>
-	<salto-fin>
+	
 	<spinner alineado="centrado"; alto="100";><fin-spinner>
-	<salto-fin>
+	
 			
-			<salto-fin>
-			<salto-fin>
-			<imagen ancho="200"; alto="200"; ruta="C:\Users\Ramonella\Desktop\carita.gif";><fin-imagen>
-			<salto-fin>
+			
+			
+			<imagen ancho="200"; alto="200"; ruta="C:\Users\Ramonella\Desktop\imagen2.jpg";><fin-imagen>
+			
 			<boton>boton nueco :D <fin-boton>
 			
-			<salto-fin>
 			
-			<salto-fin>
-			<boton>vida<fin-boton><salto-fin>
-			<boton>te<fin-boton><salto-fin>
-			<boton>amo<fin-boton><salto-fin>
+			
+			
+			<boton>vida<fin-boton>
+			<boton>te<fin-boton>
+			<boton>amo<fin-boton>
 			
 			<texto alineado="derecha";>esto es una prueba del texto<fin-texto>
-			<salto-fin>
+			
 			<texto_a alineado="derecha";> esto es una prueba del texto area<fin-texto_a>
-	<salto-fin>
+	
 	<caja_texto alineado="derecha"; alto="100";> este es un jtextField<fin-caja_texto>
 	<fin-cuerpo>
 	

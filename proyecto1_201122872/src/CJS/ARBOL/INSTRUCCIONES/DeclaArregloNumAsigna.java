@@ -8,7 +8,7 @@ package CJS.ARBOL.INSTRUCCIONES;
 import CJS.TablaSimbolos.tablaSimbolos;
 import CJS.elementoRetorno;
 import CJS.objetoBase;
-import static proyecto1_201122872.Proyecto1_201122872.erroresEjecucion;
+import static proyecto1_201122872.Proyecto1_201122872.paginaActual;
 
 /**
  *
@@ -37,10 +37,10 @@ public class DeclaArregloNumAsigna extends objetoBase{
                 arregloDeclaracion.Ejecutar(tabla, contexto);
                 arregloAsigna.Ejecutar(tabla, contexto);
             }else{
-                erroresEjecucion.insertarError("Semantica", "No coincide el numero de elementos con el valor asignado al arreglo");
+                paginaActual.erroresPagina.insertarError("Semantica", "No coincide el numero de elementos con el valor asignado al arreglo");
             } 
         }else{
-           erroresEjecucion.insertarError("Semantica", "Expresion no valida para tamanho de una arreglo"); 
+           paginaActual.erroresPagina.insertarError("Semantica", "Expresion no valida para tamanho de una arreglo"); 
         }
         return new elementoRetorno();
     }

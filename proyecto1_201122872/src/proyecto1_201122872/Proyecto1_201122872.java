@@ -10,6 +10,7 @@ import Funciones.ListaFunciones;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import zInterfaz.Pagina;
 import zInterfaz.buscador;
 
 /**
@@ -18,18 +19,20 @@ import zInterfaz.buscador;
  */
 public class Proyecto1_201122872 {
 
-    public static String archivoActual="archivin";
-    public static tablaErrores erroresEjecucion;
-    public static String cadenaImpresion;
-    public static ListaFunciones lFunciones;
+   // public static String archivoActual="archivin";
+   // public static tablaErrores erroresEjecucion;
+    //public static String cadenaImpresion;
+    //public static ListaFunciones lFunciones;
+    
+    public static Pagina paginaActual= new Pagina(1000);
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        erroresEjecucion= new tablaErrores();
+        /*erroresEjecucion= new tablaErrores();
         cadenaImpresion="";
-        lFunciones= new ListaFunciones();
+        lFunciones= new ListaFunciones();*/
         Navegador n= new Navegador();
         //n.show();
         buscador g= new buscador();

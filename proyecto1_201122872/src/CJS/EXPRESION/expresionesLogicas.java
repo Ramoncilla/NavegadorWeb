@@ -5,7 +5,7 @@
  */
 package CJS.EXPRESION;
 
-import static proyecto1_201122872.Proyecto1_201122872.erroresEjecucion;
+import static proyecto1_201122872.Proyecto1_201122872.paginaActual;
 
 /**
  *
@@ -43,7 +43,7 @@ public class expresionesLogicas extends expresionBase {
                     return "falso";
                 }
         }
-        erroresEjecucion.insertarError("Semantico", "Tipos no validos para realizar un opeacion OR " + tipo1 + " y " + tipo2);
+        paginaActual.erroresPagina.insertarError("Semantico", "Tipos no validos para realizar un opeacion OR " + tipo1 + " y " + tipo2);
         return "nulo";
     }
 
@@ -61,7 +61,7 @@ public class expresionesLogicas extends expresionBase {
                     return "falso";
                 }
         }
-        erroresEjecucion.insertarError("Semantico", "Tipos no validos para realizar un opeacion AND " + tipo1 + " y " + tipo2);
+        paginaActual.erroresPagina.insertarError("Semantico", "Tipos no validos para realizar un opeacion AND " + tipo1 + " y " + tipo2);
         return "nulo";
     }
 
@@ -79,7 +79,7 @@ public class expresionesLogicas extends expresionBase {
                 }
             
         }
-        erroresEjecucion.insertarError("Semantico", "Tipos no validos para realizar un opeacion NOT " + tipo1);
+        paginaActual.erroresPagina.insertarError("Semantico", "Tipos no validos para realizar un opeacion NOT " + tipo1);
         return "nulo";
     }
 

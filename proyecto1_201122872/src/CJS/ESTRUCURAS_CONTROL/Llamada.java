@@ -11,8 +11,7 @@ import CJS.objetoBase;
 import Funciones.Funcion;
 import java.util.ArrayList;
 import java.util.List;
-import static proyecto1_201122872.Proyecto1_201122872.lFunciones;
-import static proyecto1_201122872.Proyecto1_201122872.erroresEjecucion;
+import static proyecto1_201122872.Proyecto1_201122872.paginaActual;
 /**
  *
  * @author Ramonella
@@ -31,7 +30,7 @@ public class Llamada extends objetoBase{
     @Override
     public elementoRetorno Ejecutar(tablaSimbolos tabla, int contexto) {
         elementoRetorno ret= new elementoRetorno() ;
-        Funcion funcionBuscada = lFunciones.obtenerFuncion(nombreFuncion, parametros.size());
+        Funcion funcionBuscada = paginaActual.retCJS.lFunciones.obtenerFuncion(nombreFuncion, parametros.size());
         if (funcionBuscada != null) {
             contexto++;
             if (funcionBuscada.asignarParametros(this.parametros, contexto, tabla)) {
@@ -40,11 +39,11 @@ public class Llamada extends objetoBase{
                 tabla.eliminarSimbolosLocales(contexto);
                 contexto--;
             }else {
-            erroresEjecucion.insertarError("Semantico", "No se pudo realizar la llamada a la funcion "+ this.nombreFuncion );
+            paginaActual.erroresPagina.insertarError("Semantico", "No se pudo realizar la llamada a la funcion "+ this.nombreFuncion );
         }
 
         } else {
-            erroresEjecucion.insertarError("Semantico", "No existe la funcion " + nombreFuncion + " con " + parametros.size());
+            paginaActual.erroresPagina.insertarError("Semantico", "No existe la funcion " + nombreFuncion + " con " + parametros.size());
         }
         //tabla.eliminarSimbolosLocales(contexto);
         super.retorno.ValorRetorno=ret.ValorRetorno;

@@ -21,7 +21,7 @@ public class Salto extends Etiqueta {
       }
 
     @Override
-    public Object retornarHtml() {
+    public Etiqueta retornarHtml() {
         return new Salto();
     }
       

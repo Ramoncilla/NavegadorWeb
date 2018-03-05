@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import proyecto1_201122872.CHTML.Etiqueta;
-import static proyecto1_201122872.Proyecto1_201122872.erroresEjecucion;
+import static proyecto1_201122872.Proyecto1_201122872.paginaActual;
 
 /**
  *
@@ -105,18 +105,18 @@ public class tablaSimbolos {
                                         this.listaSimbolos.set(i, j);
                                         return true;
                                     } else {
-                                        erroresEjecucion.insertarError("semantico", "La variable " + valId + ", no es de tipo numerico, no se pudo realizar la operacion con el unario");
+                                        paginaActual.erroresPagina.insertarError("semantico", "La variable " + valId + ", no es de tipo numerico, no se pudo realizar la operacion con el unario");
                                         return false;
 
                                     }
 
                                 } else {
-                                    erroresEjecucion.insertarError("semantico", "La variable " + valId + ", no esta inicializada, no se puede realizar la asignaicon");
+                                    paginaActual.erroresPagina.insertarError("semantico", "La variable " + valId + ", no esta inicializada, no se puede realizar la asignaicon");
                                     return false;
 
                                 }
                             } else {
-                                erroresEjecucion.insertarError("semantico", "No se puede realizar asingnacion al unario " + valId + ", debido a que no es una vairable");
+                                paginaActual.erroresPagina.insertarError("semantico", "No se puede realizar asingnacion al unario " + valId + ", debido a que no es una vairable");
                                 return false;
                             }
                         }
@@ -125,7 +125,7 @@ public class tablaSimbolos {
 
             }
 
-            erroresEjecucion.insertarError("sementico", "No se pudo realizar la operacion de " + valId + " (unario)");
+            paginaActual.erroresPagina.insertarError("sementico", "No se pudo realizar la operacion de " + valId + " (unario)");
             return false;
 
         }
@@ -176,11 +176,11 @@ public class tablaSimbolos {
                                 this.listaSimbolos.set(i, array);
                                 return true;
                             } else {
-                                erroresEjecucion.insertarError("Semantico", "En el indice que desea insertar un elemenot esta fuera de rango");
+                                paginaActual.erroresPagina.insertarError("Semantico", "En el indice que desea insertar un elemenot esta fuera de rango");
                                 return false;
                             }
                         } else {
-                            erroresEjecucion.insertarError("semantico", "El elemento " + nombre + ", no es un arreglo");
+                            paginaActual.erroresPagina.insertarError("semantico", "El elemento " + nombre + ", no es un arreglo");
                             return false;
                         }
                     }
@@ -190,11 +190,11 @@ public class tablaSimbolos {
             }
 
         } else {
-            erroresEjecucion.insertarError("Semantico", "El indice debe ser un numero");
+            paginaActual.erroresPagina.insertarError("Semantico", "El indice debe ser un numero");
             return false;
         }
 
-        erroresEjecucion.insertarError("sementico", "El elemento " + nombre + ", no existe");
+        paginaActual.erroresPagina.insertarError("sementico", "El elemento " + nombre + ", no existe");
         return false;
     }
     
@@ -264,7 +264,7 @@ public class tablaSimbolos {
                                     return true;
                             }
                         } else {
-                            erroresEjecucion.insertarError("semantico", "No existe la variable " + nombre + ", no se puede realizar asignacinon");
+                            paginaActual.erroresPagina.insertarError("semantico", "No existe la variable " + nombre + ", no se puede realizar asignacinon");
                             return false;
                         }
                     }
@@ -275,7 +275,7 @@ public class tablaSimbolos {
 
         }
         
-        erroresEjecucion.insertarError("Semantico", "No se puede realizar la asignacion a " + nombre + ", dicho elemento no existe "+valor);
+        paginaActual.erroresPagina.insertarError("Semantico", "No se puede realizar la asignacion a " + nombre + ", dicho elemento no existe "+valor);
         return false;
      }
     
@@ -313,7 +313,7 @@ public class tablaSimbolos {
                                     return true;
                             }
                         } else {
-                            erroresEjecucion.insertarError("semantico", "No existe la variable " + nombre + ", no se puede realizar asignacinon");
+                            paginaActual.erroresPagina.insertarError("semantico", "No existe la variable " + nombre + ", no se puede realizar asignacinon");
                             return false;
                         }
                     }
@@ -345,7 +345,7 @@ public class tablaSimbolos {
                                     return true;
                             }
                         } else {
-                            erroresEjecucion.insertarError("semantico", "No existe la variable " + nombre + ", no se puede realizar asignacinon");
+                            paginaActual.erroresPagina.insertarError("semantico", "No existe la variable " + nombre + ", no se puede realizar asignacinon");
                             return false;
                         }
                     }
@@ -356,7 +356,7 @@ public class tablaSimbolos {
         
         }
 
-        erroresEjecucion.insertarError("Semantico", "No se puede realizar la asignacion a " + nombre + ", dicho elemento no existe");
+        paginaActual.erroresPagina.insertarError("Semantico", "No se puede realizar la asignacion a " + nombre + ", dicho elemento no existe");
         return false;
     }
         
@@ -377,7 +377,7 @@ public class tablaSimbolos {
                 return true;
             }
         }
-        erroresEjecucion.insertarError("Semantico", "La arreglo "+ nombre+", ya existe en un ambito actual");
+        paginaActual.erroresPagina.insertarError("Semantico", "La arreglo "+ nombre+", ya existe en un ambito actual");
         return false;
     }
     
@@ -394,7 +394,7 @@ public class tablaSimbolos {
                 this.listaSimbolos.add(simb);
                 return true;
             }else{
-                erroresEjecucion.insertarError("Semantico", "La variable "+ simb.nombre+", ya existe en un ambito "+obtenerContexto(contexto));
+                paginaActual.erroresPagina.insertarError("Semantico", "La variable "+ simb.nombre+", ya existe en un ambito "+obtenerContexto(contexto));
                 return false;
             }
         
@@ -409,7 +409,7 @@ public class tablaSimbolos {
                 this.listaSimbolos.add(simb);
                 return true;
             }else{
-                erroresEjecucion.insertarError("Semantico", "La variable "+ simb.nombre+", ya existe en un ambito local");
+                paginaActual.erroresPagina.insertarError("Semantico", "La variable "+ simb.nombre+", ya existe en un ambito local");
                 return false;
             }
         }else{
@@ -419,7 +419,7 @@ public class tablaSimbolos {
                this.listaSimbolos.add(simb);
                 return true; 
             }else{
-                erroresEjecucion.insertarError("Semantico", "La variable "+ simb.nombre+", ya existe en un ambito global");
+                paginaActual.erroresPagina.insertarError("Semantico", "La variable "+ simb.nombre+", ya existe en un ambito global");
                 return false;
             }
             

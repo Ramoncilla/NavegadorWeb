@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Errores;
-import static proyecto1_201122872.Proyecto1_201122872.archivoActual;
+import static proyecto1_201122872.Proyecto1_201122872.paginaActual;
 /**
  *
  * @author Ramonella
@@ -18,7 +18,7 @@ public class Error {
     public String descripcion;
 
     public Error(int linea, int columna, String tipo, String descripcion) {
-        this.archivo= archivoActual;
+        this.archivo= paginaActual.archivoActual;
         this.linea = linea;
         this.columna = columna;
         this.tipo = tipo;
@@ -26,7 +26,7 @@ public class Error {
     }
 
     public Error(String tipo, String descripcion) {
-        this.archivo= archivoActual;
+        this.archivo= paginaActual.archivoActual;
         this.tipo = tipo;
         this.descripcion = descripcion;
         this.linea=0;

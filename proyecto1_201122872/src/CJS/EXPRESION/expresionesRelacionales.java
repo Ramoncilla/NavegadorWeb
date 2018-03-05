@@ -5,7 +5,7 @@
  */
 package CJS.EXPRESION;
 import CJS.ARBOL.EXPRESION.*;
-import static proyecto1_201122872.Proyecto1_201122872.erroresEjecucion;
+import static proyecto1_201122872.Proyecto1_201122872.paginaActual;
 
 /**
  *
@@ -80,7 +80,7 @@ public class expresionesRelacionales extends expresionBase {
                  return "falso";
              }
          }else{
-             erroresEjecucion.insertarError("Semantico", "No es valido hacer una operacion relacional (menor) con  "+ tipo1+" y un "+ tipo2);
+             paginaActual.erroresPagina.insertarError("Semantico", "No es valido hacer una operacion relacional (menor) con  "+ tipo1+" y un "+ tipo2);
              return "nulo";
          }
          
@@ -124,7 +124,7 @@ public class expresionesRelacionales extends expresionBase {
                  return "falso";
              }
          }else{
-             erroresEjecucion.insertarError("Semantico", "No es valido hacer una operacion relacional (mayor) con  "+ tipo1+" y un "+ tipo2);
+             paginaActual.erroresPagina.insertarError("Semantico", "No es valido hacer una operacion relacional (mayor) con  "+ tipo1+" y un "+ tipo2);
              return "nulo";
          }
     }
@@ -167,7 +167,7 @@ public class expresionesRelacionales extends expresionBase {
                  return "falso";
              }
          }else{
-             erroresEjecucion.insertarError("Semantico", "No es valido hacer una operacion relacional (menorIgual) con  "+ tipo1+" y un "+ tipo2);
+             paginaActual.erroresPagina.insertarError("Semantico", "No es valido hacer una operacion relacional (menorIgual) con  "+ tipo1+" y un "+ tipo2);
              return "nulo";
          }
     }
@@ -210,7 +210,7 @@ public class expresionesRelacionales extends expresionBase {
                  return "falso";
              }
          }else{
-             erroresEjecucion.insertarError("Semantico", "No es valido hacer una operacion relacional (mayorIgual) con  "+ tipo1+" y un "+ tipo2);
+             paginaActual.erroresPagina.insertarError("Semantico", "No es valido hacer una operacion relacional (mayorIgual) con  "+ tipo1+" y un "+ tipo2);
              return "nulo";
          }
     }
@@ -253,7 +253,7 @@ public class expresionesRelacionales extends expresionBase {
                  return "falso";
              }
          }else{
-             erroresEjecucion.insertarError("Semantico", "No es valido hacer una operacion relacional (Igual) con  "+ tipo1+" y un "+ tipo2);
+             paginaActual.erroresPagina.insertarError("Semantico", "No es valido hacer una operacion relacional (Igual) con  "+ tipo1+" y un "+ tipo2);
              return "nulo";
          }
     }
@@ -296,7 +296,7 @@ public class expresionesRelacionales extends expresionBase {
                  return "falso";
              }
          }else{
-             erroresEjecucion.insertarError("Semantico", "No es valido hacer una operacion relacional (distinto a) con  "+ tipo1+" y un "+ tipo2);
+             paginaActual.erroresPagina.insertarError("Semantico", "No es valido hacer una operacion relacional (distinto a) con  "+ tipo1+" y un "+ tipo2);
              return "nulo";
          }
     }

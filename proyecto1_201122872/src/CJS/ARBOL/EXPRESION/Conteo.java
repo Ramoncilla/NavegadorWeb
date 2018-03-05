@@ -9,7 +9,7 @@ import CJS.TablaSimbolos.SimbArreglo;
 import CJS.TablaSimbolos.tablaSimbolos;
 import CJS.elementoRetorno;
 import CJS.objetoBase;
-import static proyecto1_201122872.Proyecto1_201122872.erroresEjecucion;
+import static proyecto1_201122872.Proyecto1_201122872.paginaActual;
 
 /**
  *
@@ -44,7 +44,7 @@ public class Conteo extends objetoBase {
            
         }else{
             super.retorno.ValorRetorno= "nulo";
-            erroresEjecucion.insertarError("semantico", "No existe el arreglo "+ nombreArreglo);
+            paginaActual.erroresPagina.insertarError("semantico", "No existe el arreglo "+ nombreArreglo);
         }
         
         return retorno;

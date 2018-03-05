@@ -3,17 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyecto1_201122872.CHTML.HEADER;
-import proyecto1_201122872.CHTML.Etiqueta;
+package CJS.ESTRUCURAS_CONTROL;
+
+import CJS.objetoBase;
+
 /**
  *
  * @author Ramonella
  */
-public class Encabezado extends Etiqueta{
-    
-    
-    
-    
-    
+public class Observador extends objetoBase{
     
 }
