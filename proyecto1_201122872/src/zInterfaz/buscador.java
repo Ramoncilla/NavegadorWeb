@@ -223,8 +223,8 @@ public class buscador extends javax.swing.JFrame {
                 if(temporal.idPagina==jTabbedPane1.getSelectedIndex()){
                     listaPaginas.panelesPagina.get(i).setNombrePagina(nombrePagina);
                     listaPaginas.panelesPagina.get(i).setRutaPagina(ruta);
-                    listaPaginas.panelesPagina.get(i).dibujarPagina();
-                  jTabbedPane1.setTitleAt(jTabbedPane1.getSelectedIndex(), nombrePagina);
+                    String nombre=listaPaginas.panelesPagina.get(i).dibujarPagina();
+                  jTabbedPane1.setTitleAt(jTabbedPane1.getSelectedIndex(), nombre);
                 }        
             }        
         }else{

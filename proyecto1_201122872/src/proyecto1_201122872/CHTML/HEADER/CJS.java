@@ -11,4 +11,11 @@ import proyecto1_201122872.CHTML.Etiqueta;
  */
 public class CJS extends Etiqueta{
     
+    public String rutaCJS;
+    
+    
+    public CJS(Object val){
+        this.rutaCJS= val.toString();
+    }
+    
 }

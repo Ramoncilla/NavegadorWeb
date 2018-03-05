@@ -59,12 +59,6 @@ comentario_multi    = "<//-"~"-//>"
 /* -----------------------------==: COMENTARIOS  :==--------------------------*/
 
 
-
-
-
-
-
-
 <YYINITIAL> ">"         {System.out.println("mayor");  yybegin(SIN_ETIQUETA);            return new Symbol (simbolosCHTML.mayor, yyline+1,yychar+1, new String (yytext()));}
 
 "<"         {System.out.println("menor");  yybegin(YYINITIAL);            return new Symbol (simbolosCHTML.menor, yyline+1,yychar+1, new String (yytext()));}

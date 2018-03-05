@@ -1,12 +1,12 @@
 <chtml>
 	
-	<encabezado id="encabezado"; altO="10"; ancho="32"; alineado="izquierda"; >
+	<encabezado>
 		<cjs ruta="C:\archivo1.cjs";><fin-cjs>
 		<ccss ruta="C:\archivo1.cjs";><fin-ccss>
 		<ccss ruta="C:\archivo1.cjs";><fin-ccss>
 		<cjs ruta="C:\archivo1.cjs";><fin-cjs>
 		
-		<titulo id="encabezado"; altO="10"; ancho="32"; alineado="izquierda";>
+		<titulo>
 		pagina11
 		<fin-titulo>
 		

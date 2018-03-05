@@ -58,6 +58,7 @@ public class Pagina {
     public String cadenaSalida;
     public String archivoActual="";
     public retornoCJS retCJS;
+    public String tituloPagina;
     
     public Pagina(int id){
         retCJS= new retornoCJS();
@@ -74,6 +75,9 @@ public class Pagina {
         this.nombrePagina= "";
         this.rutaPagina = "";
         this.cadenaSalida="";
+        this.historialPagina= new ArrayList<>();
+        this.rutasArchivosCSS= new ArrayList<>();
+        this.rutasArchivosJS= new ArrayList<>();
         
     }
 
@@ -88,6 +92,10 @@ public class Pagina {
         this.erroresPagina= new tablaErrores();
         this.analizadores = new EjecutarAnalizador();
         this.cadenaSalida="";
+        this.archivoActual="";
+        this.tituloPagina="";
+        this.rutasArchivosCSS= new ArrayList<>();
+        this.rutasArchivosJS= new ArrayList<>();
         
     }
     
@@ -104,25 +112,28 @@ public class Pagina {
     }
     
     
-    public void dibujarPagina() throws Exception{
+    public String dibujarPagina() throws Exception{
         reiniciar();
         paginaActual =this;
         Chtml raizHTML = this.analizadores.ejecutarHTML(rutaPagina);
         if(raizHTML!=null){
         Cuerpo cuerpoHTML= raizHTML.body;
         Encabezado encabezadoHTML = raizHTML.header;
+        this.tituloPagina= encabezadoHTML.obtenerTitulos();
+        this.rutasArchivosCSS= encabezadoHTML.obtenerCSS();
+        this.rutasArchivosJS= encabezadoHTML.obtenerCJS();
         List<Etiqueta> componentesHTML = cuerpoHTML.obtenerEtiquetasConElementos();
         //aqui se le aplica el css
         Dibujar(componentesHTML);
-        //retCJS= this.analizadores.ejecutarCJS(this.rutaPagina);
         
-            
+        
+        this.historialPagina.add(rutaPagina);
         }
        
      
         
         
-        
+      return this.tituloPagina;  
     }
     
     

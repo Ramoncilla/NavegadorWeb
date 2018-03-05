@@ -13,6 +13,7 @@ import proyecto1_201122872.CHTML.Etiqueta;
 import proyecto1_201122872.CHTML.Chtml;
 import proyecto1_201122872.CHTML.Opcion;
 import proyecto1_201122872.CHTML.listaElementos;
+import proyecto1_201122872.CHTML.HEADER.*;
 
 
 parser code
@@ -267,20 +268,14 @@ action code
 		
 	tagFinFil_t::= menor finFil_t mayor;
 
-    tagCjs::= menor cjs mayor {:List<propiedad> lista = new ArrayList<>();
-									RESULT= lista;:}
+    tagCjs::= menor cjs mayor {: RESULT=new propiedadRuta("");;:}
 									
-		| menor cjs rutaPropiedad:rt mayor{: List<propiedad> lista = new ArrayList<>();
-											lista.add((propiedad)rt);
-											RESULT= lista;:}; 
+		| menor cjs rutaPropiedad:rt mayor{: RESULT=rt;:};
 		
 	tagFinCjs::= menor finCjs mayor;
 	
-	tagCcss::= menor ccss mayor {:List<propiedad> lista = new ArrayList<>();
-									RESULT= lista;:}
-		| menor ccss rutaPropiedad :rt mayor{: List<propiedad> lista = new ArrayList<>();
-											lista.add((propiedad)rt);
-											RESULT= lista;:}; 
+	tagCcss::= menor ccss mayor {: RESULT=new propiedadRuta("");;:}
+		| menor ccss rutaPropiedad :rt mayor{: RESULT=rt;:}; 
 		
 	tagFinCcss::= menor finCcss mayor;
 	
@@ -401,21 +396,25 @@ action code
 	
 	
 	/*---------------- Encabezado -------------------------*/
-	elementoHeader::= CCJS
-		|CCSS
-		|TITULO;
+	elementoHeader::= CCJS:a{:RESULT=a;:}
+		|CCSS:a{:RESULT=a;:}
+		|TITULO:a{:RESULT=a;:};
 		
-	cuerpoHeader::= cuerpoHeader elementoHeader
-		| elementoHeader;
+	cuerpoHeader::= cuerpoHeader:l elementoHeader:r{:List<Etiqueta> lista = (ArrayList<Etiqueta>)l;
+						lista.add((Etiqueta)r);
+						RESULT=lista;	:}
+		| elementoHeader:r{:List<Etiqueta> lista = new ArrayList<>();
+						lista.add((Etiqueta)r);
+						RESULT=lista;	:};
 		
-	ENCABEZADO::= tagEncabezado cuerpoHeader tagFinEncabezado
-		| tagEncabezado tagFinEncabezado;
+	ENCABEZADO::= tagEncabezado cuerpoHeader:c tagFinEncabezado{:RESULT= new Encabezado(c);:}
+		| tagEncabezado tagFinEncabezado{:RESULT= new Encabezado(new ArrayList<Etiqueta>());:};
 		
 	
-	CCJS::= tagCjs tagFinCjs;
-	CCSS::= tagCcss tagFinCcss;
-	TITULO::= tagTitulo cadena2 tagFinTitulo
-		|tagTitulo tagFinTitulo;
+	CCJS::= tagCjs:p tagFinCjs{:RESULT= new CJS(p);:};
+	CCSS::= tagCcss:p tagFinCcss{:RESULT= new CCSS(p);:};
+	TITULO::= tagTitulo cadena2:c tagFinTitulo{:RESULT= new Titulo(c);:}
+		|tagTitulo tagFinTitulo{:RESULT= new Titulo("");:};
 	
 	
 	/*---------------------- Cuerpo --------------*/

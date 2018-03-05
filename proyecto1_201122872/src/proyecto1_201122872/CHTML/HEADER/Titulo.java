@@ -11,6 +11,16 @@ import proyecto1_201122872.CHTML.Etiqueta;
  */
 public class Titulo extends Etiqueta {
     
+    public String tituloPagina;
+    
+    
+    public Titulo(Object titulo){
+        this.tituloPagina= titulo.toString();
+    }
+    
+    
+    
+    
     
     
     

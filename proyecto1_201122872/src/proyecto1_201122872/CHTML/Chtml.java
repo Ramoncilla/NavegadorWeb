@@ -25,7 +25,7 @@ public class Chtml extends Etiqueta{
     public Chtml(Object elementos, Object header, Object body){
         
         elementosChtml= new listaElementos((ArrayList<propiedad> )elementos);
-       // this.header = (Encabezado)header;
+        this.header = (Encabezado)header;
         this.body= (Cuerpo)body;
         
     }
