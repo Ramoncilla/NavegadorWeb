@@ -6,32 +6,19 @@
 package zInterfaz;
 
 import CJS.ESTRUCURAS_CONTROL.Observador;
-import CJS.TablaSimbolos.tablaSimbolos;
 import CJS.objetoBase;
 import Funciones.Funcion;
 import java.io.BufferedReader;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.JTextPane;
-import javax.swing.text.html.HTMLDocument;
 import proyecto1_201122872.AnalizadorCHTML.Parser;
 import proyecto1_201122872.AnalizadorCHTML.scannerCHTML;
 import proyecto1_201122872.AnalizadorCJS.scannerCJS;
-import proyecto1_201122872.CHTML.BODY.Cuerpo;
-import proyecto1_201122872.CHTML.BODY.Salto;
+import proyecto1_201122872.AnalizadorCSS.ParserCSS;
+import proyecto1_201122872.AnalizadorCSS.scannerCSS;
 import proyecto1_201122872.CHTML.Chtml;
-import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
-import proyecto1_201122872.CHTML.Etiqueta;
-import proyecto1_201122872.CHTML.HEADER.Encabezado;
-import proyecto1_201122872.CHTML.listaElementos;
 import proyecto1_201122872.LectoArchivos;
 
 
@@ -52,7 +39,7 @@ public class EjecutarAnalizador {
             JOptionPane.showMessageDialog(null, "Error, ruta no valida para ejecutar CHTML.", "USAC-WEB", JOptionPane.INFORMATION_MESSAGE);
         }else{
           LectoArchivos lector = new LectoArchivos(ruta);
-        String cadena=lector.obtenerContenidoArchivo();
+        String cadena=lector.obtenerContenidoArchivo(ruta);
         if(cadena.isEmpty()){
            JOptionPane.showMessageDialog(null, "Error, no es posible analizar una cadena vacia para CHTML.", "USAC-WEB", JOptionPane.INFORMATION_MESSAGE);
         }else{
@@ -63,50 +50,7 @@ public class EjecutarAnalizador {
             
            retorno= parserHtml.codigoHTML;
                 System.out.println("Fin de analisis CHTML");  
-           return retorno;
-            /*
-            jTextPane1.setContentType("text/html");
-            List<Object> v = (ArrayList<Object>)etiquet.body.ejecutarCuerpo();
-            for (int i = 0; i < v.size(); i++) {
-                if(v.get(i) instanceof JButton){
-                    JButton j = (JButton) v.get(i);    
-                   jTextPane1.setCaretPosition(jTextPane1.getStyledDocument().getLength());
-                    jTextPane1.insertComponent(j);
-                }else if(v.get(i) instanceof JTextField){
-                    JTextField j = (JTextField)v.get(i);
-                    jTextPane1.setCaretPosition(jTextPane1.getStyledDocument().getLength());
-                    jTextPane1.insertComponent(j);
-                }else if(v.get(i) instanceof JTextArea){
-                    JTextArea j = (JTextArea)v.get(i);
-                    jTextPane1.setCaretPosition(jTextPane1.getStyledDocument().getLength());
-                    jTextPane1.insertComponent(j);
-                }else if(v.get(i) instanceof Salto){
-                    jTextPane1.setCaretPosition(jTextPane1.getStyledDocument().getLength());
-                    HTMLDocument doc=(HTMLDocument) jTextPane1.getStyledDocument();
-                    doc.insertAfterEnd(doc.getCharacterElement(doc.getLength()),"<br>");
-                }else if(v.get(i) instanceof JLabel){
-                    JLabel j = (JLabel)v.get(i);
-                    jTextPane1.setCaretPosition(jTextPane1.getStyledDocument().getLength());
-                    jTextPane1.insertComponent(j);
-                  
-                }else if(v.get(i) instanceof JComboBox){
-                    JComboBox j = (JComboBox)v.get(i);
-                    jTextPane1.setCaretPosition(jTextPane1.getStyledDocument().getLength());
-                    jTextPane1.insertComponent(j);
-                }else if(v.get(i) instanceof JTextPane){
-                    JTextPane j = (JTextPane)v.get(i);
-                    jTextPane1.setCaretPosition(jTextPane1.getStyledDocument().getLength());
-                    jTextPane1.insertComponent(j);
-                 }else if(v.get(i) instanceof JScrollPane){
-                    JScrollPane j = (JScrollPane)v.get(i);
-                    jTextPane1.setCaretPosition(jTextPane1.getStyledDocument().getLength());
-                    jTextPane1.insertComponent(j);
-                }
-            }*/
-  
-            
-            
-      
+           return retorno;      
         }  
         }
         
@@ -157,8 +101,25 @@ public class EjecutarAnalizador {
     }
 
    
-   public void ejecutarCSS(){
+   public void ejecutarCSS(String rutaArchivo) throws Exception{
        
+        if (rutaArchivo.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Error, ruta no valida para ejecutar CSS.", "USAC-WEB", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            LectoArchivos lector = new LectoArchivos(rutaArchivo);
+            String cadena = lector.obtenerContenidoArchivo();
+            if (cadena.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Error, no ess posible analizar una cadena vacia", "USAC-WEB", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                System.out.println("Inicio de Analisis CSS");
+                scannerCSS scannercss = new scannerCSS(new BufferedReader(new StringReader(cadena)));
+                ParserCSS parserCSS = new ParserCSS(scannercss);
+                parserCSS.parse();
+                 System.out.println("Fin de analisis CSS");
+            }
+        }
+
+ 
        
    }
    

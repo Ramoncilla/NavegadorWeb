@@ -14,6 +14,8 @@ b++;
 b++;
 b++;
 b--;
+dimv op: documento.obtener("nuevoSpinner");
+
 imprimir("valor de b "+b);
 imprimir("valor de b simulado "+ (b+3)++);
 imprimir("valor de b simulado "+ b--);

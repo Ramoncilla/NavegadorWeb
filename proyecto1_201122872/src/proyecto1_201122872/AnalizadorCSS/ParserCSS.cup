@@ -1,1 +1,152 @@
 
+package proyecto1_201122872.AnalizadorCSS;
+
+import proyecto1_201122872.AnalizadorCSS.simbolosCSS;
+import java_cup.runtime.*;
+import java.io.*;
+import java.lang.*;
+import java.util.*;
+import java.util.ArrayList;
+
+
+
+parser code
+{:
+ /* -------------------------==: DECLARAR EL ARBOL :==--------------------------*/
+    //public Nodo Gramaticas;     
+   public String cadena="";
+
+	
+
+/* -------------------------==: ERROR SINTACTICO :==--------------------------*/
+public void syntax_error(Symbol s){
+    System.out.println("Error Sintactico -> lexema: " +s.value+" Linea: " +s.right+ " Columna: "+s.left);
+    cadena += "<tr>"
+                + "<td><center><b>" + s.value + "</b></center></td>"
+                + "<td><center><b>" + s.right + "</b></center></td>"
+                + "<td><center><b>" + s.left+ "</b></center></td>"
+                + "</tr>";
+}
+
+/* ------------------==: ERROR SINTACTICO NO RECUPERABLE :==------------------*/
+public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{
+    System.out.println("Error Sintactico No Recuperable-> Lexema: " +s.value+" Linea: "+s.right+ " Columna: "+s.left);
+     cadena += "<tr>"
+                + "<td><center><b>" + s.value + "</b></center></td>"
+                + "<td><center><b>" + s.right + "</b></center></td>"
+                + "<td><center><b>" + s.left+ "</b></center></td>"
+                + "</tr>";
+}
+
+:}
+
+
+action code
+{:
+
+
+:}
+
+
+/*-------- Terminales ---------------*/
+
+
+terminal String idTerminal, grupo, alineado, texto, formato, letra, tamtex, colortext, fondoelemento, autoredimension, horizontal, vertical, visible, borde, opaque, izquierda, derecha, centrado, justificado, negrilla, cursiva, minuscula, mayuscula, capitalT,corAbre,corCierra, igual,abrePar,cierraPar,dosPuntos,puntoComa, coma,mas,menos,multiplicacion, division,verdadero,falso,cadena,numero,id,booleano;
+
+
+
+non terminal INICIO, LISTA_CUERPOS,CUERPO,LISTA_ELEMENTO_CUERPO,ELEMENTO_CUERPO,GRUPO,ID,ELEMENTOS,ELEMENTO,ALINEADO,TEXTO,FORMATO,LETRA,TAMTEX,FONDO_ELEMENTO,AUTOREDIMENSION,VISIBLE,BORDE,OPAQUE,COLORTEXT,VALOR_ALINEADO, VALOR_FORMATO,L_FORMATOS,DIRECCION,EXPRESION,SIMB_ARIT;
+	
+	
+
+		precedence left mas, menos;
+        precedence left multiplicacion, division;
+        
+	
+	start with INICIO;	
+
+
+
+INICIO::= LISTA_CUERPOS;
+
+LISTA_CUERPOS::= CUERPO	
+	|LISTA_CUERPOS CUERPO;
+
+CUERPO::= id corAbre LISTA_ELEMENTO_CUERPO corCierra;
+
+LISTA_ELEMENTO_CUERPO::= LISTA_ELEMENTO_CUERPO ELEMENTO_CUERPO
+	|ELEMENTO_CUERPO;
+
+ELEMENTO_CUERPO::= GRUPO 
+	|ID;
+
+GRUPO::= grupo abrePar id cierraPar puntoComa ELEMENTOS;
+
+ID::= idTerminal abrePar id cierraPar puntoComa ELEMENTOS;
+
+ELEMENTOS::= ELEMENTO
+	|ELEMENTOS ELEMENTO;
+	
+ELEMENTO::= ALINEADO
+	|TEXTO
+	|FORMATO
+	|LETRA
+	|TAMTEX
+	|FONDO_ELEMENTO
+	|AUTOREDIMENSION
+	|VISIBLE
+	|BORDE
+	|OPAQUE
+	|COLORTEXT;
+	
+ALINEADO::= alineado dosPuntos igual VALOR_ALINEADO puntoComa;
+
+VALOR_ALINEADO::= izquierda
+	|derecha
+	|centrado
+	|justificado;
+	
+TEXTO::= texto  dosPuntos igual EXPRESION puntoComa;
+
+FORMATO::= formato dosPuntos igual L_FORMATOS puntoComa;
+
+VALOR_FORMATO::= negrilla 
+	|cursiva
+	|mayuscula
+	|minuscula
+	|capitalT;
+	
+	
+	
+L_FORMATOS::= L_FORMATOS  coma VALOR_FORMATO
+	|VALOR_FORMATO;
+	
+
+LETRA::= letra dosPuntos igual EXPRESION puntoComa;
+
+TAMTEX::= tamtex dosPuntos igual EXPRESION puntoComa; 
+
+FONDO_ELEMENTO::= fondoelemento dosPuntos igual EXPRESION puntoComa;
+
+AUTOREDIMENSION::= autoredimension dosPuntos igual	corAbre booleano coma DIRECCION corCierra puntoComa;
+
+DIRECCION::= horizontal
+	|vertical;
+	
+	
+VISIBLE::= visible dosPuntos igual booleano puntoComa;
+
+BORDE::= borde dosPuntos igual corAbre numero coma cadena coma booleano corCierra puntoComa;
+
+OPAQUE::= opaque dosPuntos igual booleano puntoComa;
+
+COLORTEXT::= colortext dosPuntos igual cadena puntoComa;
+
+EXPRESION::= EXPRESION SIMB_ARIT EXPRESION
+	|booleano
+	|numero
+	|cadena;
+	
+SIMB_ARIT ::= mas
+	|menos| multiplicacion| division;	
+

@@ -27,7 +27,7 @@ public class Encabezado extends Etiqueta{
         for (int i = 0; i < this.etiquetasEncabezado.size(); i++) {
            temporal = this.etiquetasEncabezado.get(i);
            if(temporal instanceof CJS){
-               rutas.add(((CJS)temporal).rutaCJS);
+               rutas.add(((CJS)temporal).ruta.ruta);
            }
         }
       

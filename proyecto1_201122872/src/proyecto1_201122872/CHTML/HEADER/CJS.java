@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package proyecto1_201122872.CHTML.HEADER;
+import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadRuta;
 import proyecto1_201122872.CHTML.Etiqueta;
 /**
  *
@@ -11,11 +12,14 @@ import proyecto1_201122872.CHTML.Etiqueta;
  */
 public class CJS extends Etiqueta{
     
-    public String rutaCJS;
+   public String rutaCJS;
+    public propiedadRuta ruta;
+    
     
     
     public CJS(Object val){
-        this.rutaCJS= val.toString();
+        this.ruta= (propiedadRuta)val;
+        this.rutaCJS= ruta.ruta;
     }
     
 }

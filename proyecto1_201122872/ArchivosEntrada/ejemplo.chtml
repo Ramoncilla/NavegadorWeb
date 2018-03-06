@@ -1,10 +1,8 @@
 <chtml>
 	
 	<encabezado>
-		<cjs ruta="C:\archivo1.cjs";><fin-cjs>
-		<ccss ruta="C:\archivo1.cjs";><fin-ccss>
-		<ccss ruta="C:\archivo1.cjs";><fin-ccss>
-		<cjs ruta="C:\archivo1.cjs";><fin-cjs>
+		
+		<cjs ruta="C:\Users\Ramonella\Documents\Repositorios\Proyecto1\NavegadorWeb\proyecto1_201122872\ArchivosEntrada\ejemplo.cjs";><fin-cjs>
 		
 		<titulo>
 		pagina11
@@ -36,7 +34,7 @@
 	<opcion valor="4";>Alina<fin-opcion>
 	<fin-caja>
 	
-	<spinner><fin-spinner>
+	<spinner id="nuevoSpinner";><fin-spinner>
 	
 	<spinner>10<fin-spinner>
 	

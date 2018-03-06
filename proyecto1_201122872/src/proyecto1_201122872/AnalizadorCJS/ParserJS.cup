@@ -79,9 +79,8 @@ non terminal DECLARACION, ASIGNACION, LISTA_EXPRESIONES,POS_VECTOR,CUERPO,SENTEN
 		precedence left not;
 		precedence left igualIgual, distintoA, menorIgual, mayorIgual,mayor, menor;
 		precedence left mas, menos;
-        precedence left multiplicacion, division;
+        precedence left multiplicacion, division,residuo;
         precedence right potencia;
-		precedence left residuo;
 		precedence left masMas, menosMenos;
 		precedence left abrePar;
         
@@ -272,7 +271,7 @@ TIPOS_EVENTOS::= listo
 	|cliqueado;
 	
 
-OBTENER::= documento punto obtener abrePar cadena cierraPar;
+OBTENER::= documento punto obtener abrePar cadena:c cierraPar{:RESULT = new Obtener(c);:};
 	
 SET_ELEMENTO::= ELEMENTO punto setelemento abrePar cadena coma cadena cierraPar puntoComa;
 	
@@ -287,7 +286,6 @@ LLAMADA::= id:i abrePar LISTA_EXPRESIONES:b cierraPar{: RESULT= new Llamada(i,b)
 
 UNARIO::= EXPRESION:ex masMas{:RESULT= new Unario(ex,"++");:}
 		| EXPRESION:ex menosMenos{:RESULT= new Unario(ex,"--");:};
-	
 	
 	
 SIMB_ARITMETICO::= mas:a{:RESULT= "+";:}
@@ -313,7 +311,7 @@ EXPRESION::= EXPRESION:a SIMB_ARITMETICO:b  EXPRESION:c{:Aritmetica ar= new Arit
 	| EXPRESION:a SIMB_RELACIONAL:b  EXPRESION:c{:Relacional ar= new Relacional(a,b,c); RESULT= ar;:}
 	| EXPRESION:a SIMB_LOGICA:b  EXPRESION:c{:Logica ar= new Logica(a,b,c); RESULT= ar;:}
 	| not EXPRESION:a{:NOT n = new NOT(a); RESULT=n;:}
-	| OBTENER
+	| OBTENER:a{:RESULT=a;:}
 	| UNARIO:a{:RESULT=a;:}
     | id:a{:Id i= new Id(a); RESULT= i;:}
     | POS_VECTOR:a{:RESULT=a;:}

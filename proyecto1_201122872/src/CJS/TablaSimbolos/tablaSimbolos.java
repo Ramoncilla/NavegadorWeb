@@ -206,7 +206,7 @@ public class tablaSimbolos {
         String tipoValor = tipoExpresion(valor); // numero, cadena, date, etiqueta, listaObjectos
         int tipoValorEntero = tipoExpresionEntero(valor);
         SimbVariable variable;
-        SimbEtiqueta etiquetal;
+        SimbEtiqueta etiqueta;
         SimbArreglo arreglo;
         if(tipoValorEntero ==1){
             variable = new SimbVariable(simb.nombre, simb.contexto);
@@ -225,6 +225,14 @@ public class tablaSimbolos {
            arreglo.tamanhoArreglo=noPos;
            arreglo.vector=valores;
            return arreglo;
+        }
+        if(tipoValorEntero ==2){
+            SimbEtiqueta t = (SimbEtiqueta)valor;
+            etiqueta= new SimbEtiqueta(t.etiquetaHTML);
+            etiqueta.ambito=simb.ambito;
+            etiqueta.contexto=simb.contexto;
+            etiqueta.nombre=simb.nombre;
+            return etiqueta;
         }
   
         return "nulo";
@@ -255,6 +263,10 @@ public class tablaSimbolos {
                                     }
                                     return true;
                                 case 2: // es una etiqueta
+                                    if(res instanceof SimbEtiqueta){
+                                        SimbEtiqueta nueva = (SimbEtiqueta)res;
+                                        this.listaSimbolos.set(i, nueva);
+                                    }
                                     return true;
                                 case 3: // es un arreglo
                                     if (res instanceof SimbArreglo) {
@@ -264,6 +276,8 @@ public class tablaSimbolos {
                                     return true;
                             }
                         } else {
+                            
+                            
                             paginaActual.erroresPagina.insertarError("semantico", "No existe la variable " + nombre + ", no se puede realizar asignacinon");
                             return false;
                         }
@@ -501,7 +515,7 @@ public class tablaSimbolos {
         if(val instanceof DateTime ){
             return "DateTime";
         }
-         if(val instanceof Etiqueta){
+         if(val instanceof SimbEtiqueta){
              return "etiqueta";
          }
         return "nulo";
@@ -539,7 +553,7 @@ public class tablaSimbolos {
         if(val instanceof DateTime ){
             return 1;
         }
-         if(val instanceof Etiqueta){
+         if(val instanceof SimbEtiqueta){
              return 2;
          }
         }

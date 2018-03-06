@@ -6,6 +6,8 @@
 package zInterfaz;
 
 import CJS.ESTRUCURAS_CONTROL.Observador;
+import CJS.TablaSimbolos.tablaSimbolos;
+import CJS.elementoRetorno;
 import CJS.objetoBase;
 import Funciones.Funcion;
 import Funciones.ListaFunciones;
@@ -40,5 +42,18 @@ public class retornoCJS {
     public void insertarObservador(Observador nuevo){
         this.observadores.add(nuevo);
     }
+    
+    
+   public elementoRetorno ejecutarLibres(tablaSimbolos tabla, int contexto){
+         elementoRetorno v = new elementoRetorno();
+         objetoBase temporal;
+             for (int i = 0; i < sentenciasLibres.size(); i++) {
+                temporal = sentenciasLibres.get(i);
+               v= temporal.Ejecutar(tabla, contexto);              
+            }
+           return v;
+   }
+    
+   
     
 }

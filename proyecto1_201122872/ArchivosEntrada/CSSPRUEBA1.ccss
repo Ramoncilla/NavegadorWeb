@@ -1,0 +1,46 @@
+NombreInutil[
+//Comentario una línea
+/*
+Comentario multilínea
+*/
+GRUPO(grupo1);
+Alineado:= centrado;
+Texto := "Que hace esto?";
+Formato:= Mayuscula, Cursiva, Negrilla;
+Letra:= "Arial";
+Tamtex := 12;
+Visible:= false;
+colortext := "#a04343";
+Opaque := false;
+
+GRUPO(grupo2);
+Tamtex := 19.4+0.6;
+Fondoelemento := "#6465f"+"f";
+Autoredimension:= [true, Vertical];
+Visible := true;
+Borde := [4,"#ffff",false];
+Opaque := false;
+colortext := "#a04343";
+]
+
+OtroNombreInutil[
+ID(id1);
+Alineado:= izquierda;
+Alineado:= derecha;
+Texto := "Que hace esto?" + "?";
+Formato:= Mayuscula, Cursiva, Negrilla;
+Formato:= Cursiva, Capital-T;
+Formato:= Mayuscula;
+Letra:= "Arial";
+]
+
+OtroNombreInutil2[
+ID(id2);
+Tamtex := 8;
+Fondoelemento := "gray";
+Autoredimension:= [false, Horizontal];
+Visible := false;
+Borde := [5,"black",true];
+Opaque := true;
+Colortext := "black";
+]

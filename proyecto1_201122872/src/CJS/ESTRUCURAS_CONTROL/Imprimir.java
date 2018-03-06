@@ -30,14 +30,14 @@ public class Imprimir extends objetoBase {
         elementoRetorno ret = expresionMostrar.Ejecutar(tabla, contexto);
         if(ret.ValorRetorno instanceof Datee){
             Datee fecha = (Datee) ret.ValorRetorno;
-            paginaActual.cadenaSalida +="> "+ fecha.getDate()+"<br>";
+            paginaActual.cadenaSalida +="> "+ fecha.getDate()+"\n";
             
         }else if(ret.ValorRetorno instanceof DateTime){
             DateTime fecha = (DateTime)ret.ValorRetorno;
-             paginaActual.cadenaSalida +="> "+ fecha.getDateTime()+"<br>";
+             paginaActual.cadenaSalida +="> "+ fecha.getDateTime()+"\n";
             
         }else{
-            paginaActual.cadenaSalida +="> "+ ret.ValorRetorno.toString()+"<br>";
+            paginaActual.cadenaSalida +="> "+ ret.ValorRetorno.toString()+"\n";
         }
         
         return ret;

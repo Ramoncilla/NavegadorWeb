@@ -34,7 +34,7 @@ public class Proyecto1_201122872 {
         cadenaImpresion="";
         lFunciones= new ListaFunciones();*/
         Navegador n= new Navegador();
-        //n.show();
+       // n.show();
         buscador g= new buscador();
         g.setVisible(true);
         

@@ -1,0 +1,50 @@
+NombreInutil[
+//Comentario una línea
+
+/*
+Comentario multilínea
+*/
+GRUPO(grupo_prueba1);
+Alineado:= izquierda;
+Alineado:= derecha;
+Alineado:= centrado;
+Alineado:= justificado;
+Texto := "Que hace esto?" + "?";
+Texto := 5*3;
+Formato:= Mayuscula, Cursiva, Negrilla;
+Formato:= Cursiva, Capital-T;
+Formato:= Mayuscula;
+Formato:= Minuscula;
+Formato:= Capital-T, Negrilla;
+Letra:= "arial";
+
+GRUPO(grupo_prueba2);
+Tamtex := 19.4+0.6;
+Fondoelemento := "#6465f"+"f";
+Autoredimension:= [true, Vertical];
+Visible := true;
+Borde := [4,"#ffff",false];
+Opaque := false;
+colortext := "#a04343";
+]
+
+OtroNombreInutil[
+ID(identificador1);
+Alineado:= izquierda;
+Alineado:= derecha;
+Texto := "Que hace esto?" + "?";
+Formato:= Mayuscula, Cursiva, Negrilla;
+Formato:= Cursiva, Capital-T;
+Formato:= Mayuscula;
+Letra:= "arial";
+]
+OtroNombreInutil2[
+ID(identificador2);
+Tamtex := 8;
+Fondoelemento := "gray";
+Autoredimension:= [false, Horizontal];
+Visible := false;
+Borde := [5,"black",true];
+Opaque := true;
+Colortext := "black";
+]

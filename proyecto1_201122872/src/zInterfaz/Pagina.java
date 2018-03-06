@@ -5,8 +5,11 @@
  */
 package zInterfaz;
 
+import CJS.ESTRUCURAS_CONTROL.Observador;
 import CJS.TablaSimbolos.tablaSimbolos;
+import CJS.objetoBase;
 import Errores.tablaErrores;
+import Funciones.ListaFunciones;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -59,6 +62,7 @@ public class Pagina {
     public String archivoActual="";
     public retornoCJS retCJS;
     public String tituloPagina;
+    public DOM documento;
     
     public Pagina(int id){
         retCJS= new retornoCJS();
@@ -78,6 +82,7 @@ public class Pagina {
         this.historialPagina= new ArrayList<>();
         this.rutasArchivosCSS= new ArrayList<>();
         this.rutasArchivosJS= new ArrayList<>();
+        this.documento= new DOM();
         
     }
 
@@ -96,6 +101,7 @@ public class Pagina {
         this.tituloPagina="";
         this.rutasArchivosCSS= new ArrayList<>();
         this.rutasArchivosJS= new ArrayList<>();
+        this.documento= new DOM();
         
     }
     
@@ -122,23 +128,62 @@ public class Pagina {
         this.tituloPagina= encabezadoHTML.obtenerTitulos();
         this.rutasArchivosCSS= encabezadoHTML.obtenerCSS();
         this.rutasArchivosJS= encabezadoHTML.obtenerCJS();
+        CrearElementosCJS();
         List<Etiqueta> componentesHTML = cuerpoHTML.obtenerEtiquetasConElementos();
         //aqui se le aplica el css
+        this.documento.agregarListaEtiquetas((ArrayList<Etiqueta>)componentesHTML);
+        this.retCJS.ejecutarLibres(tabla, 0);
+        
         Dibujar(componentesHTML);
         
         
         this.historialPagina.add(rutaPagina);
         }
-       
-     
-        
         
       return this.tituloPagina;  
     }
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    private void CrearElementosCJS() throws Exception{
+        String rutaArchivo;
+        retornoCJS temporal;
+        for (int i = 0; i < this.rutasArchivosJS.size(); i++) {
+            rutaArchivo = this.rutasArchivosJS.get(i);
+            temporal = this.analizadores.ejecutarCJS(rutaArchivo);
+            agregarFunciones (temporal.lFunciones);
+            agregarSentencias(temporal.sentenciasLibres);
+            agregarObservadores(temporal.observadores);
+        }  
+    }
+    
+    private void agregarFunciones(ListaFunciones funciones){
+        for (int i = 0; i < funciones.funciones.size(); i++) {
+            this.retCJS.insertarFuncion(funciones.funciones.get(i));
+        }
+    }
+    
+    private void agregarSentencias( List<objetoBase> sentenciasLibres){
+        for (int i = 0; i < sentenciasLibres.size(); i++) {
+            this.retCJS.insertarSentencia(sentenciasLibres.get(i));
+        }
+    }
+    
+    private void agregarObservadores(List<Observador> observadores){
+        for (int i = 0; i < observadores.size(); i++) {
+            this.retCJS.insertarObservador(observadores.get(i));
+        }
+    }
+    
        public void Dibujar(List<Etiqueta> lTemporal){
-     
+           
         Etiqueta temporal;
            for (int i = 0; i < lTemporal.size(); i++) {
             temporal = lTemporal.get(i);
@@ -192,8 +237,7 @@ public class Pagina {
                 
             }    
         }
-        
-      
+             
     }
     
     
@@ -203,75 +247,7 @@ public class Pagina {
         
     }
     
-    
-    /*
-      public Object Dibujar(){
-        
-        Etiqueta temporal;
-        for (int i = 0; i < this.etiquetasPanel.size(); i++) {
-            temporal = this.etiquetasPanel.get(i);
-            if(temporal instanceof Boton){
-                JButton b= (JButton)((Boton) temporal).botonObjeto;
-                 areaWeb.setCaretPosition(panel.getStyledDocument().getLength());
-                 panel.insertComponent(b);
-            }else if(temporal instanceof Caja){
-                JComboBox b= (JComboBox)((Caja) temporal).cajaOpciones;
-                 panel.setCaretPosition(panel.getStyledDocument().getLength());
-                 panel.insertComponent(b);
-            }else if(temporal instanceof Enlace){
-                JLabel b = (JLabel)((Enlace) temporal).link;
-                 panel.setCaretPosition(panel.getStyledDocument().getLength());
-                 panel.insertComponent(b);
-            }else if(temporal instanceof Imagen){
-                 JLabel b = (JLabel)((Imagen) temporal).imagen;
-                 panel.setCaretPosition(panel.getStyledDocument().getLength());
-                 panel.insertComponent(b);
-            }else if(temporal instanceof Panel){
-                 JTextPane b = (JTextPane)((Panel) temporal).panel;
-                 panel.setCaretPosition(panel.getStyledDocument().getLength());
-                 panel.insertComponent(b);
-            }else if(temporal instanceof Salto){
-                try {
-                        panel.setCaretPosition(panel.getStyledDocument().getLength());
-                        HTMLDocument doc=(HTMLDocument) panel.getStyledDocument();
-                        doc.insertAfterEnd(doc.getCharacterElement(doc.getLength()),"<br>");
-                    } catch (BadLocationException ex) {
-                        Logger.getLogger(Panel.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (IOException ex) {
-                        Logger.getLogger(Panel.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-            }else if(temporal instanceof Spinner){
-                JTextField b = (JTextField)((Spinner) temporal).spinner;
-                panel.setCaretPosition(panel.getStyledDocument().getLength());
-                 panel.insertComponent(b);
-            }else if(temporal instanceof Texto){
-                 JTextPane b = (JTextPane)((Texto) temporal).texto;
-                 panel.setCaretPosition(panel.getStyledDocument().getLength());
-                 panel.insertComponent(b);
-            }else if(temporal instanceof Texto_a){
-                JTextPane b = (JTextPane)((Texto_a) temporal).cajaTexto;
-                 panel.setCaretPosition(panel.getStyledDocument().getLength());
-                 panel.insertComponent(b);
-            }else if(temporal instanceof caja_texto){
-                JTextField b = (JTextField)((caja_texto) temporal).cajaTexto;
-                panel.setCaretPosition(panel.getStyledDocument().getLength());
-                 panel.insertComponent(b);
-            }else if(temporal instanceof tabla){
-                
-            }    
-        }
-        return this.panel;
-    }
-      
-    
-    */
-    
-    
-    
-    
-    
-    
-    
+
     
     
     

@@ -50,6 +50,7 @@ import proyecto1_201122872.CHTML.BODY.Texto;
 import proyecto1_201122872.CHTML.BODY.jTextPane;
 import proyecto1_201122872.CHTML.Chtml;
 import static proyecto1_201122872.Proyecto1_201122872.paginaActual;
+import zInterfaz.EjecutarAnalizador;
 
 /**
  *
@@ -101,7 +102,7 @@ public class Navegador extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jTextField1.setText("C:\\Users\\Ramonella\\Documents\\Repositorios\\Proyecto1\\NavegadorWeb\\proyecto1_201122872\\ArchivosEntrada\\ejemplo.chtml");
+        jTextField1.setText("C:\\Users\\Ramonella\\Documents\\Repositorios\\Proyecto1\\NavegadorWeb\\proyecto1_201122872\\ArchivosEntrada\\CSSPRUEBA1.ccss");
 
         jToolBar1.setRollover(true);
 
@@ -387,22 +388,12 @@ doc.insertAfterEnd(doc.getCharacterElement(doc.getLength()),tabla);
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         
-     JPanel pn = new JPanel();
-      JPanel pn2 = new JPanel();
-       JPanel pn3 = new JPanel();
-     List<JPanel> l= new ArrayList<>();
-     l.add(pn);
-      l.add(pn2);
-       l.add(pn3);
-         JButton aButton = new JButton();
-         aButton.setVisible(true);
-         aButton.setBounds(1000, 150, 0, 0);
-        jPanel2.add(aButton);
-        jTextPane h = new jTextPane();
-        for (int i = 0; i < l.size(); i++) {
-           jTabbedPane1.addTab("nueva "+i, l.get(i)); 
+     EjecutarAnalizador nuevo = new EjecutarAnalizador();
+        try {
+            nuevo.ejecutarCSS(this.jTextField1.getText());
+        } catch (Exception ex) {
+            Logger.getLogger(Navegador.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
     }//GEN-LAST:event_jButton5ActionPerformed
 
 

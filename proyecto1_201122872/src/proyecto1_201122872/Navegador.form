@@ -58,7 +58,7 @@
   <SubComponents>
     <Component class="javax.swing.JTextField" name="jTextField1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="C:\u005cUsers\u005cRamonella\u005cDocuments\u005cRepositorios\u005cProyecto1\u005cNavegadorWeb\u005cproyecto1_201122872\u005cArchivosEntrada\u005cejemplo.chtml" containsInvalidXMLChars="true"/>
+        <Property name="text" type="java.lang.String" value="C:\u005cUsers\u005cRamonella\u005cDocuments\u005cRepositorios\u005cProyecto1\u005cNavegadorWeb\u005cproyecto1_201122872\u005cArchivosEntrada\u005cCSSPRUEBA1.ccss" containsInvalidXMLChars="true"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JToolBar" name="jToolBar1">

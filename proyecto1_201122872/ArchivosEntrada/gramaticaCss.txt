@@ -1,0 +1,86 @@
+
+
+
+
+
+INICIO::= LISTA_CUERPOS;
+
+LISTA_CUERPOS::= CUERPO	
+	|LISTA_CUERPOS CUERPO;
+
+CUERPO::= id abreCor LISTA_ELEMENTO_CUERPO cierraCor;
+
+LISTA_ELEMENTO_CUERPO::= LISTA_ELEMENTO_CUERPO ELEMENTO_CUERPO
+	|ELEMENTO_CUERPO;
+
+ELEMENTO_CUERPO::= GRUPO 
+	|ID;
+
+GRUPO::= grupo abrePar id cierraPar puntoComa ELEMENTOS;
+
+ID::= idTerminal abrePar id cierraPar puntoComa ELEMENTOS;
+
+ELEMENTOS::= ELEMENTOS
+	|ELEMENTOS ELEMENTO;
+	
+ELEMENTO::= ALINEADO
+	|TEXTO
+	|FORMATO
+	|LETRA
+	|TAMTEX
+	|FONDO_ELEMENTO
+	|AUTOREDIMENSION
+	|VISIBLE
+	|BORDE
+	|OPAQUE
+	|COLORTEXT;
+	
+ALINEADO::= alineado dosPuntos igual VALOR_ALINEADO puntoComa;
+
+VALOR_ALINEADO::= izquierda
+	|derecha
+	|centrado
+	|justificado;
+	
+TEXTO::= texto  dosPuntos igual EXPRESION dosPuntos;
+
+FORMATO::= formato dosPuntos igual L_FORMATOS puntoComa;
+
+VALOR_FORMATO::= negrilla 
+	|cursiva
+	|mayuscula
+	|minuscula
+	|capital-t;
+	
+	
+L_FORMATOS::= L_FORMATOS  coma VALOR_FORMATO
+	|VALOR_FORMATO;
+	
+
+LETRA::= letra dosPuntos igual EXPRESION puntoComa;
+
+TAMTEX::= tamtext dosPuntos igual EXPRESION puntoComa; //entero o decimal
+
+FONDO_ELEMENTO::= fondoelemento dosPuntos igual EXPRESION puntoComa;
+
+AUTOREDIMENSION::= autoredimension dosPuntos igual	abrePar booleano coma DIRECCION cierraPar puntoComa;
+
+DIRECCION::= horizontal
+	|vertical;
+	
+	
+VISIIBLE::= visible dosPuntos igual booleano puntoComa;
+
+BORDE::= borde dosPuntos igual abrePar numero coma cadena coma booleano cierraPar puntoComa;
+
+OPAQUE::= opaque dosPuntos igual booleano puntoComa;
+
+COLORTEXT::= colortext dosPuntos igual cadena puntoComa;
+
+EXPRESION::= EXPRESION SIMB_ARIT EXPRESION
+	|booleano
+	|numero
+	|cadena;
+	
+SIMB_ARIT ::= suma
+	|resta| multiplicacion| division;	
