@@ -19,6 +19,7 @@ import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.text.BadLocationException;
@@ -204,7 +205,7 @@ public class Pagina {
                  areaWeb.setCaretPosition(areaWeb.getStyledDocument().getLength());
                  areaWeb.insertComponent(b);
             }else if(temporal instanceof Panel){
-                 JTextPane b = (JTextPane)((Panel) temporal).Dibujar();
+                 JScrollPane b = (JScrollPane)((Panel) temporal).Dibujar();
                  areaWeb.setCaretPosition(areaWeb.getStyledDocument().getLength());
                  areaWeb.insertComponent(b);
             }else if(temporal instanceof Salto){

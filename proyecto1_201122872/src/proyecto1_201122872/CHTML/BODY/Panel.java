@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
@@ -40,16 +41,19 @@ public class Panel extends Etiqueta  {
 
     public listaElementos elementosPanel;
     public Cuerpo objetosPanel;
-    public jTextPane panel;
+    public JTextPane panel;
     public List<Etiqueta> etiquetasPanel;
 
 
     public Panel(Object elementos, Object cuerpo){
+        this.alto=300;
+        this.ancho=300;
         etiquetasPanel = new ArrayList<>();
         this.elementosPanel= (listaElementos)elementos;
         this.objetosPanel= (Cuerpo)cuerpo;
-        panel= new jTextPane();
-        panel.setContentType("text/html");
+       this.panel= new JTextPane();
+        this.panel.setContentType("text/html");
+        this.panel.setEditable(false);
     }
 
 
@@ -58,16 +62,15 @@ public class Panel extends Etiqueta  {
         agregarElementos(); 
         etiquetasPanel= objetosPanel.obtenerEtiquetasConElementos();
         asignarElementos();
-        panel.setAutoscrolls(true);
         panel.setBackground(Color.MAGENTA);
         return this;
         
     }
     
-    public jTextPane Dibujar(){
-        
+       public JScrollPane Dibujar(){
+           
         Etiqueta temporal;
-        for (int i = 0; i < this.etiquetasPanel.size(); i++) {
+           for (int i = 0; i < this.etiquetasPanel.size(); i++) {
             temporal = this.etiquetasPanel.get(i);
             if(temporal instanceof Boton){
                 JButton b= (JButton)((Boton) temporal).botonObjeto;
@@ -86,7 +89,8 @@ public class Panel extends Etiqueta  {
                  panel.setCaretPosition(panel.getStyledDocument().getLength());
                  panel.insertComponent(b);
             }else if(temporal instanceof Panel){
-                 JTextPane b = (JTextPane)((Panel) temporal).Dibujar();
+                 JScrollPane b = (JScrollPane)((Panel) temporal).Dibujar();
+                 b.setBackground(Color.red);
                  panel.setCaretPosition(panel.getStyledDocument().getLength());
                  panel.insertComponent(b);
             }else if(temporal instanceof Salto){
@@ -119,7 +123,8 @@ public class Panel extends Etiqueta  {
                 
             }    
         }
-        return this.panel;
+           JScrollPane n = new JScrollPane(panel);
+      return n;       
     }
       
      
@@ -187,8 +192,11 @@ public class Panel extends Etiqueta  {
      @Override
     public void asignarElementos(){
         
-   
+        Dimension dmnsn = new Dimension(ancho, alto);
         panel.setSize(ancho, alto);
+        panel.setMaximumSize(dmnsn);
+        panel.setMaximumSize(dmnsn);
+        panel.setPreferredSize(dmnsn);
         if(this.elementosPanel.obtenerAlineado()!=null){
              propiedadAlineado n = elementosPanel.obtenerAlineado();
             if(n.alineado.equalsIgnoreCase("derecha")){              

@@ -18,7 +18,7 @@ dimv op: documento.obtener("nuevoSpinner");
 dimv op2: documento.obtener("botonPanel");
 dimv op3: documento.obtener("EnlaCed");
 op2.setElemento("ancho","1000");
-documento.obtener("botonPanel").setElemento("ancho","20");
+documento.obtener("botonMi").setElemento("ancho","20");
 imprimir("valor de b "+b);
 imprimir("valor de b simulado "+ (b+3)++);
 imprimir("valor de b simulado "+ b--);

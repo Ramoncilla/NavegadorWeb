@@ -12,16 +12,22 @@
 	
 
 	<cuerpo>
-	<boton alto="100"; ancho="400"; alineado="derecha";>mi<fin-boton>
+	<boton alto="100"; ancho="400"; alineado="derecha";id="botonMi";>mi<fin-boton>
 	
 	
 	<imagen>C:\Users\Ramonella\Desktop\imagen.jpg<fin-imagen>
 	
-	<panel alineado="derecha"; alto="300"; ancho="400";>
+	<panel  alto="600"; ancho="600";>
 		<boton alto="100"; ancho="200"; alineado="derecha"; id="botonPanel";>Prueba<fin-boton>
+		<salto-fin>
 		<panel>
 		<enlace id="enlaceD";>dfdffdsoooposfds<fin-enlace>
+		<boton>funciona<fin-boton>
 		<fin-panel>
+		<salto-fin>
+		<boton>boton2<fin-boton>
+		<salto-fin>
+		<boton>boton2<fin-boton>
 	<fin-panel>
 	
 	
