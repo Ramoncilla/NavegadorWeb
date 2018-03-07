@@ -33,10 +33,11 @@ public class Caja extends Etiqueta implements ActionListener {
     public ComboComponente cajaOpciones;
     public Object valorSeleccionado;
     public String elementoSeleccionado;
-    public String nombreFuncionClick="";
+    public List<String> funcionesClic;
     
     public Caja(Object elementos, Object opciones)
     {
+        this.funcionesClic= new ArrayList<>();
         this.alto=50;
         this.ancho=100;
         this.elementosCaja=(listaElementos)elementos;
@@ -134,7 +135,7 @@ public class Caja extends Etiqueta implements ActionListener {
                 
             }else if(temporal instanceof propiedadClick){
                 propiedadClick p = (propiedadClick)temporal;
-                this.nombreFuncionClick= p.nombreFuncion;
+                this.funcionesClic.add(p.nombreFuncion);
                 
             }
         }

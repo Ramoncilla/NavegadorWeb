@@ -44,8 +44,13 @@ public class Id extends objetoBase{
                super.retorno.ValorRetorno=c.valorVariable;
                
            }else if(simb instanceof SimbArreglo){
-               
+               SimbArreglo arr = (SimbArreglo)simb;
+               SimbArreglo nuevo = arr.clonar();
+               super.retorno.ValorRetorno= nuevo;
            }else if(simb instanceof SimbEtiqueta){
+                SimbEtiqueta et = (SimbEtiqueta)simb;
+               SimbEtiqueta et2 = et.clonar();
+               super.retorno.ValorRetorno= et2;
                
            }
        }else if(amb.equalsIgnoreCase("local")){
@@ -56,9 +61,14 @@ public class Id extends objetoBase{
                super.retorno.ValorRetorno=c.valorVariable;
                
            }else if(simb instanceof SimbArreglo){
+               SimbArreglo arr = (SimbArreglo)simb;
+               SimbArreglo nuevo = arr.clonar();
+               super.retorno.ValorRetorno= nuevo;
                
            }else if(simb instanceof SimbEtiqueta){
-               
+               SimbEtiqueta et = (SimbEtiqueta)simb;
+               SimbEtiqueta et2 = et.clonar();
+               super.retorno.ValorRetorno= et2;
            }
            
            

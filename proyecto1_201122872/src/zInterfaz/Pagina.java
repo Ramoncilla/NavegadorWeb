@@ -134,7 +134,7 @@ public class Pagina {
         this.documento.agregarListaEtiquetas((ArrayList<Etiqueta>)componentesHTML);
         this.retCJS.ejecutarLibres(tabla, 0);
         
-        Dibujar(componentesHTML);
+        Dibujar();
         
         
         this.historialPagina.add(rutaPagina);
@@ -182,11 +182,11 @@ public class Pagina {
         }
     }
     
-       public void Dibujar(List<Etiqueta> lTemporal){
+       public void Dibujar(){
            
         Etiqueta temporal;
-           for (int i = 0; i < lTemporal.size(); i++) {
-            temporal = lTemporal.get(i);
+           for (int i = 0; i < this.documento.etiquetasHTML.size(); i++) {
+            temporal = this.documento.etiquetasHTML.get(i);
             if(temporal instanceof Boton){
                 JButton b= (JButton)((Boton) temporal).botonObjeto;
                  areaWeb.setCaretPosition(areaWeb.getStyledDocument().getLength());

@@ -12,6 +12,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -36,13 +37,13 @@ public class Imagen extends Etiqueta implements MouseListener {
     public listaElementos elementosImagen;
     public String rutaImagen;
     public JLabel imagen;
-    public String nombreFuncionClick;
+    public List<String> funcionesClic;
 
     public Imagen(Object elementos, Object ruta) {
         this.elementosImagen = new listaElementos((ArrayList<propiedad>) elementos);
         this.rutaImagen = ruta.toString();
         this.imagen = new JLabel();
-        this.nombreFuncionClick="";
+        this.funcionesClic= new ArrayList<>();
         asignarRutaImagen();
         this.ancho=100;
         this.alto=100;
@@ -161,7 +162,7 @@ public class Imagen extends Etiqueta implements MouseListener {
                 
             }else if(temporal instanceof propiedadClick){
                 propiedadClick p = (propiedadClick)temporal;
-                this.nombreFuncionClick= p.nombreFuncion;
+                this.funcionesClic.add(p.nombreFuncion);
                 
             }else if(temporal instanceof propiedadRuta){
                 propiedadRuta p = (propiedadRuta)temporal;

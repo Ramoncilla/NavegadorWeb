@@ -22,19 +22,21 @@ public class SimbEtiqueta extends Simbolo{
 
     @Override
     public String imprimirSimbolo() {
-        String cad = "Tipo: Etiqueta\n"
+        String cad = "Nombre:  "+ this.nombre+"\n"
+                + "AMbito: "+ this.ambito+"\n"
+                + "Tipo: Etiqueta\n"
                 + "id: "+ this.etiquetaHTML.id+"\n"
                 + "Grupo: "+ this.etiquetaHTML.grupo +"\n"
                 + "Alineado: "+ this.etiquetaHTML.alineado+"\n"
                 + "Alto: "+ this.etiquetaHTML.alto+"\n"
                 + "Ancho: "+ this.etiquetaHTML.ancho+"\n";
-        
-        
         return cad;
     }
+       
     
-  
-    
-    
-    
+    public SimbEtiqueta clonar(){
+        SimbEtiqueta retorno= new SimbEtiqueta(this.etiquetaHTML);
+        
+        return retorno;
+    }
 }

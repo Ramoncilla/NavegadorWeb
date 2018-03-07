@@ -24,11 +24,22 @@ public class DOM {
     
     
     public void agregarListaEtiquetas (ArrayList<Etiqueta> valores){
+        Etiqueta temporal;
         for (int i = 0; i < valores.size(); i++) {
-            this.etiquetasHTML.add(valores.get(i));
+            temporal = valores.get(i);
+            temporal.numeroIdentificador=i;
+            this.etiquetasHTML.add(temporal);
         }
     }
     
+    
+    public void actualizarEtiquetaDOM(Etiqueta et){
+        for (int i = 0; i < this.etiquetasHTML.size(); i++) {
+            if(et.numeroIdentificador== this.etiquetasHTML.get(i).numeroIdentificador){
+                this.etiquetasHTML.set(i, et);
+            }
+        }
+    }
     
     public Etiqueta obtenerElemento(String id) {
 
@@ -62,7 +73,7 @@ public class DOM {
     
     
     private Etiqueta obtenerEtiquetaPanel(ArrayList<Etiqueta> etiquetas, String nombre){
-        Etiqueta temporal, temporal2;
+        Etiqueta temporal;
         for (int i = 0; i < etiquetas.size(); i++) {
            temporal = etiquetas.get(i);
            if(temporal.id.equalsIgnoreCase(nombre)){

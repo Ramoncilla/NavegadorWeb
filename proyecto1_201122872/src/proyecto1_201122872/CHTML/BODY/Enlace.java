@@ -12,6 +12,7 @@ import java.awt.event.MouseListener;
 import java.awt.font.TextAttribute;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.swing.SwingConstants;
@@ -36,6 +37,7 @@ public class Enlace  extends Etiqueta implements MouseListener{
      public String cadenaEnlace;
     public labelComponente link;
      public String rutaEnlace;
+     public List<String>funcionesClic;
 
      
     public Enlace(Object elementos , Object cadena){
@@ -45,6 +47,7 @@ public class Enlace  extends Etiqueta implements MouseListener{
         this.link = new labelComponente();
         this.alto=20;
         this.ancho=150;
+        this.funcionesClic= new ArrayList<>();
          asignarRutaEnlace();
     }
    

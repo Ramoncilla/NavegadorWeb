@@ -16,6 +16,7 @@ public class Etiqueta {
     public int alto;
     public int ancho;
     public String alineado="IZQUIERDA";
+    public int numeroIdentificador;
     
     
     

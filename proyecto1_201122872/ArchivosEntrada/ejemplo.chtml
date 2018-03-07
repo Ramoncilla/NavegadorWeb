@@ -18,7 +18,10 @@
 	<imagen>C:\Users\Ramonella\Desktop\imagen.jpg<fin-imagen>
 	
 	<panel alineado="derecha"; alto="300"; ancho="400";>
-		<boton alto="100"; ancho="200"; alineado="derecha";>Prueba<fin-boton>
+		<boton alto="100"; ancho="200"; alineado="derecha"; id="botonPanel";>Prueba<fin-boton>
+		<panel>
+		<enlace id="enlaceD";>dfdffdsoooposfds<fin-enlace>
+		<fin-panel>
 	<fin-panel>
 	
 	

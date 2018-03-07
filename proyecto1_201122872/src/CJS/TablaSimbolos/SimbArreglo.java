@@ -35,6 +35,16 @@ public class SimbArreglo extends Simbolo{
     }
     
     
+    public SimbArreglo clonar(){
+        SimbArreglo nuevo = new SimbArreglo(this.nombre, this.tamanhoArreglo, this.contexto);
+        Object []valores = new Object[this.vector.length];
+        for (int i = 0; i < this.vector.length; i++) {
+            valores[i]=vector[i];
+        }
+        nuevo.vector=valores;
+        return nuevo;
+    }
+    
     
     public double conteoArreglo(){
         return this.tamanhoArreglo;
@@ -112,8 +122,7 @@ public class SimbArreglo extends Simbolo{
     
    
     
-    
-    
+   
     
     
    

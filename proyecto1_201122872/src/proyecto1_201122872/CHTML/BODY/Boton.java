@@ -8,6 +8,7 @@ package proyecto1_201122872.CHTML.BODY;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.SwingConstants;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
@@ -24,8 +25,9 @@ public class Boton extends Etiqueta implements ActionListener {
     
     public listaElementos elementosBoton;
     public String captionBoton;
-    public String nombreFuncionClick;
+    public List<String> funcionesClic;
     public botonComponente botonObjeto;
+    public String rutaBoton;
     
     public Boton(Object elementos, Object cadena){
         this.alto = 50;
@@ -34,7 +36,8 @@ public class Boton extends Etiqueta implements ActionListener {
         this.captionBoton = cadena.toString();
         botonObjeto= new botonComponente();
         botonObjeto.addActionListener(this);
-        this.nombreFuncionClick="";
+        this.funcionesClic=new ArrayList<>();
+        this.rutaBoton="";
     }
      
     @Override
@@ -109,7 +112,11 @@ public class Boton extends Etiqueta implements ActionListener {
                 
             }else if(temporal instanceof propiedadClick){
                 propiedadClick p = (propiedadClick)temporal;
-                this.nombreFuncionClick= p.nombreFuncion;
+                this.funcionesClic.add(p.nombreFuncion);
+                
+            }else if(temporal instanceof propiedadRuta){
+                propiedadRuta p = (propiedadRuta)temporal;
+                this.rutaBoton= p.ruta.replace("\"", "");
                 
             }
         }

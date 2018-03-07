@@ -41,13 +41,15 @@ public class Cuerpo extends Etiqueta  {
     public List<Etiqueta> sentenciasCuerpo;
     public JTextPane panel;
     public List<Etiqueta> etiquetas;
+    public String cadenaColor;
     
     public Cuerpo(Object elementos, Object etiquet){
         this.panel= new JTextPane();
         this.elementosCuerpo = new listaElementos((ArrayList<propiedad>)elementos);
         this.sentenciasCuerpo = (ArrayList<Etiqueta>)etiquet;
         this.etiquetas= new ArrayList<>();
-        panel.setContentType("text/html");   
+        panel.setContentType("text/html"); 
+        this.cadenaColor="";
     }
     
     public void imprimir(){

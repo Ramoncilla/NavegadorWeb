@@ -59,6 +59,7 @@ public class Panel extends Etiqueta  {
         etiquetasPanel= objetosPanel.obtenerEtiquetasConElementos();
         asignarElementos();
         panel.setAutoscrolls(true);
+        panel.setBackground(Color.MAGENTA);
         return this;
         
     }

@@ -173,7 +173,7 @@ SENTENCIA::= IF:a{:RESULT=a;:}
 			|ASIGNACION:a{:RESULT= a;:}
 			|SELECCIONA:a{:RESULT=a;:}
 			|PARA:a{:RESULT=a;:}
-			|SET_ELEMENTO
+			|SET_ELEMENTO:a{:RESULT=a;:}
 			|OBSERVADOR
 			|MIENTRAS:a{:RESULT=a;:}
 			|DETENER:a{:RESULT=a;:}
@@ -263,8 +263,8 @@ MENSAJE::= mensaje abrePar EXPRESION:a cierraPar puntoComa{:Mensaje j = new Mens
 
 /*Expresino*/
 
-ELEMENTO::= id 
-	|OBTENER;
+ELEMENTO::= id:a{:RESULT= new Id(a);:} 
+	|OBTENER:a{:RESULT=a;:};
 
 TIPOS_EVENTOS::= listo
 	| modificado
@@ -273,7 +273,7 @@ TIPOS_EVENTOS::= listo
 
 OBTENER::= documento punto obtener abrePar cadena:c cierraPar{:RESULT = new Obtener(c);:};
 	
-SET_ELEMENTO::= ELEMENTO punto setelemento abrePar cadena coma cadena cierraPar puntoComa;
+SET_ELEMENTO::= ELEMENTO:a punto setelemento abrePar cadena:b coma cadena:c cierraPar puntoComa{:RESULT= new setElemento(a,b,c);:};
 	
 
 	
