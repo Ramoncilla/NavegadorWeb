@@ -24,7 +24,7 @@ public class Texto extends Etiqueta{
     
     //texto normal en html
     
-    public listaElementos elementosTexto;
+
     public String cadenaTexto;
     public jTextPane texto;
 
@@ -33,7 +33,7 @@ public class Texto extends Etiqueta{
         this.alto=150;
         this.ancho=150;
         this.texto= new jTextPane();
-        this.elementosTexto = new listaElementos((ArrayList<propiedad>)elementos);
+        this.elementosEtiqueta = new listaElementos((ArrayList<propiedad>)elementos);
         this.cadenaTexto= cadena.toString();
         
     }
@@ -46,13 +46,17 @@ public class Texto extends Etiqueta{
        
     }
     
+    
+    
+ 
+    
     @Override
     public void asignarElementos() {
         this.texto.setContentType("text/html");
         this.texto.setEditable(false);
         this.texto.setAutoscrolls(true);
-        if(this.elementosTexto.obtenerAlineado()!=null){
-             propiedadAlineado n = elementosTexto.obtenerAlineado();
+        if(this.elementosEtiqueta.obtenerAlineado()!=null){
+             propiedadAlineado n = elementosEtiqueta.obtenerAlineado();
             if(n.alineado.equalsIgnoreCase("derecha")){
                 this.texto.setText("<html><body><right>"+this.cadenaTexto+"</right></body></html>");
                 
@@ -70,8 +74,8 @@ public class Texto extends Etiqueta{
     @Override
     public void agregarElementos() {
      propiedad temporal;
-        for (int i = 0; i < this.elementosTexto.listadoElementos.size(); i++) {
-            temporal = this.elementosTexto.listadoElementos.get(i);
+        for (int i = 0; i < this.elementosEtiqueta.listadoElementos.size(); i++) {
+            temporal = this.elementosEtiqueta.listadoElementos.get(i);
             if(temporal instanceof  propiedadAlineado){
                 propiedadAlineado p = (propiedadAlineado)temporal;
                 if(!asignarAlineado(p.alineado)){

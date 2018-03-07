@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package proyecto1_201122872.CHTML.BODY;
+import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -24,12 +25,12 @@ import static proyecto1_201122872.Proyecto1_201122872.paginaActual;
  */
 public class caja_texto extends Etiqueta {
     
-     public listaElementos elementosCaja_texto;
+
      public String cadenaCaja_texto;
      public textFieldComponente cajaTexto;
     
     public caja_texto(Object elementos , Object cadena){
-        this.elementosCaja_texto = new listaElementos((ArrayList<propiedad>)elementos);
+        this.elementosEtiqueta = new listaElementos((ArrayList<propiedad>)elementos);
         this.cadenaCaja_texto= cadena.toString();  
         this.cajaTexto= new textFieldComponente();
         this.alto=50;
@@ -45,12 +46,16 @@ public class caja_texto extends Etiqueta {
         return this;
     }
     
+    
+  
+    
+    
       @Override
     public void asignarElementos(){
    
         cajaTexto.setSize(ancho, alto);
-        if(elementosCaja_texto.obtenerAlineado()!=null){
-            propiedadAlineado n = elementosCaja_texto.obtenerAlineado();
+        if(elementosEtiqueta.obtenerAlineado()!=null){
+            propiedadAlineado n = elementosEtiqueta.obtenerAlineado();
             if(n.alineado.equalsIgnoreCase("derecha")){
                 cajaTexto.setHorizontalAlignment(SwingConstants.RIGHT);
             }else if(n.alineado.equalsIgnoreCase("izquierda")){
@@ -67,8 +72,8 @@ public class caja_texto extends Etiqueta {
     @Override
     public void agregarElementos(){
         propiedad temporal;
-        for (int i = 0; i < this.elementosCaja_texto.listadoElementos.size(); i++) {
-            temporal = this.elementosCaja_texto.listadoElementos.get(i);
+        for (int i = 0; i < this.elementosEtiqueta.listadoElementos.size(); i++) {
+            temporal = this.elementosEtiqueta.listadoElementos.get(i);
             if(temporal instanceof  propiedadAlineado){
                 propiedadAlineado p = (propiedadAlineado)temporal;
                 if(!asignarAlineado(p.alineado)){

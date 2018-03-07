@@ -33,7 +33,7 @@ import static proyecto1_201122872.Proyecto1_201122872.paginaActual;
  */
 public class Enlace  extends Etiqueta implements MouseListener{
     
-     public listaElementos elementosEnlace;
+
      public String cadenaEnlace;
     public labelComponente link;
      public String rutaEnlace;
@@ -42,7 +42,7 @@ public class Enlace  extends Etiqueta implements MouseListener{
      
     public Enlace(Object elementos , Object cadena){
         
-        this.elementosEnlace = new listaElementos((ArrayList<propiedad>)elementos);
+        this.elementosEtiqueta = new listaElementos((ArrayList<propiedad>)elementos);
         this.cadenaEnlace= cadena.toString();  
         this.link = new labelComponente();
         this.alto=20;
@@ -53,7 +53,7 @@ public class Enlace  extends Etiqueta implements MouseListener{
    
     
     private void asignarRutaEnlace() {
-            propiedadRuta elementoRuta = elementosEnlace.obtenerRuta();
+            propiedadRuta elementoRuta = elementosEtiqueta.obtenerRuta();
             if (elementoRuta != null) {
                 this.rutaEnlace = elementoRuta.ruta;
             }else{
@@ -89,11 +89,13 @@ public class Enlace  extends Etiqueta implements MouseListener{
     }
 
     
+
+    
      @Override
     public void asignarElementos(){
          System.out.println("dfsdfdsfds");
-           if(elementosEnlace.obtenerAlineado()!=null){
-            propiedadAlineado n = elementosEnlace.obtenerAlineado();
+           if(elementosEtiqueta.obtenerAlineado()!=null){
+            propiedadAlineado n = elementosEtiqueta.obtenerAlineado();
             if(n.alineado.equalsIgnoreCase("derecha")){
                 link.setHorizontalAlignment(SwingConstants.RIGHT);
             }else if(n.alineado.equalsIgnoreCase("izquierda")){
@@ -139,8 +141,8 @@ public class Enlace  extends Etiqueta implements MouseListener{
          @Override
     public void agregarElementos(){
         propiedad temporal;
-        for (int i = 0; i < this.elementosEnlace.listadoElementos.size(); i++) {
-            temporal = this.elementosEnlace.listadoElementos.get(i);
+        for (int i = 0; i < this.elementosEtiqueta.listadoElementos.size(); i++) {
+            temporal = this.elementosEtiqueta.listadoElementos.get(i);
             if(temporal instanceof  propiedadAlineado){
                 propiedadAlineado p = (propiedadAlineado)temporal;
                 if(!asignarAlineado(p.alineado)){

@@ -23,7 +23,7 @@ import static proyecto1_201122872.Proyecto1_201122872.paginaActual;
  */
 public class Boton extends Etiqueta implements ActionListener {
     
-    public listaElementos elementosBoton;
+   // public listaElementos elementosBoton;
     public String captionBoton;
     public List<String> funcionesClic;
     public botonComponente botonObjeto;
@@ -32,7 +32,7 @@ public class Boton extends Etiqueta implements ActionListener {
     public Boton(Object elementos, Object cadena){
         this.alto = 50;
         this.ancho=150;
-        this.elementosBoton = new listaElementos((ArrayList<propiedad>)elementos);
+        this.elementosEtiqueta = new listaElementos((ArrayList<propiedad>)elementos);
         this.captionBoton = cadena.toString();
         botonObjeto= new botonComponente();
         botonObjeto.addActionListener(this);
@@ -55,6 +55,10 @@ public class Boton extends Etiqueta implements ActionListener {
         
         
     }
+
+   
+    
+    
     
     
     
@@ -62,8 +66,8 @@ public class Boton extends Etiqueta implements ActionListener {
     public void asignarElementos(){
         this.botonObjeto.setText(this.captionBoton);
         botonObjeto.setSize(ancho, alto);
-        if(elementosBoton.obtenerAlineado()!=null){
-            propiedadAlineado n = elementosBoton.obtenerAlineado();
+        if(elementosEtiqueta.obtenerAlineado()!=null){
+            propiedadAlineado n = elementosEtiqueta.obtenerAlineado();
             if(n.alineado.equalsIgnoreCase("derecha")){
                 botonObjeto.setHorizontalAlignment(SwingConstants.RIGHT);
             }else if(n.alineado.equalsIgnoreCase("izquierda")){
@@ -78,8 +82,8 @@ public class Boton extends Etiqueta implements ActionListener {
     @Override
     public void agregarElementos(){
         propiedad temporal;
-        for (int i = 0; i < this.elementosBoton.listadoElementos.size(); i++) {
-            temporal = this.elementosBoton.listadoElementos.get(i);
+        for (int i = 0; i < this.elementosEtiqueta.listadoElementos.size(); i++) {
+            temporal = this.elementosEtiqueta.listadoElementos.get(i);
             if(temporal instanceof  propiedadAlineado){
                 propiedadAlineado p = (propiedadAlineado)temporal;
                 if(!asignarAlineado(p.alineado)){

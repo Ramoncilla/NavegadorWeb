@@ -188,6 +188,7 @@ public class Pagina {
         Etiqueta temporal;
            for (int i = 0; i < this.documento.etiquetasHTML.size(); i++) {
             temporal = this.documento.etiquetasHTML.get(i);
+               System.out.println(this.documento.etiquetasHTML.get(i).numeroIdentificador);
             if(temporal instanceof Boton){
                 JButton b= (JButton)((Boton) temporal).botonObjeto;
                  areaWeb.setCaretPosition(areaWeb.getStyledDocument().getLength());
@@ -205,6 +206,8 @@ public class Pagina {
                  areaWeb.setCaretPosition(areaWeb.getStyledDocument().getLength());
                  areaWeb.insertComponent(b);
             }else if(temporal instanceof Panel){
+                  Panel p =(Panel)temporal;
+                  p.imprimirId();
                  JScrollPane b = (JScrollPane)((Panel) temporal).Dibujar();
                  areaWeb.setCaretPosition(areaWeb.getStyledDocument().getLength());
                  areaWeb.insertComponent(b);

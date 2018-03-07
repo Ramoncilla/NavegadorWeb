@@ -28,7 +28,7 @@ import static proyecto1_201122872.Proyecto1_201122872.paginaActual;
  */
 public class Caja extends Etiqueta implements ActionListener {
    
-    public listaElementos elementosCaja;
+   
     public List<Opcion> opcionesCaja;
     public ComboComponente cajaOpciones;
     public Object valorSeleccionado;
@@ -40,7 +40,7 @@ public class Caja extends Etiqueta implements ActionListener {
         this.funcionesClic= new ArrayList<>();
         this.alto=50;
         this.ancho=100;
-        this.elementosCaja=(listaElementos)elementos;
+        this.elementosEtiqueta=(listaElementos)elementos;
         this.opcionesCaja=(ArrayList<Opcion>)opciones;
         this.cajaOpciones= new ComboComponente();
     }    
@@ -60,6 +60,9 @@ public class Caja extends Etiqueta implements ActionListener {
         return this;
     }
 
+ 
+    
+    
     @Override
     public void actionPerformed(ActionEvent ae) {
         this.elementoSeleccionado= cajaOpciones.getSelectedItem().toString();
@@ -85,8 +88,8 @@ public class Caja extends Etiqueta implements ActionListener {
     public void asignarElementos(){
    
         cajaOpciones.setSize(ancho, alto);
-        if(elementosCaja.obtenerAlineado()!=null){
-            propiedadAlineado n = elementosCaja.obtenerAlineado();
+        if(elementosEtiqueta.obtenerAlineado()!=null){
+            propiedadAlineado n = elementosEtiqueta.obtenerAlineado();
             if(n.alineado.equalsIgnoreCase("derecha")){
                 ((JLabel)cajaOpciones.getRenderer()).setHorizontalAlignment(SwingConstants.RIGHT);
             }else if(n.alineado.equalsIgnoreCase("izquierda")){
@@ -101,8 +104,8 @@ public class Caja extends Etiqueta implements ActionListener {
     @Override
     public void agregarElementos(){
         propiedad temporal;
-        for (int i = 0; i < this.elementosCaja.listadoElementos.size(); i++) {
-            temporal = this.elementosCaja.listadoElementos.get(i);
+        for (int i = 0; i < this.elementosEtiqueta.listadoElementos.size(); i++) {
+            temporal = this.elementosEtiqueta.listadoElementos.get(i);
             if(temporal instanceof  propiedadAlineado){
                 propiedadAlineado p = (propiedadAlineado)temporal;
                 if(!asignarAlineado(p.alineado)){

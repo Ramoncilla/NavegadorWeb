@@ -17,6 +17,9 @@ public class Etiqueta {
     public int ancho;
     public String alineado="IZQUIERDA";
     public int numeroIdentificador;
+    public listaElementos elementosEtiqueta;
+    
+    
     
     
     

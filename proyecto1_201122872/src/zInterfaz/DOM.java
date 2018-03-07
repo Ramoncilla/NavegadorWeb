@@ -25,21 +25,89 @@ public class DOM {
     
     public void agregarListaEtiquetas (ArrayList<Etiqueta> valores){
         Etiqueta temporal;
+        int control=0;
         for (int i = 0; i < valores.size(); i++) {
             temporal = valores.get(i);
-            temporal.numeroIdentificador=i;
+            temporal.numeroIdentificador=control;
+            if(temporal instanceof Panel){
+                Panel p = (Panel)temporal;
+                Object vec2[]=  agregarListaPanel ((ArrayList<Etiqueta>) p.objetosPanel.etiquetas,(control+1));;
+                ArrayList<Etiqueta> etiquetasPanel = (ArrayList<Etiqueta>) vec2[1];
+                ((Panel) temporal).objetosPanel.sentenciasCuerpo=etiquetasPanel;
+                control = Integer.parseInt(vec2[0].toString());
+            }
             this.etiquetasHTML.add(temporal);
+            control++;
+            
         }
     }
+    
+    private Object[] agregarListaPanel (ArrayList<Etiqueta> valores, int v){
+        Object vec[]= new Object[2];
+        List<Etiqueta> eti = new ArrayList<>();
+        int control =v;
+        Etiqueta temporal;
+        for (int i = v; i < (v+valores.size()); i++) {
+            temporal = valores.get(i-v);
+            temporal.numeroIdentificador=control;
+            if(temporal instanceof Panel){
+                Panel p = (Panel)temporal;
+                Object vec2[]=  agregarListaPanel ((ArrayList<Etiqueta>) p.objetosPanel.etiquetas,(control+1));;
+                ArrayList<Etiqueta> etiquetasPanel = (ArrayList<Etiqueta>) vec2[1];
+                ((Panel) temporal).objetosPanel.sentenciasCuerpo=etiquetasPanel;
+            }
+            eti.add(temporal);
+            control++;
+        }
+        vec[0]=control;
+        vec[1]=eti;
+        return vec;
+    }
+    
     
     
     public void actualizarEtiquetaDOM(Etiqueta et){
+        Etiqueta temporal; 
         for (int i = 0; i < this.etiquetasHTML.size(); i++) {
-            if(et.numeroIdentificador== this.etiquetasHTML.get(i).numeroIdentificador){
-                this.etiquetasHTML.set(i, et);
+            temporal = this.etiquetasHTML.get(i);
+            if(et.numeroIdentificador== temporal.numeroIdentificador){
+                Etiqueta n = et.retornarHtml();
+                this.etiquetasHTML.set(i, n);
+                break;
+            }else if(temporal instanceof Panel){
+                 Panel e =actualizarPanel((Panel)temporal,et);
+                 this.etiquetasHTML.set(i, e);
+                 break;
             }
         }
     }
+    
+    
+    public Panel actualizarPanel(Panel et, Etiqueta b){
+        Etiqueta temporal;
+        for (int i = 0; i < et.objetosPanel.sentenciasCuerpo.size(); i++) {
+            temporal = et.objetosPanel.sentenciasCuerpo.get(i);
+            if(temporal.numeroIdentificador==b.numeroIdentificador){
+                Etiqueta g = b.retornarHtml();
+                
+                et.objetosPanel.sentenciasCuerpo.set(i, g);
+                Panel o= (Panel) et.retornarHtml();
+               return o;
+            }else if(temporal instanceof Panel){
+                Panel v = actualizarPanel(et,b);
+                et.objetosPanel.sentenciasCuerpo.set(i, v);
+                break;
+            }
+            
+        }
+
+        return et;
+    }
+    
+    
+
+    
+ 
     
     public Etiqueta obtenerElemento(String id) {
 

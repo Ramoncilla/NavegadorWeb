@@ -53,13 +53,17 @@ public class setElemento extends objetoBase{
             
             int val =1;//id
             Object variable;
+            String nombreo="";
             if(nombreObjetoHTML instanceof Obtener){
                 val=2;
                 elementoRetorno  nuevo = this.nombreObjetoHTML.Ejecutar(tabla, contexto);
                 variable = nuevo.ValorRetorno;
+                Obtener b = (Obtener)nombreObjetoHTML;
+                nombreo=b.idObjeto;
             }else{
                  val=1; 
                  Id idElemento = (Id)nombreObjetoHTML;
+                 nombreo= idElemento.id;
                 variable = tabla.obtenerSimbolo(idElemento.id, ambito, contexto);
                 }
             
@@ -72,13 +76,13 @@ public class setElemento extends objetoBase{
                     SimbEtiqueta et= (SimbEtiqueta)variable;
                     String nomm = et.nombre;
                     if(nombreElementoModificar.equalsIgnoreCase("id")){
-                        et.etiquetaHTML.id=valorElemento;
+                        et.etiquetaHTML.elementosEtiqueta.asignarID(valorElemento);
                     }else if(nombreElementoModificar.equalsIgnoreCase("grupo")){
-                        et.etiquetaHTML.grupo=valorElemento;
+                        et.etiquetaHTML.elementosEtiqueta.asignarGrupo(valorElemento);
                     }else if(nombreElementoModificar.equalsIgnoreCase("alto")){
                         try{
                             int v = Integer.parseInt(valorElemento);
-                            et.etiquetaHTML.alto=v;
+                            et.etiquetaHTML.elementosEtiqueta.asignarAlto(valorElemento);
                         }catch(NumberFormatException e){
                             
                         }
@@ -86,7 +90,7 @@ public class setElemento extends objetoBase{
                         
                         try{
                             int v = Integer.parseInt(valorElemento);
-                            et.etiquetaHTML.ancho=v;
+                            et.etiquetaHTML.elementosEtiqueta.asignarAncho(valorElemento);
                         }catch(NumberFormatException e){
                             
                         }
@@ -95,9 +99,9 @@ public class setElemento extends objetoBase{
                                 valorElemento.equalsIgnoreCase("izquierda")||
                                 valorElemento.equalsIgnoreCase("centrado")){
                             
-                            et.etiquetaHTML.alineado=valorElemento;
+                            et.etiquetaHTML.elementosEtiqueta.asignarAlineado(valorElemento);
                         }else{
-                            et.etiquetaHTML.alineado="izquierda";
+                            et.etiquetaHTML.elementosEtiqueta.asignarAlineado("izquierda");
                         }
                     }else if(nombreElementoModificar.equalsIgnoreCase("click")){
                         
@@ -154,7 +158,7 @@ public class setElemento extends objetoBase{
                     
                     
                 }else{
-                    paginaActual.erroresPagina.insertarError("Semantico", "Al elemento, no es valido asignar un valor ya que no es una etiqueta html");
+                    paginaActual.erroresPagina.insertarError("Semantico", "Al elemento "+nombreo+", no es valido asignar un valor ya que no es una etiqueta html");
                 }
             
                 /* }else if(nombreObjetoHTML instanceof Obtener){

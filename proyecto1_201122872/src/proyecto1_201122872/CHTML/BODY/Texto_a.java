@@ -26,7 +26,7 @@ import static proyecto1_201122872.Proyecto1_201122872.paginaActual;
  */
 public class Texto_a extends Etiqueta{
     
-        public listaElementos elementosTexto_a;
+
         public String cadenaTexto;
         public jTextPane cajaTexto;
        
@@ -35,7 +35,7 @@ public class Texto_a extends Etiqueta{
     public Texto_a(Object elementos , Object cadena){
         this.alto=300;
         this.ancho=300;
-        this.elementosTexto_a = new listaElementos((ArrayList<propiedad>)elementos);
+        this.elementosEtiqueta = new listaElementos((ArrayList<propiedad>)elementos);
         this.cadenaTexto= cadena.toString();  
         cajaTexto= new jTextPane();
     }
@@ -53,13 +53,16 @@ public class Texto_a extends Etiqueta{
     }
     
     
+
+    
+    
     @Override
     public void asignarElementos() {
         this.cajaTexto.setContentType("text/html");
         this.cajaTexto.setEditable(true);
         this.cajaTexto.setAutoscrolls(true);
-        if(this.elementosTexto_a.obtenerAlineado()!=null){
-             propiedadAlineado n = elementosTexto_a.obtenerAlineado();
+        if(this.elementosEtiqueta.obtenerAlineado()!=null){
+             propiedadAlineado n = elementosEtiqueta.obtenerAlineado();
             if(n.alineado.equalsIgnoreCase("derecha")){
                 this.cajaTexto.setText(this.cadenaTexto);
                 StyledDocument doc = cajaTexto.getStyledDocument();
@@ -88,8 +91,8 @@ public class Texto_a extends Etiqueta{
     @Override
     public void agregarElementos() {
      propiedad temporal;
-        for (int i = 0; i < this.elementosTexto_a.listadoElementos.size(); i++) {
-            temporal = this.elementosTexto_a.listadoElementos.get(i);
+        for (int i = 0; i < this.elementosEtiqueta.listadoElementos.size(); i++) {
+            temporal = this.elementosEtiqueta.listadoElementos.get(i);
             if(temporal instanceof  propiedadAlineado){
                 propiedadAlineado p = (propiedadAlineado)temporal;
                 if(!asignarAlineado(p.alineado)){

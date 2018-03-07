@@ -34,13 +34,13 @@ import static proyecto1_201122872.Proyecto1_201122872.paginaActual;
  */
 public class Imagen extends Etiqueta implements MouseListener {
 
-    public listaElementos elementosImagen;
+
     public String rutaImagen;
     public JLabel imagen;
     public List<String> funcionesClic;
 
     public Imagen(Object elementos, Object ruta) {
-        this.elementosImagen = new listaElementos((ArrayList<propiedad>) elementos);
+        this.elementosEtiqueta = new listaElementos((ArrayList<propiedad>) elementos);
         this.rutaImagen = ruta.toString();
         this.imagen = new JLabel();
         this.funcionesClic= new ArrayList<>();
@@ -52,7 +52,7 @@ public class Imagen extends Etiqueta implements MouseListener {
 
     private void asignarRutaImagen() {
         if (rutaImagen.equalsIgnoreCase("SinImagen")) {
-            propiedadRuta elementoRuta = elementosImagen.obtenerRuta();
+            propiedadRuta elementoRuta = elementosEtiqueta.obtenerRuta();
             if (elementoRuta != null) {
                 this.rutaImagen= elementoRuta.ruta.replace("\"", "");
             }
@@ -89,7 +89,7 @@ public class Imagen extends Etiqueta implements MouseListener {
     }
 
     
-   
+ 
     
     
     
@@ -128,8 +128,8 @@ public class Imagen extends Etiqueta implements MouseListener {
       @Override
     public void agregarElementos(){
         propiedad temporal;
-        for (int i = 0; i < this.elementosImagen.listadoElementos.size(); i++) {
-            temporal = this.elementosImagen.listadoElementos.get(i);
+        for (int i = 0; i < this.elementosEtiqueta.listadoElementos.size(); i++) {
+            temporal = this.elementosEtiqueta.listadoElementos.get(i);
             if(temporal instanceof  propiedadAlineado){
                 propiedadAlineado p = (propiedadAlineado)temporal;
                 if(!asignarAlineado(p.alineado)){

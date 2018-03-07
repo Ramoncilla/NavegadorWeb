@@ -17,6 +17,7 @@ public class Salto extends Etiqueta {
     
     
       public Salto(){
+          this.elementosEtiqueta= new listaElementos();
           
       }
 

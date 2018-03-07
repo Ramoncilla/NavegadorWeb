@@ -11,6 +11,8 @@ import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadAlineado;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadAlto;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadAncho;
+import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadGrupo;
+import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadId;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadRuta;
 
 /**
@@ -18,63 +20,172 @@ import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadRuta;
  * @author Ramonella
  */
 public class listaElementos {
+
+    public List<propiedad> listadoElementos;
+
+    public listaElementos(ArrayList<propiedad> listado) {
+
+        listadoElementos = listado;
+    }
     
-   public List<propiedad> listadoElementos;
+    public listaElementos(){
+        this.listadoElementos= new ArrayList<>();
+    }
 
- public listaElementos(ArrayList<propiedad> listado){
-    
-    listadoElementos = listado;
- }  
+    public propiedadRuta obtenerRuta() {
 
- public propiedadRuta obtenerRuta(){
-     
-     propiedad temporal;
-     for (int i = 0; i <this.listadoElementos.size(); i++) {
-         temporal = listadoElementos.get(i);
-         if(temporal instanceof propiedadRuta){
-             return (propiedadRuta)temporal;
-         }
-     }
-     return null;
- }
+        propiedad temporal;
+        for (int i = 0; i < this.listadoElementos.size(); i++) {
+            temporal = listadoElementos.get(i);
+            if (temporal instanceof propiedadRuta) {
+                return (propiedadRuta) temporal;
+            }
+        }
+        return null;
+    }
 
-public propiedadAlineado obtenerAlineado(){
-     
-     propiedad temporal;
-     for (int i = 0; i <this.listadoElementos.size(); i++) {
-         temporal = listadoElementos.get(i);
-         if(temporal instanceof propiedadAlineado){
-             return (propiedadAlineado)temporal;
-         }
-     }
-     return null;
- }
+    public propiedadAlineado obtenerAlineado() {
 
- public propiedadAlto obtenerAlto(){
-     
-     propiedad temporal;
-     for (int i = 0; i <this.listadoElementos.size(); i++) {
-         temporal = listadoElementos.get(i);
-         if(temporal instanceof propiedadAlto){
-             return (propiedadAlto)temporal;
-         }
-     }
-     return null;
- }
+        propiedad temporal;
+        for (int i = 0; i < this.listadoElementos.size(); i++) {
+            temporal = listadoElementos.get(i);
+            if (temporal instanceof propiedadAlineado) {
+                return (propiedadAlineado) temporal;
+            }
+        }
+        return null;
+    }
 
- 
- public propiedadAncho obtenerAncho(){
-     
-     propiedad temporal;
-     for (int i = 0; i <this.listadoElementos.size(); i++) {
-         temporal = listadoElementos.get(i);
-         if(temporal instanceof propiedadAncho){
-             return (propiedadAncho)temporal;
-         }
-     }
-     return null;
- }
+    public propiedadAlto obtenerAlto() {
 
+        propiedad temporal;
+        for (int i = 0; i < this.listadoElementos.size(); i++) {
+            temporal = listadoElementos.get(i);
+            if (temporal instanceof propiedadAlto) {
+                return (propiedadAlto) temporal;
+            }
+        }
+        return null;
+    }
 
+    public propiedadAncho obtenerAncho() {
+
+        propiedad temporal;
+        for (int i = 0; i < this.listadoElementos.size(); i++) {
+            temporal = listadoElementos.get(i);
+            if (temporal instanceof propiedadAncho) {
+                return (propiedadAncho) temporal;
+            }
+        }
+        return null;
+    }
+
+    public void asignarID(Object id) {
+
+        propiedad temporal;
+        for (int i = 0; i < this.listadoElementos.size(); i++) {
+            temporal = listadoElementos.get(i);
+            if (temporal instanceof propiedadId) {
+                propiedadId v = (propiedadId) temporal;
+                if (!id.toString().equalsIgnoreCase("")) {
+                    v.idElemento = id.toString();
+                    this.listadoElementos.set(i, v);
+                    break;
+
+                }
+            }
+        }
+    }
+
+    public void asignarGrupo(Object grupo) {
+
+        propiedad temporal;
+        for (int i = 0; i < this.listadoElementos.size(); i++) {
+            temporal = listadoElementos.get(i);
+            if (temporal instanceof propiedadGrupo) {
+                propiedadGrupo v = (propiedadGrupo) temporal;
+                if (!grupo.toString().equalsIgnoreCase("")) {
+                    v.grupo = grupo.toString();
+                    this.listadoElementos.set(i, v);
+                    break;
+
+                }
+            }
+        }
+
+    }
+
+    public void asignarAlto(Object op) {
+        Object valor = op.toString().replace("\"", "");
+
+        propiedad temporal;
+        for (int i = 0; i < this.listadoElementos.size(); i++) {
+            temporal = listadoElementos.get(i);
+            if (temporal instanceof propiedadAlto) {
+                propiedadAlto v = (propiedadAlto) temporal;
+                try {
+                    v.alturaComponente = Integer.parseInt(valor.toString());
+                    this.listadoElementos.set(i, v);
+                } catch (Exception e) {
+
+                }
+
+            }
+        }
+
+    }
+
+    public void asignarAncho(Object op) {
+        Object valor = op.toString().replace("\"", "");
+
+        propiedad temporal;
+        for (int i = 0; i < this.listadoElementos.size(); i++) {
+            temporal = listadoElementos.get(i);
+            if (temporal instanceof propiedadAncho) {
+                propiedadAncho v = (propiedadAncho) temporal;
+                try {
+                    v.valorAncho = Integer.parseInt(valor.toString());
+                    this.listadoElementos.set(i, v);
+                } catch (Exception e) {
+
+                }
+
+            }
+        }
+
+    }
+
+    public void asignarAlineado(Object alineacion) {
+
+        propiedad temporal;
+        for (int i = 0; i < this.listadoElementos.size(); i++) {
+            temporal = listadoElementos.get(i);
+            if (temporal instanceof propiedadAlineado) {
+                propiedadAlineado v = (propiedadAlineado) temporal;
+                if (alineacion instanceof String) {
+                    switch (alineacion.toString().toUpperCase()) {
+                        case "DERECHA":
+                            v.alineado = alineacion.toString();
+                            this.listadoElementos.set(i, v);
+                            break;
+                        case "IZQUIERDA":
+                            v.alineado = alineacion.toString();
+                            this.listadoElementos.set(i, v);
+                            break;
+                        case "CENTRADO":
+                            v.alineado = alineacion.toString();
+                            this.listadoElementos.set(i, v);
+                            break;
+                        default:
+                            v.alineado = "izquierda";
+                            this.listadoElementos.set(i, v);
+                            break;
+                    }
+
+                }
+            }
+        }
+
+    }
 
 }

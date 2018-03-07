@@ -25,14 +25,14 @@ import static proyecto1_201122872.Proyecto1_201122872.paginaActual;
  */
 public class Spinner extends Etiqueta {
 
-    public listaElementos elementosSpinner;
+
     public int numeroSpinner;
     public textFieldComponente spinner;
 
     public Spinner(Object elementos, Object cadena) {
         this.alto=50;
         this.ancho=50;
-        this.elementosSpinner = new listaElementos((ArrayList<propiedad>) elementos);
+        this.elementosEtiqueta= new listaElementos((ArrayList<propiedad>) elementos);
         if(esNumero(cadena.toString())){
             this.numeroSpinner= Integer.parseInt(cadena.toString());
         }    else{
@@ -54,13 +54,15 @@ public class Spinner extends Etiqueta {
         return this;
     }
     
+ 
+    
     
       @Override
     public void asignarElementos(){
    
         spinner.setSize(ancho, alto);
-        if(elementosSpinner.obtenerAlineado()!=null){
-            propiedadAlineado n = elementosSpinner.obtenerAlineado();
+        if(elementosEtiqueta.obtenerAlineado()!=null){
+            propiedadAlineado n = elementosEtiqueta.obtenerAlineado();
             if(n.alineado.equalsIgnoreCase("derecha")){
                 spinner.setHorizontalAlignment(SwingConstants.RIGHT);
             }else if(n.alineado.equalsIgnoreCase("izquierda")){
@@ -77,8 +79,8 @@ public class Spinner extends Etiqueta {
     @Override
     public void agregarElementos(){
         propiedad temporal;
-        for (int i = 0; i < this.elementosSpinner.listadoElementos.size(); i++) {
-            temporal = this.elementosSpinner.listadoElementos.get(i);
+        for (int i = 0; i < this.elementosEtiqueta.listadoElementos.size(); i++) {
+            temporal = this.elementosEtiqueta.listadoElementos.get(i);
             if(temporal instanceof  propiedadAlineado){
                 propiedadAlineado p = (propiedadAlineado)temporal;
                 if(!asignarAlineado(p.alineado)){

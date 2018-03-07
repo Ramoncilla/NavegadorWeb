@@ -37,7 +37,7 @@ import static proyecto1_201122872.Proyecto1_201122872.paginaActual;
  */
 public class Cuerpo extends Etiqueta  {
     
-    public listaElementos elementosCuerpo;
+
     public List<Etiqueta> sentenciasCuerpo;
     public JTextPane panel;
     public List<Etiqueta> etiquetas;
@@ -45,7 +45,7 @@ public class Cuerpo extends Etiqueta  {
     
     public Cuerpo(Object elementos, Object etiquet){
         this.panel= new JTextPane();
-        this.elementosCuerpo = new listaElementos((ArrayList<propiedad>)elementos);
+        this.elementosEtiqueta = new listaElementos((ArrayList<propiedad>)elementos);
         this.sentenciasCuerpo = (ArrayList<Etiqueta>)etiquet;
         this.etiquetas= new ArrayList<>();
         panel.setContentType("text/html"); 
@@ -105,8 +105,8 @@ public class Cuerpo extends Etiqueta  {
         panel.setMaximumSize(dmnsn);
         panel.setMaximumSize(dmnsn);
         panel.setPreferredSize(dmnsn);
-        if(this.elementosCuerpo.obtenerAlineado()!=null){
-             propiedadAlineado n = elementosCuerpo.obtenerAlineado();
+        if(this.elementosEtiqueta.obtenerAlineado()!=null){
+             propiedadAlineado n = elementosEtiqueta.obtenerAlineado();
             if(n.alineado.equalsIgnoreCase("derecha")){              
                 StyledDocument doc = panel.getStyledDocument();
                 SimpleAttributeSet center = new SimpleAttributeSet();
@@ -135,8 +135,8 @@ public class Cuerpo extends Etiqueta  {
     @Override
     public void agregarElementos(){
         propiedad temporal;
-        for (int i = 0; i < this.elementosCuerpo.listadoElementos.size(); i++) {
-            temporal = this.elementosCuerpo.listadoElementos.get(i);
+        for (int i = 0; i < this.elementosEtiqueta.listadoElementos.size(); i++) {
+            temporal = this.elementosEtiqueta.listadoElementos.get(i);
             if(temporal instanceof  propiedadAlineado){
                 propiedadAlineado p = (propiedadAlineado)temporal;
                 if(!asignarAlineado(p.alineado)){

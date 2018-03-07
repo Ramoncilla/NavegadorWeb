@@ -39,7 +39,7 @@ import static proyecto1_201122872.Proyecto1_201122872.paginaActual;
  */
 public class Panel extends Etiqueta  {
 
-    public listaElementos elementosPanel;
+
     public Cuerpo objetosPanel;
     public JTextPane panel;
     public List<Etiqueta> etiquetasPanel;
@@ -49,7 +49,7 @@ public class Panel extends Etiqueta  {
         this.alto=300;
         this.ancho=300;
         etiquetasPanel = new ArrayList<>();
-        this.elementosPanel= (listaElementos)elementos;
+        this.elementosEtiqueta= (listaElementos)elementos;
         this.objetosPanel= (Cuerpo)cuerpo;
        this.panel= new JTextPane();
         this.panel.setContentType("text/html");
@@ -65,6 +65,21 @@ public class Panel extends Etiqueta  {
         panel.setBackground(Color.MAGENTA);
         return this;
         
+    }
+    
+    
+   
+    
+    
+    public void imprimirId(){
+        String c="";
+        Etiqueta temporal;
+        for (int i = 0; i < this.objetosPanel.sentenciasCuerpo.size(); i++) {
+            temporal=this.objetosPanel.sentenciasCuerpo.get(i);
+            c+=temporal.numeroIdentificador+", ";
+            
+        }
+        System.out.println(c);
     }
     
        public JScrollPane Dibujar(){
@@ -89,8 +104,15 @@ public class Panel extends Etiqueta  {
                  panel.setCaretPosition(panel.getStyledDocument().getLength());
                  panel.insertComponent(b);
             }else if(temporal instanceof Panel){
-                 JScrollPane b = (JScrollPane)((Panel) temporal).Dibujar();
-                 b.setBackground(Color.red);
+                
+                Panel p =(Panel)temporal;
+                Etiqueta g = p.retornarHtml();
+                
+                Panel h=(Panel)g;
+                System.out.println("fdfd");
+                  p.imprimirId();
+                  System.out.println("dfdf");
+                 JScrollPane b =h.Dibujar();
                  panel.setCaretPosition(panel.getStyledDocument().getLength());
                  panel.insertComponent(b);
             }else if(temporal instanceof Salto){
@@ -124,6 +146,11 @@ public class Panel extends Etiqueta  {
             }    
         }
            JScrollPane n = new JScrollPane(panel);
+           Dimension dmnsn= new Dimension(ancho,alto);
+           n.setSize(dmnsn);
+           n.setPreferredSize(dmnsn);
+           n.setMinimumSize(dmnsn);
+           n.setMaximumSize(dmnsn);
       return n;       
     }
       
@@ -197,8 +224,8 @@ public class Panel extends Etiqueta  {
         panel.setMaximumSize(dmnsn);
         panel.setMaximumSize(dmnsn);
         panel.setPreferredSize(dmnsn);
-        if(this.elementosPanel.obtenerAlineado()!=null){
-             propiedadAlineado n = elementosPanel.obtenerAlineado();
+        if(this.elementosEtiqueta.obtenerAlineado()!=null){
+             propiedadAlineado n = elementosEtiqueta.obtenerAlineado();
             if(n.alineado.equalsIgnoreCase("derecha")){              
                 StyledDocument doc = panel.getStyledDocument();
                 SimpleAttributeSet center = new SimpleAttributeSet();
@@ -227,8 +254,8 @@ public class Panel extends Etiqueta  {
     @Override
     public void agregarElementos(){
         propiedad temporal;
-        for (int i = 0; i < this.elementosPanel.listadoElementos.size(); i++) {
-            temporal = this.elementosPanel.listadoElementos.get(i);
+        for (int i = 0; i < this.elementosEtiqueta.listadoElementos.size(); i++) {
+            temporal = this.elementosEtiqueta.listadoElementos.get(i);
             if(temporal instanceof  propiedadAlineado){
                 propiedadAlineado p = (propiedadAlineado)temporal;
                 if(!asignarAlineado(p.alineado)){
