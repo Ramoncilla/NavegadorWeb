@@ -5,6 +5,7 @@
  */
 package bCSS;
 
+import CJS.objetoBase;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
 
 /**
@@ -13,10 +14,10 @@ import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
  */
 public class Letra extends propiedad{
     
-    public baseCss expresionLetra;
+    public objetoBase expresionLetra;
     
     public Letra(Object cad){
-        this.expresionLetra= (baseCss)cad;
+        this.expresionLetra= (objetoBase)cad;
     }
     
     

@@ -5,6 +5,7 @@
  */
 package bCSS;
 
+import CJS.objetoBase;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
 
 /**
@@ -12,9 +13,9 @@ import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
  * @author Ramonella
  */
 public class Fondoelemento extends propiedad {
-      public baseCss expresionFondo;
+      public objetoBase expresionFondo;
     
     public Fondoelemento(Object cad){
-        this.expresionFondo= (baseCss)cad;
+        this.expresionFondo= (objetoBase)cad;
     }
 }

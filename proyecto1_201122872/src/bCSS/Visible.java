@@ -5,6 +5,7 @@
  */
 package bCSS;
 
+import CJS.objetoBase;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
 
 /**
@@ -12,10 +13,10 @@ import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
  * @author Ramonella
  */
 public class Visible extends propiedad{
-      public baseCss expresion;
+      public objetoBase expresion;
     
     public Visible(Object cad){
-        this.expresion= (baseCss)cad;
+        this.expresion= (objetoBase)cad;
     }
     
 }

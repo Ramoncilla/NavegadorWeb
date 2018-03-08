@@ -8,7 +8,10 @@ import java.lang.*;
 import java.util.*;
 import java.util.ArrayList;
 import bCSS.*;
-import bCSS.Expresion.*;
+import CJS.ARBOL.EXPRESION.Aritmetica;
+import CJS.ARBOL.EXPRESION.Booleano;
+import CJS.ARBOL.EXPRESION.Cadena;
+import CJS.ARBOL.EXPRESION.Numero;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
 
 

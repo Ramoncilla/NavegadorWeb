@@ -11,4 +11,13 @@ package bCSS;
  */
 public class baseCss {
     
+    public Object valor ;
+    
+    
+    public void Ejecutar(){
+        
+    }
+    
+    
+    
 }

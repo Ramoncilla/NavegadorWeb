@@ -5,6 +5,7 @@
  */
 package bCSS;
 
+import CJS.objetoBase;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
 
 /**
@@ -12,10 +13,10 @@ import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
  * @author Ramonella
  */
 public class Tamtex extends propiedad{
-      public baseCss expresionSize;
+      public objetoBase expresionSize;
     
     public Tamtex(Object cad){
-        this.expresionSize= (baseCss)cad;
+        this.expresionSize= (objetoBase)cad;
     }
     
 }

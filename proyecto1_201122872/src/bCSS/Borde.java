@@ -5,6 +5,7 @@
  */
 package bCSS;
 
+import CJS.objetoBase;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
 
 /**
@@ -13,13 +14,13 @@ import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
  */
 public class Borde extends propiedad {
     
-      public baseCss expresionSize;
-       public baseCss expresionColor;
-        public baseCss expresionCurva;
+      public objetoBase expresionSize;
+       public objetoBase expresionColor;
+        public objetoBase expresionCurva;
     
     public Borde(Object v0, Object v1, Object v2){
-        this.expresionSize = (baseCss)v0;
-        this.expresionColor = (baseCss)v1;
-        this.expresionCurva = (baseCss)v2;
+        this.expresionSize = (objetoBase)v0;
+        this.expresionColor = (objetoBase)v1;
+        this.expresionCurva = (objetoBase)v2;
     }
 }
