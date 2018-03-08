@@ -31,7 +31,7 @@ public class buscador extends javax.swing.JFrame {
     public buscador() {
         initComponents();
         contador =0;
-        this.listaPaginas= new NavegadorWeb();
+        listaPaginas= new NavegadorWeb();
     }
 
     /**
@@ -173,7 +173,8 @@ public class buscador extends javax.swing.JFrame {
     private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
         try {
             // TODO add your handling code here:
-            CargarPagina();
+            String ruta= jTextField1.getText();
+            CargarPagina(ruta);
         } catch (Exception ex) {
             Logger.getLogger(buscador.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -202,9 +203,9 @@ public class buscador extends javax.swing.JFrame {
         
     }
     
-    public void nuevaPagina(){
+   public  void nuevaPagina(){
             Pagina nuevaPagina = new Pagina(contador);
-            this.listaPaginas.agregarPagina(nuevaPagina);
+            listaPaginas.agregarPagina(nuevaPagina);
             jTabbedPane1.add("Nueva "+contador, new JScrollPane(nuevaPagina.areaWeb));
             jTabbedPane1.setSelectedIndex(jTabbedPane1.getComponentCount()-1); 
             contador++;
@@ -212,8 +213,8 @@ public class buscador extends javax.swing.JFrame {
     }
     
     
-    public void CargarPagina() throws Exception{
-        String ruta= jTextField1.getText();
+    public void CargarPagina(String ruta) throws Exception{
+        
         File nuevo = new File(ruta);
         if(nuevo.exists() && !nuevo.isDirectory()){
             String nombrePagina = nuevo.getName();

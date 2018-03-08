@@ -14,6 +14,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 import javax.swing.SwingConstants;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
@@ -28,6 +31,7 @@ import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadRuta;
 import proyecto1_201122872.CHTML.Etiqueta;
 import proyecto1_201122872.CHTML.listaElementos;
 import static proyecto1_201122872.Proyecto1_201122872.paginaActual;
+import static proyecto1_201122872.Proyecto1_201122872.g;
 /**
  *
  * @author Ramonella
@@ -112,8 +116,14 @@ public class Enlace  extends Etiqueta implements MouseListener{
     public void mouseClicked(MouseEvent e) {
          File f = new File(this.rutaEnlace);
         if (f.exists() && !f.isDirectory()) {
-            
-
+           g.nuevaPagina();
+         try {
+             g.CargarPagina(this.rutaEnlace);
+         } catch (Exception ex) {
+             Logger.getLogger(Enlace.class.getName()).log(Level.SEVERE, null, ex);
+         }
+        }else{
+            JOptionPane.showMessageDialog(null, "No se puede abrir la pagina, ruta no valida "+this.rutaEnlace, "USAC-WEB", JOptionPane.ERROR_MESSAGE);
         }
         System.out.println("clic en enlace "+ this.cadenaEnlace);
     }

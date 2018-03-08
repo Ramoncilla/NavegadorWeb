@@ -19,6 +19,7 @@ import zInterfaz.buscador;
  */
 public class Proyecto1_201122872 {
 
+    public static buscador g;
    // public static String archivoActual="archivin";
    // public static tablaErrores erroresEjecucion;
     //public static String cadenaImpresion;
@@ -35,7 +36,7 @@ public class Proyecto1_201122872 {
         lFunciones= new ListaFunciones();*/
         Navegador n= new Navegador();
        // n.show();
-        buscador g= new buscador();
+        g= new buscador();
         g.setVisible(true);
         
       

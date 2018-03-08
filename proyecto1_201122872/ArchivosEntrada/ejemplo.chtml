@@ -21,7 +21,7 @@
 		<boton alto="100"; ancho="100"; alineado="derecha"; id="botonPanel";>Prueba<fin-boton>
 		<salto-fin>
 		<panel>
-		<enlace id="enlaceD";>dfdffdsoooposfds<fin-enlace>
+		<enlace id="enlaceD";ruta="C:\\Users\\Ramonella\\Documents\\Repositorios\\Proyecto1\\NavegadorWeb\\proyecto1_201122872\\ArchivosEntrada\\ejemplo2.chtml";>Enlace de Prueba <fin-enlace>
 		<boton>funciona<fin-boton>
 		<fin-panel>
 		<salto-fin>
