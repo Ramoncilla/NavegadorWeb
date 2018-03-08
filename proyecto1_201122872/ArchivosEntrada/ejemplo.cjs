@@ -49,7 +49,7 @@ op2.setElemento("ancho","10");
 documento.obtener("botonMi").setElemento("ancho","20");
 documento.obtener("botonMi").setElemento("click","usarObservador3()");
 documento.obtener("botonMi").setElemento("click","usarObservador4()");
-
+documento.observador(listo,funcion(){imprimir("documento cargado");});
 
 documento.obtener("botonPanel").setElemento("alto","10");
 imprimir("valor de b "+b);

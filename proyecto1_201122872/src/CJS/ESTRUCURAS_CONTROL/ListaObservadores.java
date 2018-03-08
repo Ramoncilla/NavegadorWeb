@@ -31,6 +31,35 @@ public class ListaObservadores {
     }
     
     
+    
+    //busca los observadores unicamnte de obtner y id
+    public void buscarObservadorPorDocumento(int tipoEvento, int contexto, tablaSimbolos tabla) {
+        Observador temporal;
+        for (int i = 0; i < this.observadoresDocumento.size(); i++) {
+            temporal = this.observadoresDocumento.get(i);
+            if (temporal.tipoObservador == 1) {
+                if (temporal.tipoEvento == tipoEvento) {
+                    if (temporal.funcionEjecutar instanceof Llamada) {
+                        Llamada nueva = (Llamada) temporal.funcionEjecutar;
+                        elementoRetorno r = nueva.Ejecutar(tabla, contexto);
+                    } else if (temporal.funcionEjecutar instanceof Funcion) {
+                        //aqui viene si se va a crear una funio nueva
+                        contexto++;
+                        elementoRetorno ret = ((Funcion) temporal.funcionEjecutar).Ejecutar(tabla, contexto);
+                        tabla.eliminarSimbolosLocales(contexto);
+                        contexto--;
+                    }
+
+                }
+
+            }
+
+        }
+    }
+
+
+
+    
     //busca los observadores unicamnte de obtner y id
     public void buscarObservadorPorElemento(int tipoEvento, int idElemento, int contexto, tablaSimbolos tabla ){
         Observador temporal;

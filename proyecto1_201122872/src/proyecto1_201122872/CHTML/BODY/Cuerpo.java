@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package proyecto1_201122872.CHTML.BODY;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadAlineado;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadAlto;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadAncho;
+import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadColorFondo;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadGrupo;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadId;
 import proyecto1_201122872.CHTML.Etiqueta;
@@ -93,18 +95,31 @@ public class Cuerpo extends Etiqueta  {
     
    
     
-    
+     public Color getColor(String color){
+     Color c =Color.GRAY ;
+        try{
+            c = (Color) Color.class.getField(color).get(null);
+        }catch (Exception excep){
+            c= Color.decode(color);
+        }
+     return c;
+}
  
     
     
      @Override
     public void asignarElementos(){
         Dimension dmnsn = new Dimension(ancho, alto);
+        
         panel.setSize(dmnsn);
         panel.setSize(ancho, alto);
         panel.setMaximumSize(dmnsn);
         panel.setMaximumSize(dmnsn);
         panel.setPreferredSize(dmnsn);
+        if(!(cadenaColor.equalsIgnoreCase(""))){
+            Color c = getColor(cadenaColor);
+            panel.setBackground(c);
+        }
         if(this.elementosEtiqueta.obtenerAlineado()!=null){
              propiedadAlineado n = elementosEtiqueta.obtenerAlineado();
             if(n.alineado.equalsIgnoreCase("derecha")){              
@@ -166,6 +181,10 @@ public class Cuerpo extends Etiqueta  {
                 if(!asignarAncho(p.valorAncho)){
                     paginaActual.erroresPagina.insertarError("Semantico", "Elemento no valido para la alineacion el ID de un boton");
                 }
+                
+            }else if(temporal instanceof propiedadColorFondo){
+                propiedadColorFondo p = (propiedadColorFondo)temporal;
+                this.cadenaColor = p.cadenaColor;
                 
             }
         }

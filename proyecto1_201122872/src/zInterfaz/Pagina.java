@@ -10,6 +10,8 @@ import CJS.TablaSimbolos.tablaSimbolos;
 import CJS.objetoBase;
 import Errores.tablaErrores;
 import Funciones.ListaFunciones;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,6 +25,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 import javax.swing.text.html.HTMLDocument;
 import proyecto1_201122872.CHTML.BODY.Boton;
 import proyecto1_201122872.CHTML.BODY.Caja;
@@ -37,8 +42,16 @@ import proyecto1_201122872.CHTML.BODY.Texto_a;
 import proyecto1_201122872.CHTML.BODY.caja_texto;
 import proyecto1_201122872.CHTML.BODY.tabla;
 import proyecto1_201122872.CHTML.Chtml;
+import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
+import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadAlineado;
+import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadAlto;
+import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadAncho;
+import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadColorFondo;
+import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadGrupo;
+import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadId;
 import proyecto1_201122872.CHTML.Etiqueta;
 import proyecto1_201122872.CHTML.HEADER.Encabezado;
+import proyecto1_201122872.CHTML.listaElementos;
 import proyecto1_201122872.LectoArchivos;
 import static proyecto1_201122872.Proyecto1_201122872.paginaActual;
 
@@ -135,8 +148,10 @@ public class Pagina {
         this.documento.agregarListaEtiquetas((ArrayList<Etiqueta>)componentesHTML);
         this.retCJS.ejecutarLibres(tabla, 0);
         
+        cuerpoHTML.agregarElementos();
+        asignarElementos(cuerpoHTML.elementosEtiqueta, cuerpoHTML.cadenaColor);
         Dibujar();
-        
+        this.retCJS.observadores.buscarObservadorPorDocumento(10, 0, tabla);
         
         this.historialPagina.add(rutaPagina);
         }
@@ -323,13 +338,61 @@ public class Pagina {
     
     
     
+    /*Estilo cuerpo */
+     public void asignarElementos(listaElementos elementosEtiqueta, String cadenaColor){
+       /* Dimension dmnsn = new Dimension(ancho, alto);
+        
+        areaWeb.setSize(dmnsn);
+        areaWeb.setSize(ancho, alto);
+        areaWeb.setMaximumSize(dmnsn);
+        areaWeb.setMaximumSize(dmnsn);
+        areaWeb.setPreferredSize(dmnsn);*/
+        
+       
+        if(!(cadenaColor.equalsIgnoreCase(""))){
+            Color c = getColor(cadenaColor);
+            areaWeb.setBackground(c);
+        }
+        if(elementosEtiqueta.obtenerAlineado()!=null){
+             propiedadAlineado n = elementosEtiqueta.obtenerAlineado();
+            if(n.alineado.equalsIgnoreCase("derecha")){              
+                StyledDocument doc =areaWeb.getStyledDocument();
+                SimpleAttributeSet center = new SimpleAttributeSet();
+                StyleConstants.setAlignment(center, StyleConstants.ALIGN_RIGHT);
+                doc.setParagraphAttributes(0, doc.getLength(), center, false);     
+            }else if(n.alineado.equalsIgnoreCase("izquierda")){
+                StyledDocument doc = areaWeb.getStyledDocument();
+                SimpleAttributeSet center = new SimpleAttributeSet();
+                StyleConstants.setAlignment(center, StyleConstants.ALIGN_LEFT);
+                doc.setParagraphAttributes(0, doc.getLength(), center, false);    
+            }else if(n.alineado.equalsIgnoreCase("centrado")){
+                StyledDocument doc = areaWeb.getStyledDocument();
+                SimpleAttributeSet center = new SimpleAttributeSet();
+                StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+                doc.setParagraphAttributes(0, doc.getLength(), center, false); 
+            }
+        } else{
+                StyledDocument doc = areaWeb.getStyledDocument();
+                SimpleAttributeSet center = new SimpleAttributeSet();
+                StyleConstants.setAlignment(center, StyleConstants.ALIGN_LEFT);
+                doc.setParagraphAttributes(0, doc.getLength(), center, false);  
+        }
+    }
     
     
     
     
+    public Color getColor(String color){
+     Color c =Color.GRAY ;
+        try{
+            c = (Color) Color.class.getField(color).get(null);
+        }catch (Exception excep){
+            c= Color.decode(color);
+        }
+     return c;
+}
     
  
-    
     
     
     

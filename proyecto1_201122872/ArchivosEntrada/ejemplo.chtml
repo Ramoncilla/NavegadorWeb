@@ -11,7 +11,7 @@
 	<fin-encabezado>
 	
 
-	<cuerpo>
+	<cuerpo fondo="orange";>
 	<boton alto="100"; ancho="400"; alineado="derecha";id="botonMi"; click="usarObservador2()";>mi<fin-boton>
 	
 	
