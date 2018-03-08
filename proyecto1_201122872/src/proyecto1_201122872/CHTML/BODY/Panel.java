@@ -105,7 +105,6 @@ public class Panel extends Etiqueta  {
                  panel.setCaretPosition(panel.getStyledDocument().getLength());
                  panel.insertComponent(b);
             }else if(temporal instanceof Panel){
-                
                 Panel p =(Panel)temporal;
                    System.out.println("Inicio Panel interno");
                   p.imprimirId();

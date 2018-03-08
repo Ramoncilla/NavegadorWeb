@@ -104,14 +104,12 @@ public class DOM {
             temporal = et.objetosPanel.sentenciasCuerpo.get(i);
             if(temporal.numeroIdentificador==b.numeroIdentificador){
                 Etiqueta g = b.retornarHtml();
-                
                 et.objetosPanel.sentenciasCuerpo.set(i, g);
-                Panel o= (Panel) et.retornarHtml();
-               return o;
+               return et;
             }else if(temporal instanceof Panel){
                 Panel v = actualizarPanel(et,b);
                 et.objetosPanel.sentenciasCuerpo.set(i, v);
-                break;
+                
             }
             
         }
