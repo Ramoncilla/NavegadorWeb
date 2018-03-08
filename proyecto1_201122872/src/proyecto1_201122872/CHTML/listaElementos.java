@@ -11,6 +11,7 @@ import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadAlineado;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadAlto;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadAncho;
+import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadColorFondo;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadGrupo;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadId;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadRuta;
@@ -80,7 +81,7 @@ public class listaElementos {
         }
         return null;
     }
-
+/*--------------------------------- Asginar Elementos html -----------------------------------*/
     public void asignarID(Object id) {
 
         propiedad temporal;
@@ -189,6 +190,43 @@ public class listaElementos {
 
     }
     
+      public void asignarRuta(Object op) {
+   Object valor = op.toString().replace("\"", "");
+        propiedad temporal;
+        for (int i = 0; i < this.listadoElementos.size(); i++) {
+            temporal = listadoElementos.get(i);
+            if (temporal instanceof propiedadRuta) {
+                propiedadRuta v = (propiedadRuta) temporal;
+                if (!valor.toString().equalsIgnoreCase("")) {
+                    v.ruta = valor.toString();
+                    this.listadoElementos.set(i, v);
+                    break;
+
+                }
+            }
+        }
+
+    }
+
+     public void asignarColor(Object op) {
+   Object valor = op.toString().replace("\"", "");
+        propiedad temporal;
+        for (int i = 0; i < this.listadoElementos.size(); i++) {
+            temporal = listadoElementos.get(i);
+            if (temporal instanceof propiedadColorFondo) {
+                propiedadColorFondo v = (propiedadColorFondo) temporal;
+                if (!valor.toString().equalsIgnoreCase("")) {
+                    v.cadenaColor = valor.toString();
+                    this.listadoElementos.set(i, v);
+                    break;
+
+                }
+            }
+        }
+
+    }
+    
+    
     
     public propiedadValor obtenerValor(){
         for (int i = 0; i < this.listadoElementos.size(); i++) {
@@ -198,5 +236,8 @@ public class listaElementos {
         }
         return null;
     }
+    
+    
+    
 
 }

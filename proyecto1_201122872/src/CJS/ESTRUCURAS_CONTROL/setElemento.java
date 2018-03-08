@@ -67,10 +67,6 @@ public class setElemento extends objetoBase{
                 variable = tabla.obtenerSimbolo(idElemento.id, ambito, contexto);
                 }
             
-            
-            // if(nombreObjetoHTML instanceof Id){
-               // Id idElemento = (Id)nombreObjetoHTML;
-               // Simbolo variable = tabla.obtenerSimbolo(idElemento.id, ambito, contexto);
                 if(variable instanceof SimbEtiqueta){
                   
                     SimbEtiqueta et= (SimbEtiqueta)variable;
@@ -124,6 +120,8 @@ public class setElemento extends objetoBase{
                         }
                         
                     } else if(nombreElementoModificar.equalsIgnoreCase("ruta")){
+                        
+                        et.etiquetaHTML.elementosEtiqueta.asignarRuta(valorElemento);
                        //imagen boton, enlace 
                        if(et.etiquetaHTML instanceof Imagen){
                          Imagen im= (Imagen)et.etiquetaHTML;
@@ -148,11 +146,13 @@ public class setElemento extends objetoBase{
                     }
                     
                     if(val==1){
-                      tabla.asignarSimbolo(nomm, et, contexto);
+                    tabla.asignarSimbolo(nomm, et, contexto);
                     retor.ValorRetorno=et;  
+                    paginaActual.documento.actualizarEtiquetaDOM(et.etiquetaHTML);
+                    paginaActual.retCJS.observadores.buscarObservadorPorElemento(20, et.etiquetaHTML.numeroIdentificador, contexto, tabla);
                     }else if(val==2){
                         paginaActual.documento.actualizarEtiquetaDOM(et.etiquetaHTML);
-                        //aqui buscamos el observador
+                        paginaActual.retCJS.observadores.buscarObservadorPorElemento(20, et.etiquetaHTML.numeroIdentificador, contexto, tabla);
                     }
                     
                     
@@ -169,16 +169,7 @@ public class setElemento extends objetoBase{
                          
                          
                      }}*/
-                     
-            
-                
-                 
-                 
-                 
-            
-            
-            
-            
+                         
         }else{
             
             paginaActual.erroresPagina.insertarError("Semantico", "El elemento "+ this.nombreElementoModificar+", no es valido para realizar una modificacion");

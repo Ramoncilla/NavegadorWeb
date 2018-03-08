@@ -161,7 +161,7 @@ public class Pagina {
             temporal = this.analizadores.ejecutarCJS(rutaArchivo);
             agregarFunciones (temporal.lFunciones);
             agregarSentencias(temporal.sentenciasLibres);
-            agregarObservadores(temporal.observadores);
+            agregarObservadores(temporal.observadores.observadoresDocumento);
         }  
     }
     
@@ -179,7 +179,7 @@ public class Pagina {
     
     private void agregarObservadores(List<Observador> observadores){
         for (int i = 0; i < observadores.size(); i++) {
-            this.retCJS.insertarObservador(observadores.get(i));
+            this.retCJS.observadores.insertar(observadores.get(i));
         }
     }
     

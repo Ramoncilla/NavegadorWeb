@@ -15,7 +15,7 @@
 	<boton alto="100"; ancho="400"; alineado="derecha";id="botonMi";>mi<fin-boton>
 	
 	
-	<imagen>C:\Users\Ramonella\Desktop\imagen.jpg<fin-imagen>
+	<imagen id="imagenPrueba";>C:\Users\Ramonella\Desktop\imagen.jpg<fin-imagen>
 	
 	<panel  alto="600"; ancho="600";>
 		<boton alto="100"; ancho="100"; alineado="derecha"; id="botonPanel";>Prueba<fin-boton>

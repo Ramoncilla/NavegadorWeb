@@ -18,7 +18,16 @@ b--;
 dimv op: documento.obtener("nuevoSpinner");
 dimv op2: documento.obtener("botonPanel");
 dimv op3: documento.obtener("EnlaCed");
-op2.setElemento("ancho","1000");
+dimv op4: documento.obtener("imagenPRueba");
+op4.observador(modificado,usarObservador(3*2));
+
+
+funcion usarObservador(ahj){
+  imprimir("SIIIIIIIIIIIIIIIIII "+ ahj);
+}
+
+op4.setELEmento("ruta","C:\Users\Ramonella\Desktop\popo.jpg");
+op2.setElemento("ancho","10");
 documento.obtener("botonMi").setElemento("ancho","20");
 documento.obtener("botonPanel").setElemento("alto","10");
 imprimir("valor de b "+b);
@@ -59,6 +68,8 @@ detener;
 imprimir(pedir+" "+"vuelta no "+b);
 b++;
 }
+
+
 
 
 funcion probarSeleccionar(){
@@ -106,6 +117,8 @@ funcion factorial(n){
   }
 
 }
+
+
 
 
 

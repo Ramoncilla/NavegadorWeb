@@ -174,7 +174,7 @@ SENTENCIA::= IF:a{:RESULT=a;:}
 			|SELECCIONA:a{:RESULT=a;:}
 			|PARA:a{:RESULT=a;:}
 			|SET_ELEMENTO:a{:RESULT=a;:}
-			|OBSERVADOR
+			|OBSERVADOR:a{:RESULT=a;:}
 			|MIENTRAS:a{:RESULT=a;:}
 			|DETENER:a{:RESULT=a;:}
 			|IMPRIMIR:a{:RESULT=a;:}
@@ -266,9 +266,9 @@ MENSAJE::= mensaje abrePar EXPRESION:a cierraPar puntoComa{:Mensaje j = new Mens
 ELEMENTO::= id:a{:RESULT= new Id(a);:} 
 	|OBTENER:a{:RESULT=a;:};
 
-TIPOS_EVENTOS::= listo
-	| modificado
-	|cliqueado;
+TIPOS_EVENTOS::= listo{:RESULT="listo";:}
+	| modificado{:RESULT="modificado";:}
+	|cliqueado{:RESULT="cliqueado";:};
 	
 
 OBTENER::= documento punto obtener abrePar cadena:c cierraPar{:RESULT = new Obtener(c);:};
@@ -277,8 +277,11 @@ SET_ELEMENTO::= ELEMENTO:a punto setelemento abrePar cadena:b coma cadena:c cier
 	
 
 	
-OBSERVADOR::= ELEMENTO punto observador abrePar TIPOS_EVENTOS coma FUNCION cierraPar puntoComa
-		| documento punto observador abrePar TIPOS_EVENTOS coma FUNCION cierraPar puntoComa;
+OBSERVADOR::= ELEMENTO:a punto observador abrePar TIPOS_EVENTOS:b coma FUNCION:c cierraPar puntoComa{:RESULT= new Observador(a,b,c,2);:}
+		| documento punto observador abrePar TIPOS_EVENTOS:b coma FUNCION:c cierraPar puntoComa{:RESULT= new Observador(new objetoBase(),b,c,1);:}
+		| ELEMENTO:a punto observador abrePar TIPOS_EVENTOS:b coma LLAMADA:c cierraPar puntoComa{:RESULT= new Observador(a,b,c,2);:}
+		| documento punto observador abrePar TIPOS_EVENTOS:b coma LLAMADA:c cierraPar puntoComa{:RESULT= new Observador(new objetoBase(),b,c,1);:};
+		
 
 	
 LLAMADA::= id:i abrePar LISTA_EXPRESIONES:b cierraPar{: RESULT= new Llamada(i,b);:}

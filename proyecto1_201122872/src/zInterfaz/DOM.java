@@ -77,10 +77,6 @@ public class DOM {
     }
     
     
-    
-
-    
-    
     public void actualizarEtiquetaDOM(Etiqueta et){
         Etiqueta temporal; 
         for (int i = 0; i < this.etiquetasHTML.size(); i++) {
@@ -93,6 +89,8 @@ public class DOM {
                  Panel e =actualizarPanel((Panel)temporal,et);
                  this.etiquetasHTML.set(i, e);
                  break;
+            }else if (temporal instanceof Caja){
+                
             }
         }
     }
@@ -108,8 +106,7 @@ public class DOM {
                return et;
             }else if(temporal instanceof Panel){
                 Panel v = actualizarPanel(et,b);
-                et.objetosPanel.sentenciasCuerpo.set(i, v);
-                
+                et.objetosPanel.sentenciasCuerpo.set(i, v);               
             }
             
         }
@@ -117,6 +114,7 @@ public class DOM {
         return et;
     }
     
+ 
     
 
     

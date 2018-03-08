@@ -46,11 +46,12 @@ public class Id extends objetoBase{
            }else if(simb instanceof SimbArreglo){
                SimbArreglo arr = (SimbArreglo)simb;
                SimbArreglo nuevo = arr.clonar();
+               ret.ValorRetorno=nuevo;
                super.retorno.ValorRetorno= nuevo;
            }else if(simb instanceof SimbEtiqueta){
                 SimbEtiqueta et = (SimbEtiqueta)simb;
-               SimbEtiqueta et2 = et.clonar();
-               super.retorno.ValorRetorno= et2;
+               ret.ValorRetorno=et;
+               super.retorno.ValorRetorno= et;
                
            }
        }else if(amb.equalsIgnoreCase("local")){
@@ -63,12 +64,14 @@ public class Id extends objetoBase{
            }else if(simb instanceof SimbArreglo){
                SimbArreglo arr = (SimbArreglo)simb;
                SimbArreglo nuevo = arr.clonar();
+               ret.ValorRetorno=nuevo;
                super.retorno.ValorRetorno= nuevo;
                
            }else if(simb instanceof SimbEtiqueta){
                SimbEtiqueta et = (SimbEtiqueta)simb;
                SimbEtiqueta et2 = et.clonar();
-               super.retorno.ValorRetorno= et2;
+               ret.ValorRetorno=et;
+               super.retorno.ValorRetorno= et;
            }
            
            

@@ -5,6 +5,7 @@
  */
 package zInterfaz;
 
+import CJS.ESTRUCURAS_CONTROL.ListaObservadores;
 import CJS.ESTRUCURAS_CONTROL.Observador;
 import CJS.TablaSimbolos.tablaSimbolos;
 import CJS.elementoRetorno;
@@ -22,13 +23,13 @@ public class retornoCJS {
     
     public ListaFunciones lFunciones;
     public List<objetoBase> sentenciasLibres;
-    public List<Observador> observadores;
+    public ListaObservadores observadores;
     
     
     public retornoCJS(){
         this.lFunciones= new ListaFunciones();
         this.sentenciasLibres= new ArrayList<>();
-        this.observadores= new ArrayList<>();
+        this.observadores= new ListaObservadores();
     }
     
     public void insertarFuncion(Funcion nueva){
@@ -40,7 +41,7 @@ public class retornoCJS {
     }
     
     public void insertarObservador(Observador nuevo){
-        this.observadores.add(nuevo);
+        this.observadores.insertar(nuevo);
     }
     
     
