@@ -19,7 +19,13 @@ public class Booleano extends objetoBase{
     
     
     public Booleano(Object val){
-        this.valor = (val.toString());
+        this.valor = (val.toString().replace("\"", "").replace("'", ""));
+        if(this.valor.equalsIgnoreCase("true")){
+            this.valor="verdadero";
+           
+        }else{
+            this.valor="falso";
+        }
         
     }
     

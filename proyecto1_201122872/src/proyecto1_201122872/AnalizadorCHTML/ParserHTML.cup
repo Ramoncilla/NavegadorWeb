@@ -14,6 +14,9 @@ import proyecto1_201122872.CHTML.Chtml;
 import proyecto1_201122872.CHTML.Opcion;
 import proyecto1_201122872.CHTML.listaElementos;
 import proyecto1_201122872.CHTML.HEADER.*;
+import Errores.ErrorS;
+
+
 
 
 parser code
@@ -32,6 +35,8 @@ public void syntax_error(Symbol s){
                 + "<td><center><b>" + s.right + "</b></center></td>"
                 + "<td><center><b>" + s.left+ "</b></center></td>"
                 + "</tr>";
+				ErrorS nuevo = new ErrorS(s.right,s.left,"Sintactico","El simbolo "+s.value+", no es valido");
+paginaActual.erroresPagina.insertarError(nuevo);
 }
 
 /* ------------------==: ERROR SINTACTICO NO RECUPERABLE :==------------------*/
@@ -42,6 +47,8 @@ public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{
                 + "<td><center><b>" + s.right + "</b></center></td>"
                 + "<td><center><b>" + s.left+ "</b></center></td>"
                 + "</tr>";
+				ErrorS nuevo = new ErrorS(s.right,s.left,"Sintactico","El simbolo "+s.value+", no es valido");
+paginaActual.erroresPagina.insertarError(nuevo);
 }
 
 :}
@@ -78,7 +85,7 @@ action code
 		encabezadoProduccion, tituloHeader,cssHeader,jsHeader,cuerpoHeader,elementoHeader;
 
 	non terminal 
-		idPropiedad, grupoPropiedad, altoPropiedad, anchoPropiedad,alineadoPropiedad,ccssPropiedad,rutaPropiedad, clickPropiedad,fondoPropiedad,valorPropiedad, propiedadGeneral, listaPropiedadesGenerales;
+		idPropiedad, grupoPropiedad, altoPropiedad, anchoPropiedad,alineadoPropiedad,ccssPropiedad,rutaPropiedad, clickPropiedad,fondoPropiedad,valorPropiedad, propiedadGeneral, listaPropiedadesGenerales, LISTA_OPCION;
 
 
 	non terminal
@@ -107,14 +114,14 @@ action code
 		
 	non terminal listaPropiedadBoton,propiedadCuerpo,listaPropiedadesCuerpo, 
 		listaPropiedadeesCajaOpciones, listaPropiedadesEnlace, propiedadBoton, propiedadCajaOpciones,
-		propiedadOpcion, listaPropiedadesOpcion, propiedadEnlace;
+		propiedadOpcion, listaPropiedadesOpcion, propiedadEnlace, propiedadValor;
 
 
 	non terminal CHTML,ENCABEZADO, CCJS, CCSS, TITULO,CUERPO,TEXTO, IMAGEN,BOTON,ENLACE,TEXTO_A,CAJA_TEXTO,CAJA,SPINNER,SALTO,OPCION,
 		listaOpciones,sentenciaCuerpo, cuerpoCuerpo, PANEL,TABLA, LISTA_FILA,FILA,ELEMENTO_FILA,CELDA_ENCABEZADO,CELDA,sentenciaCelda,cuerpoCelda,LISTA_TABLA;
 
 
-	non terminal cuerpoCHTML;
+	non terminal cuerpoCHTML, PROPIEDAD_OPCION;
 	
 
 
@@ -127,7 +134,8 @@ action code
 
 	rutaPropiedad::= ruta igualSimb cadena:a puntoComaSimb{:propiedadRuta r= new propiedadRuta(a); 
 															RESULT=r;
-														  :};
+														  :}
+														  |error;
    
     clickPropiedad::= click igualSimb cadena:a puntoComaSimb{:propiedadClick r= new propiedadClick(a); 
 															RESULT=r;
@@ -443,12 +451,29 @@ action code
 		
 	
 	
-	tagOpcion::= menor opcion mayor {:RESULT= new  Opcion("nulo");:}
-		|menor opcion valor igualSimb cadena:v puntoComaSimb mayor{:RESULT= new  Opcion(v);:};
+	tagOpcion::= menor opcion mayor {:RESULT= new  listaElementos(new ArrayList<propiedad>());:}
+		|menor opcion  LISTA_OPCION:a mayor{:RESULT= new  listaElementos((ArrayList<propiedad>)a);:};
+	
+
+   PROPIEDAD_OPCION::= propiedadGeneral:a{:RESULT=a;:}
+	|propiedadValor:a{:RESULT=a;:};
+    	
+	
+	propiedadValor::= valor igualSimb cadena:c puntoComaSimb{:RESULT= new propiedadValor(c);:};
+	
+	
+	LISTA_OPCION::= LISTA_OPCION:b PROPIEDAD_OPCION:a{:List<propiedad> lista= (List<propiedad>) b;
+																		  lista.add((propiedad)a);
+																		  RESULT= lista;:}
+		|PROPIEDAD_OPCION:a{: List<propiedad> lista = new ArrayList<>();
+							 lista.add((propiedad)a);
+							 RESULT = lista;:};
+	
+	OPCION::= tagOpcion:m cadena2:c tagFinOpcion {:  RESULT = new Opcion((listaElementos)m,c);:}
+		| tagOpcion:m tagFinOpcion {:RESULT = new Opcion((listaElementos)m,"");:};
 		
 		
-	OPCION::= tagOpcion:m cadena2:c tagFinOpcion {:Opcion op=(Opcion)m; op.setContenido(c); RESULT= op;:}
-		| tagOpcion:m tagFinOpcion {:Opcion op=(Opcion)m; op.setContenido(""); RESULT= op;:};
+	
 		
 	listaOpciones::= listaOpciones:l OPCION:op{:List<Opcion> lista = (ArrayList<Opcion>)l; lista.add((Opcion)op); RESULT=lista;:}
 		|OPCION:op{:List<Opcion> lista = new ArrayList<>(); lista.add((Opcion)op); RESULT=lista;:};

@@ -8,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
@@ -29,7 +28,7 @@ import static proyecto1_201122872.Proyecto1_201122872.paginaActual;
 public class Caja extends Etiqueta implements ActionListener {
    
    
-    public List<Opcion> opcionesCaja;
+    public List<Etiqueta> opcionesCaja;
     public ComboComponente cajaOpciones;
     public Object valorSeleccionado;
     public String elementoSeleccionado;
@@ -41,26 +40,50 @@ public class Caja extends Etiqueta implements ActionListener {
         this.alto=50;
         this.ancho=100;
         this.elementosEtiqueta=(listaElementos)elementos;
-        this.opcionesCaja=(ArrayList<Opcion>)opciones;
+        this.opcionesCaja=new ArrayList<>();
+        iniciarOpciones((ArrayList<Etiqueta>)opciones);
         this.cajaOpciones= new ComboComponente();
     }    
 
+    
+    private void iniciarOpciones(ArrayList<Etiqueta> op){
+        Opcion temporal;
+        for (int i = 0; i < op.size(); i++) {
+            temporal = (Opcion) op.get(i).retornarHtml();
+            this.opcionesCaja.add(temporal);
+        }
+        
+    }
+    
     @Override
     public Etiqueta retornarHtml() {
-        Opcion temporal;
+        Etiqueta temporal;
+        Opcion temporal2;
         cajaOpciones = new ComboComponente();
         cajaOpciones.addActionListener(this);
         agregarElementos();
         asignarElementos();
         for (int i = 0; i < this.opcionesCaja.size(); i++) {
             temporal = this.opcionesCaja.get(i);
-            cajaOpciones.addItem(temporal.contenidoOpcion);
+            temporal2=(Opcion)temporal;
+            cajaOpciones.addItem(temporal2.contenidoOpcion);
             
         } 
         return this;
     }
 
- 
+   public void imprimir(){
+       String c="";
+       Opcion temporal;
+       for (int i = 0; i < this.opcionesCaja.size(); i++) {
+           temporal= (Opcion) this.opcionesCaja.get(i);
+           c+=temporal.numeroIdentificador+",";
+           
+       }
+       System.out.println("inicio caja");
+       System.out.println(c);
+       System.out.println("fin caja");
+   }
     
     
     @Override
@@ -72,9 +95,11 @@ public class Caja extends Etiqueta implements ActionListener {
     
     
     private Object obtenerValor(String contenido){
+        Opcion temporal;
         for (int i = 0; i < this.opcionesCaja.size(); i++) {
-            if(this.opcionesCaja.get(i).contenidoOpcion.equalsIgnoreCase(contenido)){
-                return this.opcionesCaja.get(i).valorOpcion;
+            temporal= (Opcion)this.opcionesCaja.get(i);
+            if(temporal.contenidoOpcion.equalsIgnoreCase(contenido)){
+                return temporal.valorOpcion;
                 
             }   
         }

@@ -9,7 +9,7 @@ import static proyecto1_201122872.Proyecto1_201122872.paginaActual;
  *
  * @author Ramonella
  */
-public class Error {
+public class ErrorS {
     
     public String archivo;
     public int linea;
@@ -17,7 +17,7 @@ public class Error {
     public String tipo;
     public String descripcion;
 
-    public Error(int linea, int columna, String tipo, String descripcion) {
+    public ErrorS(int linea, int columna, String tipo, String descripcion) {
         this.archivo= paginaActual.archivoActual;
         this.linea = linea;
         this.columna = columna;
@@ -25,7 +25,7 @@ public class Error {
         this.descripcion = descripcion;
     }
 
-    public Error(String tipo, String descripcion) {
+    public ErrorS(String tipo, String descripcion) {
         this.archivo= paginaActual.archivoActual;
         this.tipo = tipo;
         this.descripcion = descripcion;

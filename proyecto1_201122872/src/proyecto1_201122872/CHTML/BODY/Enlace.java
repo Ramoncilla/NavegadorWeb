@@ -93,7 +93,6 @@ public class Enlace  extends Etiqueta implements MouseListener{
     
      @Override
     public void asignarElementos(){
-         System.out.println("dfsdfdsfds");
            if(elementosEtiqueta.obtenerAlineado()!=null){
             propiedadAlineado n = elementosEtiqueta.obtenerAlineado();
             if(n.alineado.equalsIgnoreCase("derecha")){

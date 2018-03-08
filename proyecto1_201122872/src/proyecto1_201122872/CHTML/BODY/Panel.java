@@ -92,6 +92,7 @@ public class Panel extends Etiqueta  {
                  panel.setCaretPosition(panel.getStyledDocument().getLength());
                  panel.insertComponent(b);
             }else if(temporal instanceof Caja){
+                ((Caja)temporal).imprimir();
                 JComboBox b= (JComboBox)((Caja) temporal).cajaOpciones;
                  panel.setCaretPosition(panel.getStyledDocument().getLength());
                  panel.insertComponent(b);
@@ -106,13 +107,10 @@ public class Panel extends Etiqueta  {
             }else if(temporal instanceof Panel){
                 
                 Panel p =(Panel)temporal;
-                Etiqueta g = p.retornarHtml();
-                
-                Panel h=(Panel)g;
-                System.out.println("fdfd");
+                   System.out.println("Inicio Panel interno");
                   p.imprimirId();
-                  System.out.println("dfdf");
-                 JScrollPane b =h.Dibujar();
+                  System.out.println("Fin Panel");
+                 JScrollPane b = (JScrollPane)((Panel) temporal).Dibujar();
                  panel.setCaretPosition(panel.getStyledDocument().getLength());
                  panel.insertComponent(b);
             }else if(temporal instanceof Salto){

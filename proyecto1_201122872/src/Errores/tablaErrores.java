@@ -14,14 +14,14 @@ import java.util.List;
  */
 public class tablaErrores {
     
-    List<Error> listadoErrores;
+    List<ErrorS> listadoErrores;
     
     
     public tablaErrores(){
         this.listadoErrores= new ArrayList<>();
     }
     
-    public void insertarError(Error e){
+    public void insertarError(ErrorS e){
         this.listadoErrores.add(e);
     }
     
@@ -32,7 +32,7 @@ public class tablaErrores {
     
     public void insertarError(String tipo, String descripcion){
         // public Error(String tipo, String descripcion)
-        Error er= new Error(tipo, descripcion);
+        ErrorS er= new ErrorS(tipo, descripcion);
         this.listadoErrores.add(er);
         
         

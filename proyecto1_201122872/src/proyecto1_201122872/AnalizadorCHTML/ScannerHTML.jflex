@@ -8,7 +8,8 @@ import java.io.*;
 import java.lang.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
-
+import static proyecto1_201122872.Proyecto1_201122872.paginaActual;
+import Errores.ErrorS;
 %%
 
 %{
@@ -16,6 +17,9 @@ public static String cadena;
 /* ------------------------==: METODO DE ERROR LEXICO :==---------------------*/
     private void ErrorScan(int linea, int columna, String valor) {
         System.out.println("Error Lexico Iden: " + valor + ", " + linea + ", " + columna);
+//int linea, int columna, String tipo, String descripcion
+ErrorS nuevo = new ErrorS(linea,columna,"Lexico","El simbolo "+valor+", no es valido en el lenguaje CHTML");
+paginaActual.erroresPagina.insertarError(nuevo);
         cadena += "<tr>"
                 + "<td><center><b>" + valor + "</b></center></td>"
                 + "<td><center><b>" + linea + "</b></center></td>"

@@ -7,6 +7,7 @@ package zInterfaz;
 
 import java.util.ArrayList;
 import java.util.List;
+import proyecto1_201122872.CHTML.BODY.Caja;
 import proyecto1_201122872.CHTML.BODY.Panel;
 import proyecto1_201122872.CHTML.Etiqueta;
 
@@ -35,6 +36,12 @@ public class DOM {
                 ArrayList<Etiqueta> etiquetasPanel = (ArrayList<Etiqueta>) vec2[1];
                 ((Panel) temporal).objetosPanel.sentenciasCuerpo=etiquetasPanel;
                 control = Integer.parseInt(vec2[0].toString());
+            }else if(temporal instanceof Caja){
+                Caja c = (Caja)temporal;
+                 Object vec2[]=agregarListaPanel((ArrayList<Etiqueta>) c.opcionesCaja,(control+1));
+                 ArrayList<Etiqueta> opcionesCaja= (ArrayList<Etiqueta>)vec2[1];
+                 ((Caja)temporal).opcionesCaja=opcionesCaja;
+                 control = Integer.parseInt(vec2[0].toString());                
             }
             this.etiquetasHTML.add(temporal);
             control++;
@@ -55,6 +62,11 @@ public class DOM {
                 Object vec2[]=  agregarListaPanel ((ArrayList<Etiqueta>) p.objetosPanel.etiquetas,(control+1));;
                 ArrayList<Etiqueta> etiquetasPanel = (ArrayList<Etiqueta>) vec2[1];
                 ((Panel) temporal).objetosPanel.sentenciasCuerpo=etiquetasPanel;
+            }else if(temporal instanceof Caja){
+                Caja c = (Caja)temporal;
+                Object vec2[]=agregarListaPanel((ArrayList<Etiqueta>) c.opcionesCaja,(control+1));
+                ArrayList<Etiqueta>etiquetasOpciones = (ArrayList<Etiqueta>) vec2[1];
+                ((Caja)temporal).opcionesCaja=etiquetasOpciones;
             }
             eti.add(temporal);
             control++;
@@ -64,6 +76,9 @@ public class DOM {
         return vec;
     }
     
+    
+    
+
     
     
     public void actualizarEtiquetaDOM(Etiqueta et){

@@ -14,6 +14,7 @@ import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadAncho;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadGrupo;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadId;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadRuta;
+import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadValor;
 
 /**
  *
@@ -186,6 +187,16 @@ public class listaElementos {
             }
         }
 
+    }
+    
+    
+    public propiedadValor obtenerValor(){
+        for (int i = 0; i < this.listadoElementos.size(); i++) {
+            if(this.listadoElementos.get(i) instanceof propiedadValor){
+                return (propiedadValor) this.listadoElementos.get(i);
+            }
+        }
+        return null;
     }
 
 }

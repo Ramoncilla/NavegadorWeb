@@ -60,8 +60,8 @@ action code
 terminal String dimv, abreLlave, cierraLlave,abrePar, cierraPar, dosPuntos, puntoComa,si,sino,caso,defecto,selecciona,para,
                 mientras,detener,imprimir,retornar,funcion,coma,punto,mensaje,documento,obtener,setelemento,listo,modificado,
 				cliqueado,observador,mas,menos,multiplicacion,division,potencia,residuo,menor,mayor,menorIgual,mayorIgual,
-				igualIgual,distintoA,and,or,not,verdadero,falso,conteo,atexto, id, cadena, numero, masMas, menosMenos, comillaSimple,
-				cadenaVector,conteoVector, idEtiqueta, grupoEtiqueta,altoEtiqueta,anchoEtiqueta,alineadoEtiqueta;
+				igualIgual,distintoA,and,or,not,valBool,conteo,atexto, id, cadena, numero, masMas, menosMenos, comillaSimple,
+				cadenaVector,conteoVector, idEtiqueta, grupoEtiqueta,altoEtiqueta,anchoEtiqueta,alineadoEtiqueta,comillaDoble;
 
 
 
@@ -334,8 +334,8 @@ DATE::=  numero:a division numero:b division numero:c{:Datee d = new Datee(a,b,c
 
 DATETIME::= DATE:a numero:b dosPuntos numero:c dosPuntos numero:d{:DateTime dt = new DateTime(a,b,c,d); RESULT= dt;:};
 
-BOOLEAN::= verdadero:a{:Booleano b = new Booleano("verdadero");RESULT= b;:}
-	|falso:a{:Booleano b = new Booleano("falso");RESULT= b;:};
+BOOLEAN::= valBool:a{:Booleano b = new Booleano(a);RESULT= b;:};
+
 
 
 

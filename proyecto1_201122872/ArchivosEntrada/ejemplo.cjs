@@ -7,6 +7,7 @@ Dimv h{2*4};
 a:"popote";
 b:-6*10;
 imprimir(b);
+dimv kk:"false";
 a:"hola mundo";
 dimv c{5}:{"hola","pedrito",25,2*3,":p"};
 c{0}:"hola"+" mundo"+" bello";

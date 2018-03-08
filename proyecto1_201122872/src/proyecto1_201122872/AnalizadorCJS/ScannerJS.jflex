@@ -38,12 +38,13 @@ grupoEtiqueta =({id}(".")("grupo"))
 altoEtiqueta =({id}(".")("alto"))
 anchoEtiqueta =({id}(".")("ancho"))
 alineadoEtiqueta =({id}(".")("alineado"))
+bool_elemento=("true"|"false")
+bool = (("'"{bool_elemento}"'")|("\""{bool_elemento}"\"")|({bool_elemento}))
 
 
 
-
-comentario_multi    = "<//-"~"-//>"
-comentario_simple   = "#/"[^\n]*
+comentario_multi  		= "'/" ~"/'"
+comentario_simple 		 = "'"[^\n']+
 
 
 
@@ -64,8 +65,7 @@ public static String cadena;
 %%
 
 /* -----------------------------==: COMENTARIOS  :==--------------------------*/
-{comentario_multi}   {System.out.println("Coment Multi");   /* se ignora*/}
-{comentario_simple}   {System.out.println("Coment simple");   /* se ignora*/}
+
 
 
 
@@ -117,8 +117,8 @@ public static String cadena;
 "&&" {System.out.println("and");   return new Symbol (simbolosCJS.and, yyline+1,yychar+1, new String (yytext()));}
 "||" {System.out.println("or");   return new Symbol (simbolosCJS.or, yyline+1,yychar+1, new String (yytext()));}
 "!" {System.out.println("not");  return new Symbol (simbolosCJS.not, yyline+1,yychar+1, new String (yytext()));}
-"verdadero"  {System.out.println("verdadero");               return new Symbol (simbolosCJS.verdadero, yyline+1,yychar+1, new String (yytext()));}
-"falso"  {System.out.println("falso");               return new Symbol (simbolosCJS.falso, yyline+1,yychar+1, new String (yytext()));}
+{bool}  {System.out.println("verdadero");               return new Symbol (simbolosCJS.valBool, yyline+1,yychar+1, new String (yytext()));}
+
 "conteo" {System.out.println("conteo");   return new Symbol (simbolosCJS.conteo, yyline+1,yychar+1, new String (yytext()));}
 "atexto" {System.out.println("atexto");  return new Symbol (simbolosCJS.atexto, yyline+1,yychar+1, new String (yytext()));}
 
@@ -134,7 +134,8 @@ public static String cadena;
 {id}        {System.out.println(yytext());                return new Symbol (simbolosCJS.id, yyline+1,yychar+1, new String (yytext()));}
 
 
-
+{comentario_multi}   {System.out.println("Coment Multi");   /* se ignora*/}
+{comentario_simple}   {System.out.println("Coment simple");   /* se ignora*/}
 /* -------------------------------==: BLANCOS :==-----------------------------*/
 [ \t\r\f\n]+        { /* Se ignoran */}
 

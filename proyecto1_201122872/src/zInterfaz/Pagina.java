@@ -194,6 +194,7 @@ public class Pagina {
                  areaWeb.setCaretPosition(areaWeb.getStyledDocument().getLength());
                  areaWeb.insertComponent(b);
             }else if(temporal instanceof Caja){
+                ((Caja)temporal).imprimir();
                 JComboBox b= (JComboBox)((Caja) temporal).cajaOpciones;
                  areaWeb.setCaretPosition(areaWeb.getStyledDocument().getLength());
                  areaWeb.insertComponent(b);
@@ -207,7 +208,10 @@ public class Pagina {
                  areaWeb.insertComponent(b);
             }else if(temporal instanceof Panel){
                   Panel p =(Panel)temporal;
+                   System.out.println("Inicio Panel");
                   p.imprimirId();
+                  System.out.println("Fin Panel");
+ 
                  JScrollPane b = (JScrollPane)((Panel) temporal).Dibujar();
                  areaWeb.setCaretPosition(areaWeb.getStyledDocument().getLength());
                  areaWeb.insertComponent(b);
