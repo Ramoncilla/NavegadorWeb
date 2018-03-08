@@ -20,7 +20,7 @@ dimv op2: documento.obtener("botonPanel");
 dimv op3: documento.obtener("EnlaCed");
 dimv op4: documento.obtener("imagenPRueba");
 op4.observador(modificado,usarObservador(3*2));
-
+op.observador(listo,funcion(){Imprimir("se ha cargado el spinner");});
 op2.observador(modificado,funcion(){
 imprimir("ModifquEEE el elemnto 2");
 });
@@ -42,7 +42,7 @@ funcion usarObservador4(){
 
 
 documento.obtener("botonMi").observador(modificado,funcion(){imprimir("BOTONNNN MI");});
-
+documento.obtener("botonMi").observador(cliqueado,funcion(){imprimir("diii un cliccccccccc");});
 op4.setELEmento("ruta","C:\Users\Ramonella\Desktop\popo.jpg");
 op2.setElemento("ancho","10");
 

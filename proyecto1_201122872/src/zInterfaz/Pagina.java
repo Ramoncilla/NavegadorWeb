@@ -193,19 +193,23 @@ public class Pagina {
                 JButton b= (JButton)((Boton) temporal).botonObjeto;
                  areaWeb.setCaretPosition(areaWeb.getStyledDocument().getLength());
                  areaWeb.insertComponent(b);
+                 this.retCJS.observadores.buscarObservadorPorElemento(10, temporal.numeroIdentificador, 0, tabla);
             }else if(temporal instanceof Caja){
                 ((Caja)temporal).imprimir();
                 JComboBox b= (JComboBox)((Caja) temporal).cajaOpciones;
                  areaWeb.setCaretPosition(areaWeb.getStyledDocument().getLength());
                  areaWeb.insertComponent(b);
+                 this.retCJS.observadores.buscarObservadorPorElemento(10, temporal.numeroIdentificador, 0, tabla);
             }else if(temporal instanceof Enlace){
                 JLabel b = (JLabel)((Enlace) temporal).link;
                  areaWeb.setCaretPosition(areaWeb.getStyledDocument().getLength());
                  areaWeb.insertComponent(b);
+                 this.retCJS.observadores.buscarObservadorPorElemento(10, temporal.numeroIdentificador, 0, tabla);
             }else if(temporal instanceof Imagen){
                  JLabel b = (JLabel)((Imagen) temporal).imagen;
                  areaWeb.setCaretPosition(areaWeb.getStyledDocument().getLength());
                  areaWeb.insertComponent(b);
+                 this.retCJS.observadores.buscarObservadorPorElemento(10, temporal.numeroIdentificador, 0, tabla);
             }else if(temporal instanceof Panel){
                   Panel p =(Panel)temporal;
                    System.out.println("Inicio Panel");
@@ -215,11 +219,13 @@ public class Pagina {
                  JScrollPane b = (JScrollPane)((Panel) temporal).Dibujar();
                  areaWeb.setCaretPosition(areaWeb.getStyledDocument().getLength());
                  areaWeb.insertComponent(b);
+                 this.retCJS.observadores.buscarObservadorPorElemento(10, temporal.numeroIdentificador, 0, tabla);
             }else if(temporal instanceof Salto){
                 try {
                         areaWeb.setCaretPosition(areaWeb.getStyledDocument().getLength());
                         HTMLDocument doc=(HTMLDocument) areaWeb.getStyledDocument();
                         doc.insertAfterEnd(doc.getCharacterElement(doc.getLength()),"<br>");
+                        this.retCJS.observadores.buscarObservadorPorElemento(10, temporal.numeroIdentificador, 0, tabla);
                     } catch (BadLocationException ex) {
                         Logger.getLogger(Panel.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (IOException ex) {
@@ -229,18 +235,22 @@ public class Pagina {
                 JTextField b = (JTextField)((Spinner) temporal).spinner;
                 areaWeb.setCaretPosition(areaWeb.getStyledDocument().getLength());
                  areaWeb.insertComponent(b);
+                 this.retCJS.observadores.buscarObservadorPorElemento(10, temporal.numeroIdentificador, 0, tabla);
             }else if(temporal instanceof Texto){
                  JTextPane b = (JTextPane)((Texto) temporal).texto;
                  areaWeb.setCaretPosition(areaWeb.getStyledDocument().getLength());
                  areaWeb.insertComponent(b);
+                 this.retCJS.observadores.buscarObservadorPorElemento(10, temporal.numeroIdentificador, 0, tabla);
             }else if(temporal instanceof Texto_a){
                 JTextPane b = (JTextPane)((Texto_a) temporal).cajaTexto;
                  areaWeb.setCaretPosition(areaWeb.getStyledDocument().getLength());
                  areaWeb.insertComponent(b);
+                 this.retCJS.observadores.buscarObservadorPorElemento(10, temporal.numeroIdentificador, 0, tabla);
             }else if(temporal instanceof caja_texto){
                 JTextField b = (JTextField)((caja_texto) temporal).cajaTexto;
                 areaWeb.setCaretPosition(areaWeb.getStyledDocument().getLength());
                  areaWeb.insertComponent(b);
+                 this.retCJS.observadores.buscarObservadorPorElemento(10, temporal.numeroIdentificador, 0, tabla);
             }else if(temporal instanceof tabla){
                 
             }    

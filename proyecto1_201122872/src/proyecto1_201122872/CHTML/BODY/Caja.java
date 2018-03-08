@@ -111,7 +111,7 @@ public class Caja extends Etiqueta implements ActionListener {
                paginaActual.erroresPagina.insertarError("Semantico", "No se puede ejecutar la funcion "+ temporal+", en el caja de opciones , debido a que no existe.");
             }
         }
-        
+        paginaActual.retCJS.observadores.buscarObservadorPorElemento(30, numeroIdentificador, 0, paginaActual.tabla);
     }
     
     

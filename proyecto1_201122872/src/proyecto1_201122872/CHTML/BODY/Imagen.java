@@ -124,7 +124,7 @@ public class Imagen extends Etiqueta implements MouseListener {
             }
         }
         
-        
+      paginaActual.retCJS.observadores.buscarObservadorPorElemento(30, numeroIdentificador, 0, paginaActual.tabla);  
         
     }
 

@@ -62,7 +62,6 @@ public class Panel extends Etiqueta  {
         agregarElementos(); 
         etiquetasPanel= objetosPanel.obtenerEtiquetasConElementos();
         asignarElementos();
-        panel.setBackground(Color.MAGENTA);
         return this;
         
     }
@@ -91,19 +90,23 @@ public class Panel extends Etiqueta  {
                 JButton b= (JButton)((Boton) temporal).botonObjeto;
                  panel.setCaretPosition(panel.getStyledDocument().getLength());
                  panel.insertComponent(b);
+                 paginaActual.retCJS.observadores.buscarObservadorPorElemento(10, temporal.numeroIdentificador, 0, paginaActual.tabla);
             }else if(temporal instanceof Caja){
                 ((Caja)temporal).imprimir();
                 JComboBox b= (JComboBox)((Caja) temporal).cajaOpciones;
                  panel.setCaretPosition(panel.getStyledDocument().getLength());
                  panel.insertComponent(b);
+                 paginaActual.retCJS.observadores.buscarObservadorPorElemento(10, temporal.numeroIdentificador, 0, paginaActual.tabla);
             }else if(temporal instanceof Enlace){
                 JLabel b = (JLabel)((Enlace) temporal).link;
                  panel.setCaretPosition(panel.getStyledDocument().getLength());
                  panel.insertComponent(b);
+                 paginaActual.retCJS.observadores.buscarObservadorPorElemento(10, temporal.numeroIdentificador, 0, paginaActual.tabla);
             }else if(temporal instanceof Imagen){
                  JLabel b = (JLabel)((Imagen) temporal).imagen;
                  panel.setCaretPosition(panel.getStyledDocument().getLength());
                  panel.insertComponent(b);
+                 paginaActual.retCJS.observadores.buscarObservadorPorElemento(10, temporal.numeroIdentificador, 0, paginaActual.tabla);
             }else if(temporal instanceof Panel){
                 Panel p =(Panel)temporal;
                    System.out.println("Inicio Panel interno");
@@ -112,11 +115,13 @@ public class Panel extends Etiqueta  {
                  JScrollPane b = (JScrollPane)((Panel) temporal).Dibujar();
                  panel.setCaretPosition(panel.getStyledDocument().getLength());
                  panel.insertComponent(b);
+                 paginaActual.retCJS.observadores.buscarObservadorPorElemento(10, temporal.numeroIdentificador, 0, paginaActual.tabla);
             }else if(temporal instanceof Salto){
                 try {
                         panel.setCaretPosition(panel.getStyledDocument().getLength());
                         HTMLDocument doc=(HTMLDocument) panel.getStyledDocument();
                         doc.insertAfterEnd(doc.getCharacterElement(doc.getLength()),"<br>");
+                        paginaActual.retCJS.observadores.buscarObservadorPorElemento(10, temporal.numeroIdentificador, 0, paginaActual.tabla);
                     } catch (BadLocationException ex) {
                         Logger.getLogger(Panel.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (IOException ex) {
@@ -126,18 +131,22 @@ public class Panel extends Etiqueta  {
                 JTextField b = (JTextField)((Spinner) temporal).spinner;
                 panel.setCaretPosition(panel.getStyledDocument().getLength());
                  panel.insertComponent(b);
+                 paginaActual.retCJS.observadores.buscarObservadorPorElemento(10, temporal.numeroIdentificador, 0, paginaActual.tabla);
             }else if(temporal instanceof Texto){
                  JTextPane b = (JTextPane)((Texto) temporal).texto;
                  panel.setCaretPosition(panel.getStyledDocument().getLength());
                  panel.insertComponent(b);
+                 paginaActual.retCJS.observadores.buscarObservadorPorElemento(10, temporal.numeroIdentificador, 0, paginaActual.tabla);
             }else if(temporal instanceof Texto_a){
                 JTextPane b = (JTextPane)((Texto_a) temporal).cajaTexto;
                  panel.setCaretPosition(panel.getStyledDocument().getLength());
                  panel.insertComponent(b);
+                 paginaActual.retCJS.observadores.buscarObservadorPorElemento(10, temporal.numeroIdentificador, 0, paginaActual.tabla);
             }else if(temporal instanceof caja_texto){
                 JTextField b = (JTextField)((caja_texto) temporal).cajaTexto;
                 panel.setCaretPosition(panel.getStyledDocument().getLength());
                  panel.insertComponent(b);
+                 paginaActual.retCJS.observadores.buscarObservadorPorElemento(10, temporal.numeroIdentificador, 0, paginaActual.tabla);
             }else if(temporal instanceof tabla){
                 
             }    

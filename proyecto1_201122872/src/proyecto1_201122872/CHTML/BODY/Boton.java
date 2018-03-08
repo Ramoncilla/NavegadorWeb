@@ -92,7 +92,7 @@ public class Boton extends Etiqueta implements ActionListener {
         }
             
         }
-        
+        paginaActual.retCJS.observadores.buscarObservadorPorElemento(30, numeroIdentificador, 0, paginaActual.tabla);
         
         
     }
