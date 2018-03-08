@@ -5,11 +5,13 @@
  */
 package bCSS;
 
+import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
+
 /**
  *
  * @author Ramonella
  */
-public class Borde extends baseCss {
+public class Borde extends propiedad {
     
       public baseCss expresionSize;
        public baseCss expresionColor;

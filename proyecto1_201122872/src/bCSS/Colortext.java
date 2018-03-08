@@ -5,11 +5,13 @@
  */
 package bCSS;
 
+import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
+
 /**
  *
  * @author Ramonella
  */
-public class Colortext extends baseCss {
+public class Colortext extends propiedad {
       public baseCss expresion;
     
     public Colortext(Object cad){

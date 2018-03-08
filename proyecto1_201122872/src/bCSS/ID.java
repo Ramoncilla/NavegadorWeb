@@ -13,13 +13,15 @@ import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
  *
  * @author Ramonella
  */
-public class Formato extends propiedad{
+public class ID extends baseCss {
+    public String id;
+    public List<propiedad> propiedadesCss;
     
-    public List<String> listaFormatos;
     
-    public Formato(Object lista){
-        this.listaFormatos = (ArrayList<String>)lista;
+    public ID(Object id, Object prop){
+        this.id= id.toString();
+        this.propiedadesCss= (ArrayList<propiedad>)prop;
+        
     }
-    
     
 }

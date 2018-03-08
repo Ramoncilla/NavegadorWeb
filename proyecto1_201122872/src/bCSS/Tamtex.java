@@ -5,11 +5,13 @@
  */
 package bCSS;
 
+import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
+
 /**
  *
  * @author Ramonella
  */
-public class Tamtex extends baseCss{
+public class Tamtex extends propiedad{
       public baseCss expresionSize;
     
     public Tamtex(Object cad){

@@ -3,19 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bCSS;
+package bCSS.Expresion;
 
-import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
+import bCSS.baseCss;
 
 /**
  *
  * @author Ramonella
  */
-public class Opaque extends propiedad{
-      public String expresionBool;
+public class Booleano extends baseCss {
+        
     
-    public Opaque(Object cad){
-        this.expresionBool= cad.toString();
+    public String valorBool;
+    
+    public Booleano(Object n){
+        this.valorBool = n.toString();
     }
+    
+    
     
 }

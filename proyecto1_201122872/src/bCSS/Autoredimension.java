@@ -5,11 +5,13 @@
  */
 package bCSS;
 
+import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
+
 /**
  *
  * @author Ramonella
  */
-public class Autoredimension extends baseCss{
+public class Autoredimension extends propiedad{
       public baseCss expresionValor;
       public String area;
     

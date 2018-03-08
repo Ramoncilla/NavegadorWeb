@@ -5,11 +5,13 @@
  */
 package bCSS;
 
+import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
+
 /**
  *
  * @author Ramonella
  */
-public class Letra extends baseCss{
+public class Letra extends propiedad{
     
     public baseCss expresionLetra;
     

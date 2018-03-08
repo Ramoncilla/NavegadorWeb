@@ -5,11 +5,13 @@
  */
 package bCSS;
 
+import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
+
 /**
  *
  * @author Ramonella
  */
-public class Alineado extends baseCss{
+public class Alineado extends propiedad{
     
     public String alineacion;
     

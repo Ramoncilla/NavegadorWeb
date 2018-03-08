@@ -5,11 +5,13 @@
  */
 package bCSS;
 
+import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
+
 /**
  *
  * @author Ramonella
  */
-public class Fondoelemento extends baseCss {
+public class Fondoelemento extends propiedad {
       public baseCss expresionFondo;
     
     public Fondoelemento(Object cad){

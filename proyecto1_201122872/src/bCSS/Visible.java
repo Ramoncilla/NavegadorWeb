@@ -5,11 +5,13 @@
  */
 package bCSS;
 
+import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
+
 /**
  *
  * @author Ramonella
  */
-public class Visible extends baseCss{
+public class Visible extends propiedad{
       public baseCss expresion;
     
     public Visible(Object cad){

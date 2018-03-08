@@ -7,6 +7,9 @@ import java.io.*;
 import java.lang.*;
 import java.util.*;
 import java.util.ArrayList;
+import bCSS.*;
+import bCSS.Expresion.*;
+import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
 
 
 
@@ -15,6 +18,7 @@ parser code
  /* -------------------------==: DECLARAR EL ARBOL :==--------------------------*/
     //public Nodo Gramaticas;     
    public String cadena="";
+   public ListaBloquesCss lBloques;
 
 	
 
@@ -67,86 +71,117 @@ non terminal INICIO, LISTA_CUERPOS,CUERPO,LISTA_ELEMENTO_CUERPO,ELEMENTO_CUERPO,
 
 
 
-INICIO::= LISTA_CUERPOS;
+INICIO::= LISTA_CUERPOS:c {:parser.lBloques=(ListaBloquesCss)c;:};
 
-LISTA_CUERPOS::= CUERPO	
-	|LISTA_CUERPOS CUERPO;
+LISTA_CUERPOS::= CUERPO:a{:ListaBloquesCss lista = new ListaBloquesCss();
+                                                        lista.insertarLista((ArrayList<baseCss>)a);
+														RESULT= lista;:}	
+	|LISTA_CUERPOS:l CUERPO:a{:ListaBloquesCss lista = (ListaBloquesCss)l;
+                                                        lista.insertarLista((ArrayList<baseCss>)a);
+														RESULT= lista;:};
 
-CUERPO::= id corAbre LISTA_ELEMENTO_CUERPO corCierra;
+CUERPO::= id corAbre LISTA_ELEMENTO_CUERPO:a corCierra{:RESULT=a;:};
 
-LISTA_ELEMENTO_CUERPO::= LISTA_ELEMENTO_CUERPO ELEMENTO_CUERPO
-	|ELEMENTO_CUERPO;
+LISTA_ELEMENTO_CUERPO::= LISTA_ELEMENTO_CUERPO:l ELEMENTO_CUERPO:c{:
+	                   List<baseCss> lista = (ArrayList<baseCss>)l;
+					   lista.add((baseCss)c);
+					   RESULT= lista;
+	:}
+	|ELEMENTO_CUERPO:c{:
+	                   List<baseCss> lista = new ArrayList<>();
+					   lista.add((baseCss)c);
+					   RESULT= lista;
+	:};
 
-ELEMENTO_CUERPO::= GRUPO 
-	|ID;
+ELEMENTO_CUERPO::= GRUPO:a{:RESULT= a;:} 
+	|ID:a{:RESULT= a;:};
 
-GRUPO::= grupo abrePar id cierraPar puntoComa ELEMENTOS;
+GRUPO::= grupo abrePar id:a cierraPar puntoComa ELEMENTOS:b{:RESULT = new Grupo(a,b);:};
 
-ID::= idTerminal abrePar id cierraPar puntoComa ELEMENTOS;
+ID::= idTerminal abrePar id:a cierraPar puntoComa ELEMENTOS:b{:RESULT = new ID(a,b);:};
 
-ELEMENTOS::= ELEMENTO
-	|ELEMENTOS ELEMENTO;
+
+ELEMENTOS::= ELEMENTO:p {:List<propiedad> l = new ArrayList<>(); 
+l.add((propiedad)p);
+ RESULT=l;:}
+	|ELEMENTOS:li ELEMENTO:p{:
+	List<propiedad> l = (ArrayList<propiedad>)li;
+	l.add((propiedad)p); 
+	RESULT=l;:};
 	
-ELEMENTO::= ALINEADO
-	|TEXTO
-	|FORMATO
-	|LETRA
-	|TAMTEX
-	|FONDO_ELEMENTO
-	|AUTOREDIMENSION
-	|VISIBLE
-	|BORDE
-	|OPAQUE
-	|COLORTEXT;
+ELEMENTO::= ALINEADO:a{:RESULT=a;:}
+	|TEXTO:a{:RESULT=a;:}
+	|FORMATO:a{:RESULT=a;:}
+	|LETRA:a{:RESULT=a;:}
+	|TAMTEX:a{:RESULT=a;:}
+	|FONDO_ELEMENTO:a{:RESULT=a;:}
+	|AUTOREDIMENSION:a{:RESULT=a;:}
+	|VISIBLE:a{:RESULT=a;:}
+	|BORDE:a{:RESULT=a;:}
+	|OPAQUE:a{:RESULT=a;:}
+	|COLORTEXT:a{:RESULT=a;:};
 	
-ALINEADO::= alineado dosPuntos igual VALOR_ALINEADO puntoComa;
+ALINEADO::= alineado dosPuntos igual VALOR_ALINEADO:c puntoComa{:RESULT= new Alineado(c);:};
 
-VALOR_ALINEADO::= izquierda
-	|derecha
-	|centrado
-	|justificado;
+VALOR_ALINEADO::= izquierda{:RESULT= "izquierda";:}
+	|derecha{:RESULT= "derecha";:}
+	|centrado{:RESULT= "centrado";:}
+	|justificado{:RESULT= "justificado";:};
 	
-TEXTO::= texto  dosPuntos igual EXPRESION puntoComa;
+TEXTO::= texto  dosPuntos igual EXPRESION:a puntoComa{:RESULT = new Texto(a);:};
 
-FORMATO::= formato dosPuntos igual L_FORMATOS puntoComa;
+FORMATO::= formato dosPuntos igual L_FORMATOS:l puntoComa{:RESULT= new Formato(l);:};
 
-VALOR_FORMATO::= negrilla 
-	|cursiva
-	|mayuscula
-	|minuscula
-	|capitalT;
-	
-	
-	
-L_FORMATOS::= L_FORMATOS  coma VALOR_FORMATO
-	|VALOR_FORMATO;
-	
 
-LETRA::= letra dosPuntos igual EXPRESION puntoComa;
-
-TAMTEX::= tamtex dosPuntos igual EXPRESION puntoComa; 
-
-FONDO_ELEMENTO::= fondoelemento dosPuntos igual EXPRESION puntoComa;
-
-AUTOREDIMENSION::= autoredimension dosPuntos igual	corAbre booleano coma DIRECCION corCierra puntoComa;
-
-DIRECCION::= horizontal
-	|vertical;
+VALOR_FORMATO::= negrilla{:RESULT= "negrilla";:} 
+	|cursiva{:RESULT= "cursiva";:} 
+	|mayuscula{:RESULT= "mayuscula";:} 
+	|minuscula{:RESULT= "minuscula";:} 
+	|capitalT{:RESULT= "capital-t";:} ;
 	
 	
-VISIBLE::= visible dosPuntos igual booleano puntoComa;
-
-BORDE::= borde dosPuntos igual corAbre numero coma cadena coma booleano corCierra puntoComa;
-
-OPAQUE::= opaque dosPuntos igual booleano puntoComa;
-
-COLORTEXT::= colortext dosPuntos igual cadena puntoComa;
-
-EXPRESION::= EXPRESION SIMB_ARIT EXPRESION
-	|booleano
-	|numero
-	|cadena;
 	
-SIMB_ARIT ::= mas
-	|menos| multiplicacion| division;	
+L_FORMATOS::= L_FORMATOS:l coma VALOR_FORMATO:a
+{:
+	List<String> lista = (ArrayList<String>)l;
+	lista.add(a.toString());
+	RESULT= lista;
+	:}
+
+	|VALOR_FORMATO:a{:
+	List<String> lista = new ArrayList<>();
+	lista.add(a.toString());
+	RESULT= lista;
+	:};
+	
+
+LETRA::= letra dosPuntos igual EXPRESION:a puntoComa{:RESULT= new Letra(a);:};
+
+TAMTEX::= tamtex dosPuntos igual EXPRESION:a puntoComa{:RESULT= new Tamtex(a);:}; 
+
+FONDO_ELEMENTO::= fondoelemento dosPuntos igual EXPRESION:a puntoComa{:RESULT= new Fondoelemento(a);:};
+
+AUTOREDIMENSION::= autoredimension dosPuntos igual	corAbre EXPRESION:a coma DIRECCION:b corCierra puntoComa{:RESULT = new Autoredimension(a,b);:};
+
+DIRECCION::= horizontal{:RESULT="horizontal";:}
+	|vertical{:RESULT="vertical";:};
+	
+	
+VISIBLE::= visible dosPuntos igual EXPRESION:a puntoComa{:RESULT= new Visible(a);:};
+
+BORDE::= borde dosPuntos igual corAbre EXPRESION:a coma EXPRESION:b coma EXPRESION:c corCierra puntoComa{:RESULT= new Borde(a,b,c);:};
+
+OPAQUE::= opaque dosPuntos igual booleano:c puntoComa{:RESULT = new Opaque(c);:};
+
+COLORTEXT::= colortext dosPuntos igual EXPRESION:c puntoComa{:RESULT = new Colortext(c);:};
+
+EXPRESION::= EXPRESION:a SIMB_ARIT:b EXPRESION:c{:RESULT = new Aritmetica(a,b,c);:}
+	|booleano:a{:RESULT = new Booleano(a);:}
+	|numero:a{:RESULT = new Numero(a);:}
+	|cadena:a{:RESULT = new Cadena(a);:};
+	
+SIMB_ARIT ::= mas{:RESULT="+";:}
+	|menos{:RESULT="-";:}
+	| multiplicacion{:RESULT="*";:}
+	| division{:RESULT="/";:};	
 
