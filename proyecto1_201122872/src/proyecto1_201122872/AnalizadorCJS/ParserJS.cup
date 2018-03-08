@@ -70,7 +70,7 @@ non terminal DECLARACION, ASIGNACION, LISTA_EXPRESIONES,POS_VECTOR,CUERPO,SENTEN
 			OPERADOR_PARA, FUNCION, LISTA_ID, OBTENER, SET_ELEMENTO, TIPOS_EVENTOS, UNARIO,
 			EXP_ARITMETICA, EXP_RELACIONAL, EXP_LOGICA,ELEMENTO_EXPRESION, NUMERO, CADENA, CADENA_VECTOR,
 	BOOLEAN, ID, CONTEO_VECTOR, OBSERVADOR, EXPRESION,SIMB_ARITMETICO,SIMB_RELACIONAL,SIMB_LOGICA, DOCUMENTO, EXPRESION2,
-	VECTOR_PROPIEDADES,PROP_VECTOR,DATE, DATETIME, INICIO, TERMINAL,ASIGNA_ARREGLO, CUERPO_ARREGLO,LISTA,ELEMENTO;
+	VECTOR_PROPIEDADES,PROP_VECTOR,DATE, DATETIME, INICIO, TERMINAL,ASIGNA_ARREGLO, CUERPO_ARREGLO,LISTA,ELEMENTO,FUNCION2;
 	
 	
 	
@@ -246,6 +246,9 @@ FUNCION::= funcion id:a abrePar LISTA_ID:b cierraPar CUERPO:c{:Funcion f= new Fu
 	| funcion id:i abrePar cierraPar CUERPO:c{:Funcion f= new Funcion(i,new ArrayList<String>(),c);
 												RESULT=f;:};
 
+												
+FUNCION2::=  funcion abrePar cierraPar CUERPO:c{:Funcion f= new Funcion("",new ArrayList<String>(),c);
+												RESULT=f;:};
 
 LISTA_ID::= id:i{:List<String> lista = new ArrayList<>();
 				  lista.add(i.toString());
@@ -277,8 +280,8 @@ SET_ELEMENTO::= ELEMENTO:a punto setelemento abrePar cadena:b coma cadena:c cier
 	
 
 	
-OBSERVADOR::= ELEMENTO:a punto observador abrePar TIPOS_EVENTOS:b coma FUNCION:c cierraPar puntoComa{:RESULT= new Observador(a,b,c,2);:}
-		| documento punto observador abrePar TIPOS_EVENTOS:b coma FUNCION:c cierraPar puntoComa{:RESULT= new Observador(new objetoBase(),b,c,1);:}
+OBSERVADOR::= ELEMENTO:a punto observador abrePar TIPOS_EVENTOS:b coma FUNCION2:c cierraPar puntoComa{:RESULT= new Observador(a,b,c,2);:}
+		| documento punto observador abrePar TIPOS_EVENTOS:b coma FUNCION2:c cierraPar puntoComa{:RESULT= new Observador(new objetoBase(),b,c,1);:}
 		| ELEMENTO:a punto observador abrePar TIPOS_EVENTOS:b coma LLAMADA:c cierraPar puntoComa{:RESULT= new Observador(a,b,c,2);:}
 		| documento punto observador abrePar TIPOS_EVENTOS:b coma LLAMADA:c cierraPar puntoComa{:RESULT= new Observador(new objetoBase(),b,c,1);:};
 		

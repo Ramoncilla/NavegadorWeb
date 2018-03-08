@@ -8,6 +8,7 @@ package CJS.ESTRUCURAS_CONTROL;
 import CJS.TablaSimbolos.SimbEtiqueta;
 import CJS.TablaSimbolos.tablaSimbolos;
 import CJS.elementoRetorno;
+import Funciones.Funcion;
 import java.util.ArrayList;
 import java.util.List;
 import proyecto1_201122872.CHTML.Etiqueta;
@@ -46,8 +47,12 @@ public class ListaObservadores {
                             if(temporal.funcionEjecutar instanceof Llamada){
                                 Llamada nueva = (Llamada)temporal.funcionEjecutar;
                                 elementoRetorno r= nueva.Ejecutar(tabla, contexto);
-                            }else{
+                            }else if(temporal.funcionEjecutar instanceof Funcion){
                                 //aqui viene si se va a crear una funio nueva
+                                contexto++;
+                                elementoRetorno ret = ((Funcion)temporal.funcionEjecutar).Ejecutar(tabla, contexto);
+                                tabla.eliminarSimbolosLocales(contexto);
+                                contexto--;  
                             }
                         }
                     }

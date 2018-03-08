@@ -21,10 +21,15 @@ dimv op3: documento.obtener("EnlaCed");
 dimv op4: documento.obtener("imagenPRueba");
 op4.observador(modificado,usarObservador(3*2));
 
+op2.observador(modificado,funcion(){
+imprimir("ModifquEEE el elemnto 2");
+});
 
 funcion usarObservador(ahj){
   imprimir("SIIIIIIIIIIIIIIIIII "+ ahj);
 }
+
+documento.obtener("botonMi").observador(modificado,funcion(){imprimir("BOTONNNN MI");});
 
 op4.setELEmento("ruta","C:\Users\Ramonella\Desktop\popo.jpg");
 op2.setElemento("ancho","10");
