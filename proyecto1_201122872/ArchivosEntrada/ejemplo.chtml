@@ -54,7 +54,7 @@
 			
 			<imagen ancho="200"; alto="200"; ruta="C:\Users\Ramonella\Desktop\imagen2.jpg";><fin-imagen>
 			
-			<boton>boton nueco :D <fin-boton>
+			<boton ruta="C:\\Users\\Ramonella\\Documents\\Repositorios\\Proyecto1\\NavegadorWeb\\proyecto1_201122872\\ArchivosEntrada\\ejemplo2.chtml";>boton nueco :D <fin-boton>
 			
 			
 			

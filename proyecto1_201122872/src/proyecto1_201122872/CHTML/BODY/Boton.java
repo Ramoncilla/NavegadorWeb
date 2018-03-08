@@ -9,14 +9,19 @@ import CJS.elementoRetorno;
 import Funciones.Funcion;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 import javax.swing.SwingConstants;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
 import proyecto1_201122872.CHTML.Etiqueta;
 import proyecto1_201122872.CHTML.listaElementos;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.*;
+import static proyecto1_201122872.Proyecto1_201122872.g;
 import static proyecto1_201122872.Proyecto1_201122872.paginaActual;
 
 /**
@@ -69,6 +74,23 @@ public class Boton extends Etiqueta implements ActionListener {
             }else{
                paginaActual.erroresPagina.insertarError("Semantico", "No se puede ejecutar la funcion "+ temporal+", en el boton "+this.captionBoton+", debido a que no existe.");
             }
+        }
+        
+        
+        if(this.elementosEtiqueta.obtenerRuta()!=null){
+            propiedadRuta u = this.elementosEtiqueta.obtenerRuta();
+            File f = new File(u.ruta);
+        if (f.exists() && !f.isDirectory()) {
+           g.nuevaPagina();
+         try {
+             g.CargarPagina(u.ruta);
+         } catch (Exception ex) {
+             Logger.getLogger(Enlace.class.getName()).log(Level.SEVERE, null, ex);
+         }
+        }else{
+            JOptionPane.showMessageDialog(null, "No se puede abrir la pagina, ruta no valida "+u.ruta, "USAC-WEB", JOptionPane.ERROR_MESSAGE);
+        }
+            
         }
         
         
