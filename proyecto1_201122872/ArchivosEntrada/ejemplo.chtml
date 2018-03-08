@@ -12,7 +12,7 @@
 	
 
 	<cuerpo>
-	<boton alto="100"; ancho="400"; alineado="derecha";id="botonMi";>mi<fin-boton>
+	<boton alto="100"; ancho="400"; alineado="derecha";id="botonMi"; click="usarObservador2()";>mi<fin-boton>
 	
 	
 	<imagen id="imagenPrueba";>C:\Users\Ramonella\Desktop\imagen.jpg<fin-imagen>

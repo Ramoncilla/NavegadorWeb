@@ -5,6 +5,8 @@
  */
 package proyecto1_201122872.CHTML.BODY;
 
+import CJS.elementoRetorno;
+import Funciones.Funcion;
 import java.awt.Dimension;
 import java.awt.Image;
 
@@ -104,6 +106,26 @@ public class Imagen extends Etiqueta implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         System.out.println("presione la imgen " + rutaImagen);
+        String temporal;
+        Funcion funBuscada;
+        for (int i = 0; i < this.funcionesClic.size(); i++) {
+            temporal = funcionesClic.get(i).replace("\"", "").replace("(", "").replace(")", "");
+            funBuscada= paginaActual.retCJS.lFunciones.obtenerFuncion(temporal, 0);
+            int contexto=0;
+            if(funBuscada!=null)
+            {
+                contexto++;
+                elementoRetorno ret = funBuscada.Ejecutar(paginaActual.tabla, contexto);
+                paginaActual.tabla.eliminarSimbolosLocales(contexto);
+                contexto--; 
+                
+            }else{
+               paginaActual.erroresPagina.insertarError("Semantico", "No se puede ejecutar la funcion "+ temporal+", en la imagen, debido a que no existe.");
+            }
+        }
+        
+        
+        
     }
 
     @Override
@@ -161,8 +183,10 @@ public class Imagen extends Etiqueta implements MouseListener {
                 }
                 
             }else if(temporal instanceof propiedadClick){
-                propiedadClick p = (propiedadClick)temporal;
-                this.funcionesClic.add(p.nombreFuncion);
+                 propiedadClick p = (propiedadClick)temporal;
+                String nombre=p.nombreFuncion.replace("(", "").replace(")", "").replace("\"", "");
+                if(!existeFunClick(nombre))
+                this.funcionesClic.add(nombre);
                 
             }else if(temporal instanceof propiedadRuta){
                 propiedadRuta p = (propiedadRuta)temporal;
@@ -175,6 +199,20 @@ public class Imagen extends Etiqueta implements MouseListener {
         }
     }
     
+   private boolean existeFunClick(String nombreFun){
+        for (int i = 0; i < this.funcionesClic.size(); i++) {
+            if(this.funcionesClic.get(i).equalsIgnoreCase(nombreFun)){
+                return true;
+            }
+        }
+        return false;
+    }
     
+    public void insertarClick(String nombre){
+        
+        if(!existeFunClick(nombre)){
+            this.funcionesClic.add(nombre);
+        }
+    }  
     
 }

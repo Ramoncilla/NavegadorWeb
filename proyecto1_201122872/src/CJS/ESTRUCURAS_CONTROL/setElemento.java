@@ -103,19 +103,15 @@ public class setElemento extends objetoBase{
                         
                         if(et.etiquetaHTML instanceof Boton){
                             Boton bt = (Boton) et.etiquetaHTML;
-                            bt.funcionesClic.add(valorElemento);
+                            bt.insertarClick(valorElemento);
                             et.etiquetaHTML=bt;
                         }else if(et.etiquetaHTML instanceof Caja){
                              Caja bt = (Caja) et.etiquetaHTML;
-                            bt.funcionesClic.add(valorElemento);
+                             bt.insertarClick(valorElemento);
                             et.etiquetaHTML=bt;
                         }else if(et.etiquetaHTML instanceof Imagen){
                              Imagen bt = (Imagen) et.etiquetaHTML;
-                            bt.funcionesClic.add(valorElemento);
-                            et.etiquetaHTML=bt;
-                        }else if(et.etiquetaHTML instanceof Enlace){
-                             Enlace bt = (Enlace) et.etiquetaHTML;
-                            bt.funcionesClic.add(valorElemento);
+                           bt.insertarClick(valorElemento);
                             et.etiquetaHTML=bt;
                         }
                         

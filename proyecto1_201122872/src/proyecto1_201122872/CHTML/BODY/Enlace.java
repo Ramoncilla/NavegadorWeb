@@ -20,6 +20,7 @@ import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadAlineado;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadAlto;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadAncho;
+import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadClick;
 
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadGrupo;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadId;
@@ -37,7 +38,6 @@ public class Enlace  extends Etiqueta implements MouseListener{
      public String cadenaEnlace;
     public labelComponente link;
      public String rutaEnlace;
-     public List<String>funcionesClic;
 
      
     public Enlace(Object elementos , Object cadena){
@@ -47,7 +47,6 @@ public class Enlace  extends Etiqueta implements MouseListener{
         this.link = new labelComponente();
         this.alto=20;
         this.ancho=150;
-        this.funcionesClic= new ArrayList<>();
          asignarRutaEnlace();
     }
    
@@ -184,4 +183,8 @@ public class Enlace  extends Etiqueta implements MouseListener{
     
     
 }
+    
+    
+    
+    
 }

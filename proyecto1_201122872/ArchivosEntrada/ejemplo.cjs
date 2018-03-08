@@ -28,12 +28,29 @@ imprimir("ModifquEEE el elemnto 2");
 funcion usarObservador(ahj){
   imprimir("SIIIIIIIIIIIIIIIIII "+ ahj);
 }
+funcion usarObservador2(){
+  imprimir("SIIIIIIIIIIIIIIIIII 2");
+}
+
+funcion usarObservador3(){
+  imprimir("SIIIIIIIIIIIIIIIIII 3");
+}
+
+funcion usarObservador4(){
+  imprimir("SIIIIIIIIIIIIIIIIII 4");
+}
+
 
 documento.obtener("botonMi").observador(modificado,funcion(){imprimir("BOTONNNN MI");});
 
 op4.setELEmento("ruta","C:\Users\Ramonella\Desktop\popo.jpg");
 op2.setElemento("ancho","10");
+
 documento.obtener("botonMi").setElemento("ancho","20");
+documento.obtener("botonMi").setElemento("click","usarObservador3()");
+documento.obtener("botonMi").setElemento("click","usarObservador4()");
+
+
 documento.obtener("botonPanel").setElemento("alto","10");
 imprimir("valor de b "+b);
 imprimir("valor de b simulado "+ (b+3)++);
