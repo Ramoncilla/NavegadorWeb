@@ -19,19 +19,21 @@ import static proyecto1_201122872.Proyecto1_201122872.paginaActual;
  */
 public class Autoredimension extends propiedad{
       public objetoBase expresionValor;
-      public String area;
+       String area;
       String valorAutoredimension;
       
       
     public Autoredimension(Object cad, Object v){
         this.expresionValor= (objetoBase)cad;
         this.area= v.toString();
+        this.valorAutoredimension="falso";
+        obtenerValor();
     }
     
     
     
     
-    public Object obtenerValor(){
+    public void obtenerValor(){
         elementoRetorno r= expresionValor.Ejecutar(new tablaSimbolos(), 0);
         if(esBool(obtenerTipoExpresion(r.ValorRetorno))){
             this.valorAutoredimension=getBool(r.ValorRetorno);
@@ -40,7 +42,18 @@ public class Autoredimension extends propiedad{
             paginaActual.erroresPagina.insertarError("Semantico", "La propiedad Autoredimension debe traer un valor booleano");
         } 
         
-        return this.valorAutoredimension;
+
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    
+    
+    
+    public String getValorAutoredimension() {
+        return valorAutoredimension;
     }
     
     

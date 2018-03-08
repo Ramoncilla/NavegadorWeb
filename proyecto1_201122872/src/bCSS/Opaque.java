@@ -12,10 +12,15 @@ import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
  * @author Ramonella
  */
 public class Opaque extends propiedad{
-      public String expresionBool;
+       String valorOpaque;
     
     public Opaque(Object cad){
-        this.expresionBool= cad.toString();
+        this.valorOpaque= cad.toString();
     }
+
+    public String getValorOpaque() {
+        return valorOpaque;
+    }
+    
     
 }
