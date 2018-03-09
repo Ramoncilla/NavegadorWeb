@@ -306,6 +306,7 @@ public class Pagina {
                  areaWeb.insertComponent(b);
                  this.retCJS.observadores.buscarObservadorPorElemento(10, temporal.numeroIdentificador, 0, tabla);
             }else if(temporal instanceof caja_texto){
+                temporal.agregarEstilo();
                 JTextField b = (JTextField)((caja_texto) temporal).cajaTexto;
                 areaWeb.setCaretPosition(areaWeb.getStyledDocument().getLength());
                  areaWeb.insertComponent(b);

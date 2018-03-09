@@ -4,11 +4,26 @@
  * and open the template in the editor.
  */
 package proyecto1_201122872.CHTML.BODY;
+import bCSS.Alineado;
+import bCSS.Autoredimension;
+import bCSS.Borde;
+import bCSS.Colortext;
+import bCSS.Fondoelemento;
+import bCSS.Formato;
+import bCSS.Letra;
+import bCSS.Opaque;
+import bCSS.Tamtex;
+import bCSS.Visible;
 import java.awt.Color;
+import java.awt.Font;
 import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadAlineado;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadAlto;
@@ -108,6 +123,148 @@ public class caja_texto extends Etiqueta {
         }
     }
     
-    
+     @Override
+    public void agregarEstilo() {
+        propiedad propTemporal;
+        for (int i = 0; i < this.elementosEtiqueta.listadoElementos.size(); i++) {
+            propTemporal = this.elementosEtiqueta.listadoElementos.get(i);
+
+            if (propTemporal instanceof Alineado) {
+                Alineado n = (Alineado) propTemporal;
+
+                if (n.alineacion.equalsIgnoreCase("derecha")) {
+                    cajaTexto.setHorizontalAlignment(SwingConstants.RIGHT);
+                } else if (n.alineacion.equalsIgnoreCase("izquierda")) {
+                    cajaTexto.setHorizontalAlignment(SwingConstants.LEFT);
+                } else if (n.alineacion.equalsIgnoreCase("centrado")) {
+                    cajaTexto.setHorizontalAlignment(SwingConstants.CENTER);
+                }
+            }
+            
+            if(propTemporal instanceof bCSS.Texto){
+                bCSS.Texto t = (bCSS.Texto)propTemporal;
+                this.cadenaCaja_texto=t.getTexto();
+                this.cajaTexto.setText(this.cadenaCaja_texto);                
+            }
+            
+            if(propTemporal instanceof Fondoelemento){
+                Fondoelemento f = (Fondoelemento)propTemporal;
+                Color c = getColor(f.getCadenaColor());
+                this.cajaTexto.setBackground(c);
+            }
+            
+            if(propTemporal instanceof Visible){
+                Visible v = (Visible)propTemporal;
+                switch(v.getVisible().toUpperCase()){
+                    case "VERDADERO":{
+                        this.cajaTexto.setVisible(true);
+                        break;                       
+                    }
+                    case "FALSO":{
+                        this.cajaTexto.setVisible(false);
+                        break;
+                    }
+                }
+                
+            }
+            if(propTemporal instanceof Borde){
+                Borde b = (Borde)propTemporal;
+                Color c = getColor(b.getVcolor());
+                double tam = b.getVsize();
+                boolean curva= b.getVcurva().equalsIgnoreCase("verdadero");
+                int j = (int)tam;
+                LineBorder l = new LineBorder(c,j,curva);
+                this.cajaTexto.setBorder(l);
+            }
+            
+            if(propTemporal instanceof Opaque){
+               Opaque v = (Opaque)propTemporal;
+                switch(v.getValorOpaque().toUpperCase()){
+                    case "VERDADERO":{
+                        this.cajaTexto.setOpaque(true);
+                        break;                       
+                    }
+                    case "FALSO":{
+                        this.cajaTexto.setOpaque(false);
+                        break;
+                    }
+                } 
+                
+            }
+            
+            if(propTemporal instanceof Colortext){
+                Colortext c = (Colortext)propTemporal;
+                Color j = getColor(c.getCadenaColor());
+                this.cajaTexto.setForeground(j);
+                
+            }
+            
+            if(propTemporal instanceof Autoredimension){
+                
+            }
+               
+        }
+        
+        
+        Formato form = this.elementosEtiqueta.obtenerFormato();
+        Tamtex siz= this.elementosEtiqueta.obtenerTamtex();
+        Letra let= this.elementosEtiqueta.obtenerLetra();
+        String fuente="";
+        int letra = Font.PLAIN;
+        int noTipoLetra =0;
+        int tamLetra =12;
+        if(form!=null){
+            String g;
+            for (int i = 0; i < form.listaFormatos.size(); i++) {
+                g=form.listaFormatos.get(i);
+                if(g.equalsIgnoreCase("negrita"))
+                    letra+=Font.BOLD;
+                if(g.equalsIgnoreCase("cursiva"))
+                    letra+=Font.ITALIC;
+                if(g.equalsIgnoreCase("mayuscula"))
+                    noTipoLetra=1;
+                if(g.equalsIgnoreCase("minuscula"))
+                    noTipoLetra=2;
+                if(g.equalsIgnoreCase("capital-t"))
+                    noTipoLetra=3;
+                
+            }
+        }
+         if(siz!=null)
+             tamLetra=(int)siz.getValorTamanho();
+         
+         if(let!=null)
+             fuente=let.getFuente();
+         
+         if(noTipoLetra==1){
+             String l = this.cajaTexto.getText();
+             this.cajaTexto.setText(l.toUpperCase());
+         }
+         
+          if(noTipoLetra==2){
+             String l = this.cajaTexto.getText();
+             this.cajaTexto.setText(l.toLowerCase());
+         }
+          
+        if (noTipoLetra == 3) {
+            String l = this.cajaTexto.getText();
+            String a = l.toLowerCase();
+            char[] caracteres = a.toCharArray();
+            caracteres[0] = Character.toUpperCase(caracteres[0]);
+            for (int i = 0; i < a.length() - 2; i++) {
+                if (caracteres[i] == ' ' || Character.isSpaceChar(caracteres[i])) {
+                    caracteres[i + 1] = Character.toUpperCase(caracteres[i + 1]);
+                }
+            }
+            String h = new String(caracteres);
+            this.cajaTexto.setText(h);
+        }
+         
+         Font fNueva = new Font(fuente,letra,tamLetra);
+         this.cajaTexto.setFont(fNueva);
+         this.cajaTexto.setSize(ancho, alto);
+      
+        
+    }
     
 }

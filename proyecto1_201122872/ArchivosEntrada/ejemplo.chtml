@@ -77,7 +77,7 @@ esto es una prueba del texto
 <texto_a grupo="grupo2"; alineado="derecha";>
 esto es una prueba del texto area
 <fin-texto_a>
-<caja_texto alineado="derecha"; alto="100";> este es un jtextField
+<caja_texto grupo="grupo2";alineado="derecha"; alto="100";> este es un jtextField
 <fin-caja_texto>
 <fin-cuerpo>
 <fin-chtml>
