@@ -43,7 +43,7 @@ funcion usarObservador4(){
   imprimir("SIIIIIIIIIIIIIIIIII 4");
 }
 
-
+documento.obtener("popo").setElemento("fondo","pink");
 documento.obtener("botonMi").observador(modificado,funcion(){imprimir("BOTONNNN MI");});
 documento.obtener("botonMi").observador(cliqueado,funcion(){imprimir("diii un cliccccccccc");});
 op4.setELEmento("ruta","C:\Users\Ramonella\Desktop\popo.jpg");

@@ -90,7 +90,7 @@ public class Enlace  extends Etiqueta implements MouseListener{
 
         }
         asignarElementos();
-        link.setVisible(true);
+        
         link.setSize(ancho, alto);
         link.setOpaque(true);
         link.setForeground(Color.BLUE);
@@ -136,7 +136,7 @@ public class Enlace  extends Etiqueta implements MouseListener{
         }else{
             JOptionPane.showMessageDialog(null, "No se puede abrir la pagina, ruta no valida "+this.rutaEnlace, "USAC-WEB", JOptionPane.ERROR_MESSAGE);
         }
-        paginaActual.retCJS.observadores.buscarObservadorPorElemento(30, numeroIdentificador, 0, paginaActual.tabla);
+        //paginaActual.retCJS.observadores.buscarObservadorPorElemento(30, numeroIdentificador, 0, paginaActual.tabla);
         System.out.println("clic en enlace "+ this.cadenaEnlace);
     }
 

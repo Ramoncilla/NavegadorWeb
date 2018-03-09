@@ -42,14 +42,14 @@ public class Cuerpo extends Etiqueta  {
 
     public List<Etiqueta> sentenciasCuerpo;
     public JTextPane panel;
-    public List<Etiqueta> etiquetas;
+    //public List<Etiqueta> etiquetas;
     public String cadenaColor;
     
     public Cuerpo(Object elementos, Object etiquet){
         this.panel= new JTextPane();
         this.elementosEtiqueta = new listaElementos((ArrayList<propiedad>)elementos);
         this.sentenciasCuerpo = (ArrayList<Etiqueta>)etiquet;
-        this.etiquetas= new ArrayList<>();
+       // this.etiquetas= new ArrayList<>();
         panel.setContentType("text/html"); 
         this.cadenaColor="";
     }
@@ -60,32 +60,56 @@ public class Cuerpo extends Etiqueta  {
     
     
     
-    public List<Etiqueta> obtenerEtiquetasConElementos(){
+    private boolean existe (Etiqueta et, ArrayList<Etiqueta> etiquetas){
         
+        for (int i = 0; i < etiquetas.size(); i++) {
+            if(et.numeroIdentificador==etiquetas.get(i).numeroIdentificador)
+                return true;
+        }
+        
+        return false;
+    }
+    
+   
+    
+    public List<Etiqueta> obtenerEtiquetasConElementos(){
+      List<Etiqueta>etiquetas = new ArrayList<>();
         Etiqueta temporal;
         for (int i = 0; i< this.sentenciasCuerpo.size(); i++) {
             temporal = this.sentenciasCuerpo.get(i);
             if(temporal instanceof Boton){
+                if(!existe(temporal, (ArrayList<Etiqueta>) etiquetas))
                 etiquetas.add(temporal.retornarHtml());
             }else if(temporal instanceof Caja){
+               if(!existe(temporal, (ArrayList<Etiqueta>) etiquetas))
                 etiquetas.add(temporal.retornarHtml());
             }else if(temporal instanceof Enlace){
+              
+               if(!existe(temporal, (ArrayList<Etiqueta>) etiquetas))
                 etiquetas.add(temporal.retornarHtml());
             }else if(temporal instanceof Imagen){
+               if(!existe(temporal, (ArrayList<Etiqueta>) etiquetas))
                 etiquetas.add(temporal.retornarHtml());
             }else if(temporal instanceof Panel){
+               if(!existe(temporal, (ArrayList<Etiqueta>) etiquetas))
                 etiquetas.add(temporal.retornarHtml());
             }else if(temporal instanceof Salto){
+               if(!existe(temporal, (ArrayList<Etiqueta>) etiquetas))
                 etiquetas.add(temporal.retornarHtml());
             }else if(temporal instanceof Spinner){
+               if(!existe(temporal, (ArrayList<Etiqueta>) etiquetas))
                 etiquetas.add(temporal.retornarHtml());
             }else if(temporal instanceof Texto){
+               if(!existe(temporal, (ArrayList<Etiqueta>) etiquetas))
                 etiquetas.add(temporal.retornarHtml());
             }else if(temporal instanceof Texto_a){
+               if(!existe(temporal, (ArrayList<Etiqueta>) etiquetas))
                 etiquetas.add(temporal.retornarHtml());
             }else if(temporal instanceof caja_texto){
+               if(!existe(temporal, (ArrayList<Etiqueta>) etiquetas))
                 etiquetas.add(temporal.retornarHtml());
             }else if(temporal instanceof tabla){
+               if(!existe(temporal, (ArrayList<Etiqueta>) etiquetas))
                 etiquetas.add(temporal.retornarHtml());
             }
      
@@ -94,6 +118,53 @@ public class Cuerpo extends Etiqueta  {
     }
     
    
+    
+    public List<Etiqueta> obtenerEtiquetasConElementos3(){
+      List<Etiqueta>etiquetas = new ArrayList<>();
+        Etiqueta temporal;
+        for (int i = 0; i< this.sentenciasCuerpo.size(); i++) {
+            temporal = this.sentenciasCuerpo.get(i);
+            if(temporal instanceof Boton){
+               
+                etiquetas.add(temporal.retornarHtml());
+            }else if(temporal instanceof Caja){
+               
+                etiquetas.add(temporal.retornarHtml());
+            }else if(temporal instanceof Enlace){
+              
+               
+                etiquetas.add(temporal.retornarHtml());
+            }else if(temporal instanceof Imagen){
+                
+                etiquetas.add(temporal.retornarHtml());
+            }else if(temporal instanceof Panel){
+               
+                etiquetas.add(temporal.retornarHtml());
+            }else if(temporal instanceof Salto){
+               
+                etiquetas.add(temporal.retornarHtml());
+            }else if(temporal instanceof Spinner){
+                
+                etiquetas.add(temporal.retornarHtml());
+            }else if(temporal instanceof Texto){
+               
+                etiquetas.add(temporal.retornarHtml());
+            }else if(temporal instanceof Texto_a){
+               
+                etiquetas.add(temporal.retornarHtml());
+            }else if(temporal instanceof caja_texto){
+               
+                etiquetas.add(temporal.retornarHtml());
+            }else if(temporal instanceof tabla){
+               
+                etiquetas.add(temporal.retornarHtml());
+            }
+     
+        }
+        return etiquetas;
+    }
+    
+    
     
      public Color getColor(String color){
      Color c =Color.GRAY ;

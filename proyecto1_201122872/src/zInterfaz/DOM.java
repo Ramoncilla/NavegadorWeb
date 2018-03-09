@@ -34,7 +34,7 @@ public class DOM {
             temporal.numeroIdentificador = control;
             if (temporal instanceof Panel) {
                 Panel p = (Panel) temporal;
-                Object vec2[] = agregarListaPanel((ArrayList<Etiqueta>) p.objetosPanel.etiquetas, (control + 1));;
+                Object vec2[] = agregarListaPanel((ArrayList<Etiqueta>) p.objetosPanel.sentenciasCuerpo, (control + 1));;///////////////////////////////
                 ArrayList<Etiqueta> etiquetasPanel = (ArrayList<Etiqueta>) vec2[1];
                 ((Panel) temporal).objetosPanel.sentenciasCuerpo = etiquetasPanel;
                 control = Integer.parseInt(vec2[0].toString());
@@ -61,7 +61,7 @@ public class DOM {
             temporal.numeroIdentificador = control;
             if (temporal instanceof Panel) {
                 Panel p = (Panel) temporal;
-                Object vec2[] = agregarListaPanel((ArrayList<Etiqueta>) p.objetosPanel.etiquetas, (control + 1));;
+                Object vec2[] = agregarListaPanel((ArrayList<Etiqueta>) p.objetosPanel.sentenciasCuerpo, (control + 1));//gdfgfdgfgfgfhg
                 ArrayList<Etiqueta> etiquetasPanel = (ArrayList<Etiqueta>) vec2[1];
                 ((Panel) temporal).objetosPanel.sentenciasCuerpo = etiquetasPanel;
             } else if (temporal instanceof Caja) {
@@ -83,8 +83,10 @@ public class DOM {
         for (int i = 0; i < this.etiquetasHTML.size(); i++) {
             temporal = this.etiquetasHTML.get(i);
             if (et.numeroIdentificador == temporal.numeroIdentificador) {
-                Etiqueta n = et.retornarHtml();
-                this.etiquetasHTML.set(i, n);
+                //Etiqueta n = et.retornarHtml();
+                et.agregarElementos();
+                et.asignarElementos();               
+                this.etiquetasHTML.set(i, et);
                 break;
             } else if (temporal instanceof Panel) {
                 Panel e = actualizarPanel((Panel) temporal, et);
@@ -98,8 +100,10 @@ public class DOM {
         for (int i = 0; i < et.objetosPanel.sentenciasCuerpo.size(); i++) {
             temporal = et.objetosPanel.sentenciasCuerpo.get(i);
             if (temporal.numeroIdentificador == b.numeroIdentificador) {
-                Etiqueta g = b.retornarHtml();
-                et.objetosPanel.sentenciasCuerpo.set(i, g);
+                //Etiqueta g = b.retornarHtml();
+                b.agregarElementos();
+                b.asignarElementos();
+                et.objetosPanel.sentenciasCuerpo.set(i, b);
                 return et;
             } else if (temporal instanceof Panel) {
                 Panel c = (Panel) temporal;
@@ -123,7 +127,7 @@ public class DOM {
                     return temporal;
                 } else if (temporal instanceof Panel) {
                     Panel p = (Panel) temporal;
-                    ret = obtenerEtiquetaPanel((ArrayList<Etiqueta>) p.objetosPanel.etiquetas, id);
+                    ret = obtenerEtiquetaPanel((ArrayList<Etiqueta>) p.objetosPanel.sentenciasCuerpo, id);////////////////////////////////
                     if (ret != null) {
                         return ret;
                     }
@@ -131,7 +135,7 @@ public class DOM {
             } else {
                 if (temporal instanceof Panel) {
                     Panel p = (Panel) temporal;
-                    ret = obtenerEtiquetaPanel((ArrayList<Etiqueta>) p.objetosPanel.etiquetas, id);
+                    ret = obtenerEtiquetaPanel((ArrayList<Etiqueta>) p.objetosPanel.sentenciasCuerpo, id);/////////////////////////////////
                     if (ret != null) {
                         return ret;
                     }
@@ -152,7 +156,7 @@ public class DOM {
                 return temporal;
             } else if (temporal instanceof Panel) {
                 Panel p = (Panel) temporal;
-                return obtenerEtiquetaPanel((ArrayList<Etiqueta>) p.objetosPanel.etiquetas, nombre);
+                return obtenerEtiquetaPanel((ArrayList<Etiqueta>) p.objetosPanel.sentenciasCuerpo, nombre);/////////////////////////////
             }
         }
         return null;
@@ -202,13 +206,13 @@ public class DOM {
                     lista.add(temporal);
                 } else if (temporal instanceof Panel) {
                     Panel p = (Panel) temporal;
-                    lista = obtenerEtiquetaPanelGrupo((ArrayList<Etiqueta>) p.objetosPanel.etiquetas, id, (ArrayList<Etiqueta>) lista);
+                    lista = obtenerEtiquetaPanelGrupo((ArrayList<Etiqueta>) p.objetosPanel.sentenciasCuerpo, id, (ArrayList<Etiqueta>) lista);///////////////////
 
                 }
             } else {
                 if (temporal instanceof Panel) {
                     Panel p = (Panel) temporal;
-                    lista = obtenerEtiquetaPanelGrupo((ArrayList<Etiqueta>) p.objetosPanel.etiquetas, id, (ArrayList<Etiqueta>) lista);
+                    lista = obtenerEtiquetaPanelGrupo((ArrayList<Etiqueta>) p.objetosPanel.sentenciasCuerpo, id, (ArrayList<Etiqueta>) lista);//////////////////////////
 
                 }
             }
@@ -227,7 +231,7 @@ public class DOM {
                 lista.add(temporal);
             } else if (temporal instanceof Panel) {
                 Panel p = (Panel) temporal;
-                lista = (ArrayList<Etiqueta>) obtenerEtiquetaPanelGrupo((ArrayList<Etiqueta>) p.objetosPanel.etiquetas, nombre, lista);
+                lista = (ArrayList<Etiqueta>) obtenerEtiquetaPanelGrupo((ArrayList<Etiqueta>) p.objetosPanel.sentenciasCuerpo, nombre, lista);///////////////
             }
         }
         return lista;
@@ -245,14 +249,13 @@ public class DOM {
                     lista.add(temporal);
                 } else if (temporal instanceof Panel) {
                     Panel p = (Panel) temporal;
-                    lista = obtenerEtiquetaPanelID((ArrayList<Etiqueta>) p.objetosPanel.etiquetas, id, (ArrayList<Etiqueta>) lista);
+                    lista = obtenerEtiquetaPanelID((ArrayList<Etiqueta>) p.objetosPanel.sentenciasCuerpo, id, (ArrayList<Etiqueta>) lista);///////////////////
 
                 }
             } else {
                 if (temporal instanceof Panel) {
                     Panel p = (Panel) temporal;
-                    lista = obtenerEtiquetaPanelID((ArrayList<Etiqueta>) p.objetosPanel.etiquetas, id, (ArrayList<Etiqueta>) lista);
-
+                    lista = obtenerEtiquetaPanelID((ArrayList<Etiqueta>) p.objetosPanel.sentenciasCuerpo, id, (ArrayList<Etiqueta>) lista);//////////////////////
                 }
             }
 
@@ -270,7 +273,7 @@ public class DOM {
                 lista.add(temporal);
             } else if (temporal instanceof Panel) {
                 Panel p = (Panel) temporal;
-                lista = (ArrayList<Etiqueta>) obtenerEtiquetaPanelID((ArrayList<Etiqueta>) p.objetosPanel.etiquetas, nombre, lista);
+                lista = (ArrayList<Etiqueta>) obtenerEtiquetaPanelID((ArrayList<Etiqueta>) p.objetosPanel.sentenciasCuerpo, nombre, lista);//////////////////////
             }
         }
         return lista;

@@ -14,7 +14,7 @@ pagina11
 <imagen id="imagenPrueba"; grupo="grupo2">
 C:\Users\Ramonella\Desktop\imagen.jpg
 <fin-imagen>
-<panel  alto="600"; ancho="600";>
+<panel  alto="600"; ancho="600"; id="popo";>
 <boton alto="100"; ancho="100"; alineado="derecha"; id="botonPanel"; grupo="grupo1";>Prueba
 <fin-boton>
 <salto-fin>
@@ -25,7 +25,7 @@ C:\Users\Ramonella\Desktop\imagen.jpg
 <fin-boton>
 <fin-panel>
 <salto-fin>
-<boton grupo="grupo1"; id="botonPanel";>boton2
+<boton ruta="C:\\Users\\Ramonella\\Documents\\Repositorios\\Proyecto1\\NavegadorWeb\\proyecto1_201122872\\ArchivosEntrada\\ejemplo2.chtml"; id="botonPanel";>boton2
 <fin-boton>
 <salto-fin>
 <boton grupo="grupo1";>

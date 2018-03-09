@@ -125,7 +125,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="C:\u005cUsers\u005cRamonella\u005cDocuments\u005cRepositorios\u005cProyecto1\u005cNavegadorWeb\u005cproyecto1_201122872\u005cArchivosEntrada\u005cejemplo.chtml" containsInvalidXMLChars="true"/>
+            <Property name="text" type="java.lang.String" value="C:\u005cUsers\u005cRamonella\u005cDocuments\u005cRepositorios\u005cProyecto1\u005cNavegadorWeb\u005cproyecto1_201122872\u005cArchivosEntrada\u005cejemplo2.chtml" containsInvalidXMLChars="true"/>
           </Properties>
         </Component>
       </SubComponents>

@@ -151,7 +151,7 @@ public class Pagina {
         this.rutasArchivosCSS= encabezadoHTML.obtenerCSS();
         this.rutasArchivosJS= encabezadoHTML.obtenerCJS();
         //cargar html 
-        List<Etiqueta> componentesHTML = cuerpoHTML.obtenerEtiquetasConElementos();
+        List<Etiqueta> componentesHTML = cuerpoHTML.obtenerEtiquetasConElementos3();
         this.documento.agregarListaEtiquetas((ArrayList<Etiqueta>)componentesHTML);//agrego indentificadores a cada elemnto
       
         //cargar Js
@@ -275,10 +275,10 @@ public class Pagina {
             }else if(temporal instanceof Panel){
                   Panel p =(Panel)temporal;
                    System.out.println("Inicio Panel");
-                  p.imprimirId();
+                 p.agregarEstilo();
                   System.out.println("Fin Panel");
                   temporal.agregarEstilo();
-                 JScrollPane b = (JScrollPane)((Panel) temporal).Dibujar();
+                 JScrollPane b = (JScrollPane)p.Dibujar();
                  areaWeb.setCaretPosition(areaWeb.getStyledDocument().getLength());
                  areaWeb.insertComponent(b);
                  this.retCJS.observadores.buscarObservadorPorElemento(10, temporal.numeroIdentificador, 0, tabla);
@@ -406,9 +406,7 @@ public class Pagina {
                  Color c = getColor(f.cadenaColor);
                   areaWeb.setBackground(c);
              }
-         }
-       
-      
+         }      
         if(elementosEtiqueta.obtenerAlineado()!=null){
              propiedadAlineado n = elementosEtiqueta.obtenerAlineado();
             if(n.alineado.equalsIgnoreCase("derecha")){              

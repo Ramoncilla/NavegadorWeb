@@ -1,13 +1,23 @@
 <chtml>
 
 <encabezado>
-
+<ccss ruta="C:\Users\Ramonella\Documents\Repositorios\Proyecto1\NavegadorWeb\proyecto1_201122872\ArchivosEntrada\CSSPRUEBA1.ccss";>
+<fin-ccss>
 <titulo>Ejemplo2<fin-titulo>
 <fin-encabezado>
 
 <cuerpo>
 
-<boton> holissss<fin-boton>
+
+
+
+<boton grupo="grupo2";> holissss<fin-boton>
+
+<panel grupo="grupo2";>
+<enlace grupo="grupo1";>
+Enlace
+<fin-enlace>
+<fin-panel>
 <fin-cuerpo>
 <fin-chtml>
 

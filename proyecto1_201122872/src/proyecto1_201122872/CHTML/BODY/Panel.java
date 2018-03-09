@@ -71,8 +71,9 @@ public class Panel extends Etiqueta  {
 
     @Override
     public Etiqueta retornarHtml() {
+
         agregarElementos(); 
-        etiquetasPanel= objetosPanel.obtenerEtiquetasConElementos();
+       etiquetasPanel= objetosPanel.obtenerEtiquetasConElementos3();
         asignarElementos();
         return this;
         
@@ -90,7 +91,7 @@ public class Panel extends Etiqueta  {
     }
     
        public JScrollPane Dibujar(){
-           
+          //  etiquetasPanel= objetosPanel.obtenerEtiquetasConElementos();
         Etiqueta temporal;
            for (int i = 0; i < this.etiquetasPanel.size(); i++) {
             temporal = this.etiquetasPanel.get(i);
