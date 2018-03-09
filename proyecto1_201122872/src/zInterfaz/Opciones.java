@@ -5,6 +5,7 @@
  */
 package zInterfaz;
 
+import java.util.List;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 
@@ -36,7 +37,6 @@ public class Opciones extends javax.swing.JFrame {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Visualizar Datos");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -104,7 +104,8 @@ public class Opciones extends javax.swing.JFrame {
         String cadenaSalida = paginaActual.obtenerCadenaSalida();
         String errores= paginaActual.obtenerErrores();
         String [] cadenaHTML= paginaActual.obtenerCodigoHTML();
-        
+        List<String[]> codigoJS = paginaActual.obtenerCodigoJS();
+        List<String[]> codigoCss= paginaActual.obtenerCodigoCSS();
         JTextPane salida = new JTextPane();
         salida.setEditable(false);
         salida.setText(cadenaSalida);
@@ -121,10 +122,25 @@ public class Opciones extends javax.swing.JFrame {
         codHTML.setText(cadenaHTML[1]);
         jTabbedPane1.add(cadenaHTML[0],new JScrollPane(codHTML));
         
-        
+        String[]temp;
+        for (int i = 0; i < codigoJS.size(); i++) {
+            temp= codigoJS.get(i);
+            codHTML = new JTextPane();
+        codHTML.setEditable(false);
+        codHTML.setText(temp[1]);
+        jTabbedPane1.add(temp[0],new JScrollPane(codHTML));
+            
+        }
         
             
-        
+          for (int i = 0; i < codigoCss.size(); i++) {
+            temp= codigoCss.get(i);
+            codHTML = new JTextPane();
+        codHTML.setEditable(false);
+        codHTML.setText(temp[1]);
+        jTabbedPane1.add(temp[0],new JScrollPane(codHTML));
+            
+        }
         
     }
     
