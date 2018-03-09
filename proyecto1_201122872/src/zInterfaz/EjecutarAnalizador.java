@@ -20,7 +20,7 @@ import proyecto1_201122872.AnalizadorCHTML.scannerCHTML;
 import proyecto1_201122872.AnalizadorCJS.scannerCJS;
 import proyecto1_201122872.AnalizadorCSS.ParserCSS;
 import proyecto1_201122872.AnalizadorCSS.scannerCSS;
-import proyecto1_201122872.AnalizadorExtra.scanner;
+
 import proyecto1_201122872.CHTML.Chtml;
 import proyecto1_201122872.LectoArchivos;
 
@@ -130,27 +130,7 @@ public class EjecutarAnalizador {
   
    
    
-   public void ejecutarCSS2(String rutaArchivo) throws Exception{
-       
-        if (rutaArchivo.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Error, ruta no valida para ejecutar CSS.", "USAC-WEB", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            LectoArchivos lector = new LectoArchivos(rutaArchivo);
-            String cadena = lector.obtenerContenidoArchivo();
-            if (cadena.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Error, no ess posible analizar una cadena vacia", "USAC-WEB", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                System.out.println("Inicio de Analisis CSS");
-                scanner scannercss = new scanner(new BufferedReader(new StringReader(cadena)));
-                proyecto1_201122872.AnalizadorExtra.Parser parserCSS = new  proyecto1_201122872.AnalizadorExtra.Parser(scannercss);
-                parserCSS.parse();
-                 System.out.println("Fin de analisis CSS");
-            }
-        }
-
- 
-       
-   }
+  
    
    
    
