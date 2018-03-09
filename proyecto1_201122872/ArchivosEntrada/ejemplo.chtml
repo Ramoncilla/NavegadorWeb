@@ -74,7 +74,7 @@ amo
 <texto alineado="derecha";>
 esto es una prueba del texto
 <fin-texto>
-<texto_a alineado="derecha";>
+<texto_a grupo="grupo2"; alineado="derecha";>
 esto es una prueba del texto area
 <fin-texto_a>
 <caja_texto alineado="derecha"; alto="100";> este es un jtextField

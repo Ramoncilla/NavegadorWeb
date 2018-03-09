@@ -139,6 +139,7 @@ public class Panel extends Etiqueta  {
                  panel.insertComponent(b);
                  paginaActual.retCJS.observadores.buscarObservadorPorElemento(10, temporal.numeroIdentificador, 0, paginaActual.tabla);
             }else if(temporal instanceof Texto_a){
+                temporal.agregarEstilo();
                 JTextPane b = (JTextPane)((Texto_a) temporal).cajaTexto;
                  panel.setCaretPosition(panel.getStyledDocument().getLength());
                  panel.insertComponent(b);

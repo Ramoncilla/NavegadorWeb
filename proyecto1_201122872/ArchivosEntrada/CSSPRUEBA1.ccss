@@ -14,13 +14,14 @@ Visible:= true;
 colortext := "#a04343";
 Opaque := false;
 fondoelemento:="green";
+Borde := [13,"#ffff",true];
 
 GRUPO(grupo2);
 Tamtex := 19.4+0.6;
 Fondoelemento := "#6465f"+"f";
 Autoredimension:= [true, Vertical];
 Visible := true;
-Borde := [4,"#ffff",false];
+Borde := [13,"#ffff",true];
 Opaque := false;
 colortext := "#a04343";
 

@@ -137,6 +137,7 @@ public class Boton extends Etiqueta implements ActionListener {
             }
             if(propTemporal instanceof Texto){
                 Texto t = (Texto)propTemporal;
+                this.captionBoton=t.getTexto();
                 this.botonObjeto.setText(t.getTexto());
                 
             }

@@ -300,6 +300,7 @@ public class Pagina {
                  areaWeb.insertComponent(b);
                  this.retCJS.observadores.buscarObservadorPorElemento(10, temporal.numeroIdentificador, 0, tabla);
             }else if(temporal instanceof Texto_a){
+                temporal.agregarEstilo();
                 JTextPane b = (JTextPane)((Texto_a) temporal).cajaTexto;
                  areaWeb.setCaretPosition(areaWeb.getStyledDocument().getLength());
                  areaWeb.insertComponent(b);
