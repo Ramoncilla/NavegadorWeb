@@ -135,11 +135,14 @@ public class setElemento extends objetoBase{
                           et.etiquetaHTML=im;
                            
                        }
-                    } else if (et.etiquetaHTML instanceof Cuerpo){
+                    }else if(nombreElementoModificar.equalsIgnoreCase("fondo")){
+                       if (et.etiquetaHTML instanceof Cuerpo){
                         Cuerpo c = (Cuerpo)et.etiquetaHTML;
                         c.cadenaColor=valorElemento;
                         et.etiquetaHTML=c;
                     }
+                    } 
+                    
                     
                     if(val==1){
                     tabla.asignarSimbolo(nomm, et, contexto);

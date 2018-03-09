@@ -8,6 +8,7 @@ package zInterfaz;
 import CJS.ESTRUCURAS_CONTROL.Observador;
 import CJS.objetoBase;
 import Funciones.Funcion;
+import bCSS.ListaBloquesCss;
 import java.io.BufferedReader;
 import java.io.StringReader;
 import java.util.ArrayList;
@@ -116,6 +117,7 @@ public class EjecutarAnalizador {
                 scannerCSS scannercss = new scannerCSS(new BufferedReader(new StringReader(cadena)));
                 ParserCSS parserCSS = new ParserCSS(scannercss);
                 parserCSS.parse();
+                ListaBloquesCss listado = parserCSS.lBloques;
                  System.out.println("Fin de analisis CSS");
             }
         }
@@ -147,6 +149,15 @@ public class EjecutarAnalizador {
 
  
        
+   }
+   
+   
+   
+   public String obtenerCadenaSinNulos(String cad){
+       String cadena2="";
+       
+   
+       return cadena2;
    }
    
    

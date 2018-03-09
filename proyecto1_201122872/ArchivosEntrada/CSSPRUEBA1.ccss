@@ -1,5 +1,9 @@
 NombreInutil[
+//Comentario una línea
 
+/*
+Comentario multilínea
+*/
 GRUPO(grupo1);
 Alineado:= centrado;
 Texto := "Que hace esto?";
@@ -21,7 +25,6 @@ colortext := "#a04343";
 ]
 
 OtroNombreInutil[
-
 ID(id1);
 Alineado:= izquierda;
 Alineado:= derecha;
@@ -31,7 +34,6 @@ Formato:= Cursiva, Capital-T;
 Formato:= Mayuscula;
 Letra:= "Arial";
 ]
-
 
 OtroNombreInutil2[
 ID(id2);

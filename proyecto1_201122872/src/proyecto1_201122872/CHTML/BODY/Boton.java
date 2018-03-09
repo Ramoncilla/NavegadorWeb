@@ -7,6 +7,7 @@ package proyecto1_201122872.CHTML.BODY;
 
 import CJS.elementoRetorno;
 import Funciones.Funcion;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -50,6 +51,7 @@ public class Boton extends Etiqueta implements ActionListener {
     @Override
     public Etiqueta retornarHtml(){ 
         agregarElementos();
+        aplicarEstilo();
         asignarElementos();
         return this;
     }
@@ -98,7 +100,34 @@ public class Boton extends Etiqueta implements ActionListener {
     }
 
    
-    
+    public void aplicarEstilo(){
+        List<String> formatos = new ArrayList<>();
+        formatos.add("negrita");
+        formatos.add("cursiva");
+        formatos.add("mayuscula");
+       // formatos.add("minuscula");
+       formatos.add("capital-t");
+        
+        this.botonObjeto.setHorizontalAlignment(SwingConstants.LEFT);//alineado
+        this.botonObjeto.setText("hola"); //text
+        int letra = Font.PLAIN;
+        
+        letra+= Font.BOLD;
+        letra +=Font.ITALIC;
+        String temporal;
+        /*for (int i = 0; i < formatos.size(); i++) {
+            temporal= formatos.get(i);
+            if(temporal.equalsIgnoreCase("negrita"))
+            
+        }
+        */
+        Font g= this.botonObjeto.getFont();
+        Font f = new Font("Tahoma",letra,20);
+        this.botonObjeto.setFont(f);
+        
+        
+        
+    }
     
     
     

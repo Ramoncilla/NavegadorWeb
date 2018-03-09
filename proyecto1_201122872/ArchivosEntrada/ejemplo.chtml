@@ -39,7 +39,7 @@
 	<caja alineado="derecha"; ancho="200";>
 	<opcion valor="1";>Mario<fin-opcion>
 	<opcion>recargaa<fin-opcion>
-	<opcion valor="3";id="hola";>Adriana<fin-opcion>
+	<opcion valor="3";id="holaOpcion";>Adriana<fin-opcion>
 	<opcion valor="4";>Alina<fin-opcion>
 	<fin-caja>
 	

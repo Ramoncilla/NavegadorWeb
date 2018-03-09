@@ -88,9 +88,6 @@ public class DOM {
             }else if(temporal instanceof Panel){
                  Panel e =actualizarPanel((Panel)temporal,et);
                  this.etiquetasHTML.set(i, e);
-                 break;
-            }else if (temporal instanceof Caja){
-                
             }
         }
     }
@@ -105,8 +102,10 @@ public class DOM {
                 et.objetosPanel.sentenciasCuerpo.set(i, g);
                return et;
             }else if(temporal instanceof Panel){
-                Panel v = actualizarPanel(et,b);
-                et.objetosPanel.sentenciasCuerpo.set(i, v);               
+                Panel c=(Panel)temporal;
+                Panel v = actualizarPanel(c,b);
+                et.objetosPanel.sentenciasCuerpo.set(i, v); 
+  
             }
             
         }

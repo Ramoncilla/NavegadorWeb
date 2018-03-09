@@ -97,6 +97,9 @@ public class listaElementos {
                 }
             }
         }
+        
+        propiedadId n =new propiedadId(id);
+        this.listadoElementos.add(n);
     }
 
     public void asignarGrupo(Object grupo) {
@@ -114,6 +117,8 @@ public class listaElementos {
                 }
             }
         }
+        propiedadGrupo n = new propiedadGrupo(grupo);
+        this.listadoElementos.add(n);
 
     }
 
@@ -128,12 +133,15 @@ public class listaElementos {
                 try {
                     v.alturaComponente = Integer.parseInt(valor.toString());
                     this.listadoElementos.set(i, v);
+                    break;
                 } catch (Exception e) {
 
                 }
 
             }
         }
+        propiedadAlto n = new propiedadAlto(op);
+        this.listadoElementos.add(n);
 
     }
 
@@ -148,12 +156,15 @@ public class listaElementos {
                 try {
                     v.valorAncho = Integer.parseInt(valor.toString());
                     this.listadoElementos.set(i, v);
+                    break;
                 } catch (Exception e) {
 
                 }
 
             }
         }
+         propiedadAncho n = new propiedadAncho(op);
+        this.listadoElementos.add(n);
 
     }
 
@@ -187,6 +198,9 @@ public class listaElementos {
                 }
             }
         }
+        
+         propiedadAlineado n = new propiedadAlineado(alineacion);
+        this.listadoElementos.add(n);
 
     }
     
@@ -205,6 +219,9 @@ public class listaElementos {
                 }
             }
         }
+        
+         propiedadRuta n = new propiedadRuta(op);
+        this.listadoElementos.add(n);
 
     }
 
@@ -223,6 +240,9 @@ public class listaElementos {
                 }
             }
         }
+        
+         propiedadColorFondo n = new propiedadColorFondo(op);
+        this.listadoElementos.add(n);
 
     }
     
