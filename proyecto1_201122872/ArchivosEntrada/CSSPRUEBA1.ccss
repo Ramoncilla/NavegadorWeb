@@ -20,7 +20,7 @@ GRUPO(grupo2);
 Tamtex := 19.4+0.6;
 Fondoelemento := "#6465f"+"f";
 Autoredimension:= [true, Vertical];
-Visible := true;
+Visible := false;
 Borde := [13,"#ffff",true];
 Opaque := false;
 colortext := "#a04343";

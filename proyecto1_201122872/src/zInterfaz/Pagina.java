@@ -264,6 +264,7 @@ public class Pagina {
                  areaWeb.insertComponent(b);
                  this.retCJS.observadores.buscarObservadorPorElemento(10, temporal.numeroIdentificador, 0, tabla);
             }else if(temporal instanceof Imagen){
+                temporal.agregarEstilo();
                  JLabel b = (JLabel)((Imagen) temporal).imagen;
                  areaWeb.setCaretPosition(areaWeb.getStyledDocument().getLength());
                  areaWeb.insertComponent(b);

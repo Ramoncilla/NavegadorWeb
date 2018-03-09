@@ -7,7 +7,19 @@ package proyecto1_201122872.CHTML.BODY;
 
 import CJS.elementoRetorno;
 import Funciones.Funcion;
+import bCSS.Alineado;
+import bCSS.Autoredimension;
+import bCSS.Borde;
+import bCSS.Colortext;
+import bCSS.Fondoelemento;
+import bCSS.Formato;
+import bCSS.Letra;
+import bCSS.Opaque;
+import bCSS.Tamtex;
+import bCSS.Visible;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Image;
 
 import java.awt.event.MouseEvent;
@@ -18,6 +30,8 @@ import java.util.List;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadAlineado;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadAlto;
@@ -214,5 +228,49 @@ public class Imagen extends Etiqueta implements MouseListener {
             this.funcionesClic.add(nombre);
         }
     }  
+    
+    
+    public void agregarEstilo() {
+        propiedad propTemporal;
+        for (int i = 0; i < this.elementosEtiqueta.listadoElementos.size(); i++) {
+            propTemporal = this.elementosEtiqueta.listadoElementos.get(i);
+
+            if (propTemporal instanceof Alineado) {
+                Alineado n = (Alineado) propTemporal;
+
+                if (n.alineacion.equalsIgnoreCase("derecha")) {
+                    imagen.setHorizontalAlignment(SwingConstants.RIGHT);
+                } else if (n.alineacion.equalsIgnoreCase("izquierda")) {
+                    imagen.setHorizontalAlignment(SwingConstants.LEFT);
+                } else if (n.alineacion.equalsIgnoreCase("centrado")) {
+                    imagen.setHorizontalAlignment(SwingConstants.CENTER);
+                }
+            }
+
+            if (propTemporal instanceof Visible) {
+                Visible v = (Visible) propTemporal;
+                switch (v.getVisible().toUpperCase()) {
+                    case "VERDADERO": {
+                        this.imagen.setVisible(true);
+                        break;
+                    }
+                    case "FALSO": {
+                        this.imagen.setVisible(false);
+                        break;
+                    }
+                }
+
+            }
+
+            if (propTemporal instanceof Autoredimension) {
+
+            }
+
+        }
+
+        this.imagen.setSize(ancho, alto);
+
+    }
+
     
 }

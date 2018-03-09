@@ -11,7 +11,7 @@ pagina11
 <cuerpo fondo="orange";>
 <boton grupo="grupo1"; alto="100"; ancho="400"; alineado="derecha";id="botonPanel"; click="usarObservador2()";>mi
 <fin-boton>
-<imagen id="imagenPrueba";>
+<imagen id="imagenPrueba"; grupo="grupo2";>
 C:\Users\Ramonella\Desktop\imagen.jpg
 <fin-imagen>
 <panel  alto="600"; ancho="600";>

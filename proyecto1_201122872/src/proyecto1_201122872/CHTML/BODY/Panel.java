@@ -104,6 +104,7 @@ public class Panel extends Etiqueta  {
                  panel.insertComponent(b);
                  paginaActual.retCJS.observadores.buscarObservadorPorElemento(10, temporal.numeroIdentificador, 0, paginaActual.tabla);
             }else if(temporal instanceof Imagen){
+                temporal.agregarEstilo();
                  JLabel b = (JLabel)((Imagen) temporal).imagen;
                  panel.setCaretPosition(panel.getStyledDocument().getLength());
                  panel.insertComponent(b);
