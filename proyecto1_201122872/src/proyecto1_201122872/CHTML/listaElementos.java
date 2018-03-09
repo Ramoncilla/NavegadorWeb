@@ -5,6 +5,9 @@
  */
 package proyecto1_201122872.CHTML;
 
+import bCSS.Formato;
+import bCSS.Letra;
+import bCSS.Tamtex;
 import java.util.ArrayList;
 import java.util.List;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
@@ -34,6 +37,39 @@ public class listaElementos {
         this.listadoElementos= new ArrayList<>();
     }
 
+    public Formato obtenerFormato(){
+        
+        for (int i = 0; i < this.listadoElementos.size(); i++) {
+            if(this.listadoElementos.get(i)instanceof Formato){
+                return (Formato) this.listadoElementos.get(i);
+            }
+        }
+        return null;
+    }
+    
+    public Letra obtenerLetra(){
+        
+         for (int i = 0; i < this.listadoElementos.size(); i++) {
+            if(this.listadoElementos.get(i)instanceof Letra){
+                return (Letra) this.listadoElementos.get(i);
+            }
+        }
+        return null;
+        
+    }
+    
+    public Tamtex obtenerTamtex(){
+         for (int i = 0; i < this.listadoElementos.size(); i++) {
+            if(this.listadoElementos.get(i)instanceof Tamtex){
+                return (Tamtex) this.listadoElementos.get(i);
+            }
+        }
+        return null;
+        
+        
+    }
+    
+    
     public propiedadRuta obtenerRuta() {
 
         propiedad temporal;

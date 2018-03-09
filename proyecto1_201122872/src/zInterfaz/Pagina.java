@@ -149,13 +149,21 @@ public class Pagina {
         this.tituloPagina= encabezadoHTML.obtenerTitulos();
         this.rutasArchivosCSS= encabezadoHTML.obtenerCSS();
         this.rutasArchivosJS= encabezadoHTML.obtenerCJS();
-        CrearElementosCSS();
-        CrearElementosCJS();
+        //cargar html 
         List<Etiqueta> componentesHTML = cuerpoHTML.obtenerEtiquetasConElementos();
         this.documento.agregarListaEtiquetas((ArrayList<Etiqueta>)componentesHTML);//agrego indentificadores a cada elemnto
-        agregarCSS();
-        this.retCJS.ejecutarLibres(tabla, 0);
+      
+        //cargar Js
+         CrearElementosCJS();
+         //ejecutar js
+         this.retCJS.ejecutarLibres(tabla, 0);
         
+         //cargar css
+         CrearElementosCSS();
+        //ejecutar css
+         agregarCSS();
+       
+         //propiedasdes al cuerpo
         cuerpoHTML.agregarElementos();
         asignarElementos(cuerpoHTML.elementosEtiqueta, cuerpoHTML.cadenaColor);
         Dibujar();
@@ -239,6 +247,7 @@ public class Pagina {
             temporal = this.documento.etiquetasHTML.get(i);
                System.out.println(this.documento.etiquetasHTML.get(i).numeroIdentificador);
             if(temporal instanceof Boton){
+                temporal.agregarEstilo();
                 JButton b= (JButton)((Boton) temporal).botonObjeto;
                  areaWeb.setCaretPosition(areaWeb.getStyledDocument().getLength());
                  areaWeb.insertComponent(b);

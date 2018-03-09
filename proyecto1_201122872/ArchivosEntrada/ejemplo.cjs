@@ -47,7 +47,7 @@ funcion usarObservador4(){
 documento.obtener("botonMi").observador(modificado,funcion(){imprimir("BOTONNNN MI");});
 documento.obtener("botonMi").observador(cliqueado,funcion(){imprimir("diii un cliccccccccc");});
 op4.setELEmento("ruta","C:\Users\Ramonella\Desktop\popo.jpg");
-op2.setElemento("ancho","10");
+op2.setElemento("ancho","130");
 op.setElemento("id","dos");
 op.setElemento("alto","500");
 op.setelemento("grupo","adios");
@@ -57,7 +57,8 @@ documento.obtener("botonMi").setElemento("click","usarObservador3()");
 documento.obtener("botonMi").setElemento("click","usarObservador4()");
 documento.observador(listo,funcion(){imprimir("documento cargado");});
 
-documento.obtener("botonPanel").setElemento("alto","10");
+documento.obtener("botonPanel").setElemento("alto","100");
+documento.obtener("botonPanel").setElemento("ancho","150");
 imprimir("valor de b "+b);
 imprimir("valor de b simulado "+ (b+3)++);
 imprimir("valor de b simulado "+ b--);

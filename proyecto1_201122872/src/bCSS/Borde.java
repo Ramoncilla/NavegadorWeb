@@ -21,7 +21,7 @@ public class Borde extends propiedad {
        public objetoBase expresionSize;
        public objetoBase expresionColor;
        public objetoBase expresionCurva;
-       double Vsize=0;
+       double Vsize=5;
        String Vcolor ="black";
        String Vcurva="false";
         

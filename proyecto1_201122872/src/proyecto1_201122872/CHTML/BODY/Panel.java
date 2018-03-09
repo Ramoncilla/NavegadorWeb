@@ -87,6 +87,7 @@ public class Panel extends Etiqueta  {
            for (int i = 0; i < this.etiquetasPanel.size(); i++) {
             temporal = this.etiquetasPanel.get(i);
             if(temporal instanceof Boton){
+                 temporal.agregarEstilo();
                 JButton b= (JButton)((Boton) temporal).botonObjeto;
                  panel.setCaretPosition(panel.getStyledDocument().getLength());
                  panel.insertComponent(b);

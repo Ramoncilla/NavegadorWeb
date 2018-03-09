@@ -5,6 +5,8 @@
  */
 package proyecto1_201122872.CHTML;
 
+import java.awt.Color;
+
 /**
  *
  * @author Ramonella
@@ -34,6 +36,24 @@ public class Etiqueta {
         return "";
     }
     
+    
+    
+    public void agregarEstilo(){
+        
+    }
+    
+    
+    public Color getColor(String color){
+     Color c =Color.GRAY ;
+        try{
+            c = (Color) Color.class.getField(color).get(null);
+        }catch (Exception excep){
+            try{
+            c= Color.decode(color);
+            }catch(Exception except){}
+        }
+     return c;
+    }
     
     public boolean asignarID(Object id){
         

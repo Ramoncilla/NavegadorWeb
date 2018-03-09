@@ -7,6 +7,16 @@ package proyecto1_201122872.CHTML.BODY;
 
 import CJS.elementoRetorno;
 import Funciones.Funcion;
+import bCSS.Alineado;
+import bCSS.Autoredimension;
+import bCSS.Borde;
+import bCSS.Colortext;
+import bCSS.Fondoelemento;
+import bCSS.Formato;
+import bCSS.Letra;
+import bCSS.Opaque;
+import bCSS.Tamtex;
+import bCSS.Visible;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,8 +26,11 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import bCSS.Texto;
+import java.awt.Color;
 
 import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
 import proyecto1_201122872.CHTML.Etiqueta;
 import proyecto1_201122872.CHTML.listaElementos;
@@ -51,7 +64,6 @@ public class Boton extends Etiqueta implements ActionListener {
     @Override
     public Etiqueta retornarHtml(){ 
         agregarElementos();
-        aplicarEstilo();
         asignarElementos();
         return this;
     }
@@ -100,32 +112,152 @@ public class Boton extends Etiqueta implements ActionListener {
     }
 
    
-    public void aplicarEstilo(){
-        List<String> formatos = new ArrayList<>();
-        formatos.add("negrita");
-        formatos.add("cursiva");
-        formatos.add("mayuscula");
-       // formatos.add("minuscula");
-       formatos.add("capital-t");
-        
-        this.botonObjeto.setHorizontalAlignment(SwingConstants.LEFT);//alineado
-        this.botonObjeto.setText("hola"); //text
-        int letra = Font.PLAIN;
-        
-        letra+= Font.BOLD;
-        letra +=Font.ITALIC;
-        String temporal;
-        /*for (int i = 0; i < formatos.size(); i++) {
-            temporal= formatos.get(i);
-            if(temporal.equalsIgnoreCase("negrita"))
+    @Override
+    public void agregarEstilo(){
+        propiedad propTemporal;
+        for (int i = 0; i < this.elementosEtiqueta.listadoElementos.size(); i++) {
+            propTemporal = this.elementosEtiqueta.listadoElementos.get(i);
             
+            if(propTemporal instanceof Alineado){
+                Alineado a = (Alineado)propTemporal;
+                switch(a.alineacion.toUpperCase()){
+                    case "DERECHA":{
+                        this.botonObjeto.setHorizontalAlignment(SwingConstants.RIGHT);
+                        break;
+                    }
+                    case "CENTRADO":{
+                        this.botonObjeto.setHorizontalAlignment(SwingConstants.CENTER);
+                        break;
+                    }
+                    default:{
+                        this.botonObjeto.setHorizontalAlignment(SwingConstants.LEFT);
+                        break;
+                    }
+                }
+            }
+            if(propTemporal instanceof Texto){
+                Texto t = (Texto)propTemporal;
+                this.botonObjeto.setText(t.getTexto());
+                
+            }
+            
+            if(propTemporal instanceof Fondoelemento){
+                Fondoelemento f = (Fondoelemento)propTemporal;
+                Color c = getColor(f.getCadenaColor());
+                this.botonObjeto.setBackground(c);
+            }
+            
+            if(propTemporal instanceof Visible){
+                Visible v = (Visible)propTemporal;
+                switch(v.getVisible().toUpperCase()){
+                    case "VERDADERO":{
+                        this.botonObjeto.setVisible(true);
+                        break;                       
+                    }
+                    case "FALSO":{
+                        this.botonObjeto.setVisible(false);
+                        break;
+                    }
+                }
+                
+            }
+            if(propTemporal instanceof Borde){
+                Borde b = (Borde)propTemporal;
+                Color c = getColor(b.getVcolor());
+                double tam = b.getVsize();
+                boolean curva= b.getVcurva().equalsIgnoreCase("verdadero");
+                int j = (int)tam;
+                LineBorder l = new LineBorder(c,j,curva);
+                this.botonObjeto.setBorder(l);
+            }
+            
+            if(propTemporal instanceof Opaque){
+               Opaque v = (Opaque)propTemporal;
+                switch(v.getValorOpaque().toUpperCase()){
+                    case "VERDADERO":{
+                        this.botonObjeto.setOpaque(true);
+                        break;                       
+                    }
+                    case "FALSO":{
+                        this.botonObjeto.setOpaque(false);
+                        break;
+                    }
+                } 
+                
+            }
+            
+            if(propTemporal instanceof Colortext){
+                Colortext c = (Colortext)propTemporal;
+                Color j = getColor(c.getCadenaColor());
+                this.botonObjeto.setForeground(j);
+                
+            }
+            
+            if(propTemporal instanceof Autoredimension){
+                
+            }
+               
         }
-        */
-        Font g= this.botonObjeto.getFont();
-        Font f = new Font("Tahoma",letra,20);
-        this.botonObjeto.setFont(f);
         
         
+        Formato form = this.elementosEtiqueta.obtenerFormato();
+        Tamtex siz= this.elementosEtiqueta.obtenerTamtex();
+        Letra let= this.elementosEtiqueta.obtenerLetra();
+        String fuente="";
+        int letra = Font.PLAIN;
+        int noTipoLetra =0;
+        int tamLetra =12;
+        if(form!=null){
+            String g;
+            for (int i = 0; i < form.listaFormatos.size(); i++) {
+                g=form.listaFormatos.get(i);
+                if(g.equalsIgnoreCase("negrita"))
+                    letra+=Font.BOLD;
+                if(g.equalsIgnoreCase("cursiva"))
+                    letra+=Font.ITALIC;
+                if(g.equalsIgnoreCase("mayuscula"))
+                    noTipoLetra=1;
+                if(g.equalsIgnoreCase("minuscula"))
+                    noTipoLetra=2;
+                if(g.equalsIgnoreCase("capital-t"))
+                    noTipoLetra=3;
+                
+            }
+        }
+         if(siz!=null)
+             tamLetra=(int)siz.getValorTamanho();
+         
+         if(let!=null)
+             fuente=let.getFuente();
+         
+         if(noTipoLetra==1){
+             String l = this.botonObjeto.getText();
+             this.botonObjeto.setText(l.toUpperCase());
+         }
+         
+          if(noTipoLetra==2){
+             String l = this.botonObjeto.getText();
+             this.botonObjeto.setText(l.toLowerCase());
+         }
+          
+        if (noTipoLetra == 3) {
+            String l = this.botonObjeto.getText();
+            String a = l.toLowerCase();
+            char[] caracteres = a.toCharArray();
+            caracteres[0] = Character.toUpperCase(caracteres[0]);
+            for (int i = 0; i < a.length() - 2; i++) {
+                if (caracteres[i] == ' ' || Character.isSpaceChar(caracteres[i])) {
+                    caracteres[i + 1] = Character.toUpperCase(caracteres[i + 1]);
+                }
+            }
+            String h = new String(caracteres);
+            this.botonObjeto.setText(h);
+        }
+         
+         Font fNueva = new Font(fuente,letra,tamLetra);
+         this.botonObjeto.setFont(fNueva);
+         this.botonObjeto.setSize(ancho, alto);
+      
         
     }
     

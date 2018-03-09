@@ -10,9 +10,10 @@ Texto := "Que hace esto?";
 Formato:= Mayuscula, Cursiva, Negrilla;
 Letra:= "Arial";
 Tamtex := 12;
-Visible:= false;
+Visible:= true;
 colortext := "#a04343";
 Opaque := false;
+fondoelemento:="green";
 
 GRUPO(grupo2);
 Tamtex := 19.4+0.6;
@@ -22,6 +23,7 @@ Visible := true;
 Borde := [4,"#ffff",false];
 Opaque := false;
 colortext := "#a04343";
+
 ]
 
 OtroNombreInutil[

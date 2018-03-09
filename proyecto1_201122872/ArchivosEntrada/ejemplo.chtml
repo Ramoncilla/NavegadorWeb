@@ -1,77 +1,83 @@
 <chtml>
-	
-	<encabezado>
-		
-		<cjs ruta="C:\Users\Ramonella\Documents\Repositorios\Proyecto1\NavegadorWeb\proyecto1_201122872\ArchivosEntrada\ejemplo.cjs";><fin-cjs>
-		
-		<ccss ruta="C:\Users\Ramonella\Documents\Repositorios\Proyecto1\NavegadorWeb\proyecto1_201122872\ArchivosEntrada\CSSPRUEBA1.ccss";><fin-ccss>
-		
-		
-		<titulo>
-		pagina11
-		<fin-titulo>
-		
-	<fin-encabezado>
-	
-
-	<cuerpo fondo="orange";>
-	<boton grupo="grupo1"; alto="100"; ancho="400"; alineado="derecha";id="botonPanel"; click="usarObservador2()";>mi<fin-boton>
-	
-	
-	<imagen id="imagenPrueba";>C:\Users\Ramonella\Desktop\imagen.jpg<fin-imagen>
-	
-	<panel  alto="600"; ancho="600";>
-		<boton alto="100"; ancho="100"; alineado="derecha"; id="botonPanel"; grupo="grupo1";>Prueba<fin-boton>
-		<salto-fin>
-		<panel>
-		<enlace grupo="grupo1"; id="enlaceD";ruta="C:\\Users\\Ramonella\\Documents\\Repositorios\\Proyecto1\\NavegadorWeb\\proyecto1_201122872\\ArchivosEntrada\\ejemplo2.chtml";>Enlace de Prueba <fin-enlace>
-		<boton id="botonPanel"; grupo="grupo1";>funciona<fin-boton>
-		<fin-panel>
-		<salto-fin>
-		<boton grupo="grupo1"; id="botonPanel";>boton2<fin-boton>
-		<salto-fin>
-		<boton grupo="grupo1";>boton23<fin-boton>
-	<fin-panel>
-	
-	
-	
-	<enlace>enlace de prueba<fin-enlace>
-	
-	<enlace ruta="sfdfdfd"; alineado="centrado"; ancho="300";>enlace de prueba2<fin-enlace>
-	
-	<caja alineado="derecha"; ancho="200"; id="botonPanel";>
-	<opcion valor="1";>Mario<fin-opcion>
-	<opcion>recargaa<fin-opcion>
-	<opcion valor="3";id="holaOpcion";>Adriana<fin-opcion>
-	<opcion valor="4";>Alina<fin-opcion>
-	<fin-caja>
-	
-	<spinner id="nuevoSpinner";><fin-spinner>
-	
-	<spinner>10<fin-spinner>
-	
-	<spinner alineado="centrado"; alto="100";><fin-spinner>
-	
-			
-			
-			
-			<imagen ancho="200"; alto="200"; ruta="C:\Users\Ramonella\Desktop\imagen2.jpg";><fin-imagen>
-			
-			<boton ruta="C:\\Users\\Ramonella\\Documents\\Repositorios\\Proyecto1\\NavegadorWeb\\proyecto1_201122872\\ArchivosEntrada\\ejemplo2.chtml";>boton nueco :D <fin-boton>
-			
-			
-			
-			
-			<boton>vida<fin-boton>
-			<boton>te<fin-boton>
-			<boton>amo<fin-boton>
-			
-			<texto alineado="derecha";>esto es una prueba del texto<fin-texto>
-			
-			<texto_a alineado="derecha";> esto es una prueba del texto area<fin-texto_a>
-	
-	<caja_texto alineado="derecha"; alto="100";> este es un jtextField<fin-caja_texto>
-	<fin-cuerpo>
-	
-	
+<encabezado>
+<cjs ruta="C:\Users\Ramonella\Documents\Repositorios\Proyecto1\NavegadorWeb\proyecto1_201122872\ArchivosEntrada\ejemplo.cjs";>
+<fin-cjs>
+<ccss ruta="C:\Users\Ramonella\Documents\Repositorios\Proyecto1\NavegadorWeb\proyecto1_201122872\ArchivosEntrada\CSSPRUEBA1.ccss";>
+<fin-ccss>
+<titulo>
+pagina11
+<fin-titulo>
+<fin-encabezado>
+<cuerpo fondo="orange";>
+<boton grupo="grupo1"; alto="100"; ancho="400"; alineado="derecha";id="botonPanel"; click="usarObservador2()";>mi
+<fin-boton>
+<imagen id="imagenPrueba";>
+C:\Users\Ramonella\Desktop\imagen.jpg
+<fin-imagen>
+<panel  alto="600"; ancho="600";>
+<boton alto="100"; ancho="100"; alineado="derecha"; id="botonPanel"; grupo="grupo1";>Prueba
+<fin-boton>
+<salto-fin>
+<panel>
+<enlace grupo="grupo1"; id="enlaceD";ruta="C:\\Users\\Ramonella\\Documents\\Repositorios\\Proyecto1\\NavegadorWeb\\proyecto1_201122872\\ArchivosEntrada\\ejemplo2.chtml";>Enlace de Prueba 
+<fin-enlace>
+<boton id="botonPanel"; grupo="grupo1";>funciona
+<fin-boton>
+<fin-panel>
+<salto-fin>
+<boton grupo="grupo1"; id="botonPanel";>boton2
+<fin-boton>
+<salto-fin>
+<boton grupo="grupo1";>
+boton23
+<fin-boton>
+<fin-panel>
+<enlace>
+enlace de prueba
+<fin-enlace>
+<enlace ruta="sfdfdfd"; alineado="centrado"; ancho="300";>enlace de prueba2
+<fin-enlace>
+<caja alineado="derecha"; ancho="200"; id="botonPanel";>
+<opcion valor="1";>
+Mario
+<fin-opcion>
+<opcion>
+recargaa
+<fin-opcion>
+<opcion valor="3";id="holaOpcion";>Adriana
+<fin-opcion>
+<opcion valor="4";>
+Alina
+<fin-opcion>
+<fin-caja>
+<spinner id="nuevoSpinner";>
+<fin-spinner>
+<spinner>
+10
+<fin-spinner>
+<spinner alineado="centrado"; alto="100";>
+<fin-spinner>
+<imagen ancho="200"; alto="200"; ruta="C:\Users\Ramonella\Desktop\imagen2.jpg";>
+<fin-imagen>
+<boton ruta="C:\\Users\\Ramonella\\Documents\\Repositorios\\Proyecto1\\NavegadorWeb\\proyecto1_201122872\\ArchivosEntrada\\ejemplo2.chtml";>
+boton nueco :D 
+<fin-boton>
+<boton>
+vida
+<fin-boton>
+<boton>
+te
+<fin-boton>
+<boton>
+amo
+<fin-boton>
+<texto alineado="derecha";>
+esto es una prueba del texto
+<fin-texto>
+<texto_a alineado="derecha";>
+esto es una prueba del texto area
+<fin-texto_a>
+<caja_texto alineado="derecha"; alto="100";> este es un jtextField
+<fin-caja_texto>
+<fin-cuerpo>
 <fin-chtml>
