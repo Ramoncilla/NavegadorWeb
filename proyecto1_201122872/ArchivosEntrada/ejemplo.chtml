@@ -15,22 +15,22 @@
 	
 
 	<cuerpo fondo="orange";>
-	<boton alto="100"; ancho="400"; alineado="derecha";id="botonMi"; click="usarObservador2()";>mi<fin-boton>
+	<boton grupo="grupo1"; alto="100"; ancho="400"; alineado="derecha";id="botonPanel"; click="usarObservador2()";>mi<fin-boton>
 	
 	
 	<imagen id="imagenPrueba";>C:\Users\Ramonella\Desktop\imagen.jpg<fin-imagen>
 	
 	<panel  alto="600"; ancho="600";>
-		<boton alto="100"; ancho="100"; alineado="derecha"; id="botonPanel";>Prueba<fin-boton>
+		<boton alto="100"; ancho="100"; alineado="derecha"; id="botonPanel"; grupo="grupo1";>Prueba<fin-boton>
 		<salto-fin>
 		<panel>
-		<enlace id="enlaceD";ruta="C:\\Users\\Ramonella\\Documents\\Repositorios\\Proyecto1\\NavegadorWeb\\proyecto1_201122872\\ArchivosEntrada\\ejemplo2.chtml";>Enlace de Prueba <fin-enlace>
-		<boton>funciona<fin-boton>
+		<enlace grupo="grupo1"; id="enlaceD";ruta="C:\\Users\\Ramonella\\Documents\\Repositorios\\Proyecto1\\NavegadorWeb\\proyecto1_201122872\\ArchivosEntrada\\ejemplo2.chtml";>Enlace de Prueba <fin-enlace>
+		<boton id="botonPanel"; grupo="grupo1";>funciona<fin-boton>
 		<fin-panel>
 		<salto-fin>
-		<boton>boton2<fin-boton>
+		<boton grupo="grupo1"; id="botonPanel";>boton2<fin-boton>
 		<salto-fin>
-		<boton>boton23<fin-boton>
+		<boton grupo="grupo1";>boton23<fin-boton>
 	<fin-panel>
 	
 	
@@ -39,7 +39,7 @@
 	
 	<enlace ruta="sfdfdfd"; alineado="centrado"; ancho="300";>enlace de prueba2<fin-enlace>
 	
-	<caja alineado="derecha"; ancho="200";>
+	<caja alineado="derecha"; ancho="200"; id="botonPanel";>
 	<opcion valor="1";>Mario<fin-opcion>
 	<opcion>recargaa<fin-opcion>
 	<opcion valor="3";id="holaOpcion";>Adriana<fin-opcion>

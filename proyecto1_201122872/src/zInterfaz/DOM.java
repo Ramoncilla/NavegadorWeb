@@ -5,6 +5,8 @@
  */
 package zInterfaz;
 
+import bCSS.Grupo;
+import bCSS.ID;
 import java.util.ArrayList;
 import java.util.List;
 import proyecto1_201122872.CHTML.BODY.Caja;
@@ -163,4 +165,139 @@ public class DOM {
         }
         return null;
     }
+    
+  
+    
+    
+    /*  aplicar estilos CSS*/
+    
+    public void aplicarCssID(ID bloque){
+        
+        List<Etiqueta> elementosID= obtenerEtiquetasID(bloque.id);
+        for (int i = 0; i < elementosID.size(); i++) {
+            System.out.println(i);
+        }
+        
+    }
+    
+    public void aplicarCSSGrupo(Grupo bloque){
+        List<Etiqueta> elementosGrupo= obtenerEtiquetasGrupo(bloque.grupo);
+        for (int i = 0; i < elementosGrupo.size(); i++) {
+            System.out.println(i);
+        } 
+        
+    }
+    
+    
+    
+    /*Obtener Valores por grupo*/
+    
+    
+      public List<Etiqueta> obtenerEtiquetasGrupo(String id){
+        List<Etiqueta> lista = new ArrayList<>();
+        
+        
+         Etiqueta temporal, ret;
+        for (int i = 0; i < this.etiquetasHTML.size(); i++) {
+            temporal = this.etiquetasHTML.get(i);
+            if (!temporal.grupo.equalsIgnoreCase("nulo")) {
+                if (temporal.grupo.equalsIgnoreCase(id)) {
+                    lista.add(temporal);
+                } else if (temporal instanceof Panel) {
+                    Panel p = (Panel) temporal;
+                   lista = obtenerEtiquetaPanelGrupo((ArrayList<Etiqueta>) p.objetosPanel.etiquetas, id, (ArrayList<Etiqueta>) lista);
+                    
+                        
+                }
+            } else {
+                if (temporal instanceof Panel) {
+                     Panel p = (Panel) temporal;
+                    lista = obtenerEtiquetaPanelGrupo((ArrayList<Etiqueta>) p.objetosPanel.etiquetas, id, (ArrayList<Etiqueta>) lista);
+                    
+                        
+
+                }
+            }
+
+        }
+        
+        return lista;
+    }
+  
+      private List<Etiqueta> obtenerEtiquetaPanelGrupo (ArrayList<Etiqueta> etiquetas, String nombre, ArrayList<Etiqueta>lista){
+    
+          Etiqueta temporal;
+        for (int i = 0; i < etiquetas.size(); i++) {
+           temporal = etiquetas.get(i);
+           if(temporal.grupo.equalsIgnoreCase(nombre)){
+               lista.add(temporal);
+           }else if(temporal instanceof Panel){
+               Panel p = (Panel)temporal;
+               lista = (ArrayList<Etiqueta>) obtenerEtiquetaPanelGrupo((ArrayList<Etiqueta>)p.objetosPanel.etiquetas,nombre,lista);
+           }
+        }
+        return lista;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    /*obtener valores por id*/
+    
+    
+    public List<Etiqueta> obtenerEtiquetasID(String id){
+        List<Etiqueta> lista = new ArrayList<>();
+        
+        
+         Etiqueta temporal, ret;
+        for (int i = 0; i < this.etiquetasHTML.size(); i++) {
+            temporal = this.etiquetasHTML.get(i);
+            if (!temporal.id.equalsIgnoreCase("nulo")) {
+                if (temporal.id.equalsIgnoreCase(id)) {
+                    lista.add(temporal);
+                } else if (temporal instanceof Panel) {
+                    Panel p = (Panel) temporal;
+                   lista = obtenerEtiquetaPanelID((ArrayList<Etiqueta>) p.objetosPanel.etiquetas, id, (ArrayList<Etiqueta>) lista);
+                    
+                        
+                }
+            } else {
+                if (temporal instanceof Panel) {
+                     Panel p = (Panel) temporal;
+                    lista = obtenerEtiquetaPanelID((ArrayList<Etiqueta>) p.objetosPanel.etiquetas, id, (ArrayList<Etiqueta>) lista);
+                    
+                        
+
+                }
+            }
+
+        }
+        
+        return lista;
+    }
+  
+      private List<Etiqueta> obtenerEtiquetaPanelID (ArrayList<Etiqueta> etiquetas, String nombre, ArrayList<Etiqueta>lista){
+    
+          Etiqueta temporal;
+        for (int i = 0; i < etiquetas.size(); i++) {
+           temporal = etiquetas.get(i);
+           if(temporal.id.equalsIgnoreCase(nombre)){
+               lista.add(temporal);
+           }else if(temporal instanceof Panel){
+               Panel p = (Panel)temporal;
+               lista = (ArrayList<Etiqueta>) obtenerEtiquetaPanelID((ArrayList<Etiqueta>)p.objetosPanel.etiquetas,nombre,lista);
+           }
+        }
+        return lista;
+    }
+    
+    
+    
+    
+    
 }

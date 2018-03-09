@@ -174,14 +174,14 @@ public class Pagina {
         for (int i = 0; i < this.bloquesCss.listaBloques.size(); i++) {
             temporal = this.bloquesCss.listaBloques.get(i);
             if(temporal instanceof ID){
+               this.documento.aplicarCssID((ID)temporal);
                 System.out.println("id "+ i);
             }else if(temporal instanceof Grupo){
+                this.documento.aplicarCSSGrupo((Grupo)temporal);
                 System.out.println("grupo" + i);
             }
             
-        }
-        
-        
+        }  
     }
     
     

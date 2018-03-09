@@ -25,7 +25,7 @@ colortext := "#a04343";
 ]
 
 OtroNombreInutil[
-ID(id1);
+ID(botonPanel);
 Alineado:= izquierda;
 Alineado:= derecha;
 Texto := "Que hace esto?" + "?";
