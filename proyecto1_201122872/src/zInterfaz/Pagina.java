@@ -51,6 +51,7 @@ import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadAlineado;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadAlto;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadAncho;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadColorFondo;
+import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadFondo;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadGrupo;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadId;
 import proyecto1_201122872.CHTML.Etiqueta;
@@ -276,7 +277,7 @@ public class Pagina {
                    System.out.println("Inicio Panel");
                   p.imprimirId();
                   System.out.println("Fin Panel");
- 
+                  temporal.agregarEstilo();
                  JScrollPane b = (JScrollPane)((Panel) temporal).Dibujar();
                  areaWeb.setCaretPosition(areaWeb.getStyledDocument().getLength());
                  areaWeb.insertComponent(b);
@@ -397,12 +398,17 @@ public class Pagina {
         areaWeb.setMaximumSize(dmnsn);
         areaWeb.setMaximumSize(dmnsn);
         areaWeb.setPreferredSize(dmnsn);*/
-        
+       propiedad pTemporal;
+         for (int i = 0; i < elementosEtiqueta.listadoElementos.size(); i++) {
+             pTemporal = elementosEtiqueta.listadoElementos.get(i);
+             if(pTemporal instanceof propiedadFondo){
+                 propiedadFondo f = (propiedadFondo)pTemporal;
+                 Color c = getColor(f.cadenaColor);
+                  areaWeb.setBackground(c);
+             }
+         }
        
-        if(!(cadenaColor.equalsIgnoreCase(""))){
-            Color c = getColor(cadenaColor);
-            areaWeb.setBackground(c);
-        }
+      
         if(elementosEtiqueta.obtenerAlineado()!=null){
              propiedadAlineado n = elementosEtiqueta.obtenerAlineado();
             if(n.alineado.equalsIgnoreCase("derecha")){              

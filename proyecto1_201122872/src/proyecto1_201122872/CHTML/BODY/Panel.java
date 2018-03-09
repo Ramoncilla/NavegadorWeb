@@ -4,8 +4,19 @@
  * and open the template in the editor.
  */
 package proyecto1_201122872.CHTML.BODY;
+import bCSS.Alineado;
+import bCSS.Autoredimension;
+import bCSS.Borde;
+import bCSS.Colortext;
+import bCSS.Fondoelemento;
+import bCSS.Formato;
+import bCSS.Letra;
+import bCSS.Opaque;
+import bCSS.Tamtex;
+import bCSS.Visible;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +30,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
@@ -116,7 +128,8 @@ public class Panel extends Etiqueta  {
                    System.out.println("Inicio Panel interno");
                   p.imprimirId();
                   System.out.println("Fin Panel");
-                 JScrollPane b = (JScrollPane)((Panel) temporal).Dibujar();
+                  temporal.agregarEstilo();
+                  JScrollPane b = (JScrollPane)((Panel) temporal).Dibujar();
                  panel.setCaretPosition(panel.getStyledDocument().getLength());
                  panel.insertComponent(b);
                  paginaActual.retCJS.observadores.buscarObservadorPorElemento(10, temporal.numeroIdentificador, 0, paginaActual.tabla);
@@ -306,8 +319,127 @@ public class Panel extends Etiqueta  {
 
 
 
+ @Override
+    public void agregarEstilo() {
+        propiedad propTemporal;
+        for (int i = 0; i < this.elementosEtiqueta.listadoElementos.size(); i++) {
+            propTemporal = this.elementosEtiqueta.listadoElementos.get(i);
+
+            if (propTemporal instanceof Alineado) {
+                Alineado a = (Alineado) propTemporal;
+                switch (a.alineacion.toUpperCase()) {
+                    case "DERECHA": {
+                        StyledDocument doc = panel.getStyledDocument();
+                        SimpleAttributeSet center = new SimpleAttributeSet();
+                        StyleConstants.setAlignment(center, StyleConstants.ALIGN_RIGHT);
+                        doc.setParagraphAttributes(0, doc.getLength(), center, false);
+                        break;
+                    }
+                    case "CENTRADO": {
+                        StyledDocument doc = panel.getStyledDocument();
+                        SimpleAttributeSet center = new SimpleAttributeSet();
+                        StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+                        doc.setParagraphAttributes(0, doc.getLength(), center, false);
+                        break;
+                    }
+
+                    case "JUSTIFICADO": {
+                        StyledDocument doc = panel.getStyledDocument();
+                        SimpleAttributeSet center = new SimpleAttributeSet();
+                        StyleConstants.setAlignment(center, StyleConstants.ALIGN_JUSTIFIED);
+                        doc.setParagraphAttributes(0, doc.getLength(), center, false);
+                        break;
+                    }
+                    default: {
+                        StyledDocument doc = panel.getStyledDocument();
+                        SimpleAttributeSet center = new SimpleAttributeSet();
+                        StyleConstants.setAlignment(center, StyleConstants.ALIGN_LEFT);
+                        doc.setParagraphAttributes(0, doc.getLength(), center, false);
+                        break;
+                    }
+                }
+            }
+            
+            if(propTemporal instanceof Fondoelemento){
+                Fondoelemento f = (Fondoelemento)propTemporal;
+                Color c = getColor(f.getCadenaColor());
+                this.panel.setBackground(c);
+            }
+            
+            if(propTemporal instanceof Visible){
+                Visible v = (Visible)propTemporal;
+                switch(v.getVisible().toUpperCase()){
+                    case "VERDADERO":{
+                        this.panel.setVisible(true);
+                        break;                       
+                    }
+                    case "FALSO":{
+                        this.panel.setVisible(false);
+                        break;
+                    }
+                }
+                
+            }
+           
+             if(propTemporal instanceof Borde){
+                Borde b = (Borde)propTemporal;
+                Color c = getColor(b.getVcolor());
+                double tam = b.getVsize();
+                boolean curva= b.getVcurva().equalsIgnoreCase("verdadero");
+                int j = (int)tam;
+                LineBorder l = new LineBorder(c,j,curva);
+                panel.setBorder(l);
+            }
+            if(propTemporal instanceof Opaque){
+               Opaque v = (Opaque)propTemporal;
+                switch(v.getValorOpaque().toUpperCase()){
+                    case "VERDADERO":{
+                        this.panel.setOpaque(true);
+                        break;                       
+                    }
+                    case "FALSO":{
+                        this.panel.setOpaque(false);
+                        break;
+                    }
+                } 
+                
+            }
+            
+            
+            
+            if(propTemporal instanceof Autoredimension){
+                
+            }
+               
+        }
+        
+        
+       
+         this.panel.setSize(ancho, alto);
+      
+        
+    }       
+    
 
 
-
+    
+    public JScrollPane obtenerJSCroll(){
+        agregarEstilo();
+         JScrollPane n = new JScrollPane(panel);
+         propiedad propTemporal= new propiedad();
+         for (int i = 0; i < this.elementosEtiqueta.listadoElementos.size(); i++) {
+             
+            
+        }
+       
+           Dimension dmnsn= new Dimension(ancho,alto);
+           n.setSize(dmnsn);
+           n.setPreferredSize(dmnsn);
+           n.setMinimumSize(dmnsn);
+           n.setMaximumSize(dmnsn);
+           
+           return n;
+        
+    }
 
 }

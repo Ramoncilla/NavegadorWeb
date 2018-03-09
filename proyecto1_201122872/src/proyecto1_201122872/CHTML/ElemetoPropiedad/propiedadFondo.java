@@ -12,7 +12,11 @@ package proyecto1_201122872.CHTML.ElemetoPropiedad;
 public class propiedadFondo extends propiedad{
     
     
-    public propiedadFondo(Object valor){
+    
+   public String cadenaColor;
+    
+    public propiedadFondo(Object color){
+        this.cadenaColor= color.toString().replace("\"","");
         
     }
     

@@ -190,9 +190,6 @@ public class DOM {
     }
 
     
-    
-    
-    
     /*Obtener Valores por grupo*/
     public List<Etiqueta> obtenerEtiquetasGrupo(String id) {
         List<Etiqueta> lista = new ArrayList<>();
