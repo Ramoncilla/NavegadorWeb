@@ -14,14 +14,14 @@ Visible:= true;
 colortext := "#a04343";
 Opaque := false;
 fondoelemento:="green";
-Borde := [13,"#ffff",true];
+Borde := [5,"#ffff",true];
 
 GRUPO(grupo2);
 Tamtex := 19.4+0.6;
 Fondoelemento := "#6465f"+"f";
 Autoredimension:= [true, Vertical];
-Visible := false;
-Borde := [13,"#ffff",true];
+Visible := true;
+Borde := [4,"#ffff",true];
 Opaque := false;
 colortext := "#a04343";
 
@@ -40,11 +40,11 @@ Letra:= "Arial";
 
 OtroNombreInutil2[
 ID(id2);
-Tamtex := 8;
+Tamtex := 15;
 Fondoelemento := "gray";
 Autoredimension:= [false, Horizontal];
-Visible := false;
+Visible := true;
 Borde := [5,"black",true];
 Opaque := true;
-Colortext := "black";
+Colortext := "pink";
 ]

@@ -4,8 +4,24 @@
  * and open the template in the editor.
  */
 package proyecto1_201122872.CHTML.BODY;
+import bCSS.Alineado;
+import bCSS.Autoredimension;
+import bCSS.Borde;
+import bCSS.Colortext;
+import bCSS.Fondoelemento;
+import bCSS.Formato;
+import bCSS.Letra;
+import bCSS.Opaque;
+import bCSS.Tamtex;
+import bCSS.Visible;
+import java.awt.Color;
+import java.awt.Font;
 import java.util.ArrayList;
 import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadAlineado;
@@ -113,7 +129,171 @@ public class Texto extends Etiqueta{
         
         
         
+  @Override
+    public void agregarEstilo() {
+        propiedad propTemporal;
+        for (int i = 0; i < this.elementosEtiqueta.listadoElementos.size(); i++) {
+            propTemporal = this.elementosEtiqueta.listadoElementos.get(i);
+
+            if (propTemporal instanceof Alineado) {
+                Alineado a = (Alineado) propTemporal;
+                switch (a.alineacion.toUpperCase()) {
+                    case "DERECHA": {
+                        StyledDocument doc = texto.getStyledDocument();
+                        SimpleAttributeSet center = new SimpleAttributeSet();
+                        StyleConstants.setAlignment(center, StyleConstants.ALIGN_RIGHT);
+                        doc.setParagraphAttributes(0, doc.getLength(), center, false);
+                        break;
+                    }
+                    case "CENTRADO": {
+                        StyledDocument doc = texto.getStyledDocument();
+                        SimpleAttributeSet center = new SimpleAttributeSet();
+                        StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+                        doc.setParagraphAttributes(0, doc.getLength(), center, false);
+                        break;
+                    }
+
+                    case "JUSTIFICADO": {
+                        StyledDocument doc = texto.getStyledDocument();
+                        SimpleAttributeSet center = new SimpleAttributeSet();
+                        StyleConstants.setAlignment(center, StyleConstants.ALIGN_JUSTIFIED);
+                        doc.setParagraphAttributes(0, doc.getLength(), center, false);
+                        break;
+                    }
+                    default: {
+                        StyledDocument doc = texto.getStyledDocument();
+                        SimpleAttributeSet center = new SimpleAttributeSet();
+                        StyleConstants.setAlignment(center, StyleConstants.ALIGN_LEFT);
+                        doc.setParagraphAttributes(0, doc.getLength(), center, false);
+                        break;
+                    }
+                }
+            }
+            if(propTemporal instanceof bCSS.Texto){
+                bCSS.Texto t = (bCSS.Texto)propTemporal;
+                this.cadenaTexto=t.getTexto();
+                this.texto.setText(this.cadenaTexto);                
+            }
+            
+            if(propTemporal instanceof Fondoelemento){
+                Fondoelemento f = (Fondoelemento)propTemporal;
+                Color c = getColor(f.getCadenaColor());
+                this.texto.setBackground(c);
+            }
+            
+            if(propTemporal instanceof Visible){
+                Visible v = (Visible)propTemporal;
+                switch(v.getVisible().toUpperCase()){
+                    case "VERDADERO":{
+                        this.texto.setVisible(true);
+                        break;                       
+                    }
+                    case "FALSO":{
+                        this.texto.setVisible(false);
+                        break;
+                    }
+                }
+                
+            }
+            if(propTemporal instanceof Borde){
+                Borde b = (Borde)propTemporal;
+                Color c = getColor(b.getVcolor());
+                double tam = b.getVsize();
+                boolean curva= b.getVcurva().equalsIgnoreCase("verdadero");
+                int j = (int)tam;
+                LineBorder l = new LineBorder(c,j,curva);
+                this.texto.setBorder(l);
+            }
+            
+            if(propTemporal instanceof Opaque){
+               Opaque v = (Opaque)propTemporal;
+                switch(v.getValorOpaque().toUpperCase()){
+                    case "VERDADERO":{
+                        this.texto.setOpaque(true);
+                        break;                       
+                    }
+                    case "FALSO":{
+                        this.texto.setOpaque(false);
+                        break;
+                    }
+                } 
+                
+            }
+            
+            if(propTemporal instanceof Colortext){
+                Colortext c = (Colortext)propTemporal;
+                Color j = getColor(c.getCadenaColor());
+                this.texto.setForeground(j);
+                
+            }
+            
+            if(propTemporal instanceof Autoredimension){
+                
+            }
+               
+        }
         
+        
+        Formato form = this.elementosEtiqueta.obtenerFormato();
+        Tamtex siz= this.elementosEtiqueta.obtenerTamtex();
+        Letra let= this.elementosEtiqueta.obtenerLetra();
+        String fuente="";
+        int letra = Font.PLAIN;
+        int noTipoLetra =0;
+        int tamLetra =12;
+        if(form!=null){
+            String g;
+            for (int i = 0; i < form.listaFormatos.size(); i++) {
+                g=form.listaFormatos.get(i);
+                if(g.equalsIgnoreCase("negrita"))
+                    letra+=Font.BOLD;
+                if(g.equalsIgnoreCase("cursiva"))
+                    letra+=Font.ITALIC;
+                if(g.equalsIgnoreCase("mayuscula"))
+                    noTipoLetra=1;
+                if(g.equalsIgnoreCase("minuscula"))
+                    noTipoLetra=2;
+                if(g.equalsIgnoreCase("capital-t"))
+                    noTipoLetra=3;
+                
+            }
+        }
+         if(siz!=null)
+             tamLetra=(int)siz.getValorTamanho();
+         
+         if(let!=null)
+             fuente=let.getFuente();
+         
+         if(noTipoLetra==1){
+             String l = this.texto.getText();
+             this.texto.setText(l.toUpperCase());
+         }
+         
+          if(noTipoLetra==2){
+             String l = this.texto.getText();
+             this.texto.setText(l.toLowerCase());
+         }
+          
+        if (noTipoLetra == 3) {
+            String l = this.texto.getText();
+            String a = l.toLowerCase();
+            char[] caracteres = a.toCharArray();
+            caracteres[0] = Character.toUpperCase(caracteres[0]);
+            for (int i = 0; i < a.length() - 2; i++) {
+                if (caracteres[i] == ' ' || Character.isSpaceChar(caracteres[i])) {
+                    caracteres[i + 1] = Character.toUpperCase(caracteres[i + 1]);
+                }
+            }
+            String h = new String(caracteres);
+            this.texto.setText(h);
+        }
+         
+         Font fNueva = new Font(fuente,letra,tamLetra);
+         this.texto.setFont(fNueva);
+         this.texto.setSize(ancho, alto);
+      
+        
+    }       
     
     
     

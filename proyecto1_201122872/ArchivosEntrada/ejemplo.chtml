@@ -11,7 +11,7 @@ pagina11
 <cuerpo fondo="orange";>
 <boton grupo="grupo1"; alto="100"; ancho="400"; alineado="derecha";id="botonPanel"; click="usarObservador2()";>mi
 <fin-boton>
-<imagen id="imagenPrueba"; grupo="grupo2";>
+<imagen id="imagenPrueba"; grupo="grupo2">
 C:\Users\Ramonella\Desktop\imagen.jpg
 <fin-imagen>
 <panel  alto="600"; ancho="600";>
@@ -19,7 +19,7 @@ C:\Users\Ramonella\Desktop\imagen.jpg
 <fin-boton>
 <salto-fin>
 <panel>
-<enlace grupo="grupo1"; id="enlaceD";ruta="C:\\Users\\Ramonella\\Documents\\Repositorios\\Proyecto1\\NavegadorWeb\\proyecto1_201122872\\ArchivosEntrada\\ejemplo2.chtml";>Enlace de Prueba 
+<enlace alto="80";grupo="grupo1"; id="enlaceD";ruta="C:\\Users\\Ramonella\\Documents\\Repositorios\\Proyecto1\\NavegadorWeb\\proyecto1_201122872\\ArchivosEntrada\\ejemplo2.chtml";>Enlace de Prueba 
 <fin-enlace>
 <boton id="botonPanel"; grupo="grupo1";>funciona
 <fin-boton>
@@ -32,12 +32,12 @@ C:\Users\Ramonella\Desktop\imagen.jpg
 boton23
 <fin-boton>
 <fin-panel>
-<enlace>
+<enlace grupo="grupo2";>
 enlace de prueba
 <fin-enlace>
 <enlace ruta="sfdfdfd"; alineado="centrado"; ancho="300";>enlace de prueba2
 <fin-enlace>
-<caja alineado="derecha"; ancho="200"; id="botonPanel";>
+<caja alineado="derecha"; ancho="200"; id="id2";>
 <opcion valor="1";>
 Mario
 <fin-opcion>
@@ -71,7 +71,7 @@ te
 <boton>
 amo
 <fin-boton>
-<texto alineado="derecha";>
+<texto grupo="grupo2";alineado="derecha";>
 esto es una prueba del texto
 <fin-texto>
 <texto_a grupo="grupo2"; alineado="derecha";>

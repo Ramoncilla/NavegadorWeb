@@ -93,6 +93,7 @@ public class Panel extends Etiqueta  {
                  panel.insertComponent(b);
                  paginaActual.retCJS.observadores.buscarObservadorPorElemento(10, temporal.numeroIdentificador, 0, paginaActual.tabla);
             }else if(temporal instanceof Caja){
+                temporal.agregarEstilo();
                 ((Caja)temporal).imprimir();
                 JComboBox b= (JComboBox)((Caja) temporal).cajaOpciones;
                  panel.setCaretPosition(panel.getStyledDocument().getLength());
@@ -136,6 +137,7 @@ public class Panel extends Etiqueta  {
                  panel.insertComponent(b);
                  paginaActual.retCJS.observadores.buscarObservadorPorElemento(10, temporal.numeroIdentificador, 0, paginaActual.tabla);
             }else if(temporal instanceof Texto){
+                temporal.agregarEstilo();
                  JTextPane b = (JTextPane)((Texto) temporal).texto;
                  panel.setCaretPosition(panel.getStyledDocument().getLength());
                  panel.insertComponent(b);

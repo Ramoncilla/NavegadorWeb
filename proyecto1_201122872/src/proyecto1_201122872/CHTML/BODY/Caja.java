@@ -6,12 +6,25 @@
 package proyecto1_201122872.CHTML.BODY;
 import CJS.elementoRetorno;
 import Funciones.Funcion;
+import bCSS.Alineado;
+import bCSS.Autoredimension;
+import bCSS.Borde;
+import bCSS.Colortext;
+import bCSS.Fondoelemento;
+import bCSS.Formato;
+import bCSS.Letra;
+import bCSS.Opaque;
+import bCSS.Tamtex;
+import bCSS.Visible;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadAlineado;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadAlto;
@@ -210,7 +223,188 @@ public class Caja extends Etiqueta implements ActionListener {
     }   
     
     
+   
+     @Override
+    public void agregarEstilo(){
+        propiedad propTemporal;
+        for (int i = 0; i < this.elementosEtiqueta.listadoElementos.size(); i++) {
+            propTemporal = this.elementosEtiqueta.listadoElementos.get(i);
+            
+            if(propTemporal instanceof Alineado){
+                Alineado a = (Alineado)propTemporal;
+                switch(a.alineacion.toUpperCase()){
+                    case "DERECHA":{
+                        ((JLabel)cajaOpciones.getRenderer()).setHorizontalAlignment(SwingConstants.RIGHT);
+                        break;
+                    }
+                    case "CENTRADO":{
+                        ((JLabel)cajaOpciones.getRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
+                        break;
+                    }
+                    default:{
+                        ((JLabel)cajaOpciones.getRenderer()).setHorizontalAlignment(SwingConstants.LEFT);
+                        break;
+                    }
+                }
+            }
+            if(propTemporal instanceof bCSS.Texto){
+                bCSS.Texto t = (bCSS.Texto)propTemporal;
+
+ ((JLabel)this.cajaOpciones.getRenderer()).setText(t.getTexto());
+
+                
+            }
+            
+       
+            
+            if(propTemporal instanceof Visible){
+                Visible v = (Visible)propTemporal;
+                switch(v.getVisible().toUpperCase()){
+                    case "VERDADERO":{
+                        this.cajaOpciones.setVisible(true);
+                        break;                       
+                    }
+                    case "FALSO":{
+                        this.cajaOpciones.setVisible(false);
+                        break;
+                    }
+                }
+                
+            }
+            if(propTemporal instanceof Borde){
+                Borde b = (Borde)propTemporal;
+                Color c = getColor(b.getVcolor());
+                double tam = b.getVsize();
+                boolean curva= b.getVcurva().equalsIgnoreCase("verdadero");
+                int j = (int)tam;
+                LineBorder l = new LineBorder(c,j,curva);
+                this.cajaOpciones.setBorder(l);
+            }
+            
+            if(propTemporal instanceof Opaque){
+               Opaque v = (Opaque)propTemporal;
+                switch(v.getValorOpaque().toUpperCase()){
+                    case "VERDADERO":{
+                        this.cajaOpciones.setOpaque(true);
+                        break;                       
+                    }
+                    case "FALSO":{
+                        this.cajaOpciones.setOpaque(false);
+                        break;
+                    }
+                } 
+                
+            }
+            
+            if(propTemporal instanceof Colortext){
+                Colortext c = (Colortext)propTemporal;
+                Color j = getColor(c.getCadenaColor());
+                this.cajaOpciones.setForeground(j);
+                
+            }
+            
+            if(propTemporal instanceof Autoredimension){
+                
+            }
+               
+        }
+        
+        
+        Formato form = this.elementosEtiqueta.obtenerFormato();
+        Tamtex siz= this.elementosEtiqueta.obtenerTamtex();
+        Letra let= this.elementosEtiqueta.obtenerLetra();
+        String fuente="";
+        int letra = Font.PLAIN;
+        int noTipoLetra =0;
+        int tamLetra =12;
+        if(form!=null){
+            String g;
+            for (int i = 0; i < form.listaFormatos.size(); i++) {
+                g=form.listaFormatos.get(i);
+                if(g.equalsIgnoreCase("negrita"))
+                    letra+=Font.BOLD;
+                if(g.equalsIgnoreCase("cursiva"))
+                    letra+=Font.ITALIC;
+                if(g.equalsIgnoreCase("mayuscula"))
+                    noTipoLetra=1;
+                if(g.equalsIgnoreCase("minuscula"))
+                    noTipoLetra=2;
+                if(g.equalsIgnoreCase("capital-t"))
+                    noTipoLetra=3;
+                
+            }
+        }
+         if(siz!=null)
+             tamLetra=(int)siz.getValorTamanho();
+         
+         if(let!=null)
+             fuente=let.getFuente();
+         
+         if(noTipoLetra==1){
+             
+               ArrayList <String> lista = new ArrayList<>();
+                    for (int i = 0; i < cajaOpciones.getItemCount(); i++) {
+                       String a = (String)cajaOpciones.getItemAt(i);
+                       lista.add(a.toUpperCase());
+                    }
+                     while (cajaOpciones.getItemCount()>0) {
+                      cajaOpciones.removeItemAt(0);
+                    }
+                  
+                    for (int i = 0; i < lista.size(); i++) {
+                        cajaOpciones.addItem(lista.get(i));
+                    }
+             
+         }
+         
+          if(noTipoLetra==2){
+             ArrayList <String> lista = new ArrayList<>();
+                    for (int i = 0; i < cajaOpciones.getItemCount(); i++) {
+                       String a = (String)cajaOpciones.getItemAt(i);
+                       lista.add(a.toLowerCase());
+                    }
+                     while (cajaOpciones.getItemCount()>0) {
+                      cajaOpciones.removeItemAt(0);
+                    }
+                  
+                    for (int i = 0; i < lista.size(); i++) {
+                        cajaOpciones.addItem(lista.get(i));
+                    }
+         }
+          
+        if (noTipoLetra == 3) {
+            ArrayList <String> lista = new ArrayList<>();
+                    for (int i = 0; i < cajaOpciones.getItemCount(); i++) {
+                       String a = (String)cajaOpciones.getItemAt(i);
+                       lista.add(ToCapital(a));
+                    }
+                     while (cajaOpciones.getItemCount()>0) {
+                      cajaOpciones.removeItemAt(0);
+                    }
+                  
+                    for (int i = 0; i < lista.size(); i++) {
+                        cajaOpciones.addItem(lista.get(i));
+                    }
+        }
+         
+         Font fNueva = new Font(fuente,letra,tamLetra);
+         this.cajaOpciones.setFont(fNueva);
+         this.cajaOpciones.setSize(ancho, alto);
+      
+        
+    }
     
+    private String ToCapital(String cad){
+        
+        String a= cad.toLowerCase();
+ char[] caracteres = a.toCharArray();
+caracteres[0] = Character.toUpperCase(caracteres[0]);
+    for (int i=0;i<a.length()-2; i++){
+        if (caracteres[i] == ' ' ||  Character.isSpaceChar(caracteres[i]) )
+        caracteres[i + 1] = Character.toUpperCase(caracteres[i + 1]);
+    }
+       return new String(caracteres); 
+    }
     
     
 }

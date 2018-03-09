@@ -253,6 +253,7 @@ public class Pagina {
                  areaWeb.insertComponent(b);
                  this.retCJS.observadores.buscarObservadorPorElemento(10, temporal.numeroIdentificador, 0, tabla);
             }else if(temporal instanceof Caja){
+                 temporal.agregarEstilo();
                 ((Caja)temporal).imprimir();
                 JComboBox b= (JComboBox)((Caja) temporal).cajaOpciones;
                  areaWeb.setCaretPosition(areaWeb.getStyledDocument().getLength());
@@ -297,6 +298,7 @@ public class Pagina {
                  areaWeb.insertComponent(b);
                  this.retCJS.observadores.buscarObservadorPorElemento(10, temporal.numeroIdentificador, 0, tabla);
             }else if(temporal instanceof Texto){
+                temporal.agregarEstilo();
                  JTextPane b = (JTextPane)((Texto) temporal).texto;
                  areaWeb.setCaretPosition(areaWeb.getStyledDocument().getLength());
                  areaWeb.insertComponent(b);
