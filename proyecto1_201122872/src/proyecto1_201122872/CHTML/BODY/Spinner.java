@@ -130,6 +130,7 @@ public class Spinner extends Etiqueta {
      
  @Override
     public void agregarEstilo() {
+        boolean bandera = false;
         propiedad propTemporal;
         for (int i = 0; i < this.elementosEtiqueta.listadoElementos.size(); i++) {
             propTemporal = this.elementosEtiqueta.listadoElementos.get(i);
@@ -139,10 +140,13 @@ public class Spinner extends Etiqueta {
 
                 if (n.alineacion.equalsIgnoreCase("derecha")) {
                     spinner.setHorizontalAlignment(SwingConstants.RIGHT);
+                    bandera=true;
                 } else if (n.alineacion.equalsIgnoreCase("izquierda")) {
                     spinner.setHorizontalAlignment(SwingConstants.LEFT);
+                    bandera=true;
                 } else if (n.alineacion.equalsIgnoreCase("centrado")) {
                     spinner.setHorizontalAlignment(SwingConstants.CENTER);
+                    bandera=true;
                 }
             }
                        
@@ -151,10 +155,12 @@ public class Spinner extends Etiqueta {
                 switch(v.getVisible().toUpperCase()){
                     case "VERDADERO":{
                         this.spinner.setVisible(true);
+                        bandera=true;
                         break;                       
                     }
                     case "FALSO":{
                         this.spinner.setVisible(false);
+                        bandera=true;
                         break;
                     }
                 }
@@ -167,10 +173,12 @@ public class Spinner extends Etiqueta {
                 switch(v.getValorOpaque().toUpperCase()){
                     case "VERDADERO":{
                         this.spinner.setOpaque(true);
+                        bandera=true;
                         break;                       
                     }
                     case "FALSO":{
                         this.spinner.setOpaque(false);
+                        bandera=true;
                         break;
                     }
                 } 
@@ -186,7 +194,9 @@ public class Spinner extends Etiqueta {
         }
         
         
-       
+       if(bandera){
+           paginaActual.retCJS.observadores.buscarObservadorPorElemento(20, numeroIdentificador, 0, paginaActual.tabla);
+       }
        
       
          this.spinner.setSize(ancho, alto);

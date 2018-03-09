@@ -226,6 +226,7 @@ public class Caja extends Etiqueta implements ActionListener {
    
      @Override
     public void agregarEstilo(){
+        boolean bandera =false;
         propiedad propTemporal;
         for (int i = 0; i < this.elementosEtiqueta.listadoElementos.size(); i++) {
             propTemporal = this.elementosEtiqueta.listadoElementos.get(i);
@@ -234,14 +235,17 @@ public class Caja extends Etiqueta implements ActionListener {
                 Alineado a = (Alineado)propTemporal;
                 switch(a.alineacion.toUpperCase()){
                     case "DERECHA":{
+                        bandera=true;
                         ((JLabel)cajaOpciones.getRenderer()).setHorizontalAlignment(SwingConstants.RIGHT);
                         break;
                     }
                     case "CENTRADO":{
+                        bandera=true;
                         ((JLabel)cajaOpciones.getRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
                         break;
                     }
                     default:{
+                        bandera=true;
                         ((JLabel)cajaOpciones.getRenderer()).setHorizontalAlignment(SwingConstants.LEFT);
                         break;
                     }
@@ -249,6 +253,7 @@ public class Caja extends Etiqueta implements ActionListener {
             }
             if(propTemporal instanceof bCSS.Texto){
                 bCSS.Texto t = (bCSS.Texto)propTemporal;
+                bandera=true;
 
  ((JLabel)this.cajaOpciones.getRenderer()).setText(t.getTexto());
 
@@ -261,10 +266,12 @@ public class Caja extends Etiqueta implements ActionListener {
                 Visible v = (Visible)propTemporal;
                 switch(v.getVisible().toUpperCase()){
                     case "VERDADERO":{
+                        bandera=true;
                         this.cajaOpciones.setVisible(true);
                         break;                       
                     }
                     case "FALSO":{
+                        bandera=true;
                         this.cajaOpciones.setVisible(false);
                         break;
                     }
@@ -272,6 +279,7 @@ public class Caja extends Etiqueta implements ActionListener {
                 
             }
             if(propTemporal instanceof Borde){
+                bandera=true;
                 Borde b = (Borde)propTemporal;
                 Color c = getColor(b.getVcolor());
                 double tam = b.getVsize();
@@ -282,6 +290,7 @@ public class Caja extends Etiqueta implements ActionListener {
             }
             
             if(propTemporal instanceof Opaque){
+                bandera=true;
                Opaque v = (Opaque)propTemporal;
                 switch(v.getValorOpaque().toUpperCase()){
                     case "VERDADERO":{
@@ -297,6 +306,7 @@ public class Caja extends Etiqueta implements ActionListener {
             }
             
             if(propTemporal instanceof Colortext){
+                bandera=true;
                 Colortext c = (Colortext)propTemporal;
                 Color j = getColor(c.getCadenaColor());
                 this.cajaOpciones.setForeground(j);
@@ -334,14 +344,14 @@ public class Caja extends Etiqueta implements ActionListener {
                 
             }
         }
-         if(siz!=null)
-             tamLetra=(int)siz.getValorTamanho();
+         if(siz!=null){
+             tamLetra=(int)siz.getValorTamanho();bandera=true;}
          
-         if(let!=null)
-             fuente=let.getFuente();
+         if(let!=null){
+             fuente=let.getFuente();bandera=true;}
          
          if(noTipoLetra==1){
-             
+             bandera=true;
                ArrayList <String> lista = new ArrayList<>();
                     for (int i = 0; i < cajaOpciones.getItemCount(); i++) {
                        String a = (String)cajaOpciones.getItemAt(i);
@@ -358,6 +368,7 @@ public class Caja extends Etiqueta implements ActionListener {
          }
          
           if(noTipoLetra==2){
+              bandera=true;
              ArrayList <String> lista = new ArrayList<>();
                     for (int i = 0; i < cajaOpciones.getItemCount(); i++) {
                        String a = (String)cajaOpciones.getItemAt(i);
@@ -373,6 +384,7 @@ public class Caja extends Etiqueta implements ActionListener {
          }
           
         if (noTipoLetra == 3) {
+            bandera=true;
             ArrayList <String> lista = new ArrayList<>();
                     for (int i = 0; i < cajaOpciones.getItemCount(); i++) {
                        String a = (String)cajaOpciones.getItemAt(i);
@@ -390,6 +402,8 @@ public class Caja extends Etiqueta implements ActionListener {
          Font fNueva = new Font(fuente,letra,tamLetra);
          this.cajaOpciones.setFont(fNueva);
          this.cajaOpciones.setSize(ancho, alto);
+         if(bandera)
+            paginaActual.retCJS.observadores.buscarObservadorPorElemento(20, numeroIdentificador, 0, paginaActual.tabla); 
       
         
     }

@@ -144,6 +144,7 @@ public class Texto_a extends Etiqueta{
     
         @Override
     public void agregarEstilo() {
+        boolean bandera = false;
         propiedad propTemporal;
         for (int i = 0; i < this.elementosEtiqueta.listadoElementos.size(); i++) {
             propTemporal = this.elementosEtiqueta.listadoElementos.get(i);
@@ -152,6 +153,7 @@ public class Texto_a extends Etiqueta{
                 Alineado a = (Alineado) propTemporal;
                 switch (a.alineacion.toUpperCase()) {
                     case "DERECHA": {
+                        bandera = true;
                         StyledDocument doc = cajaTexto.getStyledDocument();
                         SimpleAttributeSet center = new SimpleAttributeSet();
                         StyleConstants.setAlignment(center, StyleConstants.ALIGN_RIGHT);
@@ -163,6 +165,7 @@ public class Texto_a extends Etiqueta{
                         SimpleAttributeSet center = new SimpleAttributeSet();
                         StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
                         doc.setParagraphAttributes(0, doc.getLength(), center, false);
+                         bandera = true;
                         break;
                     }
 
@@ -171,6 +174,7 @@ public class Texto_a extends Etiqueta{
                         SimpleAttributeSet center = new SimpleAttributeSet();
                         StyleConstants.setAlignment(center, StyleConstants.ALIGN_JUSTIFIED);
                         doc.setParagraphAttributes(0, doc.getLength(), center, false);
+                         bandera = true;
                         break;
                     }
                     default: {
@@ -178,6 +182,7 @@ public class Texto_a extends Etiqueta{
                         SimpleAttributeSet center = new SimpleAttributeSet();
                         StyleConstants.setAlignment(center, StyleConstants.ALIGN_LEFT);
                         doc.setParagraphAttributes(0, doc.getLength(), center, false);
+                         bandera = true;
                         break;
                     }
                 }
@@ -185,13 +190,15 @@ public class Texto_a extends Etiqueta{
             if(propTemporal instanceof bCSS.Texto){
                 bCSS.Texto t = (bCSS.Texto)propTemporal;
                 this.cadenaTexto=t.getTexto();
-                this.cajaTexto.setText(this.cadenaTexto);                
+                this.cajaTexto.setText(this.cadenaTexto);   
+                 bandera = true;
             }
             
             if(propTemporal instanceof Fondoelemento){
                 Fondoelemento f = (Fondoelemento)propTemporal;
                 Color c = getColor(f.getCadenaColor());
                 this.cajaTexto.setBackground(c);
+                 bandera = true;
             }
             
             if(propTemporal instanceof Visible){
@@ -199,10 +206,12 @@ public class Texto_a extends Etiqueta{
                 switch(v.getVisible().toUpperCase()){
                     case "VERDADERO":{
                         this.cajaTexto.setVisible(true);
+                         bandera = true;
                         break;                       
                     }
                     case "FALSO":{
                         this.cajaTexto.setVisible(false);
+                         bandera = true;
                         break;
                     }
                 }
@@ -216,6 +225,7 @@ public class Texto_a extends Etiqueta{
                 int j = (int)tam;
                 LineBorder l = new LineBorder(c,j,curva);
                 this.cajaTexto.setBorder(l);
+                 bandera = true;
             }
             
             if(propTemporal instanceof Opaque){
@@ -223,10 +233,12 @@ public class Texto_a extends Etiqueta{
                 switch(v.getValorOpaque().toUpperCase()){
                     case "VERDADERO":{
                         this.cajaTexto.setOpaque(true);
+                         bandera = true;
                         break;                       
                     }
                     case "FALSO":{
                         this.cajaTexto.setOpaque(false);
+                         bandera = true;
                         break;
                     }
                 } 
@@ -237,6 +249,7 @@ public class Texto_a extends Etiqueta{
                 Colortext c = (Colortext)propTemporal;
                 Color j = getColor(c.getCadenaColor());
                 this.cajaTexto.setForeground(j);
+                 bandera = true;
                 
             }
             
@@ -271,20 +284,24 @@ public class Texto_a extends Etiqueta{
                 
             }
         }
-         if(siz!=null)
+         if(siz!=null){
              tamLetra=(int)siz.getValorTamanho();
+              bandera = true;}
          
-         if(let!=null)
+         if(let!=null){
              fuente=let.getFuente();
+              bandera = true;}
          
          if(noTipoLetra==1){
              String l = this.cajaTexto.getText();
              this.cajaTexto.setText(l.toUpperCase());
+              bandera = true;
          }
          
           if(noTipoLetra==2){
              String l = this.cajaTexto.getText();
              this.cajaTexto.setText(l.toLowerCase());
+              bandera = true;
          }
           
         if (noTipoLetra == 3) {
@@ -298,13 +315,16 @@ public class Texto_a extends Etiqueta{
                 }
             }
             String h = new String(caracteres);
+             bandera = true;
             this.cajaTexto.setText(h);
         }
          
          Font fNueva = new Font(fuente,letra,tamLetra);
          this.cajaTexto.setFont(fNueva);
          this.cajaTexto.setSize(ancho, alto);
-      
+      if(bandera){
+         paginaActual.retCJS.observadores.buscarObservadorPorElemento(20, numeroIdentificador, 0, paginaActual.tabla); 
+      }
         
     }
     

@@ -78,10 +78,6 @@ public class Panel extends Etiqueta  {
         
     }
     
-    
-   
-    
-    
     public void imprimirId(){
         String c="";
         Etiqueta temporal;
@@ -321,6 +317,7 @@ public class Panel extends Etiqueta  {
 
  @Override
     public void agregarEstilo() {
+        boolean bandera = false;
         propiedad propTemporal;
         for (int i = 0; i < this.elementosEtiqueta.listadoElementos.size(); i++) {
             propTemporal = this.elementosEtiqueta.listadoElementos.get(i);
@@ -329,6 +326,7 @@ public class Panel extends Etiqueta  {
                 Alineado a = (Alineado) propTemporal;
                 switch (a.alineacion.toUpperCase()) {
                     case "DERECHA": {
+                        bandera = true;
                         StyledDocument doc = panel.getStyledDocument();
                         SimpleAttributeSet center = new SimpleAttributeSet();
                         StyleConstants.setAlignment(center, StyleConstants.ALIGN_RIGHT);
@@ -336,6 +334,7 @@ public class Panel extends Etiqueta  {
                         break;
                     }
                     case "CENTRADO": {
+                        bandera=true;
                         StyledDocument doc = panel.getStyledDocument();
                         SimpleAttributeSet center = new SimpleAttributeSet();
                         StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
@@ -344,6 +343,7 @@ public class Panel extends Etiqueta  {
                     }
 
                     case "JUSTIFICADO": {
+                        bandera=true;
                         StyledDocument doc = panel.getStyledDocument();
                         SimpleAttributeSet center = new SimpleAttributeSet();
                         StyleConstants.setAlignment(center, StyleConstants.ALIGN_JUSTIFIED);
@@ -351,6 +351,7 @@ public class Panel extends Etiqueta  {
                         break;
                     }
                     default: {
+                        bandera=true;
                         StyledDocument doc = panel.getStyledDocument();
                         SimpleAttributeSet center = new SimpleAttributeSet();
                         StyleConstants.setAlignment(center, StyleConstants.ALIGN_LEFT);
@@ -364,16 +365,19 @@ public class Panel extends Etiqueta  {
                 Fondoelemento f = (Fondoelemento)propTemporal;
                 Color c = getColor(f.getCadenaColor());
                 this.panel.setBackground(c);
+                bandera=true;
             }
             
             if(propTemporal instanceof Visible){
                 Visible v = (Visible)propTemporal;
                 switch(v.getVisible().toUpperCase()){
                     case "VERDADERO":{
+                        bandera=true;
                         this.panel.setVisible(true);
                         break;                       
                     }
                     case "FALSO":{
+                        bandera=true;
                         this.panel.setVisible(false);
                         break;
                     }
@@ -382,6 +386,7 @@ public class Panel extends Etiqueta  {
             }
            
              if(propTemporal instanceof Borde){
+                 bandera=true;
                 Borde b = (Borde)propTemporal;
                 Color c = getColor(b.getVcolor());
                 double tam = b.getVsize();
@@ -395,10 +400,12 @@ public class Panel extends Etiqueta  {
                 switch(v.getValorOpaque().toUpperCase()){
                     case "VERDADERO":{
                         this.panel.setOpaque(true);
+                        bandera=true;
                         break;                       
                     }
                     case "FALSO":{
                         this.panel.setOpaque(false);
+                        bandera=true;
                         break;
                     }
                 } 
@@ -413,7 +420,9 @@ public class Panel extends Etiqueta  {
                
         }
         
-        
+        if(bandera){
+            paginaActual.retCJS.observadores.buscarObservadorPorElemento(20, numeroIdentificador, 0, paginaActual.tabla);
+        }
        
          this.panel.setSize(ancho, alto);
       

@@ -210,6 +210,7 @@ public class Enlace  extends Etiqueta implements MouseListener{
    
      @Override
     public void agregarEstilo(){
+        boolean bandera = false;
         propiedad propTemporal;
         for (int i = 0; i < this.elementosEtiqueta.listadoElementos.size(); i++) {
             propTemporal = this.elementosEtiqueta.listadoElementos.get(i);
@@ -218,20 +219,24 @@ public class Enlace  extends Etiqueta implements MouseListener{
                 Alineado a = (Alineado)propTemporal;
                 switch(a.alineacion.toUpperCase()){
                     case "DERECHA":{
+                        bandera=true;
                         this.link.setHorizontalAlignment(SwingConstants.RIGHT);
                         break;
                     }
                     case "CENTRADO":{
+                        bandera=true;
                         this.link.setHorizontalAlignment(SwingConstants.CENTER);
                         break;
                     }
                     default:{
+                        bandera=true;
                         this.link.setHorizontalAlignment(SwingConstants.LEFT);
                         break;
                     }
                 }
             }
             if(propTemporal instanceof bCSS.Texto){
+                bandera=true;
                 bCSS.Texto t = (bCSS.Texto)propTemporal;
                 this.cadenaEnlace=t.getTexto();
                 this.link.setText(t.getTexto());
@@ -239,19 +244,23 @@ public class Enlace  extends Etiqueta implements MouseListener{
             }
             
             if(propTemporal instanceof Fondoelemento){
+                bandera=true;
                 Fondoelemento f = (Fondoelemento)propTemporal;
                 Color c = getColor(f.getCadenaColor());
                 this.link.setBackground(c);
             }
             
             if(propTemporal instanceof Visible){
+                
                 Visible v = (Visible)propTemporal;
                 switch(v.getVisible().toUpperCase()){
                     case "VERDADERO":{
+                        bandera=true;
                         this.link.setVisible(true);
                         break;                       
                     }
                     case "FALSO":{
+                        bandera=true;
                         this.link.setVisible(false);
                         break;
                     }
@@ -259,6 +268,7 @@ public class Enlace  extends Etiqueta implements MouseListener{
                 
             }
             if(propTemporal instanceof Borde){
+                bandera=true;
                 Borde b = (Borde)propTemporal;
                 Color c = getColor(b.getVcolor());
                 double tam = b.getVsize();
@@ -269,6 +279,7 @@ public class Enlace  extends Etiqueta implements MouseListener{
             }
             
             if(propTemporal instanceof Opaque){
+                bandera=true;
                Opaque v = (Opaque)propTemporal;
                 switch(v.getValorOpaque().toUpperCase()){
                     case "VERDADERO":{
@@ -284,6 +295,7 @@ public class Enlace  extends Etiqueta implements MouseListener{
             }
             
             if(propTemporal instanceof Colortext){
+                bandera=true;
                 Colortext c = (Colortext)propTemporal;
                 Color j = getColor(c.getCadenaColor());
                 this.link.setForeground(j);
@@ -321,23 +333,28 @@ public class Enlace  extends Etiqueta implements MouseListener{
                 
             }
         }
-         if(siz!=null)
+         if(siz!=null){
              tamLetra=(int)siz.getValorTamanho();
+             bandera=true;}
          
-         if(let!=null)
+         if(let!=null){
              fuente=let.getFuente();
+             bandera=true;}
          
          if(noTipoLetra==1){
+             bandera=true;
              String l = this.link.getText();
              this.link.setText(l.toUpperCase());
          }
          
           if(noTipoLetra==2){
+              bandera=true;
              String l = this.link.getText();
              this.link.setText(l.toLowerCase());
          }
           
         if (noTipoLetra == 3) {
+            bandera=true;
             String l = this.link.getText();
             String a = l.toLowerCase();
             char[] caracteres = a.toCharArray();
@@ -354,8 +371,10 @@ public class Enlace  extends Etiqueta implements MouseListener{
          Font fNueva = new Font(fuente,letra,tamLetra);
          this.link.setFont(fNueva);
          this.link.setSize(ancho, alto);
-      
-        
+         if(bandera)
+         {
+             paginaActual.retCJS.observadores.buscarObservadorPorElemento(20, numeroIdentificador, 0, paginaActual.tabla);
+         }        
     }
     
     

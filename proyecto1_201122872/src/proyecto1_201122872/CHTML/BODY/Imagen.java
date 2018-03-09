@@ -230,7 +230,9 @@ public class Imagen extends Etiqueta implements MouseListener {
     }  
     
     
+    @Override
     public void agregarEstilo() {
+        boolean bandera = false;
         propiedad propTemporal;
         for (int i = 0; i < this.elementosEtiqueta.listadoElementos.size(); i++) {
             propTemporal = this.elementosEtiqueta.listadoElementos.get(i);
@@ -239,10 +241,13 @@ public class Imagen extends Etiqueta implements MouseListener {
                 Alineado n = (Alineado) propTemporal;
 
                 if (n.alineacion.equalsIgnoreCase("derecha")) {
+                    bandera =true;
                     imagen.setHorizontalAlignment(SwingConstants.RIGHT);
                 } else if (n.alineacion.equalsIgnoreCase("izquierda")) {
+                    bandera =true;
                     imagen.setHorizontalAlignment(SwingConstants.LEFT);
                 } else if (n.alineacion.equalsIgnoreCase("centrado")) {
+                    bandera =true;
                     imagen.setHorizontalAlignment(SwingConstants.CENTER);
                 }
             }
@@ -251,10 +256,12 @@ public class Imagen extends Etiqueta implements MouseListener {
                 Visible v = (Visible) propTemporal;
                 switch (v.getVisible().toUpperCase()) {
                     case "VERDADERO": {
+                        bandera =true;
                         this.imagen.setVisible(true);
                         break;
                     }
                     case "FALSO": {
+                        bandera =true;
                         this.imagen.setVisible(false);
                         break;
                     }
@@ -269,6 +276,9 @@ public class Imagen extends Etiqueta implements MouseListener {
         }
 
         this.imagen.setSize(ancho, alto);
+        if(bandera){
+           paginaActual.retCJS.observadores.buscarObservadorPorElemento(20, numeroIdentificador, 0, paginaActual.tabla); 
+        }
 
     }
 

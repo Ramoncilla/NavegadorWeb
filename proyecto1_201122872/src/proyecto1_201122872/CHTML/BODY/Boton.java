@@ -114,6 +114,7 @@ public class Boton extends Etiqueta implements ActionListener {
    
     @Override
     public void agregarEstilo(){
+        boolean bandera=false;
         propiedad propTemporal;
         for (int i = 0; i < this.elementosEtiqueta.listadoElementos.size(); i++) {
             propTemporal = this.elementosEtiqueta.listadoElementos.get(i);
@@ -122,20 +123,24 @@ public class Boton extends Etiqueta implements ActionListener {
                 Alineado a = (Alineado)propTemporal;
                 switch(a.alineacion.toUpperCase()){
                     case "DERECHA":{
+                        bandera=true;
                         this.botonObjeto.setHorizontalAlignment(SwingConstants.RIGHT);
                         break;
                     }
                     case "CENTRADO":{
+                        bandera=true;
                         this.botonObjeto.setHorizontalAlignment(SwingConstants.CENTER);
                         break;
                     }
                     default:{
+                        bandera=true;
                         this.botonObjeto.setHorizontalAlignment(SwingConstants.LEFT);
                         break;
                     }
                 }
             }
             if(propTemporal instanceof Texto){
+                bandera=true;
                 Texto t = (Texto)propTemporal;
                 this.captionBoton=t.getTexto();
                 this.botonObjeto.setText(t.getTexto());
@@ -146,6 +151,7 @@ public class Boton extends Etiqueta implements ActionListener {
                 Fondoelemento f = (Fondoelemento)propTemporal;
                 Color c = getColor(f.getCadenaColor());
                 this.botonObjeto.setBackground(c);
+                bandera=true;
             }
             
             if(propTemporal instanceof Visible){
@@ -153,10 +159,12 @@ public class Boton extends Etiqueta implements ActionListener {
                 switch(v.getVisible().toUpperCase()){
                     case "VERDADERO":{
                         this.botonObjeto.setVisible(true);
+                        bandera=true;
                         break;                       
                     }
                     case "FALSO":{
                         this.botonObjeto.setVisible(false);
+                        bandera=true;
                         break;
                     }
                 }
@@ -170,6 +178,7 @@ public class Boton extends Etiqueta implements ActionListener {
                 int j = (int)tam;
                 LineBorder l = new LineBorder(c,j,curva);
                 this.botonObjeto.setBorder(l);
+                bandera=true;
             }
             
             if(propTemporal instanceof Opaque){
@@ -177,10 +186,12 @@ public class Boton extends Etiqueta implements ActionListener {
                 switch(v.getValorOpaque().toUpperCase()){
                     case "VERDADERO":{
                         this.botonObjeto.setOpaque(true);
+                        bandera=true;
                         break;                       
                     }
                     case "FALSO":{
                         this.botonObjeto.setOpaque(false);
+                        bandera=true;
                         break;
                     }
                 } 
@@ -188,6 +199,7 @@ public class Boton extends Etiqueta implements ActionListener {
             }
             
             if(propTemporal instanceof Colortext){
+                bandera=true;
                 Colortext c = (Colortext)propTemporal;
                 Color j = getColor(c.getCadenaColor());
                 this.botonObjeto.setForeground(j);
@@ -212,16 +224,18 @@ public class Boton extends Etiqueta implements ActionListener {
             String g;
             for (int i = 0; i < form.listaFormatos.size(); i++) {
                 g=form.listaFormatos.get(i);
-                if(g.equalsIgnoreCase("negrita"))
-                    letra+=Font.BOLD;
-                if(g.equalsIgnoreCase("cursiva"))
-                    letra+=Font.ITALIC;
-                if(g.equalsIgnoreCase("mayuscula"))
-                    noTipoLetra=1;
-                if(g.equalsIgnoreCase("minuscula"))
-                    noTipoLetra=2;
-                if(g.equalsIgnoreCase("capital-t"))
-                    noTipoLetra=3;
+                if(g.equalsIgnoreCase("negrita")){
+                     letra+=Font.BOLD;bandera=true;
+                }
+                   
+                if(g.equalsIgnoreCase("cursiva")){
+                    letra+=Font.ITALIC; bandera=true;}
+                if(g.equalsIgnoreCase("mayuscula")){
+                    noTipoLetra=1;bandera=true;}
+                if(g.equalsIgnoreCase("minuscula")){
+                    noTipoLetra=2;bandera=true;}
+                if(g.equalsIgnoreCase("capital-t")){
+                    noTipoLetra=3;bandera=true;}
                 
             }
         }
@@ -258,6 +272,9 @@ public class Boton extends Etiqueta implements ActionListener {
          Font fNueva = new Font(fuente,letra,tamLetra);
          this.botonObjeto.setFont(fNueva);
          this.botonObjeto.setSize(ancho, alto);
+         if(bandera)
+            paginaActual.retCJS.observadores.buscarObservadorPorElemento(20, this.numeroIdentificador, 0, paginaActual.tabla); 
+         
       
         
     }
