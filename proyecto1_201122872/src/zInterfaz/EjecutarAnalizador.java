@@ -9,6 +9,7 @@ import CJS.ESTRUCURAS_CONTROL.Observador;
 import CJS.objetoBase;
 import Funciones.Funcion;
 import bCSS.ListaBloquesCss;
+import bCSS.baseCss;
 import java.io.BufferedReader;
 import java.io.StringReader;
 import java.util.ArrayList;
@@ -103,7 +104,7 @@ public class EjecutarAnalizador {
     }
 
    
-   public void ejecutarCSS(String rutaArchivo) throws Exception{
+   public ListaBloquesCss ejecutarCSS(String rutaArchivo) throws Exception{
        
         if (rutaArchivo.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Error, ruta no valida para ejecutar CSS.", "USAC-WEB", JOptionPane.INFORMATION_MESSAGE);
@@ -117,13 +118,13 @@ public class EjecutarAnalizador {
                 scannerCSS scannercss = new scannerCSS(new BufferedReader(new StringReader(cadena)));
                 ParserCSS parserCSS = new ParserCSS(scannercss);
                 parserCSS.parse();
+                System.out.println("Fin de analisis CSS");
                 ListaBloquesCss listado = parserCSS.lBloques;
-                 System.out.println("Fin de analisis CSS");
+                return listado;
+                 
             }
         }
-
- 
-       
+    return (new ListaBloquesCss());   
    }
    
   
@@ -153,13 +154,7 @@ public class EjecutarAnalizador {
    
    
    
-   public String obtenerCadenaSinNulos(String cad){
-       String cadena2="";
-       
-   
-       return cadena2;
-   }
-   
+
    
    
     

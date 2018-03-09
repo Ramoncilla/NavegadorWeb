@@ -10,6 +10,10 @@ import CJS.TablaSimbolos.tablaSimbolos;
 import CJS.objetoBase;
 import Errores.tablaErrores;
 import Funciones.ListaFunciones;
+import bCSS.Grupo;
+import bCSS.ID;
+import bCSS.ListaBloquesCss;
+import bCSS.baseCss;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.io.File;
@@ -77,6 +81,7 @@ public class Pagina {
     public retornoCJS retCJS;
     public String tituloPagina;
     public DOM documento;
+    public ListaBloquesCss bloquesCss;
     
     public Pagina(int id){
         retCJS= new retornoCJS();
@@ -97,12 +102,14 @@ public class Pagina {
         this.rutasArchivosCSS= new ArrayList<>();
         this.rutasArchivosJS= new ArrayList<>();
         this.documento= new DOM();
+        this.bloquesCss= new ListaBloquesCss();
         
     }
 
     
     
      public void reiniciar(){
+         this.bloquesCss= new ListaBloquesCss();
         retCJS= new retornoCJS();
         this.areaWeb.setText("");
         this.areaWeb.setContentType("text/html");
@@ -142,10 +149,11 @@ public class Pagina {
         this.tituloPagina= encabezadoHTML.obtenerTitulos();
         this.rutasArchivosCSS= encabezadoHTML.obtenerCSS();
         this.rutasArchivosJS= encabezadoHTML.obtenerCJS();
+        CrearElementosCSS();
         CrearElementosCJS();
         List<Etiqueta> componentesHTML = cuerpoHTML.obtenerEtiquetasConElementos();
-        //aqui se le aplica el css
-        this.documento.agregarListaEtiquetas((ArrayList<Etiqueta>)componentesHTML);
+        this.documento.agregarListaEtiquetas((ArrayList<Etiqueta>)componentesHTML);//agrego indentificadores a cada elemnto
+        agregarCSS();
         this.retCJS.ejecutarLibres(tabla, 0);
         
         cuerpoHTML.agregarElementos();
@@ -161,12 +169,37 @@ public class Pagina {
     
     
     
+    private void agregarCSS(){
+        baseCss temporal;
+        for (int i = 0; i < this.bloquesCss.listaBloques.size(); i++) {
+            temporal = this.bloquesCss.listaBloques.get(i);
+            if(temporal instanceof ID){
+                System.out.println("id "+ i);
+            }else if(temporal instanceof Grupo){
+                System.out.println("grupo" + i);
+            }
+            
+        }
+        
+        
+    }
     
     
     
     
     
     
+    private void CrearElementosCSS() throws Exception{
+        String rutaArchivo;
+        ListaBloquesCss temporal;
+        for (int i = 0; i < this.rutasArchivosCSS.size(); i++) {
+            rutaArchivo= this.rutasArchivosCSS.get(i);
+            temporal = this.analizadores.ejecutarCSS(rutaArchivo);
+            this.bloquesCss.insertarLista(temporal.listaBloques);
+        }
+        
+        
+    }
     
     private void CrearElementosCJS() throws Exception{
         String rutaArchivo;

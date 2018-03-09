@@ -18,7 +18,8 @@ public class CCSS extends Etiqueta {
     
     
     public CCSS(Object val){
-        this.ruta= (propiedadRuta)ruta;
+        this.ruta= (propiedadRuta)val;
+        this.rutaCSS= ruta.ruta;
     }
     
 }
