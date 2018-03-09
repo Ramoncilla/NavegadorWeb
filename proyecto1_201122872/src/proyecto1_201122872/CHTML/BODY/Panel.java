@@ -132,6 +132,7 @@ public class Panel extends Etiqueta  {
                         Logger.getLogger(Panel.class.getName()).log(Level.SEVERE, null, ex);
                     }
             }else if(temporal instanceof Spinner){
+                 temporal.agregarEstilo();
                 JTextField b = (JTextField)((Spinner) temporal).spinner;
                 panel.setCaretPosition(panel.getStyledDocument().getLength());
                  panel.insertComponent(b);

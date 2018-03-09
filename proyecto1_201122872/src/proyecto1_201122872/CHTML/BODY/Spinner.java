@@ -5,10 +5,23 @@
  */
 package proyecto1_201122872.CHTML.BODY;
 
+import bCSS.Alineado;
+import bCSS.Autoredimension;
+import bCSS.Borde;
+import bCSS.Colortext;
+import bCSS.Fondoelemento;
+import bCSS.Formato;
+import bCSS.Letra;
+import bCSS.Opaque;
+import bCSS.Tamtex;
+import bCSS.Visible;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.util.ArrayList;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadAlineado;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedadAlto;
@@ -115,6 +128,70 @@ public class Spinner extends Etiqueta {
         }
     }
      
+ @Override
+    public void agregarEstilo() {
+        propiedad propTemporal;
+        for (int i = 0; i < this.elementosEtiqueta.listadoElementos.size(); i++) {
+            propTemporal = this.elementosEtiqueta.listadoElementos.get(i);
 
+            if (propTemporal instanceof Alineado) {
+                Alineado n = (Alineado) propTemporal;
+
+                if (n.alineacion.equalsIgnoreCase("derecha")) {
+                    spinner.setHorizontalAlignment(SwingConstants.RIGHT);
+                } else if (n.alineacion.equalsIgnoreCase("izquierda")) {
+                    spinner.setHorizontalAlignment(SwingConstants.LEFT);
+                } else if (n.alineacion.equalsIgnoreCase("centrado")) {
+                    spinner.setHorizontalAlignment(SwingConstants.CENTER);
+                }
+            }
+                       
+            if(propTemporal instanceof Visible){
+                Visible v = (Visible)propTemporal;
+                switch(v.getVisible().toUpperCase()){
+                    case "VERDADERO":{
+                        this.spinner.setVisible(true);
+                        break;                       
+                    }
+                    case "FALSO":{
+                        this.spinner.setVisible(false);
+                        break;
+                    }
+                }
+                
+            }
+           
+            
+            if(propTemporal instanceof Opaque){
+               Opaque v = (Opaque)propTemporal;
+                switch(v.getValorOpaque().toUpperCase()){
+                    case "VERDADERO":{
+                        this.spinner.setOpaque(true);
+                        break;                       
+                    }
+                    case "FALSO":{
+                        this.spinner.setOpaque(false);
+                        break;
+                    }
+                } 
+                
+            }
+            
+          
+            
+            if(propTemporal instanceof Autoredimension){
+                
+            }
+               
+        }
+        
+        
+       
+       
+      
+         this.spinner.setSize(ancho, alto);
+      
+        
+    }
 
 }

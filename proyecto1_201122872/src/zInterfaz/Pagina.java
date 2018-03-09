@@ -293,6 +293,7 @@ public class Pagina {
                         Logger.getLogger(Panel.class.getName()).log(Level.SEVERE, null, ex);
                     }
             }else if(temporal instanceof Spinner){
+                 temporal.agregarEstilo();
                 JTextField b = (JTextField)((Spinner) temporal).spinner;
                 areaWeb.setCaretPosition(areaWeb.getStyledDocument().getLength());
                  areaWeb.insertComponent(b);

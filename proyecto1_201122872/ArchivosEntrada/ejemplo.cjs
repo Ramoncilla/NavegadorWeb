@@ -50,7 +50,7 @@ op4.setELEmento("ruta","C:\Users\Ramonella\Desktop\popo.jpg");
 op2.setElemento("ancho","130");
 op.setElemento("id","dos");
 op.setElemento("alto","500");
-op.setelemento("grupo","adios");
+op.setelemento("grupo","grupo1");
 
 documento.obtener("botonMi").setElemento("ancho","20");
 documento.obtener("botonMi").setElemento("click","usarObservador3()");
