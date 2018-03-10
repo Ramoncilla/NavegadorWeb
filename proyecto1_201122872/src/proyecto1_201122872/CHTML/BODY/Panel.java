@@ -55,6 +55,7 @@ public class Panel extends Etiqueta  {
     public Cuerpo objetosPanel;
     public JTextPane panel;
     public List<Etiqueta> etiquetasPanel;
+    public JScrollPane scroll;
 
 
     public Panel(Object elementos, Object cuerpo){
@@ -121,12 +122,10 @@ public class Panel extends Etiqueta  {
                  panel.insertComponent(b);
                  paginaActual.retCJS.observadores.buscarObservadorPorElemento(10, temporal.numeroIdentificador, 0, paginaActual.tabla);
             }else if(temporal instanceof Panel){
-                Panel p =(Panel)temporal;
-                   System.out.println("Inicio Panel interno");
-                  p.imprimirId();
-                  System.out.println("Fin Panel");
-                  temporal.agregarEstilo();
-                  JScrollPane b = (JScrollPane)((Panel) temporal).Dibujar();
+              
+                   temporal.agregarEstilo();
+                  Panel p = (Panel)temporal;
+                 JScrollPane b = (JScrollPane)p.Dibujar();
                  panel.setCaretPosition(panel.getStyledDocument().getLength());
                  panel.insertComponent(b);
                  paginaActual.retCJS.observadores.buscarObservadorPorElemento(10, temporal.numeroIdentificador, 0, paginaActual.tabla);
@@ -170,18 +169,30 @@ public class Panel extends Etiqueta  {
             }    
         }
            JScrollPane n = new JScrollPane(panel);
+           
            Dimension dmnsn= new Dimension(ancho,alto);
            n.setSize(dmnsn);
            n.setPreferredSize(dmnsn);
            n.setMinimumSize(dmnsn);
            n.setMaximumSize(dmnsn);
-      return n;       
+           return n;
+      
     }
       
      
       
       
-    
+    public void dibujar2(){
+        Dibujar();
+        scroll= new JScrollPane(panel);
+         Dimension dmnsn= new Dimension(ancho,alto);
+           scroll.setSize(dmnsn);
+           scroll.setPreferredSize(dmnsn);
+           scroll.setMinimumSize(dmnsn);
+           scroll.setMaximumSize(dmnsn);
+        
+        
+    }
     
     
     /*

@@ -176,6 +176,9 @@ public class setElemento extends objetoBase{
                         
         if(paginaActual.banderaCargado){
                paginaActual.areaWeb.setText("");
+
+        paginaActual.areaWeb.setContentType("text/html");
+        paginaActual.areaWeb.setEditable(false);
                         paginaActual.Dibujar();
         }
       

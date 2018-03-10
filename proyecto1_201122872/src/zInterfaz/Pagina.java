@@ -275,11 +275,9 @@ public class Pagina {
                  areaWeb.insertComponent(b);
                  this.retCJS.observadores.buscarObservadorPorElemento(10, temporal.numeroIdentificador, 0, tabla);
             }else if(temporal instanceof Panel){
-                  Panel p =(Panel)temporal;
-                   System.out.println("Inicio Panel");
-                 p.agregarEstilo();
-                  System.out.println("Fin Panel");
+                 
                   temporal.agregarEstilo();
+                  Panel p = (Panel)temporal;
                  JScrollPane b = (JScrollPane)p.Dibujar();
                  areaWeb.setCaretPosition(areaWeb.getStyledDocument().getLength());
                  areaWeb.insertComponent(b);
