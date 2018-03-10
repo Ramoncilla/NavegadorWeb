@@ -32,6 +32,8 @@ funcion usarObservador(ahj){
   imprimir("SIIIIIIIIIIIIIIIIII "+ ahj);
 }
 funcion usarObservador2(){
+  Documento.obtener("popo").setElemento("ancho","500");
+  documento.obtener("popo").setElemento("alto","600");
   imprimir("SIIIIIIIIIIIIIIIIII 2");
 }
 

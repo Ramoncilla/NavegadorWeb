@@ -173,7 +173,12 @@ public class setElemento extends objetoBase{
             
             paginaActual.erroresPagina.insertarError("Semantico", "El elemento "+ this.nombreElementoModificar+", no es valido para realizar una modificacion");
         }
-           
+                        
+        if(paginaActual.banderaCargado){
+               paginaActual.areaWeb.setText("");
+                        paginaActual.Dibujar();
+        }
+      
         return retor;
     }
     

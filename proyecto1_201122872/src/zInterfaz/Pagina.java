@@ -83,6 +83,7 @@ public class Pagina {
     public String tituloPagina;
     public DOM documento;
     public ListaBloquesCss bloquesCss;
+    public boolean banderaCargado=false;
     
     public Pagina(int id){
         retCJS= new retornoCJS();
@@ -110,6 +111,7 @@ public class Pagina {
     
     
      public void reiniciar(){
+         this.banderaCargado=false;
          this.bloquesCss= new ListaBloquesCss();
         retCJS= new retornoCJS();
         this.areaWeb.setText("");
@@ -321,15 +323,14 @@ public class Pagina {
                 
             }    
         }
+           banderaCargado=true;
              
     }
     
     
     
     
-    public void cargarCSS(){
-        
-    }
+
     
 
     

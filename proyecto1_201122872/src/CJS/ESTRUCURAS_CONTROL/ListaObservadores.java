@@ -12,6 +12,7 @@ import Funciones.Funcion;
 import java.util.ArrayList;
 import java.util.List;
 import proyecto1_201122872.CHTML.Etiqueta;
+import static proyecto1_201122872.Proyecto1_201122872.paginaActual;
 
 /**
  *
@@ -48,6 +49,7 @@ public class ListaObservadores {
                         elementoRetorno ret = ((Funcion) temporal.funcionEjecutar).Ejecutar(tabla, contexto);
                         tabla.eliminarSimbolosLocales(contexto);
                         contexto--;
+                       
                     }
 
                 }

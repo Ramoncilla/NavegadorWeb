@@ -9,12 +9,16 @@ import java.awt.Dimension;
 import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import proyecto1_201122872.CHTML.BODY.jTextPane;
+import static proyecto1_201122872.Proyecto1_201122872.paginaActual;
 
 /**
  *
@@ -32,8 +36,41 @@ public class buscador extends javax.swing.JFrame {
         initComponents();
         contador =0;
         listaPaginas= new NavegadorWeb();
+        listener();
+      
     }
 
+    
+    void listener(){
+     
+       ChangeListener changeListener = new ChangeListener() {
+           @Override
+           public void stateChanged(ChangeEvent ce) {
+               System.out.println("Tab: " + jTabbedPane1.getSelectedIndex());
+               int noPestana= jTabbedPane1.getSelectedIndex();
+               
+               for (int i = 0; i < listaPaginas.panelesPagina.size(); i++) {
+                   if(i==noPestana){
+                       paginaActual=listaPaginas.panelesPagina.get(i);
+                       jTextField1.setText(paginaActual.rutaPagina);
+                   }
+               }
+               
+               
+              // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+           }
+    
+    };
+       
+       
+       
+       
+       
+    jTabbedPane1.addChangeListener(changeListener);
+        
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -231,6 +268,7 @@ public class buscador extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(null,"Error, ruta no valida.", "USAC-WEB", JOptionPane.INFORMATION_MESSAGE);
         }
+        System.out.println("fdsfdsfd");
   
     }
     
