@@ -101,6 +101,7 @@ public class Opciones extends javax.swing.JFrame {
     
     
     public void cargarValores(){
+        
         String cadenaSalida = paginaActual.obtenerCadenaSalida();
         String errores= paginaActual.obtenerErrores();
         String [] cadenaHTML= paginaActual.obtenerCodigoHTML();

@@ -36,6 +36,7 @@ public class buscador extends javax.swing.JFrame {
         initComponents();
         contador =0;
         listaPaginas= new NavegadorWeb();
+        
         listener();
       
     }
@@ -91,6 +92,8 @@ public class buscador extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("USAC-WEB");
@@ -103,12 +106,22 @@ public class buscador extends javax.swing.JFrame {
         btnAtras.setFocusable(false);
         btnAtras.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAtras.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtrasActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btnAtras);
 
         btnAdelante.setIcon(new javax.swing.ImageIcon("C:\\Users\\Ramonella\\Downloads\\right-arrow-forward.png")); // NOI18N
         btnAdelante.setFocusable(false);
         btnAdelante.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAdelante.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAdelante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdelanteActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btnAdelante);
 
         btnCargar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Ramonella\\Downloads\\reload.png")); // NOI18N
@@ -172,7 +185,34 @@ public class buscador extends javax.swing.JFrame {
         jButton3.setFocusable(false);
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jToolBar2.add(jButton3);
+
+        jButton4.setIcon(new javax.swing.ImageIcon("C:\\Users\\Ramonella\\Downloads\\favorites.png")); // NOI18N
+        jButton4.setFocusable(false);
+        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jToolBar2.add(jButton4);
+
+        jButton6.setIcon(new javax.swing.ImageIcon("C:\\Users\\Ramonella\\Downloads\\list.png")); // NOI18N
+        jButton6.setFocusable(false);
+        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        jToolBar2.add(jButton6);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -223,6 +263,71 @@ public class buscador extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        listaPaginas.mostrarHistorial();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        listaPaginas.agregarFavorito(paginaActual.rutaPagina);
+        JOptionPane.showMessageDialog(null, "Favorito alamcenado correctamente", "USAC-WEB", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        listaPaginas.mostrarFavoritos();
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
+        // TODO add your handling code here:
+        try{
+            if(paginaActual.noBandera>0){
+                String r;
+                for (int i = 0; i < paginaActual.historialPagina.size(); i++) {
+                    if(i==(paginaActual.noBandera-1)){
+                        r= paginaActual.historialPagina.get(i);
+                        CargarPagina(r); 
+                    }
+                        
+                }
+            
+            }
+            
+            else
+               JOptionPane.showMessageDialog(null,"Ya no hay mas paginas atras", "USAC-WEB", JOptionPane.INFORMATION_MESSAGE); 
+            
+        }catch(Exception e){
+            
+        }
+        
+        
+    }//GEN-LAST:event_btnAtrasActionPerformed
+
+    private void btnAdelanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdelanteActionPerformed
+        // TODO add your handling code here:
+             try{
+            if(paginaActual.noBandera>0){
+                String r;
+                for (int i = 0; i < paginaActual.historialPagina.size(); i++) {
+                    if(i==(paginaActual.noBandera+1)){
+                        r= paginaActual.historialPagina.get(i);
+                        CargarPagina(r); 
+                    }
+                        
+                }
+            
+            }
+            
+            else
+               JOptionPane.showMessageDialog(null,"Ya no hay mas paginas atras", "USAC-WEB", JOptionPane.INFORMATION_MESSAGE); 
+            
+        }catch(Exception e){
+            
+        }
+        
+    }//GEN-LAST:event_btnAdelanteActionPerformed
+
     
     
     public void desplegarOpciones(){
@@ -263,6 +368,9 @@ public class buscador extends javax.swing.JFrame {
                     listaPaginas.panelesPagina.get(i).setRutaPagina(ruta);
                     String nombre=listaPaginas.panelesPagina.get(i).dibujarPagina();
                   jTabbedPane1.setTitleAt(jTabbedPane1.getSelectedIndex(), nombre);
+                  listaPaginas.historialNavegador.add(ruta);
+                  paginaActual.historialPagina.add(ruta);
+                  paginaActual.noBandera++;
                 }        
             }        
         }else{
@@ -317,6 +425,8 @@ public class buscador extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton6;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;

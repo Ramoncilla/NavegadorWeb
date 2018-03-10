@@ -1,3 +1,39 @@
+imprimir(factorial(1));
+
+
+Dimv miVector :{10,9,5,4,2};
+
+funcion ordenar(){
+dimv var:"true";
+dimv var2:"false";
+si((var && true) || (var && "true")  && !(var2 && !var )){
+imprimir("hola");
+}sino{
+imprimir("adios");
+}
+
+dimv k;
+para(i:1;i<miVecTor.conteo;++){
+	para(j:(miVectoR.conteo-1);j>=i;--){
+	   si(miVector{j-1}>miVeCtor{j}){
+	       k:miVector{j-1};
+		   miVectoR{j-1}:miVecTor{j};
+		   miVectoR{j}:k;
+	   }
+	}
+}
+imprimir(miVector.aTEXto());
+
+}
+
+
+
+
+
+
+ordenar();
+
+
 probarSeleccionar();
 Dimv b;
 dimv a;

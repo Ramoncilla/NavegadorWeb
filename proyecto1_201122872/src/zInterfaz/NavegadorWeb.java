@@ -15,14 +15,16 @@ import javax.swing.JTabbedPane;
  */
 public class NavegadorWeb {
     
-    List<Pagina> panelesPagina;
-    List<String> historialNavegador;
-    
+    public List<Pagina> panelesPagina;
+    public List<String> historialNavegador;
+    public List<String> elementosFavoritos;
+        
     
     
     public NavegadorWeb(){
         this.panelesPagina= new ArrayList<>();
         this.historialNavegador= new ArrayList<>();
+        this.elementosFavoritos= new ArrayList<>();
        
     }
     
@@ -31,7 +33,43 @@ public class NavegadorWeb {
     }
     
     
+    public void agregarFavorito(String pagina){
+        
+        this.elementosFavoritos.add(pagina);
+        
+    }
     
+    
+    
+    public void mostrarFavoritos(){
+        String cad ="<table border=1><tr><th>Favoritos</th></tr>";
+        
+        for (int i = 0; i <this.elementosFavoritos.size(); i++) {
+            cad+="<tr><td>"+this.elementosFavoritos.get(i)+"</td></tr>";
+        }
+        
+        cad+="</table>";
+        
+        Favoritos f= new Favoritos();
+        f.mostrar(cad);
+        f.show();
+ 
+    }
+    
+   public void mostrarHistorial(){
+        String cad ="<table border=1><tr><th>Historial</th></tr>";
+        
+        for (int i = 0; i <this.historialNavegador.size(); i++) {
+            cad+="<tr><td>"+this.historialNavegador.get(i)+"</td></tr>";
+        }
+        
+        cad+="</table>";
+        
+        HistorialNavegador f= new HistorialNavegador();
+        f.mostrar(cad);
+        f.show();
+ 
+    }  
     
     
     

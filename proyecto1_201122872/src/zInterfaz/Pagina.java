@@ -84,6 +84,7 @@ public class Pagina {
     public DOM documento;
     public ListaBloquesCss bloquesCss;
     public boolean banderaCargado=false;
+    public int noBandera=-1;
     
     public Pagina(int id){
         retCJS= new retornoCJS();
@@ -255,6 +256,7 @@ public class Pagina {
                  areaWeb.setCaretPosition(areaWeb.getStyledDocument().getLength());
                  areaWeb.insertComponent(b);
                  this.retCJS.observadores.buscarObservadorPorElemento(10, temporal.numeroIdentificador, 0, tabla);
+                 this.retCJS.observadores.buscarObservadorPorDocumento(20, 0, tabla);
             }else if(temporal instanceof Caja){
                  temporal.agregarEstilo();
                 ((Caja)temporal).imprimir();
@@ -262,18 +264,21 @@ public class Pagina {
                  areaWeb.setCaretPosition(areaWeb.getStyledDocument().getLength());
                  areaWeb.insertComponent(b);
                  this.retCJS.observadores.buscarObservadorPorElemento(10, temporal.numeroIdentificador, 0, tabla);
+                  this.retCJS.observadores.buscarObservadorPorDocumento(20, 0, tabla);
             }else if(temporal instanceof Enlace){
                 temporal.agregarEstilo();
                 JLabel b = (JLabel)((Enlace) temporal).link;
                  areaWeb.setCaretPosition(areaWeb.getStyledDocument().getLength());
                  areaWeb.insertComponent(b);
                  this.retCJS.observadores.buscarObservadorPorElemento(10, temporal.numeroIdentificador, 0, tabla);
+                  this.retCJS.observadores.buscarObservadorPorDocumento(20, 0, tabla);
             }else if(temporal instanceof Imagen){
                 temporal.agregarEstilo();
                  JLabel b = (JLabel)((Imagen) temporal).imagen;
                  areaWeb.setCaretPosition(areaWeb.getStyledDocument().getLength());
                  areaWeb.insertComponent(b);
                  this.retCJS.observadores.buscarObservadorPorElemento(10, temporal.numeroIdentificador, 0, tabla);
+                  this.retCJS.observadores.buscarObservadorPorDocumento(20, 0, tabla);
             }else if(temporal instanceof Panel){
                  
                   temporal.agregarEstilo();
@@ -282,12 +287,14 @@ public class Pagina {
                  areaWeb.setCaretPosition(areaWeb.getStyledDocument().getLength());
                  areaWeb.insertComponent(b);
                  this.retCJS.observadores.buscarObservadorPorElemento(10, temporal.numeroIdentificador, 0, tabla);
+                  this.retCJS.observadores.buscarObservadorPorDocumento(20, 0, tabla);
             }else if(temporal instanceof Salto){
                 try {
                         areaWeb.setCaretPosition(areaWeb.getStyledDocument().getLength());
                         HTMLDocument doc=(HTMLDocument) areaWeb.getStyledDocument();
                         doc.insertAfterEnd(doc.getCharacterElement(doc.getLength()),"<br>");
                         this.retCJS.observadores.buscarObservadorPorElemento(10, temporal.numeroIdentificador, 0, tabla);
+                         this.retCJS.observadores.buscarObservadorPorDocumento(20, 0, tabla);
                     } catch (BadLocationException ex) {
                         Logger.getLogger(Panel.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (IOException ex) {
@@ -299,24 +306,28 @@ public class Pagina {
                 areaWeb.setCaretPosition(areaWeb.getStyledDocument().getLength());
                  areaWeb.insertComponent(b);
                  this.retCJS.observadores.buscarObservadorPorElemento(10, temporal.numeroIdentificador, 0, tabla);
+                  this.retCJS.observadores.buscarObservadorPorDocumento(20, 0, tabla);
             }else if(temporal instanceof Texto){
                 temporal.agregarEstilo();
                  JTextPane b = (JTextPane)((Texto) temporal).texto;
                  areaWeb.setCaretPosition(areaWeb.getStyledDocument().getLength());
                  areaWeb.insertComponent(b);
                  this.retCJS.observadores.buscarObservadorPorElemento(10, temporal.numeroIdentificador, 0, tabla);
+                  this.retCJS.observadores.buscarObservadorPorDocumento(20, 0, tabla);
             }else if(temporal instanceof Texto_a){
                 temporal.agregarEstilo();
                 JTextPane b = (JTextPane)((Texto_a) temporal).cajaTexto;
                  areaWeb.setCaretPosition(areaWeb.getStyledDocument().getLength());
                  areaWeb.insertComponent(b);
                  this.retCJS.observadores.buscarObservadorPorElemento(10, temporal.numeroIdentificador, 0, tabla);
+                  this.retCJS.observadores.buscarObservadorPorDocumento(20, 0, tabla);
             }else if(temporal instanceof caja_texto){
                 temporal.agregarEstilo();
                 JTextField b = (JTextField)((caja_texto) temporal).cajaTexto;
                 areaWeb.setCaretPosition(areaWeb.getStyledDocument().getLength());
                  areaWeb.insertComponent(b);
                  this.retCJS.observadores.buscarObservadorPorElemento(10, temporal.numeroIdentificador, 0, tabla);
+                  this.retCJS.observadores.buscarObservadorPorDocumento(20, 0, tabla);
             }else if(temporal instanceof tabla){
                 
             }    
