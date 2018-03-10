@@ -11,7 +11,9 @@ import CJS.objetoBase;
 import CJS.TablaSimbolos.*;
 import CJS.ARBOL.INSTRUCCIONES.*;
 import CJS.ESTRUCURAS_CONTROL.*;
+import Errores.ErrorS;
 import Funciones.*;
+
 
 
 parser code
@@ -32,6 +34,8 @@ public void syntax_error(Symbol s){
                 + "<td><center><b>" + s.right + "</b></center></td>"
                 + "<td><center><b>" + s.left+ "</b></center></td>"
                 + "</tr>";
+				ErrorS nuevo = new ErrorS(s.right,s.left,"Sintactico","El simbolo "+s.value+", no es valido");
+paginaActual.erroresPagina.insertarError(nuevo);
 }
 
 /* ------------------==: ERROR SINTACTICO NO RECUPERABLE :==------------------*/
@@ -42,6 +46,8 @@ public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{
                 + "<td><center><b>" + s.right + "</b></center></td>"
                 + "<td><center><b>" + s.left+ "</b></center></td>"
                 + "</tr>";
+				ErrorS nuevo = new ErrorS(s.right,s.left,"Sintactico","El simbolo "+s.value+", no es valido");
+paginaActual.erroresPagina.insertarError(nuevo);
 }
 
 :}
@@ -88,7 +94,8 @@ non terminal DECLARACION, ASIGNACION, LISTA_EXPRESIONES,POS_VECTOR,CUERPO,SENTEN
 	start with INICIO;		
 	
 	
-	INICIO::= SENTENCIAS:a{:parser.listaSentencias= (ArrayList<objetoBase>)a; System.out.println(a);:};
+	INICIO::= SENTENCIAS:a{:parser.listaSentencias= (ArrayList<objetoBase>)a; System.out.println(a);:}
+|error;
 
 
 DECLARACION::= dimv id:i puntoComa{:Declaracion s = new Declaracion(i); RESULT = s;:}

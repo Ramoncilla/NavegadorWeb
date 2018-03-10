@@ -57,4 +57,10 @@ public class tablaErrores {
     }
     
     
+    public boolean hayErrores(){
+        return (this.listadoErrores.size()>=1);
+    }
+    
+    
+    
 }

@@ -44,7 +44,7 @@ bool = (("'"{bool_elemento}"'")|("\""{bool_elemento}"\"")|({bool_elemento}))
 
 
 comentario_multi  		= "'/" ~"/'"
-comentario_simple 		 = "'"[^\n']+
+
 
 
 
@@ -135,7 +135,7 @@ public static String cadena;
 
 
 {comentario_multi}   {System.out.println("Coment Multi");   /* se ignora*/}
-{comentario_simple}   {System.out.println("Coment simple");   /* se ignora*/}
+
 /* -------------------------------==: BLANCOS :==-----------------------------*/
 [ \t\r\f\n]+        { /* Se ignoran */}
 

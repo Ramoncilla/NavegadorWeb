@@ -12,7 +12,9 @@ import CJS.ARBOL.EXPRESION.Aritmetica;
 import CJS.ARBOL.EXPRESION.Booleano;
 import CJS.ARBOL.EXPRESION.Cadena;
 import CJS.ARBOL.EXPRESION.Numero;
+import Errores.ErrorS;
 import proyecto1_201122872.CHTML.ElemetoPropiedad.propiedad;
+
 
 
 
@@ -33,6 +35,8 @@ public void syntax_error(Symbol s){
                 + "<td><center><b>" + s.right + "</b></center></td>"
                 + "<td><center><b>" + s.left+ "</b></center></td>"
                 + "</tr>";
+				ErrorS nuevo = new ErrorS(s.right,s.left,"Sintactico","El simbolo "+s.value+", no es valido");
+paginaActual.erroresPagina.insertarError(nuevo);
 }
 
 /* ------------------==: ERROR SINTACTICO NO RECUPERABLE :==------------------*/
@@ -43,6 +47,8 @@ public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{
                 + "<td><center><b>" + s.right + "</b></center></td>"
                 + "<td><center><b>" + s.left+ "</b></center></td>"
                 + "</tr>";
+				ErrorS nuevo = new ErrorS(s.right,s.left,"Sintactico","El simbolo "+s.value+", no es valido");
+paginaActual.erroresPagina.insertarError(nuevo);
 }
 
 :}
@@ -74,7 +80,8 @@ non terminal INICIO, LISTA_CUERPOS,CUERPO,LISTA_ELEMENTO_CUERPO,ELEMENTO_CUERPO,
 
 
 
-INICIO::= LISTA_CUERPOS:c {:parser.lBloques=(ListaBloquesCss)c;:};
+INICIO::= LISTA_CUERPOS:c {:parser.lBloques=(ListaBloquesCss)c;:}
+|error;
 
 LISTA_CUERPOS::= CUERPO:a{:ListaBloquesCss lista = new ListaBloquesCss();
                                                         lista.insertarLista((ArrayList<baseCss>)a);

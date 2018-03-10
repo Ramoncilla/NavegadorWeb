@@ -11,6 +11,7 @@ import Funciones.Funcion;
 import bCSS.ListaBloquesCss;
 import bCSS.baseCss;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,7 @@ import proyecto1_201122872.AnalizadorCSS.scannerCSS;
 
 import proyecto1_201122872.CHTML.Chtml;
 import proyecto1_201122872.LectoArchivos;
+import static proyecto1_201122872.Proyecto1_201122872.paginaActual;
 
 
 /**
@@ -35,7 +37,7 @@ public class EjecutarAnalizador {
     
     public Chtml ejecutarHTML(String ruta) throws Exception{
  
-      
+      File f = new File(ruta);
         Chtml  retorno=null;
         
         if(ruta.isEmpty()){
@@ -47,13 +49,19 @@ public class EjecutarAnalizador {
            JOptionPane.showMessageDialog(null, "Error, no es posible analizar una cadena vacia para CHTML.", "USAC-WEB", JOptionPane.INFORMATION_MESSAGE);
         }else{
             System.out.println("Inicio de Analisis CHTML");
+            paginaActual.archivoActual=f.getName();
             scannerCHTML scannerHtml = new scannerCHTML(new BufferedReader(new StringReader(cadena)));
             Parser parserHtml = new Parser(scannerHtml);
             parserHtml.parse();
+           
             
-           retorno= parserHtml.codigoHTML;
+        
+               retorno= parserHtml.codigoHTML;
                 System.out.println("Fin de analisis CHTML");  
-           return retorno;      
+           return retorno;  
+           
+            
+                
         }  
         }
         
@@ -63,7 +71,7 @@ public class EjecutarAnalizador {
    
     public retornoCJS ejecutarCJS(String rutaArchivo) throws Exception {
         retornoCJS retorno = new retornoCJS();
-
+ File f = new File(rutaArchivo);
         if (rutaArchivo.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Error, ruta no valida para ejecutar CJS.", "USAC-WEB", JOptionPane.INFORMATION_MESSAGE);
         } else {
@@ -73,10 +81,14 @@ public class EjecutarAnalizador {
                 JOptionPane.showMessageDialog(null, "Error, no ess posible analizar una cadena vacia", "USAC-WEB", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 System.out.println("Inicio de Analisis JS");
+                paginaActual.archivoActual=f.getName();
                 scannerCJS scannerjs = new scannerCJS(new BufferedReader(new StringReader(cadena)));
                 proyecto1_201122872.AnalizadorCJS.Parser parserCJS = new proyecto1_201122872.AnalizadorCJS.Parser(scannerjs);
                 parserCJS.parse();
-                List<objetoBase> h = (ArrayList<objetoBase>) parserCJS.listaSentencias;
+                
+                
+           
+                     List<objetoBase> h = (ArrayList<objetoBase>) parserCJS.listaSentencias;
                 objetoBase temporal;
                 for (int i = 0; i < h.size(); i++) {
                     temporal = h.get(i);
@@ -89,6 +101,10 @@ public class EjecutarAnalizador {
                         retorno.insertarSentencia(temporal);
                     }
                 }
+                    
+                
+                
+               
 
                 /*
              for (int i = 0; i < sentencias.size(); i++) {
@@ -105,7 +121,7 @@ public class EjecutarAnalizador {
 
    
    public ListaBloquesCss ejecutarCSS(String rutaArchivo) throws Exception{
-       
+       File f = new File(rutaArchivo);
         if (rutaArchivo.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Error, ruta no valida para ejecutar CSS.", "USAC-WEB", JOptionPane.INFORMATION_MESSAGE);
         } else {
@@ -115,12 +131,20 @@ public class EjecutarAnalizador {
                 JOptionPane.showMessageDialog(null, "Error, no ess posible analizar una cadena vacia", "USAC-WEB", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 System.out.println("Inicio de Analisis CSS");
+                paginaActual.archivoActual=f.getName();
                 scannerCSS scannercss = new scannerCSS(new BufferedReader(new StringReader(cadena)));
                 ParserCSS parserCSS = new ParserCSS(scannercss);
                 parserCSS.parse();
                 System.out.println("Fin de analisis CSS");
-                ListaBloquesCss listado = parserCSS.lBloques;
+                
+                
+                     ListaBloquesCss listado = parserCSS.lBloques;
                 return listado;
+                    
+               
+                
+                
+               
                  
             }
         }

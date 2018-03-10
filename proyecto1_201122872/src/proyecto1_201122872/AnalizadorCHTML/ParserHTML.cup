@@ -1,4 +1,3 @@
-
 package proyecto1_201122872.AnalizadorCHTML;
 
 import proyecto1_201122872.AnalizadorCHTML.simbolosCHTML;
@@ -128,7 +127,8 @@ action code
 	start with INICIO;
 			
 			
-	INICIO::= CHTML:a{:parser.codigoHTML= (Chtml)a;:};
+	INICIO::= CHTML:a{:parser.codigoHTML= (Chtml)a;:}
+|error;
 
 	/*---------- propiedades ------------------- */
 
@@ -548,28 +548,3 @@ action code
 		
 	cuerpoCelda::= cuerpoCelda:a sentenciaCelda:b{:List<Etiqueta> lista = (ArrayList<Etiqueta>)a; lista.add((Etiqueta)b);RESULT= lista;:}
 		|sentenciaCelda:a{:List<Etiqueta> lista = new ArrayList<Etiqueta>(); lista.add((Etiqueta)a);RESULT= lista;:};
-		
-	
-	
-		
-		
-	
-		
-		
-	
-		
-	
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
