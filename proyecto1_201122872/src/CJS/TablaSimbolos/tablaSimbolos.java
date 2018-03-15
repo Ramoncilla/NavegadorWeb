@@ -217,7 +217,8 @@ public class tablaSimbolos {
             return variable;
         }
         if(tipoValorEntero ==3){
-           Object[]valores = (Object[])valor;
+            if(valor instanceof Object[]){
+                Object[]valores = (Object[])valor;
            int noPos= valores.length;
            arreglo = new SimbArreglo(simb.nombre, noPos,simb.contexto);
            arreglo.ambito= simb.ambito;
@@ -225,6 +226,22 @@ public class tablaSimbolos {
            arreglo.tamanhoArreglo=noPos;
            arreglo.vector=valores;
            return arreglo;
+                
+            }else if(valor instanceof SimbArreglo){
+                SimbArreglo g = (SimbArreglo)valor;
+                Object[]valores = (Object[])g.vector;
+           int noPos= valores.length;
+           arreglo = new SimbArreglo(simb.nombre, noPos,simb.contexto);
+           arreglo.ambito= simb.ambito;
+           arreglo.contexto= simb.contexto;
+           arreglo.tamanhoArreglo=noPos;
+           arreglo.vector=valores;
+           return arreglo;
+                
+                
+            }
+            
+           
         }
         if(tipoValorEntero ==2){
             SimbEtiqueta t = (SimbEtiqueta)valor;
@@ -490,7 +507,7 @@ public class tablaSimbolos {
    
     private String tipoExpresion(Object val){
         
-        if(val instanceof Object[]){
+        if(val instanceof Object[] || val instanceof SimbArreglo){
             return "arreglo";
         }
          if ((val instanceof Double)|| (val instanceof Integer)) {
@@ -527,7 +544,7 @@ public class tablaSimbolos {
         //0 nulo 1 variables 2 etiquestas 3 arreglos
         if(val!= null){
             
-             if(val instanceof Object[]){
+             if(val instanceof Object[] || val instanceof SimbArreglo){
             return 3;
         }
              

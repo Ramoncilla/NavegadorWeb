@@ -1058,6 +1058,9 @@ public class expresionesRelacionales extends expresionBase {
         public int compararCadenas(String cadena1, String cadena2)
         {
             int contador = 0;
+            if(cadena1.length() == 0 && cadena2.length()==0)
+                return 0;
+           
             while(contador<cadena1.length() && contador < cadena2.length()){
                 //iniciamos el ciclo
                 int c1 = (int)cadena1.charAt(contador);//[contador];

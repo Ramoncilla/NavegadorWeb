@@ -117,7 +117,7 @@ public class DOM {
         return et;
     }
 
-    public Etiqueta obtenerElemento(String id) {
+    public Etiqueta obtenerElemento2(String id) {
 
         Etiqueta temporal, ret;
         for (int i = 0; i < this.etiquetasHTML.size(); i++) {
@@ -148,7 +148,7 @@ public class DOM {
         return null;
     }
 
-    private Etiqueta obtenerEtiquetaPanel(ArrayList<Etiqueta> etiquetas, String nombre) {
+    private Etiqueta obtenerEtiquetaPanel2(ArrayList<Etiqueta> etiquetas, String nombre) {
         Etiqueta temporal;
         for (int i = 0; i < etiquetas.size(); i++) {
             temporal = etiquetas.get(i);
@@ -162,6 +162,51 @@ public class DOM {
         return null;
     }
 
+    
+    
+    public Etiqueta obtenerElemento(String id){
+        Etiqueta temporal;
+        String nTemporal;
+        for (int i = 0; i < this.etiquetasHTML.size(); i++) {
+            temporal = this.etiquetasHTML.get(i);
+            
+            if(temporal.id.equalsIgnoreCase(id)){
+                return temporal;
+            }else if(temporal instanceof Panel){
+                nTemporal = this.etiquetasHTML.get(i).id;
+                Panel p = (Panel)temporal;
+                Etiqueta temporalPanel = obtenerEtiquetaPanel(p.objetosPanel.sentenciasCuerpo,id);
+                if(temporalPanel!=null)
+                    return temporalPanel;
+            }    
+        }
+        
+        return null;
+    }
+    
+    
+    private Etiqueta obtenerEtiquetaPanel(List<Etiqueta> sentenciasPanel, String id){
+        Etiqueta temporal;
+        String nTemporal;
+        for (int i = 0; i < sentenciasPanel.size(); i++) {
+            temporal = sentenciasPanel.get(i);
+            
+            if(sentenciasPanel.get(i).id.equalsIgnoreCase(id)){
+                return temporal;
+            }else if(temporal instanceof Panel){
+                nTemporal= sentenciasPanel.get(i).id;
+                Panel p = (Panel)temporal;
+                Etiqueta t = obtenerEtiquetaPanel(p.objetosPanel.sentenciasCuerpo,id);
+                if(t!=null)
+                    return t;
+            }
+        }
+        return null;
+    }
+    
+    
+    
+    
     /*  aplicar estilos CSS*/
     public void aplicarCssID(ID bloque) {
 
