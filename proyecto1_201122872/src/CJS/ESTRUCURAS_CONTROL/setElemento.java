@@ -25,19 +25,32 @@ import static proyecto1_201122872.Proyecto1_201122872.paginaActual;
 public class setElemento extends objetoBase{
     
     public objetoBase nombreObjetoHTML;
-    public String nombreElementoModificar;
-    public String valorElemento;
+     String nombreElementoModificar;
+     String valorElemento;
+     public objetoBase elementoModificar;
+     public objetoBase objetoValorElemento;
     
     
     
     public setElemento(Object nombre, Object elemento, Object valor){
         this.nombreObjetoHTML=(objetoBase)nombre;
-        this.nombreElementoModificar= elemento.toString().replace("\"", "");
-        this.valorElemento= valor.toString().replace("\"", "");
+        this.elementoModificar= (objetoBase)elemento;
+        this.objetoValorElemento= (objetoBase)valor;
+        //this.nombreElementoModificar= elemento.toString().replace("\"", "");
+        //this.valorElemento= valor.toString().replace("\"", "");
     }
 
     @Override
     public elementoRetorno Ejecutar(tablaSimbolos tabla, int contexto) {
+        
+        elementoRetorno r1= elementoModificar.Ejecutar(tabla, contexto);
+        elementoRetorno r2 = objetoValorElemento.Ejecutar(tabla, contexto);
+        if(r1.ValorRetorno instanceof String)
+            nombreElementoModificar = r1.ValorRetorno.toString().replace("\"", "");
+        if(r2.ValorRetorno instanceof String)
+            valorElemento= r1.ValorRetorno.toString().replace("\"", "");
+            
+        
         elementoRetorno retor = new elementoRetorno();
         String ambito="global";
         if(contexto>0)

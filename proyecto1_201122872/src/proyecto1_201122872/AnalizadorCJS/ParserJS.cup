@@ -281,9 +281,9 @@ TIPOS_EVENTOS::= listo{:RESULT="listo";:}
 	|cliqueado{:RESULT="cliqueado";:};
 	
 
-OBTENER::= documento punto obtener abrePar cadena:c cierraPar{:RESULT = new Obtener(c);:};
+OBTENER::= documento punto obtener abrePar EXPRESION:c cierraPar{:RESULT = new Obtener(c);:};
 	
-SET_ELEMENTO::= ELEMENTO:a punto setelemento abrePar cadena:b coma cadena:c cierraPar puntoComa{:RESULT= new setElemento(a,b,c);:};
+SET_ELEMENTO::= ELEMENTO:a punto setelemento abrePar EXPRESION:b coma EXPRESION:c cierraPar puntoComa{:RESULT= new setElemento(a,b,c);:};
 	
 
 	

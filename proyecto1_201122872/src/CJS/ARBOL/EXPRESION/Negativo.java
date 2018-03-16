@@ -29,6 +29,8 @@ public class Negativo extends objetoBase {
         elementoRetorno ret = this.expresion.Ejecutar(tabla, contexto);
         if (ret.ValorRetorno != null) {
             if (obtenerTipoExpresion(ret.ValorRetorno).equalsIgnoreCase("numero")) {
+                
+                
 
                 double dou = Double.parseDouble(ret.ValorRetorno.toString());
                 ret.ValorRetorno = dou*-1;

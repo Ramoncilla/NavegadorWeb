@@ -18,16 +18,21 @@ import static proyecto1_201122872.Proyecto1_201122872.paginaActual;
  */
 public class Obtener extends objetoBase {
     
-    public String idObjeto;
-    
+    String idObjeto="";
+    public objetoBase expObjeto;
     
     public Obtener(Object valorId){
-        this.idObjeto= valorId.toString().replace("\"", "");
+        this.expObjeto= (objetoBase)valorId;
+        //this.idObjeto= valorId.toString().replace("\"", "");
     }
 
     @Override
     public elementoRetorno Ejecutar(tablaSimbolos tabla, int contexto) {
         elementoRetorno ret = new elementoRetorno();
+        elementoRetorno ret2= expObjeto.Ejecutar(tabla, contexto);
+        if(ret2.ValorRetorno instanceof String)
+            idObjeto =ret2.ValorRetorno.toString().replace("\"", "");
+        
         Etiqueta resultado = paginaActual.documento.obtenerElemento(idObjeto);
         if(resultado!=null){
             
