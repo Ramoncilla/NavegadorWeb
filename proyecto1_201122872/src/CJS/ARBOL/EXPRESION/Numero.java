@@ -15,10 +15,19 @@ import CJS.objetoBase;
  */
 public class Numero extends objetoBase{
     
-    public double numero;
+    public Object numero;
     
     public Numero(Object valor){
-        this.numero = Double.parseDouble(valor.toString());
+        
+        if(valor.toString().contains(".")){
+             this.numero = Double.parseDouble(valor.toString());
+        }else{
+             this.numero = Integer.parseInt(valor.toString());
+        }
+        
+        
+       
+       
     }
     
     @Override

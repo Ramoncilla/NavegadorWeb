@@ -96,9 +96,9 @@ public static String cadena;
 "documento" {System.out.println("documento");   return new Symbol (simbolosCJS.documento, yyline+1,yychar+1, new String (yytext()));}
 "obtener" {System.out.println("obtener");   return new Symbol (simbolosCJS.obtener, yyline+1,yychar+1, new String (yytext()));}
 "setelemento" {System.out.println("setElemento");   return new Symbol (simbolosCJS.setelemento, yyline+1,yychar+1, new String (yytext()));}
-"listo" {System.out.println("listo");   return new Symbol (simbolosCJS.listo, yyline+1,yychar+1, new String (yytext()));}
-"modificado" {System.out.println("modificado");   return new Symbol (simbolosCJS.modificado, yyline+1,yychar+1, new String (yytext()));}
-"cliqueado" {System.out.println("cliqueado");  return new Symbol (simbolosCJS.cliqueado, yyline+1,yychar+1, new String (yytext()));}
+"\"listo\"" {System.out.println("listo");   return new Symbol (simbolosCJS.listo, yyline+1,yychar+1, new String (yytext()));}
+"\"modificado\"" {System.out.println("modificado");   return new Symbol (simbolosCJS.modificado, yyline+1,yychar+1, new String (yytext()));}
+"\"cliqueado\"" {System.out.println("cliqueado");  return new Symbol (simbolosCJS.cliqueado, yyline+1,yychar+1, new String (yytext()));}
 "observador" {System.out.println("observador");   return new Symbol (simbolosCJS.observador, yyline+1,yychar+1, new String (yytext()));}
 "++" {System.out.println("masMas");   return new Symbol (simbolosCJS.masMas, yyline+1,yychar+1, new String (yytext()));}
 "--" {System.out.println("menosMenos");   return new Symbol (simbolosCJS.menosMenos, yyline+1,yychar+1, new String (yytext()));}

@@ -38,10 +38,10 @@ public class Etiqueta {
     public Color getColor(String color) {
         Color c = Color.GRAY;
         try {
-            c = (Color) Color.class.getField(color).get(null);
+            c = (Color) Color.class.getField(color.toLowerCase()).get(null);
         } catch (Exception excep) {
             try {
-                c = Color.decode(color);
+                c = Color.decode(color.toLowerCase());
             } catch (Exception except) {
             }
         }

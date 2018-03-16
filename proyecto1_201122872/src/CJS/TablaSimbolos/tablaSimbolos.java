@@ -11,6 +11,7 @@ import CJS.ARBOL.EXPRESION.Id;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import javax.swing.JOptionPane;
 import proyecto1_201122872.CHTML.Etiqueta;
 import static proyecto1_201122872.Proyecto1_201122872.paginaActual;
 
@@ -136,25 +137,6 @@ public class tablaSimbolos {
 
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    //aqui
-    
     //este
     public boolean asignarPosicionArreglo(String nombre, Object pos, Object valor, int contexto) {
         Simbolo temporal;
@@ -170,13 +152,15 @@ public class tablaSimbolos {
                             && temporal instanceof SimbArreglo) {
                         if (temporal instanceof SimbArreglo) {
                             SimbArreglo array = (SimbArreglo) temporal;
-                            if (posicion <= array.tamanhoArreglo && posicion >= 0) {
+                            if (posicion <= (array.tamanhoArreglo-1) && posicion >= 0) {
                                 int p = (int) posicion;
                                 array.vector[p] = valor;
                                 this.listaSimbolos.set(i, array);
                                 return true;
                             } else {
+                                
                                 paginaActual.erroresPagina.insertarError("Semantico", "En el indice que desea insertar un elemenot esta fuera de rango");
+                                JOptionPane.showMessageDialog(null, "Indice fuera de rango para ingreso dentro del arreglo "+ nombre, "USAC-WEB", JOptionPane.INFORMATION_MESSAGE);
                                 return false;
                             }
                         } else {
