@@ -1,3 +1,4 @@
+dimv opo: 150.25;
 imprimir(factorial(1));
 
 
@@ -58,9 +59,9 @@ dimv op4: documento.obtener("imagenPRueba");
 
 
 
-op4.observador(modificado,usarObservador(3*2));
-op.observador(listo,funcion(){Imprimir("se ha cargado el spinner");});
-op2.observador(modificado,funcion(){
+op4.observador("modificado",usarObservador(3*2));
+op.observador("listo",funcion(){Imprimir("se ha cargado el spinner");});
+op2.observador("modificado",funcion(){
 imprimir("ModifquEEE el elemnto 2");
 });
 
@@ -82,8 +83,8 @@ funcion usarObservador4(){
 }
 
 documento.obtener("popo").setElemento("fondo","pink");
-documento.obtener("botonMi").observador(modificado,funcion(){imprimir("BOTONNNN MI");});
-documento.obtener("botonMi").observador(cliqueado,funcion(){imprimir("diii un cliccccccccc");});
+documento.obtener("botonMi").observador("modificado",funcion(){imprimir("BOTONNNN MI");});
+documento.obtener("botonMi").observador("cliqueado",funcion(){imprimir("diii un cliccccccccc");});
 op4.setELEmento("ruta","C:\Users\Ramonella\Desktop\popo.jpg");
 op2.setElemento("ancho","130");
 op.setElemento("id","dos");
@@ -93,7 +94,7 @@ op.setelemento("grupo","grupo1");
 documento.obtener("botonMi").setElemento("ancho","20");
 documento.obtener("botonMi").setElemento("click","usarObservador3()");
 documento.obtener("botonMi").setElemento("click","usarObservador4()");
-documento.observador(listo,funcion(){imprimir("documento cargado");});
+documento.observador("listo",funcion(){imprimir("documento cargado");});
 
 documento.obtener("botonPanel").setElemento("alto","100");
 documento.obtener("botonPanel").setElemento("ancho","150");

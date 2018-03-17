@@ -70,7 +70,11 @@ public class expresionBase {
         else
             return "falso";
     }
-    public double getNumero(Object val){
+    public Object getNumero(Object val){
+        
+        if(val instanceof Integer)
+            return Integer.parseInt(val.toString());
+        
         return Double.parseDouble(val+"");
     }
     

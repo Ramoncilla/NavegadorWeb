@@ -30,6 +30,12 @@ public class Negativo extends objetoBase {
         if (ret.ValorRetorno != null) {
             if (obtenerTipoExpresion(ret.ValorRetorno).equalsIgnoreCase("numero")) {
                 
+                if(ret.ValorRetorno instanceof Integer){
+                    int i = Integer.parseInt(ret.ValorRetorno.toString());
+                    ret.ValorRetorno= i*-1;
+                    super.retorno.ValorRetorno= i*-1;
+                    return ret;
+                }
                 
 
                 double dou = Double.parseDouble(ret.ValorRetorno.toString());

@@ -96,13 +96,30 @@ public class tablaSimbolos {
                                 SimbVariable j = (SimbVariable) temporal;
                                 if (j.tipoVariable != null && j.valorVariable != null) {
                                     if (j.tipoVariable.equalsIgnoreCase("numero")) {
-                                        double d = Double.parseDouble(j.valorVariable.toString());
+                                       
+                                        Object t;
+                                        
                                         if (simbolo.equalsIgnoreCase("++")) {
-                                            d++;
+                                           if(j.valorVariable instanceof Integer){
+                                               int g = Integer.parseInt(j.valorVariable.toString());
+                                               g++;
+                                               j.valorVariable=g;
+                                           } else{
+                                              double d = Double.parseDouble(j.valorVariable.toString());
+                                              d++;
+                                              j.valorVariable=d;
+                                           }
                                         } else {
-                                            d--;
+                                           if(j.valorVariable instanceof Integer){
+                                               int g = Integer.parseInt(j.valorVariable.toString());
+                                               g--;
+                                               j.valorVariable=g;
+                                           } else{
+                                              double d = Double.parseDouble(j.valorVariable.toString());
+                                              d--;
+                                              j.valorVariable=d;
+                                           }
                                         }
-                                        j.valorVariable = d;
                                         this.listaSimbolos.set(i, j);
                                         return true;
                                     } else {

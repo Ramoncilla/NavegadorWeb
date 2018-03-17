@@ -31,17 +31,38 @@ public class Unario extends objetoBase {
         if (ret.ValorRetorno != null) {
             if (obtenerTipoExpresion(ret.ValorRetorno).equalsIgnoreCase("numero")) {
 
-                double dou = Double.parseDouble(ret.ValorRetorno.toString());
+                Object v;
+                
+                
                 if (operador.equalsIgnoreCase("++")) {
-                    dou++;
+                    if(ret.ValorRetorno instanceof Integer){
+                        int h = Integer.parseInt(ret.ValorRetorno.toString());
+                        h++;
+                        ret.ValorRetorno= h;
+                        super.retorno.ValorRetorno=h;
+                    }else{
+                       double dou = Double.parseDouble(ret.ValorRetorno.toString());
+                       dou++;
+                       ret.ValorRetorno= dou;
+                       super.retorno.ValorRetorno=dou;
+                    }
                 } else {
-                    dou--;
+                 if(ret.ValorRetorno instanceof Integer){
+                        int h = Integer.parseInt(ret.ValorRetorno.toString());
+                        h--;
+                        ret.ValorRetorno= h;
+                        super.retorno.ValorRetorno=h;
+                    }else{
+                       double dou = Double.parseDouble(ret.ValorRetorno.toString());
+                       dou--;
+                       ret.ValorRetorno= dou;
+                       super.retorno.ValorRetorno=dou;
+                    }
                 }
-                ret.ValorRetorno = dou;
-                super.retorno.ValorRetorno = dou;
+
 
             } else if (obtenerTipoExpresion(ret.ValorRetorno).equalsIgnoreCase("bool")) {
-                double dou = getBoolNumero(ret.ValorRetorno);
+                int dou = getBoolNumero(ret.ValorRetorno);
                 if (operador.equalsIgnoreCase("++")) {
                     dou++;
                 } else {
@@ -57,11 +78,11 @@ public class Unario extends objetoBase {
         return ret;
     }
 
-    private Double getBoolNumero(Object val) {
+    private int getBoolNumero(Object val) {
         if (val.toString().equalsIgnoreCase("verdadero")) {
-            return 1.0;
+            return 1;
         } else {
-            return 0.0;
+            return 0;
         }
     }
 

@@ -58,8 +58,8 @@ public class expresionesRelacionales extends expresionBase {
          String tipo2= obtenerTipoExpresion(val2);
          
           if ((tipo1.equalsIgnoreCase("numero")) && (tipo2.equalsIgnoreCase("numero"))) {
-             double e1 = getNumero(val1);
-             double e2 = getNumero(val2);
+             double e1 =Double.parseDouble(getNumero(val1).toString());
+             double e2 = Double.parseDouble(getNumero(val2).toString());
              if (e1 < e2) {
                  return "verdadero";
              } else {
@@ -68,7 +68,7 @@ public class expresionesRelacionales extends expresionBase {
          }
           else if ((tipo1.equalsIgnoreCase("bool")) && (tipo2.equalsIgnoreCase("numero"))) {
              double e1 = getBoolNumero(val1);
-             double e2 = getNumero(val2);
+             double e2 =Double.parseDouble( getNumero(val2).toString());
              if (e1 < e2) {
                  return "verdadero";
              } else {
@@ -76,7 +76,7 @@ public class expresionesRelacionales extends expresionBase {
              }
          }
           else if ((tipo1.equalsIgnoreCase("numero")) && (tipo2.equalsIgnoreCase("bool"))) {
-             double e1 = getNumero(val1);
+             double e1 =Double.parseDouble( getNumero(val1).toString());
              double e2 = getBoolNumero(val2);
              if (e1 < e2) {
                  return "verdadero";
@@ -115,7 +115,7 @@ public class expresionesRelacionales extends expresionBase {
          }
           else if ((tipo1.equalsIgnoreCase("cadena")) && (tipo2.equalsIgnoreCase("numero"))) {
              double e1 = val1.toString().length();
-             double e2 = getNumero(val2);
+             double e2 = Double.parseDouble(getNumero(val2).toString());
              if (e1 < e2) {
                  return "verdadero";
              } else {
@@ -123,7 +123,7 @@ public class expresionesRelacionales extends expresionBase {
              }
          }
           else if ((tipo1.equalsIgnoreCase("numero")) && (tipo2.equalsIgnoreCase("cadena"))) {
-             double e1 = getNumero(val1);
+             double e1 = Double.parseDouble(getNumero(val1).toString());
              double e2 = val2.toString().length();
              if (e1 < e2) {
                  return "verdadero";
@@ -213,8 +213,8 @@ public class expresionesRelacionales extends expresionBase {
          String tipo2= obtenerTipoExpresion(val2);
          
           if ((tipo1.equalsIgnoreCase("numero")) && (tipo2.equalsIgnoreCase("numero"))) {
-             double e1 = getNumero(val1);
-             double e2 = getNumero(val2);
+             double e1 = Double.parseDouble(getNumero(val1).toString());
+             double e2 = Double.parseDouble(getNumero(val2).toString());
              if (e1 > e2) {
                  return "verdadero";
              } else {
@@ -223,7 +223,7 @@ public class expresionesRelacionales extends expresionBase {
          }
           else if ((tipo1.equalsIgnoreCase("bool")) && (tipo2.equalsIgnoreCase("numero"))) {
              double e1 = getBoolNumero(val1);
-             double e2 = getNumero(val2);
+             double e2 = Double.parseDouble(getNumero(val2).toString());
              if (e1 > e2) {
                  return "verdadero";
              } else {
@@ -231,7 +231,7 @@ public class expresionesRelacionales extends expresionBase {
              }
          }
           else if ((tipo1.equalsIgnoreCase("numero")) && (tipo2.equalsIgnoreCase("bool"))) {
-             double e1 = getNumero(val1);
+             double e1 = Double.parseDouble(getNumero(val1).toString());
              double e2 = getBoolNumero(val2);
              if (e1 > e2) {
                  return "verdadero";
@@ -270,7 +270,7 @@ public class expresionesRelacionales extends expresionBase {
          }
           else if ((tipo1.equalsIgnoreCase("cadena")) && (tipo2.equalsIgnoreCase("numero"))) {
              double e1 = val1.toString().length();
-             double e2 = getNumero(val2);
+             double e2 = Double.parseDouble(getNumero(val2).toString());
              if (e1 > e2) {
                  return "verdadero";
              } else {
@@ -278,7 +278,7 @@ public class expresionesRelacionales extends expresionBase {
              }
          }
           else if ((tipo1.equalsIgnoreCase("numero")) && (tipo2.equalsIgnoreCase("cadena"))) {
-             double e1 = getNumero(val1);
+             double e1 = Double.parseDouble(getNumero(val1).toString());
              double e2 = val2.toString().length();
              if (e1 > e2) {
                  return "verdadero";
@@ -365,8 +365,8 @@ public class expresionesRelacionales extends expresionBase {
          String tipo2= obtenerTipoExpresion(val2);
          
           if ((tipo1.equalsIgnoreCase("numero")) && (tipo2.equalsIgnoreCase("numero"))) {
-             double e1 = getNumero(val1);
-             double e2 = getNumero(val2);
+             double e1 = Double.parseDouble(getNumero(val1).toString());
+             double e2 =Double.parseDouble( getNumero(val2).toString());
              if (e1 <= e2) {
                  return "verdadero";
              } else {
@@ -375,7 +375,7 @@ public class expresionesRelacionales extends expresionBase {
          }
           else if ((tipo1.equalsIgnoreCase("bool")) && (tipo2.equalsIgnoreCase("numero"))) {
              double e1 = getBoolNumero(val1);
-             double e2 = getNumero(val2);
+             double e2 = Double.parseDouble(getNumero(val2).toString());
              if (e1 <= e2) {
                  return "verdadero";
              } else {
@@ -383,7 +383,7 @@ public class expresionesRelacionales extends expresionBase {
              }
          }
           else if ((tipo1.equalsIgnoreCase("numero")) && (tipo2.equalsIgnoreCase("bool"))) {
-             double e1 = getNumero(val1);
+             double e1 = Double.parseDouble(getNumero(val1).toString());
              double e2 = getBoolNumero(val2);
              if (e1 <= e2) {
                  return "verdadero";
@@ -422,7 +422,7 @@ public class expresionesRelacionales extends expresionBase {
          }
           else if ((tipo1.equalsIgnoreCase("cadena")) && (tipo2.equalsIgnoreCase("numero"))) {
              double e1 = val1.toString().length();
-             double e2 = getNumero(val2);
+             double e2 = Double.parseDouble(getNumero(val2).toString());
              if (e1 <= e2) {
                  return "verdadero";
              } else {
@@ -430,7 +430,7 @@ public class expresionesRelacionales extends expresionBase {
              }
          }
           else if ((tipo1.equalsIgnoreCase("numero")) && (tipo2.equalsIgnoreCase("cadena"))) {
-             double e1 = getNumero(val1);
+             double e1 = Double.parseDouble(getNumero(val1).toString());
              double e2 = val2.toString().length();
              if (e1 <= e2) {
                  return "verdadero";
@@ -515,8 +515,8 @@ public class expresionesRelacionales extends expresionBase {
          String tipo2= obtenerTipoExpresion(val2);
          
           if ((tipo1.equalsIgnoreCase("numero")) && (tipo2.equalsIgnoreCase("numero"))) {
-             double e1 = getNumero(val1);
-             double e2 = getNumero(val2);
+             double e1 = Double.parseDouble(getNumero(val1).toString());
+             double e2 = Double.parseDouble(getNumero(val2).toString());
              if (e1 >= e2) {
                  return "verdadero";
              } else {
@@ -525,7 +525,7 @@ public class expresionesRelacionales extends expresionBase {
          }
           else if ((tipo1.equalsIgnoreCase("bool")) && (tipo2.equalsIgnoreCase("numero"))) {
              double e1 = getBoolNumero(val1);
-             double e2 = getNumero(val2);
+             double e2 =Double.parseDouble( getNumero(val2).toString());
              if (e1 >= e2) {
                  return "verdadero";
              } else {
@@ -533,7 +533,7 @@ public class expresionesRelacionales extends expresionBase {
              }
          }
           else if ((tipo1.equalsIgnoreCase("numero")) && (tipo2.equalsIgnoreCase("bool"))) {
-             double e1 = getNumero(val1);
+             double e1 = Double.parseDouble(getNumero(val1).toString());
              double e2 = getBoolNumero(val2);
              if (e1 >= e2) {
                  return "verdadero";
@@ -572,7 +572,7 @@ public class expresionesRelacionales extends expresionBase {
          }
           else if ((tipo1.equalsIgnoreCase("cadena")) && (tipo2.equalsIgnoreCase("numero"))) {
              double e1 = val1.toString().length();
-             double e2 = getNumero(val2);
+             double e2 = Double.parseDouble(getNumero(val2).toString());
              if (e1 >= e2) {
                  return "verdadero";
              } else {
@@ -580,7 +580,7 @@ public class expresionesRelacionales extends expresionBase {
              }
          }
           else if ((tipo1.equalsIgnoreCase("numero")) && (tipo2.equalsIgnoreCase("cadena"))) {
-             double e1 = getNumero(val1);
+             double e1 = Double.parseDouble(getNumero(val1).toString());
              double e2 = val2.toString().length();
              if (e1 >= e2) {
                  return "verdadero";
@@ -663,8 +663,8 @@ public class expresionesRelacionales extends expresionBase {
          String tipo2= obtenerTipoExpresion(val2);
          
           if ((tipo1.equalsIgnoreCase("numero")) && (tipo2.equalsIgnoreCase("numero"))) {
-             double e1 = getNumero(val1);
-             double e2 = getNumero(val2);
+             double e1 = Double.parseDouble(getNumero(val1).toString());
+             double e2 = Double.parseDouble(getNumero(val2).toString());
              if (e1 == e2) {
                  return "verdadero";
              } else {
@@ -673,7 +673,7 @@ public class expresionesRelacionales extends expresionBase {
          }
           else if ((tipo1.equalsIgnoreCase("bool")) && (tipo2.equalsIgnoreCase("numero"))) {
              double e1 = getBoolNumero(val1);
-             double e2 = getNumero(val2);
+             double e2 = Double.parseDouble(getNumero(val2).toString());
              if (e1 == e2) {
                  return "verdadero";
              } else {
@@ -681,7 +681,7 @@ public class expresionesRelacionales extends expresionBase {
              }
          }
           else if ((tipo1.equalsIgnoreCase("numero")) && (tipo2.equalsIgnoreCase("bool"))) {
-             double e1 = getNumero(val1);
+             double e1 = Double.parseDouble(getNumero(val1).toString());
              double e2 = getBoolNumero(val2);
              if (e1 == e2) {
                  return "verdadero";
@@ -714,7 +714,7 @@ public class expresionesRelacionales extends expresionBase {
          }
           else if ((tipo1.equalsIgnoreCase("cadena")) && (tipo2.equalsIgnoreCase("numero"))) {
              double e1 = val1.toString().length();
-             double e2 = getNumero(val2);
+             double e2 = Double.parseDouble(getNumero(val2).toString());
              if (e1 == e2) {
                  return "verdadero";
              } else {
@@ -722,7 +722,7 @@ public class expresionesRelacionales extends expresionBase {
              }
          }
           else if ((tipo1.equalsIgnoreCase("numero")) && (tipo2.equalsIgnoreCase("cadena"))) {
-             double e1 = getNumero(val1);
+             double e1 = Double.parseDouble(getNumero(val1).toString());
              double e2 = val2.toString().length();
              if (e1 == e2) {
                  return "verdadero";
@@ -808,8 +808,8 @@ public class expresionesRelacionales extends expresionBase {
          String tipo2= obtenerTipoExpresion(val2);
          
           if ((tipo1.equalsIgnoreCase("numero")) && (tipo2.equalsIgnoreCase("numero"))) {
-             double e1 = getNumero(val1);
-             double e2 = getNumero(val2);
+             double e1 = Double.parseDouble(getNumero(val1).toString());
+             double e2 = Double.parseDouble(getNumero(val2).toString());
              if (e1 != e2) {
                  return "verdadero";
              } else {
@@ -818,7 +818,7 @@ public class expresionesRelacionales extends expresionBase {
          }
           else if ((tipo1.equalsIgnoreCase("bool")) && (tipo2.equalsIgnoreCase("numero"))) {
              double e1 = getBoolNumero(val1);
-             double e2 = getNumero(val2);
+             double e2 = Double.parseDouble(getNumero(val2).toString());
              if (e1 != e2) {
                  return "verdadero";
              } else {
@@ -826,7 +826,7 @@ public class expresionesRelacionales extends expresionBase {
              }
          }
           else if ((tipo1.equalsIgnoreCase("numero")) && (tipo2.equalsIgnoreCase("bool"))) {
-             double e1 = getNumero(val1);
+             double e1 = Double.parseDouble(getNumero(val1).toString());
              double e2 = getBoolNumero(val2);
              if (e1 != e2) {
                  return "verdadero";
@@ -859,7 +859,7 @@ public class expresionesRelacionales extends expresionBase {
          }
           else if ((tipo1.equalsIgnoreCase("cadena")) && (tipo2.equalsIgnoreCase("numero"))) {
              double e1 = val1.toString().length();
-             double e2 = getNumero(val2);
+             double e2 = Double.parseDouble(getNumero(val2).toString());
              if (e1 != e2) {
                  return "verdadero";
              } else {
@@ -867,7 +867,7 @@ public class expresionesRelacionales extends expresionBase {
              }
          }
           else if ((tipo1.equalsIgnoreCase("numero")) && (tipo2.equalsIgnoreCase("cadena"))) {
-             double e1 = getNumero(val1);
+             double e1 = Double.parseDouble(getNumero(val1).toString());
              double e2 = val2.toString().length();
              if (e1!= e2) {
                  return "verdadero";
