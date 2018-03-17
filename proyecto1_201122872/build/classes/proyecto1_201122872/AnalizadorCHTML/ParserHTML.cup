@@ -1,0 +1,550 @@
+package proyecto1_201122872.AnalizadorCHTML;
+
+import proyecto1_201122872.AnalizadorCHTML.simbolosCHTML;
+import java_cup.runtime.*;
+import java.io.*;
+import java.lang.*;
+import java.util.*;
+import java.util.ArrayList;
+import proyecto1_201122872.CHTML.ElemetoPropiedad.*;
+import proyecto1_201122872.CHTML.BODY.*;
+import proyecto1_201122872.CHTML.Etiqueta;
+import proyecto1_201122872.CHTML.Chtml;
+import proyecto1_201122872.CHTML.Opcion;
+import proyecto1_201122872.CHTML.listaElementos;
+import proyecto1_201122872.CHTML.HEADER.*;
+import Errores.ErrorS;
+
+
+
+
+parser code
+{:
+ /* -------------------------==: DECLARAR EL ARBOL :==--------------------------*/
+    //public Nodo Gramaticas;     
+    public static String cadena;
+	public  Chtml codigoHTML;
+	
+
+/* -------------------------==: ERROR SINTACTICO :==--------------------------*/
+public void syntax_error(Symbol s){
+    System.out.println("Error Sintactico -> lexema: " +s.value+" Linea: " +s.right+ " Columna: "+s.left);
+    cadena += "<tr>"
+                + "<td><center><b>" + s.value + "</b></center></td>"
+                + "<td><center><b>" + s.right + "</b></center></td>"
+                + "<td><center><b>" + s.left+ "</b></center></td>"
+                + "</tr>";
+				ErrorS nuevo = new ErrorS(s.right,s.left,"Sintactico","El simbolo "+s.value+", no es valido");
+paginaActual.erroresPagina.insertarError(nuevo);
+}
+
+/* ------------------==: ERROR SINTACTICO NO RECUPERABLE :==------------------*/
+public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{
+    System.out.println("Error Sintactico No Recuperable-> Lexema: " +s.value+" Linea: "+s.right+ " Columna: "+s.left);
+     cadena += "<tr>"
+                + "<td><center><b>" + s.value + "</b></center></td>"
+                + "<td><center><b>" + s.right + "</b></center></td>"
+                + "<td><center><b>" + s.left+ "</b></center></td>"
+                + "</tr>";
+				ErrorS nuevo = new ErrorS(s.right,s.left,"Sintactico","El simbolo "+s.value+", no es valido");
+paginaActual.erroresPagina.insertarError(nuevo);
+}
+
+:}
+
+
+action code
+{:
+//Operaciones_Listas operaciones = new Operaciones_Listas();
+
+
+
+:}
+
+/* -----------------------==: Simbolos Terminales :==------------------------*/
+
+
+
+
+
+
+
+	terminal String menor, mayor, cadena2;
+
+	terminal String chtml, finChtml, encabezado, finEncabezado,cjs, finCjs,ccss,finCcss,cuerpo,finCuerpo, 
+		titulo,finTitulo, panel,finPanel, texto,finTexto,imagen,finImagen,boton,finBoton,enlace,finEnlace,tabla,finTabla,fil_t,finFil_t,cb,
+		finCb,ct,finCt,texto_a,finTexto_a,caja_texto,finCaja_texto,caja,finCaja,opcion,finOpcion,spinner,finSpinner,saltoFin,id,grupo,alto,
+		ancho,alineado,valor,click,ruta,fondo,izquierda,derecha,centrado,igualSimb,puntoComaSimb,identificador,cadena,numero;
+
+
+
+	non terminal INICIO;
+
+	non terminal 
+		encabezadoProduccion, tituloHeader,cssHeader,jsHeader,cuerpoHeader,elementoHeader;
+
+	non terminal 
+		idPropiedad, grupoPropiedad, altoPropiedad, anchoPropiedad,alineadoPropiedad,ccssPropiedad,rutaPropiedad, clickPropiedad,fondoPropiedad,valorPropiedad, propiedadGeneral, listaPropiedadesGenerales, LISTA_OPCION;
+
+
+	non terminal
+		tagEncabezado,tagFinEncabezado,
+		tagChtml, tagFinChtml,
+		tagCjs, tagFinCjs, 
+		tagCcss, tagFinCcss, 
+		tagTitulo, tagFinTitulo,
+		tagCuerpo, tagFinCuerpo, 
+		tagTexto, tagFinTexto,
+		tagImagen, tagFinImagen,
+		tagBoton, tagFinBoton,
+		tagEnlace, tagFinEnlace,
+		tagTabla, tagFinTabla,
+		tagCt, tagFinCt,
+		tagCb, tagFinCb,
+		tagFil_t, tagFinFil_t,
+		tagTexto_a, tagFinTexto_a,
+		tagCaja_texto, tagFinCaja_texto,
+		tagOpcion, tagFinOpcion,
+		tagCaja, tagFinCaja,
+		tagSpinner, tagFinSpinner,
+		tagPanel, tagFinPanel,
+		tagSaltoFin
+		;
+		
+	non terminal listaPropiedadBoton,propiedadCuerpo,listaPropiedadesCuerpo, 
+		listaPropiedadeesCajaOpciones, listaPropiedadesEnlace, propiedadBoton, propiedadCajaOpciones,
+		propiedadOpcion, listaPropiedadesOpcion, propiedadEnlace, propiedadValor;
+
+
+	non terminal CHTML,ENCABEZADO, CCJS, CCSS, TITULO,CUERPO,TEXTO, IMAGEN,BOTON,ENLACE,TEXTO_A,CAJA_TEXTO,CAJA,SPINNER,SALTO,OPCION,
+		listaOpciones,sentenciaCuerpo, cuerpoCuerpo, PANEL,TABLA, LISTA_FILA,FILA,ELEMENTO_FILA,CELDA_ENCABEZADO,CELDA,sentenciaCelda,cuerpoCelda,LISTA_TABLA;
+
+
+	non terminal cuerpoCHTML, PROPIEDAD_OPCION;
+	
+
+
+	start with INICIO;
+			
+			
+	INICIO::= CHTML:a{:parser.codigoHTML= (Chtml)a;:}
+|error;
+
+	/*---------- propiedades ------------------- */
+
+	rutaPropiedad::= ruta igualSimb cadena:a puntoComaSimb{:propiedadRuta r= new propiedadRuta(a); 
+															RESULT=r;
+														  :}
+														  |error;
+   
+    clickPropiedad::= click igualSimb cadena:a puntoComaSimb{:propiedadClick r= new propiedadClick(a); 
+															RESULT=r;
+														  :};
+	
+	fondoPropiedad::= fondo igualSimb cadena:a puntoComaSimb{:propiedadFondo r= new propiedadFondo(a); 
+															RESULT=r;
+														  :};
+	
+	valorPropiedad::= valor igualSimb cadena:a puntoComaSimb{:propiedadValor r= new propiedadValor(a); 
+															RESULT=r;
+														  :};
+
+	idPropiedad::= id igualSimb cadena:a puntoComaSimb{:propiedadId r= new propiedadId(a); 
+															RESULT=r;
+														  :};
+														  
+	grupoPropiedad::= grupo igualSimb cadena:a puntoComaSimb{:propiedadGrupo r= new propiedadGrupo(a); 
+															RESULT=r;
+														  :};
+														  
+	altoPropiedad::= alto igualSimb cadena:a puntoComaSimb{:propiedadAlto r= new propiedadAlto(a); 
+															RESULT=r;
+														  :};
+														  
+	anchoPropiedad::= ancho igualSimb cadena:a puntoComaSimb{:propiedadAncho r= new propiedadAncho(a); 
+															RESULT=r;
+														  :};
+														  
+	alineadoPropiedad::= alineado igualSimb cadena:a puntoComaSimb{:propiedadAlineado r= new propiedadAlineado(a); 
+															RESULT=r;
+														  :};
+														  
+
+	propiedadGeneral::= idPropiedad:a{:RESULT= a;:}
+		|grupoPropiedad:a{:RESULT= a;:}
+		|altoPropiedad:a{:RESULT= a;:}
+		|anchoPropiedad:a{:RESULT= a;:}
+		|alineadoPropiedad:a{:RESULT= a;:};
+
+	listaPropiedadesGenerales::= listaPropiedadesGenerales:b propiedadGeneral:a{: List<propiedad> lista = (List<propiedad>)b;
+																				lista.add((propiedad)a);
+																				RESULT= lista;:} 
+		|propiedadGeneral:a {:List<propiedad> propiedades = new ArrayList<>();
+							  propiedades.add((propiedad)a);
+							  RESULT=propiedades; :};
+							  
+
+	propiedadOpcion::= propiedadGeneral:a{:RESULT= a;:}
+		|valorPropiedad:a{:RESULT= a;:};
+		
+	listaPropiedadesOpcion::= listaPropiedadesOpcion:b propiedadOpcion:a{:List<propiedad> lista= (List<propiedad>) b;
+																		  lista.add((propiedad)a);
+																		  RESULT= lista;:}
+		|propiedadOpcion:a{: List<propiedad> lista = new ArrayList<>();
+							 lista.add((propiedad)a);
+							 RESULT = lista;:};
+			
+	propiedadCajaOpciones::= propiedadGeneral:a{:RESULT= a;:}
+		| clickPropiedad:a{:RESULT= a;:};
+		
+	listaPropiedadeesCajaOpciones::= listaPropiedadeesCajaOpciones:b propiedadCajaOpciones:a{:List<propiedad> lista= (List<propiedad>) b;
+																							  lista.add((propiedad)a);
+																							  RESULT= lista;:}
+		|propiedadCajaOpciones:a{: List<propiedad> lista = new ArrayList<>();
+							 lista.add((propiedad)a);
+							 RESULT = lista;:};
+
+	propiedadEnlace::= propiedadGeneral:a{:RESULT= a;:}
+		| clickPropiedad:a{:RESULT= a;:}
+		| rutaPropiedad:a{:RESULT= a;:};
+		
+	listaPropiedadesEnlace::= listaPropiedadesEnlace:b propiedadEnlace:a{:List<propiedad> lista= (List<propiedad>) b;
+																		  lista.add((propiedad)a);
+																		  RESULT= lista;:}
+		| propiedadEnlace:a{: List<propiedad> lista = new ArrayList<>();
+							 lista.add((propiedad)a);
+							 RESULT = lista;:};
+		
+	propiedadBoton::= propiedadGeneral:a{:RESULT= a;:}
+		| clickPropiedad:a{:RESULT= a;:}
+		| rutaPropiedad:a{:RESULT= a;:};
+		
+	listaPropiedadBoton::= listaPropiedadBoton:b propiedadBoton:a{:List<propiedad> lista= (List<propiedad>) b;
+																		  lista.add((propiedad)a);
+																		  RESULT= lista;:}
+	
+		| propiedadBoton:a{: List<propiedad> lista = new ArrayList<>();
+							 lista.add((propiedad)a);
+							 RESULT = lista;:};
+		
+	
+    propiedadCuerpo::= propiedadGeneral:a{:RESULT= a;:}
+		| fondoPropiedad:a{:RESULT= a;:};
+		
+	listaPropiedadesCuerpo::= propiedadCuerpo:a{: List<propiedad> lista = new ArrayList<>();
+							 lista.add((propiedad)a);
+							 RESULT = lista;:}
+							 
+		|listaPropiedadesCuerpo:b propiedadCuerpo:a{:List<propiedad> lista= (List<propiedad>) b;
+																		  lista.add((propiedad)a);
+																		  RESULT= lista;:};
+		
+
+		
+
+/*----------------- Tags ----------------------*/
+
+
+	tagTabla::= menor tabla mayor{:List<propiedad> lista = new ArrayList<>();
+									RESULT= lista;:}
+		|menor tabla listaPropiedadesGenerales:b mayor{:List<propiedad> lista= (ArrayList<propiedad>)b;
+														RESULT= lista;:};
+		
+	tagFinTabla::= menor finTabla mayor;
+	
+	
+	tagCt::= menor ct mayor {:List<propiedad> lista = new ArrayList<>();
+									RESULT= lista;:}
+									
+		| menor ct listaPropiedadesGenerales :b mayor{:List<propiedad> lista= (ArrayList<propiedad>)b;
+														RESULT= lista;:};
+		
+	tagFinCt::= menor finCt mayor;
+	
+	tagCb::= menor cb mayor {:List<propiedad> lista = new ArrayList<>();
+									RESULT= lista;:}
+		|menor cb listaPropiedadesGenerales:b mayor{:List<propiedad> lista= (ArrayList<propiedad>)b;
+														RESULT= lista;:};
+		
+	tagFinCb::= menor finCb mayor;
+	
+	tagFil_t::= menor fil_t listaPropiedadesGenerales :b mayor{:List<propiedad> lista= (ArrayList<propiedad>)b;
+														RESULT= lista;:}
+		| menor fil_t mayor {:List<propiedad> lista = new ArrayList<>();
+									RESULT= lista;:};
+		
+		
+	tagFinFil_t::= menor finFil_t mayor;
+
+    tagCjs::= menor cjs mayor {: RESULT=new propiedadRuta("");;:}
+									
+		| menor cjs rutaPropiedad:rt mayor{: RESULT=rt;:};
+		
+	tagFinCjs::= menor finCjs mayor;
+	
+	tagCcss::= menor ccss mayor {: RESULT=new propiedadRuta("");;:}
+		| menor ccss rutaPropiedad :rt mayor{: RESULT=rt;:}; 
+		
+	tagFinCcss::= menor finCcss mayor;
+	
+	
+	tagCuerpo::= menor cuerpo mayor {:List<propiedad> lista = new ArrayList<>();
+									RESULT= lista;:}
+		|menor cuerpo listaPropiedadesCuerpo:b mayor{:List<propiedad> lista = (ArrayList<propiedad>)b;
+														RESULT = lista;:};
+		
+	tagFinCuerpo::= menor finCuerpo mayor;
+	
+	tagTitulo::= menor titulo mayor{:List<propiedad> lista = new ArrayList<>();
+									RESULT= lista;:}
+		| menor titulo listaPropiedadesGenerales:b mayor{:List<propiedad> lista = (ArrayList<propiedad>)b;
+														RESULT = lista;:};
+		
+	tagFinTitulo::= menor finTitulo mayor;
+
+	tagTexto::= menor texto mayor {:List<propiedad> lista = new ArrayList<>();
+									RESULT= lista;:}
+		| menor texto listaPropiedadesGenerales :b mayor{:List<propiedad> lista = (ArrayList<propiedad>)b;
+														RESULT = lista;:};
+		
+	tagFinTexto::= menor finTexto mayor;
+	
+	tagPanel::= menor panel mayor {:List<propiedad> lista = new ArrayList<>();
+									RESULT= lista;:}
+		| menor panel listaPropiedadesGenerales:b mayor{:List<propiedad> lista = (ArrayList<propiedad>)b;
+														RESULT = lista;:};
+
+	tagFinPanel::= menor finPanel mayor;
+	
+	
+  tagImagen::= menor imagen mayor {:List<propiedad> lista = new ArrayList<>();
+									RESULT= lista;:}
+	| menor imagen listaPropiedadBoton:b mayor{:List<propiedad> lista = (ArrayList<propiedad>)b;
+														RESULT = lista;:};
+	
+	tagFinImagen::= menor finImagen mayor;
+  
+  tagBoton::= menor boton listaPropiedadBoton:b mayor{:List<propiedad> lista = (ArrayList<propiedad>)b;
+														RESULT = lista;:}
+	| menor boton  mayor{:List<propiedad> lista = new ArrayList<>();
+									RESULT= lista;:};
+	
+	tagFinBoton::= menor finBoton mayor;
+  
+  tagEnlace::= menor enlace mayor{:List<propiedad> lista = new ArrayList<>();
+									RESULT= lista;:}
+	| menor enlace listaPropiedadesEnlace:b mayor{:List<propiedad> lista = (ArrayList<propiedad>)b;
+														RESULT = lista;:};
+	
+	tagFinEnlace::= menor finEnlace mayor;
+	
+	
+  
+
+  tagTexto_a::= menor texto_a listaPropiedadesGenerales:b mayor{:List<propiedad> lista = (ArrayList<propiedad>)b;
+														RESULT = lista;:}
+	| menor texto_a mayor{:List<propiedad> lista = new ArrayList<>();
+									RESULT= lista;:};
+	
+	
+	tagFinTexto_a::= menor finTexto_a mayor;
+
+
+    tagCaja_texto::= menor caja_texto mayor{:List<propiedad> lista = new ArrayList<>();
+									RESULT= lista;:}
+		|menor caja_texto listaPropiedadesGenerales:b mayor{:List<propiedad> lista = (ArrayList<propiedad>)b;
+														RESULT = lista;:};
+
+	tagFinCaja_texto::= menor finCaja_texto mayor;
+	
+	
+	
+	tagCaja::= menor caja listaPropiedadeesCajaOpciones:b mayor{:List<propiedad> lista = (ArrayList<propiedad>)b;
+														RESULT = lista;:}
+		|menor caja mayor{:List<propiedad> lista = new ArrayList<>();
+									RESULT= lista;:};
+		
+	tagFinCaja::= menor finCaja mayor;
+	
+	
+
+
+	tagFinOpcion::= menor finOpcion mayor;
+	
+	
+    tagSaltoFin::= menor saltoFin mayor;
+	
+	tagSpinner::= menor spinner listaPropiedadesGenerales:b mayor{:List<propiedad> lista = (ArrayList<propiedad>)b;
+														RESULT = lista;:}
+		|menor spinner mayor{:List<propiedad> lista = new ArrayList<>();
+									RESULT= lista;:};
+	
+	tagFinSpinner::= menor finSpinner mayor;
+	
+	
+	tagEncabezado::= menor encabezado mayor{:List<propiedad> lista = new ArrayList<>();
+									RESULT= lista;:}
+		|menor encabezado listaPropiedadesGenerales:b mayor{:List<propiedad> lista = (ArrayList<propiedad>)b;
+														RESULT = lista;:};
+
+	tagFinEncabezado::= menor finEncabezado mayor;
+
+	tagChtml::= menor chtml mayor {:List<propiedad> lista = new ArrayList<>();
+									RESULT= lista;:}
+		|menor chtml listaPropiedadesGenerales:b mayor{:List<propiedad> lista = (ArrayList<propiedad>)b;
+														RESULT = lista;:};
+
+	tagFinChtml::= menor finChtml mayor;
+	
+	
+/*------------------------- Etiquetas ----------------------------------*/
+
+	CHTML::= tagChtml:a ENCABEZADO:e CUERPO:c tagFinChtml{:Chtml ht= new Chtml(a,e,c); RESULT= ht;:};
+	
+	
+	
+	/*---------------- Encabezado -------------------------*/
+	elementoHeader::= CCJS:a{:RESULT=a;:}
+		|CCSS:a{:RESULT=a;:}
+		|TITULO:a{:RESULT=a;:};
+		
+	cuerpoHeader::= cuerpoHeader:l elementoHeader:r{:List<Etiqueta> lista = (ArrayList<Etiqueta>)l;
+						lista.add((Etiqueta)r);
+						RESULT=lista;	:}
+		| elementoHeader:r{:List<Etiqueta> lista = new ArrayList<>();
+						lista.add((Etiqueta)r);
+						RESULT=lista;	:};
+		
+	ENCABEZADO::= tagEncabezado cuerpoHeader:c tagFinEncabezado{:RESULT= new Encabezado(c);:}
+		| tagEncabezado tagFinEncabezado{:RESULT= new Encabezado(new ArrayList<Etiqueta>());:};
+		
+	
+	CCJS::= tagCjs:p tagFinCjs{:RESULT= new CJS(p);:};
+	CCSS::= tagCcss:p tagFinCcss{:RESULT= new CCSS(p);:};
+	TITULO::= tagTitulo cadena2:c tagFinTitulo{:RESULT= new Titulo(c);:}
+		|tagTitulo tagFinTitulo{:RESULT= new Titulo("");:};
+	
+	
+	/*---------------------- Cuerpo --------------*/
+	
+	CUERPO::= tagCuerpo:m  tagFinCuerpo {:Cuerpo p = new Cuerpo(m, new ArrayList<Etiqueta>()); RESULT = p;:}
+		|tagCuerpo:m  cuerpoCuerpo:c tagFinCuerpo{:Cuerpo p = new Cuerpo(m,c); RESULT = p;:};
+		
+	
+	TEXTO::= tagTexto:m cadena2:c tagFinTexto {: Texto txt = new Texto(m ,c); RESULT= txt;:}
+		| tagTexto:m tagFinTexto{: Texto txt = new Texto(m ,""); RESULT= txt;:};
+		
+	IMAGEN::= tagImagen:m cadena2:c tagFinImagen{:Imagen img = new Imagen(m,c); RESULT= img;:}
+		| tagImagen:m tagFinImagen {:Imagen img = new Imagen(m,"SinImagen"); RESULT= img;:};
+		
+	BOTON::= tagBoton:m cadena2:c tagFinBoton{:Boton img = new Boton(m,c); RESULT= img;:}
+		| tagBoton:m tagFinBoton {:Boton img = new Boton(m,""); RESULT= img;:};
+		
+	ENLACE::= tagEnlace:m cadena2:c tagFinEnlace{:Enlace img = new Enlace(m,c); RESULT= img;:}
+		| tagEnlace:m tagFinEnlace{:Enlace img = new Enlace(m,""); RESULT= img;:};
+		
+	TEXTO_A::= tagTexto_a:m cadena2:c tagFinTexto_a{:Texto_a img = new Texto_a(m,c); RESULT= img;:}
+		| tagTexto_a:m tagFinTexto_a{:Texto_a img = new Texto_a(m,""); RESULT= img;:};
+		
+	CAJA_TEXTO::= tagCaja_texto:m cadena2:c tagFinCaja_texto {:caja_texto img = new caja_texto(m,c); RESULT= img;:}
+		|tagCaja_texto:m tagFinCaja_texto {:caja_texto img = new caja_texto(m,""); RESULT= img;:};
+		
+	
+	
+	tagOpcion::= menor opcion mayor {:RESULT= new  listaElementos(new ArrayList<propiedad>());:}
+		|menor opcion  LISTA_OPCION:a mayor{:RESULT= new  listaElementos((ArrayList<propiedad>)a);:};
+	
+
+   PROPIEDAD_OPCION::= propiedadGeneral:a{:RESULT=a;:}
+	|propiedadValor:a{:RESULT=a;:};
+    	
+	
+	propiedadValor::= valor igualSimb cadena:c puntoComaSimb{:RESULT= new propiedadValor(c);:};
+	
+	
+	LISTA_OPCION::= LISTA_OPCION:b PROPIEDAD_OPCION:a{:List<propiedad> lista= (List<propiedad>) b;
+																		  lista.add((propiedad)a);
+																		  RESULT= lista;:}
+		|PROPIEDAD_OPCION:a{: List<propiedad> lista = new ArrayList<>();
+							 lista.add((propiedad)a);
+							 RESULT = lista;:};
+	
+	OPCION::= tagOpcion:m cadena2:c tagFinOpcion {:  RESULT = new Opcion((listaElementos)m,c);:}
+		| tagOpcion:m tagFinOpcion {:RESULT = new Opcion((listaElementos)m,"");:};
+		
+		
+	
+		
+	listaOpciones::= listaOpciones:l OPCION:op{:List<Opcion> lista = (ArrayList<Opcion>)l; lista.add((Opcion)op); RESULT=lista;:}
+		|OPCION:op{:List<Opcion> lista = new ArrayList<>(); lista.add((Opcion)op); RESULT=lista;:};
+		
+	CAJA::= tagCaja:a listaOpciones:b tagFinCaja{:RESULT= new Caja(new listaElementos((ArrayList<propiedad>)a),b);:}
+		| tagCaja:a tagFinCaja{:RESULT= new Caja(new listaElementos((ArrayList<propiedad>)a),new ArrayList<Opcion>());:};
+		
+	SPINNER::= tagSpinner:m cadena2:c tagFinSpinner{:Spinner img = new Spinner(m,c); RESULT= img;:}
+		| tagSpinner:m tagFinSpinner{:Spinner img = new Spinner(m,""); RESULT= img;:};
+		
+	SALTO::= tagSaltoFin{:Salto br = new Salto(); RESULT= br;:};
+	
+	
+	
+	PANEL::= tagPanel:m cuerpoCuerpo:c tagFinPanel{:RESULT = new Panel(new listaElementos((ArrayList<propiedad>)m),new Cuerpo(new ArrayList<propiedad>(),c));:}
+		| tagPanel:m tagFinPanel{:RESULT = new Panel(new listaElementos((ArrayList<propiedad>)m),new Cuerpo(new ArrayList<propiedad>(),new ArrayList<Etiqueta>()));:};
+		
+
+		
+	CELDA::= tagCt:m cuerpoCelda tagFinCt
+		| tagCt:m tagFinCt;
+		
+	CELDA_ENCABEZADO::= tagCb:m cuerpoCelda tagFinCb
+		| tagCb:m tagFinCb;
+		
+	ELEMENTO_FILA::= CELDA
+		|CELDA_ENCABEZADO;
+		
+	LISTA_FILA::= LISTA_FILA ELEMENTO_FILA
+		|ELEMENTO_FILA;
+		
+	FILA ::= tagFil_t:m LISTA_FILA tagFinFil_t
+		| tagFil_t:m tagFinFil_t;
+		
+	LISTA_TABLA::= LISTA_TABLA FILA
+		|FILA;
+		
+	
+	TABLA::= tagTabla:m LISTA_TABLA tagFinTabla
+		| tagTabla:m tagFinTabla;
+		
+		
+		
+	
+	sentenciaCuerpo::= TEXTO:a{:RESULT=a;:}
+		|IMAGEN:a{:RESULT=a;:}
+		|BOTON:a{:RESULT=a;:}
+		|ENLACE:a{:RESULT=a;:}
+		|TEXTO_A:a{:RESULT=a;:}
+		|CAJA_TEXTO:a{:RESULT=a;:}
+		|CAJA:a{:RESULT=a;:}
+		|SPINNER:a{:RESULT=a;:}
+		|SALTO:a{:RESULT=a;:}
+		|PANEL:a{:RESULT=a;:}
+		|TABLA;
+		
+		
+	cuerpoCuerpo::= cuerpoCuerpo:lista sentenciaCuerpo:a {:List<Etiqueta> etiquetas = (ArrayList<Etiqueta>)lista;
+														   etiquetas.add((Etiqueta)a);
+															RESULT= etiquetas;
+															:}
+		|sentenciaCuerpo:a {: List<Etiqueta> etiquetas = new ArrayList<Etiqueta>();
+							  etiquetas.add((Etiqueta)a);
+							  RESULT= etiquetas;		
+							:};
+		
+		
+	sentenciaCelda::= BOTON:a{:RESULT=a;:}
+		|IMAGEN:a{:RESULT=a;:}
+		|cadena2:a{:RESULT=a;:};
+		
+		
+	cuerpoCelda::= cuerpoCelda:a sentenciaCelda:b{:List<Etiqueta> lista = (ArrayList<Etiqueta>)a; lista.add((Etiqueta)b);RESULT= lista;:}
+		|sentenciaCelda:a{:List<Etiqueta> lista = new ArrayList<Etiqueta>(); lista.add((Etiqueta)a);RESULT= lista;:};
